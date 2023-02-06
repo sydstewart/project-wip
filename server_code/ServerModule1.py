@@ -31,20 +31,39 @@ def listprojects():
   conn = connect()
   with conn.cursor() as cur:
    cur.execute(
-    "Select projects.projectname as projects, portfolioboards.boardName as boards, \
-    portfoliocolumns.columnName as stage \
+    "Select portfolioboards.boardName as boards, \
+    portfoliocolumns.columnName as stage, count(*) as count\
     From projects Inner Join \
     portfoliocards On projects.projectId = portfoliocards.projectId Inner Join \
     portfolioboards On portfolioboards.boardId = portfoliocards.boardId Inner Join \
-    portfoliocolumns On portfoliocards.columnId = portfoliocolumns.columnId"
+    portfoliocolumns On portfoliocards.columnId = portfoliocolumns.columnId \
+    group by  portfolioboards.boardName , \
+    portfoliocolumns.columnName"
    ) 
    
   app_tables.projects_stages.delete_all_rows()
    
   for r in cur.fetchall(): 
-      dicts = [{'project_name': r['projects'],'project_board': r['boards'],'project_column':r['stage']}]
+      dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}]
       for d in dicts:
                                   
             app_tables.projects_stages.add_row(**d)
             
-  
+  with conn.cursor() as cur1:
+    cur1.execute(
+   "Select portfolioboards.boardName as boards,  \
+    projects.projectname as project_name, \
+    portfoliocolumns.columnName as stage \
+    From projects Inner Join \
+    portfoliocards On projects.projectId = portfoliocards.projectId Inner Join \
+    portfolioboards On portfolioboards.boardId = portfoliocards.boardId Inner Join \
+    portfoliocolumns On portfoliocards.columnId = portfoliocolumns.columnId"   
+   ) 
+   
+  app_tables.projects.delete_all_rows()
+   
+  for r in cur1.fetchall(): 
+      dicts = [{'project_name' : r['project_name'],'project_board': r['boards'],'project_column':r['stage']}]
+      for d in dicts:
+                                  
+            app_tables.projects.add_row(**d)

@@ -8,6 +8,46 @@ components:
   name: content_panel
   layout_properties: {slot: default}
   components:
+  - type: ColumnPanel
+    properties: {role: card, col_widths: '{}'}
+    name: card_1
+    layout_properties: {grid_position: 'FRCOEN,FSHUCC'}
+    components:
+    - type: FlowPanel
+      properties: {}
+      name: flow_panel_2
+      layout_properties: {grid_position: 'DDBICH,MJNHRR'}
+      components:
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: Boards, font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_2
+        layout_properties: {}
+      - type: DropDown
+        properties:
+          role: null
+          align: full
+          tooltip: ''
+          placeholder: ''
+          border: ''
+          enabled: true
+          foreground: ''
+          items: []
+          visible: true
+          font_size: null
+          font: ''
+          spacing_above: small
+          spacing_below: small
+          italic: false
+          background: ''
+          bold: false
+          underline: false
+          include_placeholder: true
+        name: boards_dropdown
+        layout_properties: {width: null, expand: false}
+        event_bindings: {change: boards_dropdown_change}
   - type: FlowPanel
     properties: {}
     name: flow_panel_1
@@ -15,14 +55,14 @@ components:
     components:
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: No of Projects, font_size: null, font: '', spacing_above: small,
+        visible: true, text: No of stages, font_size: null, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: label_1
       layout_properties: {grid_position: 'PQFOMB,JEEZTX'}
     - type: TextBox
       properties: {}
-      name: text_box_1
+      name: hits_textbox
       layout_properties: {grid_position: 'PQFOMB,SNVCXA', width: 48}
   - type: ColumnPanel
     properties: {col_widths: '{}'}
@@ -33,9 +73,9 @@ components:
       properties:
         role: null
         columns:
-        - {id: NIQRFQ, title: Board, data_key: project_board}
-        - {id: FIBJBU, title: Project, data_key: project_name}
         - {id: RIFSRX, title: Stage, data_key: project_column}
+        - {id: AEVFTZ, title: count, data_key: count}
+        - {id: YPUBWH, title: Show, data_key: column_1}
         auto_header: true
         tooltip: ''
         border: ''

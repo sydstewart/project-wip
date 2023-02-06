@@ -4,6 +4,7 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ...project_list import project_list
 
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
@@ -11,3 +12,20 @@ class RowTemplate1(RowTemplate1Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+
+  def show_project_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    project_copy = dict(list(self.item))
+    # Open an alert displaying the 'ArticleEdit' Form
+    # set the `self.item` property of the ArticleEdit Form to a copy of the article to be updated
+#     projects = app_tables.projects_stages.search(project_board = project_copy['project_board'], project_column=project_copy['project_column'])
+
+    
+    content = project_list(project_board = project_copy['project_board'], project_column=project_copy['project_column'])
+    result = alert(content, buttons=[], title = 'Projects', large=True)
+    
+    
+ 
+   
+
+ 

@@ -14,6 +14,23 @@ startup_form: Form1
 db_schema:
   projects_stages:
     title: projects_stages
+    client: full
+    server: full
+    columns:
+    - name: project_name
+      admin_ui: {width: 200}
+      type: string
+    - name: project_board
+      admin_ui: {width: 200}
+      type: string
+    - name: project_column
+      admin_ui: {width: 200}
+      type: string
+    - name: count
+      admin_ui: {width: 200}
+      type: number
+  projects:
+    title: projects
     client: none
     server: full
     columns:
