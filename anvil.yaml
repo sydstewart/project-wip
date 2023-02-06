@@ -1,6 +1,33 @@
+services:
+- source: /runtime/services/anvil/secrets.yml
+  client_config: {}
+  server_config: {}
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {auto_create_missing_columns: false}
+package_name: Project_WIP
 allow_embedding: false
-package_name: Material_Design_5
-name: Material Design 5
-startup_form: Form1
+name: Project WIP
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
-services: []
+metadata: {}
+startup_form: Form1
+db_schema:
+  projects_stages:
+    title: projects_stages
+    client: none
+    server: full
+    columns:
+    - name: project_name
+      admin_ui: {width: 200}
+      type: string
+    - name: project_board
+      admin_ui: {width: 200}
+      type: string
+    - name: project_column
+      admin_ui: {width: 200}
+      type: string
+secrets:
+  Teamwork Pass:
+    value: {? '' : FmcCGvX7vJFW+652Pltsoof66B6i/ul2udoU3/LwRh4UO4IRxuq/2AydKWYQ5YA2zmHLnIACFkrODQuwYfr9OHkPu5Omd+241BwG+Z6ySbDT2vDttHhMkZfd434+qxmtMApTC8jE8lOFNA==}
+    type: secret
+renamed: true
