@@ -31,8 +31,18 @@ def connect():
      alert(' Connection down')
   return connection
 
-
 @anvil.server.callable
+def load_data():
+  """Launch a single crawler background task."""
+  task = anvil.server.launch_background_task('listprojects')
+  print(task.get_state())
+
+  # Is the task complete yet?
+  if task.is_completed():
+    return task
+  
+
+@anvil.server.background_task
 def listprojects():
   conn = connect()
 #=============================================================================  

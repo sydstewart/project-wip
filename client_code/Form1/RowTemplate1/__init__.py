@@ -36,5 +36,15 @@ class RowTemplate1(RowTemplate1Template):
         self.repeating_projects_panel.visible = False
     pass
 
+  def text_box_2_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
+    pass
+
+  def text_box_1_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
+    pass
+
+
+
 
  

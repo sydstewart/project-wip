@@ -74,13 +74,13 @@ components:
         role: null
         columns:
         - {id: RIFSRX, title: Stage, data_key: project_column}
-        - {id: AEVFTZ, title: count, data_key: count}
-        - {id: YPUBWH, title: Show, data_key: column_1}
+        - {id: AEVFTZ, title: Project Count, data_key: count}
+        - {id: YPUBWH, title: '', data_key: column_1}
         auto_header: true
         tooltip: ''
         border: ''
         foreground: ''
-        rows_per_page: 20
+        rows_per_page: 440
         visible: true
         wrap_on: never
         show_page_controls: true

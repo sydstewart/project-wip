@@ -22,7 +22,7 @@ class Form1(Form1Template):
 
   def refresh_date_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call('listprojects')
+    anvil.server.call('load_data')
     
     pass
 
