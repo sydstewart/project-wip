@@ -16,9 +16,10 @@ class Form1(Form1Template):
     self.boards_dropdown.items = boards
     if self.boards_dropdown.selected_value:
          self.repeating_panel_1.items = app_tables.projects_stages.search(tables.order_by('project_column'))
-         self.hits_textbox.text = len(app_tables.projects_stages.search())
-        
- 
+#          self.hits_textbox.text = len(app_tables.projects_stages.search())
+# self.repeating_panel_teams.items = anvil.server.call('get_teams')
+    
+
   def refresh_date_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     anvil.server.call('listprojects')

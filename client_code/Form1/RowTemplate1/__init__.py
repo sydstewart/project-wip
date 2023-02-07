@@ -4,28 +4,37 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from ...project_list import project_list
-
+# from .. from 
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.repeating_projects_panel.items = app_tables.projects.search(project_stages= project_stages)
+    self.repeating_projects_panel.visible = False
+#     self.repeating_projects_panel.items = app_tables.projects.search(project_stages= project_stages)
     # Any code you write here will run before the form opens.
-
-  def show_project_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    project_copy = dict(list(self.item))
-    # Open an alert displaying the 'ArticleEdit' Form
-    # set the `self.item` property of the ArticleEdit Form to a copy of the article to be updated
-#     projects = app_tables.projects_stages.search(project_board = project_copy['project_board'], project_column=project_copy['project_column'])
+    self.repeating_projects_panel.items = anvil.server.call('get_projects_in_project_stages', self.item)
+#   def show_project_button_click(self, **event_args):
+#     """This method is called when the button is clicked"""
+#     project_copy = dict(list(self.item))
+#     # Open an alert displaying the 'ArticleEdit' Form
+#     # set the `self.item` property of the ArticleEdit Form to a copy of the article to be updated
+# #     projects = app_tables.projects_stages.search(project_board = project_copy['project_board'], project_column=project_copy['project_column'])
 
     
-    content = project_list(project_board = project_copy['project_board'], project_column=project_copy['project_column'])
-    result = alert(content, buttons=[], title = 'Projects', large=True)
+#     content = project_list(project_board = project_copy['project_board'], project_column=project_copy['project_column'])
+#     result = alert(content, buttons=[], title = 'Projects', large=True)
     
     
  
    
+
+  def show_project_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    if self.repeating_projects_panel.visible == False:
+        self.repeating_projects_panel.visible = True
+    else:
+        self.repeating_projects_panel.visible = False
+    pass
+
 
  

@@ -2,7 +2,7 @@ container: {type: DataRowPanel}
 components:
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: show projects, font_size: null, font: '',
+    foreground: '', visible: true, text: show/Hide projects, font_size: null, font: '',
     spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
     bold: false, underline: false, icon: ''}
   name: show_project_button
@@ -31,6 +31,5 @@ components:
     properties: {spacing_above: none, spacing_below: none, item_template: Form1.RowTemplate1.RowTemplate3}
     name: repeating_projects_panel
     layout_properties: {}
-  data_bindings:
-  - {property: tag, code: 'self.item[''project_name'']'}
+  data_bindings: []
 is_package: true
