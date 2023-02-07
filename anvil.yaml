@@ -17,9 +17,6 @@ db_schema:
     client: full
     server: full
     columns:
-    - name: project_name
-      admin_ui: {width: 200}
-      type: string
     - name: project_board
       admin_ui: {width: 200}
       type: string
@@ -43,10 +40,10 @@ db_schema:
     - name: project_column
       admin_ui: {width: 200}
       type: string
-    - name: projects
+    - name: project_stages
       admin_ui: {width: 200}
       type: link_single
-      target: projects
+      target: projects_stages
 secrets:
   Teamwork Pass:
     value: {? '' : FmcCGvX7vJFW+652Pltsoof66B6i/ul2udoU3/LwRh4UO4IRxuq/2AydKWYQ5YA2zmHLnIACFkrODQuwYfr9OHkPu5Omd+241BwG+Z6ySbDT2vDttHhMkZfd434+qxmtMApTC8jE8lOFNA==}

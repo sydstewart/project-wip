@@ -17,7 +17,7 @@ class Form1(Form1Template):
     if self.boards_dropdown.selected_value:
          self.repeating_panel_1.items = app_tables.projects_stages.search(tables.order_by('project_column'))
          self.hits_textbox.text = len(app_tables.projects_stages.search())
-
+        
  
   def refresh_date_button_click(self, **event_args):
     """This method is called when the button is clicked"""

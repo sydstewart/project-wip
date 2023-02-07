@@ -8,4 +8,29 @@ components:
   name: show_project_button
   layout_properties: {column: YPUBWH}
   event_bindings: {click: show_project_button_click}
+- type: DataGrid
+  properties:
+    role: null
+    columns:
+    - {id: VKZJOM, title: project, data_key: project_name}
+    auto_header: true
+    tooltip: ''
+    border: ''
+    foreground: ''
+    rows_per_page: 20
+    visible: true
+    wrap_on: never
+    show_page_controls: true
+    spacing_above: small
+    spacing_below: small
+    background: ''
+  name: data_grid_1
+  layout_properties: {column: null}
+  components:
+  - type: RepeatingPanel
+    properties: {spacing_above: none, spacing_below: none, item_template: Form1.RowTemplate1.RowTemplate3}
+    name: repeating_projects_panel
+    layout_properties: {}
+  data_bindings:
+  - {property: tag, code: 'self.item[''project_name'']'}
 is_package: true
