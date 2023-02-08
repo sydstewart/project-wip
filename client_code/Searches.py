@@ -9,7 +9,7 @@ from anvil.tables import app_tables
 def search_using_kwargs(self):
       
     search1 = self.boards_dropdown.selected_value
-#     search2 = self.text_search_box.text
+    search2 = self.multi_select_stage_dropdown.selected 
 #     search3 = self.interfaces_drop_down.selected_value
 #     search4 = self.apparea_drop_down.selected_value
 #     search5 = self.version_level_dropdown.selected_value 
@@ -43,8 +43,10 @@ def search_using_kwargs(self):
         kwargs['project_board'] = search1  #q.like('%'+ search1['InUseStatus'] + '%')
 #     kwargs['InUseStatus'] ='Live'# 
 
-# #Interfaces
-#     if search3:
+# #Stages
+    if search2:
+        kwargs['project_column'] = q.any_of(*search2)
+
 # #          self.text_search_box.text = None
 #          selectedinterface = ('%' + search3['Interface_Type'] + '%')
 #          kwargs['Interfaces'] = q.like('%'+ selectedinterface + '%') 
@@ -98,6 +100,7 @@ def search_using_kwargs(self):
     
     print(kwargs)
     results = app_tables.projects_stages.search(tables.order_by('project_column'),**kwargs, )
-
+    projects = app_tables.projects.search(**kwargs, )
     self.repeating_panel_1.items = results
     self.hits_textbox.text  = len(results)
+    self.no_of_projects_textbox.text = len(projects)

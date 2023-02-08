@@ -12,6 +12,8 @@ class Form1(Form1Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+    stages =list({(r['project_column']) for r in app_tables.projects_stages.search(tables.order_by('project_column'))})
+    self.multi_select_stage_dropdown.items =stages
     boards =list({(r['project_board']) for r in app_tables.projects_stages.search(tables.order_by('project_board'))})
     self.boards_dropdown.items = boards
     if self.boards_dropdown.selected_value:
@@ -30,6 +32,12 @@ class Form1(Form1Template):
     """This method is called when an item is selected"""
     search_using_kwargs(self)
     pass
+
+  def multi_select_stage_dropdown_change(self, **event_args):
+    """This method is called when the selected values change"""
+    search_using_kwargs(self)
+    pass
+
 
 
 
