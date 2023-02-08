@@ -97,5 +97,17 @@ def listprojects():
   print('Starting to Link')
   for p in app_tables.projects.search():
                 getstagerow = app_tables.projects_stages.get(project_board= p['project_board'], project_column=p['project_column'])
-                p.update(project_stages = getstagerow)                
-                     
+                p.update(project_stages = getstagerow)   
+        
+        
+        
+# link to Project_column translate
+
+  for x in app_tables.projects.search():
+                getsNewstagerow = app_tables.stage_translate.get(project_column=x['project_column'])
+                x.update(new_stages = getsNewstagerow) 
+  for y in app_tables.projects_stages.search():
+                getsNewstagerow = app_tables.stage_translate.get(project_column=y['project_column'])
+                y.update(new_project_column = getsNewstagerow)     
+    
+        

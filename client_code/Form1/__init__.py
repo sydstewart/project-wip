@@ -43,8 +43,13 @@ class Form1(Form1Template):
     open_form('Dev_board_form')
     pass
 
+  def stages_translate_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+#     stages =list({(r['project_column']) for r in app_tables.projects_stages.search(tables.order_by('project_column'))})
 
-
-
+#     for r in stages: 
+#         dicts = [{'project_column' : r}]
+#         for d in dicts:
+#               app_tables.stage_translate.add_row( **d)
 
 

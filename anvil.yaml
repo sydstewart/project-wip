@@ -29,6 +29,10 @@ db_schema:
     - name: count
       admin_ui: {width: 200}
       type: number
+    - name: new_project_column
+      admin_ui: {width: 200}
+      type: link_single
+      target: stage_translate
   projects:
     title: projects
     client: full
@@ -47,6 +51,21 @@ db_schema:
       admin_ui: {width: 200}
       type: link_single
       target: projects_stages
+    - name: new_stages
+      admin_ui: {width: 200}
+      type: link_single
+      target: stage_translate
+  stage_translate:
+    title: stage_translate
+    client: full
+    server: full
+    columns:
+    - name: project_column
+      admin_ui: {width: 200}
+      type: string
+    - name: new_column
+      admin_ui: {width: 200}
+      type: string
 secrets:
   Teamwork Pass:
     value: {? '' : FmcCGvX7vJFW+652Pltsoof66B6i/ul2udoU3/LwRh4UO4IRxuq/2AydKWYQ5YA2zmHLnIACFkrODQuwYfr9OHkPu5Omd+241BwG+Z6ySbDT2vDttHhMkZfd434+qxmtMApTC8jE8lOFNA==}

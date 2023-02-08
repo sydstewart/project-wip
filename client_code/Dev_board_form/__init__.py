@@ -23,10 +23,11 @@ class Dev_board_form(Dev_board_formTemplate):
   def board_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
 
-    records = app_tables.projects_stages.search(project_board= self.board_dropdown.selected_value)
+    records = app_tables.projects_stages.search(tables.order_by('new_column'),project_board= self.board_dropdown.selected_value)
+   
     self.plot_1.layout.title= self.board_dropdown.selected_value
-    if self.board_dropdown.selected_value == 'Development':
-        self.plot_1.data = go.Bar(x=['Scheduled', 'In Progress','Awaiting Feedback', 'Done'],#r['project_column'] for r in records],
+#     if self.board_dropdown.selected_value == 'Development':
+    self.plot_1.data = go.Bar(x=[r['new_column'] for r in records],#r['project_column'] for r in records],
                               y=[r['count'] for r in records])
     pass
 

@@ -158,6 +158,14 @@ components:
     name: button_2
     layout_properties: {grid_position: 'ZQGCFM,JRCGRE'}
     event_bindings: {click: button_2_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Pop Stages Translate, font_size: null,
+      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: stages_translate_button
+    layout_properties: {grid_position: 'QRVWYX,AVKBQK'}
+    event_bindings: {click: stages_translate_button_click}
 - type: Button
   properties: {text: button_1}
   name: button_1
