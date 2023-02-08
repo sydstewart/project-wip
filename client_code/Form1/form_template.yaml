@@ -69,9 +69,10 @@ components:
       name: label_5
       layout_properties: {grid_position: 'DDBICH,GLIXNC'}
   - type: FlowPanel
-    properties: {}
+    properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
+      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
     name: flow_panel_1
-    layout_properties: {grid_position: 'XXAYUR,NTOTLL'}
+    layout_properties: {grid_position: 'XXAYUR,NTOTLL', full_width_row: false}
     components:
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
@@ -95,12 +96,12 @@ components:
       name: label_4
       layout_properties: {}
     - type: TextBox
-      properties: {role: null, align: center, hide_text: false, tooltip: '', placeholder: '',
+      properties: {role: null, align: right, hide_text: false, tooltip: '', placeholder: '',
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
         background: '', bold: true, underline: false}
       name: no_of_projects_textbox
-      layout_properties: {}
+      layout_properties: {width: 34}
   - type: ColumnPanel
     properties: {col_widths: '{}'}
     name: column_panel_2
@@ -111,6 +112,7 @@ components:
         role: null
         columns:
         - {id: RIFSRX, title: Stage, data_key: project_column}
+        - {id: NSRDLZ, title: Board, data_key: project_board}
         - {id: AEVFTZ, title: Project Count, data_key: count}
         - {id: YPUBWH, title: '', data_key: column_1}
         auto_header: true
@@ -125,7 +127,7 @@ components:
         spacing_below: small
         background: ''
       name: data_grid_1
-      layout_properties: {grid_position: 'ECFUFK,FKNBTJ'}
+      layout_properties: {grid_position: 'ECFUFK,FKNBTJ', full_width_row: true}
       components:
       - type: RepeatingPanel
         properties: {spacing_above: none, spacing_below: none, item_template: Form1.RowTemplate1}
