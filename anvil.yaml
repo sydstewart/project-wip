@@ -1,3 +1,6 @@
+dependencies:
+- app_id: C6ZZPAPN4YYF5NVJ
+  version: {dev: false}
 services:
 - source: /runtime/services/anvil/secrets.yml
   client_config: {}
@@ -28,7 +31,7 @@ db_schema:
       type: number
   projects:
     title: projects
-    client: none
+    client: full
     server: full
     columns:
     - name: project_name
