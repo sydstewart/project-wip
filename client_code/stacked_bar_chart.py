@@ -29,7 +29,7 @@ class stacked_bar_chart(stacked_bar_chartTemplate):
     self.plot_1.layout.title= 'Stacked WIP Bar Chart' 
 
 #     self.plot_1.data = go.bar(df, x='new_column', y='count',  barmode='group', color = 'project_board')
-    self.plot_1.data = barchart
+    self.plot_1.figure = barchart
 #     go.Bar(x=[r['new_column']  for r in dicts] ,
 #                             y=[r['count'] for r in dicts],  barmode='stack', color = [r['project_board'] for r in dicts] )
 #     pass

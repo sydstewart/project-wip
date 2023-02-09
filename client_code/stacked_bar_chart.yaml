@@ -10,9 +10,10 @@ components:
     layout_properties: {grid_position: 'EWARKC,VIESFO'}
     components:
     - type: Plot
-      properties: {height: 709}
+      properties: {spacing_above: small, spacing_below: small, height: 811, visible: true,
+        tooltip: '', interactive: true}
       name: plot_1
-      layout_properties: {grid_position: 'ORFDXU,BQPDGS'}
+      layout_properties: {grid_position: 'AVVDHR,PRLMJO', full_width_row: true}
 - type: FlowPanel
   properties: {}
   name: navbar_links
