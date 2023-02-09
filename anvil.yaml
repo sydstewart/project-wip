@@ -33,6 +33,9 @@ db_schema:
       admin_ui: {width: 200}
       type: link_single
       target: stage_translate
+    - name: new_column
+      admin_ui: {width: 200}
+      type: string
   projects:
     title: projects
     client: full

@@ -25,14 +25,18 @@ class Dev_board_form(Dev_board_formTemplate):
 
     records = app_tables.projects_stages.search(tables.order_by('project_column'),project_board= self.board_dropdown.selected_value)
     print('No of Stages',len(records))
-    dicts = {'project_column' : [],'project_board': [],'count':[], 'new_column': []} 
+#     dicts = {'project_column' : [],'project_board': [],'count':[], 'new_column': []} 
     for r in records:
-        dicts['project_column']= (r['project_column'])
-        dicts['project_board']= (r['project_board'])
-        dicts['count']= (r['count'])
-        new_column  = app_tables.stage_translate.get(project_column=r['project_column'])
-        x_column = new_column['new_column']
-        dicts['new_column']= (x_column)
+      new_column  = app_tables.stage_translate.get(project_column=r['project_column'])
+      print(new_column)
+      x_column= new_column['new_column']
+      dicts = [{'project_column' : r['project_column'],'project_board': r['project_board'],'count':r['count'], 'new_column': x_column} for r in records ]
+#         dicts['project_column']= (r['project_column'])
+#         dicts['project_board']= (r['project_board'])
+#         dicts['count']= (r['count'])
+#         new_column  = app_tables.stage_translate.get(project_column=r['project_column'])
+#         x_column = new_column['new_column']
+#         dicts['new_column']= (x_column)
        
     print(dicts)
  
