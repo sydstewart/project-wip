@@ -6,6 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+
 class stacked_bar_chart(stacked_bar_chartTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -23,12 +24,13 @@ class stacked_bar_chart(stacked_bar_chartTemplate):
     dicts = sorted(dicts, key=lambda d: d['new_column']) 
 #     print(newlist)
     print(dicts)
- 
-   
+#     df = px.data.dicts()
+    barchart = anvil.server.call('bar_charts', dicts)
     self.plot_1.layout.title= 'Stacked WIP Bar Chart' 
 
-
-    self.plot_1.data = go.Bar(x=[r['new_column']  for r in dicts] ,
-                          y=[r['count'] for r in dicts], barmode = 'stack', color = [r['project_board'] for r in dicts] )
-    pass
+#     self.plot_1.data = go.bar(df, x='new_column', y='count',  barmode='group', color = 'project_board')
+    self.plot_1.data = barchart
+#     go.Bar(x=[r['new_column']  for r in dicts] ,
+#                             y=[r['count'] for r in dicts],  barmode='stack', color = [r['project_board'] for r in dicts] )
+#     pass
  
