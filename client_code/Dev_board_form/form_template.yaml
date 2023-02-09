@@ -4,7 +4,7 @@ container:
   properties: {html: '@theme:standard-page.html'}
 components:
 - type: ColumnPanel
-  properties: {col_widths: '{"IISQIY":5,"PIKFKA":30,"EVSLUL":45}'}
+  properties: {col_widths: '{"IISQIY":5,"PIKFKA":45,"EVSLUL":30}'}
   name: content_panel
   layout_properties: {slot: default}
   components:
