@@ -15,10 +15,13 @@ def bar_charts(dicts):
 #           dicts = [{'project_column' : r['project_column'],'project_board': r['project_board'],'count':r['count'], 'new_column': new_column['new_column']} for r in records]
 
   df = pd.DataFrame.from_dict(dicts)
-  barchart = go.Bar(  # x=df[pointdate],
-            # y=df[pointname],
-            x=df['new_column'],
+#   df = df.groupby('project_board').sum()
+  barchart = go.Bar( 
+            x=df['new_column'] ,
             y=df['count'],
-             
-            name='4 out 5 above upper one SD')
+            )
+#             color = df[ 'project_board'])
+#             mark_color = df['project_board'])             
+#   x=dfg['name'], y=dfg['%']) for group, dfg in df.groupby(by='week')]          
   return barchart
+
