@@ -28,16 +28,20 @@ class Dev_board_form(Dev_board_formTemplate):
     dicts ={}
     for r in records:
         new_column  = app_tables.stage_translate.get(project_column=r['project_column'])
-        dicts = ([{'project_column' : r['project_column'],'project_board': r['project_board'],'count':r['count'], 'new_column': new_column['new_column']}])
-#         print(dicts)
+        print(new_column['new_column'])
+        x_column = new_column['new_column']
+        dicts = [{'project_column' : r['project_column'],'project_board': r['project_board'],'count':r['count'], 'new_column': x_column} for r in records]
 #     new_columns = app_tables.stage_translate.search(tables.order_by('new_column'))
         
     print(dicts)
-#         for r in dicts:   
-        
-#               self.plot_1.layout.title= self.board_dropdown.selected_value
-      
-#               self.plot_1.data = go.Bar(x=[r['new_column'] for r in dicts] ,
-#                                     y=[r['count'] for r in dicts])
+    
+    
+    self.plot_1.layout.title= self.board_dropdown.selected_value
+#      self.plot_2.data = [go.Bar(x=[r['category'] for r in records],
+#                                y=[r['revenue_last_month'] for r in records],
+#                                name="Last month"),
+
+    self.plot_1.data = go.Bar(x=[r['new_column'] for r in dicts] ,
+                          y=[r['count'] for r in dicts])
     pass
  
