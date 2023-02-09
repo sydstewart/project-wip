@@ -23,7 +23,7 @@ class Dev_board_form(Dev_board_formTemplate):
   def board_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
 
-    records = app_tables.projects_stages.search(tables.order_by('project_column'),project_board= self.board_dropdown.selected_value)
+    records = app_tables.projects_stages.search(tables.order_by('project_column'),project_board= self.board_dropdown.selected_value, project_column=q.not_('90. Gone Live - Completed','40. Done','Released','Archive','Done','To Archive','To be re-visited','Archived'))
     print('No of Stages',len(records))
 #     dicts = {'project_column' : [],'project_board': [],'count':[], 'new_column': []} 
     for r in records:
