@@ -57,5 +57,10 @@ class Form1(Form1Template):
     open_form('stacked_bar_chart')
     pass
 
+  def no_of_projects_textbox_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
+    pass
+
+
 
 

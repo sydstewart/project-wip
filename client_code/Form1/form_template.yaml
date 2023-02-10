@@ -102,6 +102,7 @@ components:
         background: '', bold: true, underline: false}
       name: no_of_projects_textbox
       layout_properties: {width: 34}
+      event_bindings: {pressed_enter: no_of_projects_textbox_pressed_enter}
   - type: ColumnPanel
     properties: {col_widths: '{}'}
     name: column_panel_2

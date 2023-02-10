@@ -7,7 +7,9 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 def search_using_kwargs(self):
-      
+    self.hits_textbox.text  = None
+    self.no_of_projects_textbox.text = None  
+    
     search1 = self.boards_dropdown.selected_value
     search2 = self.multi_select_stage_dropdown.selected 
 #     search3 = self.interfaces_drop_down.selected_value
