@@ -1,0 +1,181 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:standard-page.html'}
+components:
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: content_panel
+  layout_properties: {slot: default}
+  components:
+  - type: ColumnPanel
+    properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"MJNHRR":10,"GUBFLL":5,"MZWNJF":25,"GLIXNC":22,"XXIBBZ":25}',
+      spacing_below: small, background: ''}
+    name: card_1
+    layout_properties: {grid_position: 'FRCOEN,MISUAY', full_width_row: true}
+    components:
+    - type: FlowPanel
+      properties: {}
+      name: flow_panel_2
+      layout_properties: {grid_position: 'DDBICH,MJNHRR'}
+      components:
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: Boards, font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+          underline: false, icon: ''}
+        name: label_2
+        layout_properties: {}
+    - type: DropDown
+      properties:
+        role: null
+        align: full
+        tooltip: ''
+        placeholder: ''
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: null
+        font: ''
+        spacing_above: small
+        spacing_below: small
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      name: boards_dropdown
+      layout_properties: {width: null, expand: false, grid_position: 'DDBICH,XXIBBZ'}
+      event_bindings: {change: boards_dropdown_change}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: Stage, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: label_3
+      layout_properties: {grid_position: 'DDBICH,GUBFLL'}
+    - type: form:C6ZZPAPN4YYF5NVJ:MultiSelectDropDown
+      properties: {width: '', align: left, enable_filtering: true, placeholder: None Selected,
+        enabled: true, enable_select_all: true, items: null, visible: true, spacing_above: small,
+        spacing_below: small, multiple: true}
+      name: multi_select_stage_dropdown
+      layout_properties: {grid_position: 'DDBICH,MZWNJF'}
+      event_bindings: {change: multi_select_stage_dropdown_change}
+    - type: Label
+      properties: {}
+      name: label_5
+      layout_properties: {grid_position: 'DDBICH,GLIXNC'}
+  - type: FlowPanel
+    properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
+      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
+    name: flow_panel_1
+    layout_properties: {grid_position: 'XXAYUR,NTOTLL', full_width_row: false}
+    components:
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: No of stages, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: label_1
+      layout_properties: {grid_position: 'PQFOMB,JEEZTX'}
+    - type: TextBox
+      properties: {role: null, align: center, hide_text: false, tooltip: '', placeholder: '',
+        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+        font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+        background: '', bold: true, underline: false}
+      name: hits_textbox
+      layout_properties: {grid_position: 'PQFOMB,SNVCXA', width: 48}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: No of projects, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: label_4
+      layout_properties: {}
+    - type: TextBox
+      properties: {role: null, align: right, hide_text: false, tooltip: '', placeholder: '',
+        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+        font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+        background: '', bold: true, underline: false}
+      name: no_of_projects_textbox
+      layout_properties: {width: 34}
+      event_bindings: {pressed_enter: no_of_projects_textbox_pressed_enter}
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: column_panel_2
+    layout_properties: {grid_position: 'WCXUNL,AFKIZZ'}
+    components:
+    - type: DataGrid
+      properties:
+        role: null
+        columns:
+        - {id: RIFSRX, title: Stage, data_key: project_column}
+        - {id: NSRDLZ, title: Board, data_key: project_board}
+        - {id: AEVFTZ, title: Project Count, data_key: count}
+        - {id: YPUBWH, title: '', data_key: column_1}
+        auto_header: true
+        tooltip: ''
+        border: ''
+        foreground: ''
+        rows_per_page: 440
+        visible: true
+        wrap_on: never
+        show_page_controls: true
+        spacing_above: small
+        spacing_below: small
+        background: ''
+      name: data_grid_1
+      layout_properties: {grid_position: 'ECFUFK,FKNBTJ', full_width_row: true}
+      components:
+      - type: RepeatingPanel
+        properties: {spacing_above: none, spacing_below: none, item_template: home.RowTemplate1}
+        name: repeating_panel_1
+        layout_properties: {}
+- type: FlowPanel
+  properties: {}
+  name: navbar_links
+  layout_properties: {slot: nav-right}
+  components:
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Projects WIP, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: 'data:image/png;base64,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'}
+    name: label_6
+    layout_properties: {grid_position: 'OKLFWX,DNMQYP', expand: true, width: null}
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: column_panel_1
+  layout_properties: {slot: left-nav}
+  components:
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Refresh Data, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: refresh_date_button
+    layout_properties: {grid_position: 'FXZOOT,MXKQFA'}
+    event_bindings: {click: refresh_date_button_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Bar Charts, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: button_2
+    layout_properties: {grid_position: 'ZQGCFM,JRCGRE'}
+    event_bindings: {click: button_2_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Stacked Bar Chart, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: stacked_
+    layout_properties: {grid_position: 'SPYEYU,ACFJUU'}
+    event_bindings: {click: stacked__click}
+- type: Button
+  properties: {text: button_1}
+  name: button_1
+  layout_properties: {slot: title}

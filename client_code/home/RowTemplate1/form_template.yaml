@@ -19,7 +19,7 @@ components:
   layout_properties: {column: null}
   components:
   - type: RepeatingPanel
-    properties: {spacing_above: none, spacing_below: none, item_template: Form1.RowTemplate1.RowTemplate3}
+    properties: {spacing_above: none, spacing_below: none, item_template: home.RowTemplate1.RowTemplate3}
     name: repeating_projects_panel
     layout_properties: {}
   data_bindings: []

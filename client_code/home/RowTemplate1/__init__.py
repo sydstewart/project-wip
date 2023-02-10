@@ -4,6 +4,8 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ...Module1  import show_projects
+from ...Form2 import Form2
 # from .. from 
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
@@ -12,7 +14,7 @@ class RowTemplate1(RowTemplate1Template):
     self.repeating_projects_panel.visible = False
 #     self.repeating_projects_panel.items = app_tables.projects.search(project_stages= project_stages)
     # Any code you write here will run before the form opens.
-    self.repeating_projects_panel.items = anvil.server.call('get_projects_in_project_stages', self.item)
+#     self.repeating_projects_panel.items = anvil.server.call('get_projects_in_project_stages', self.item)
 #   def show_project_button_click(self, **event_args):
 #     """This method is called when the button is clicked"""
 #     project_copy = dict(list(self.item))
@@ -30,11 +32,15 @@ class RowTemplate1(RowTemplate1Template):
 
   def show_project_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    if self.repeating_projects_panel.visible == False:
-        self.repeating_projects_panel.visible = True
-    else:
-        self.repeating_projects_panel.visible = False
-    pass
+    print('Project board of line', self.item['project_board'])
+    result = alert(content=Form2(self.item['project_board'], self.item['project_column']), title="Projects", buttons=[], large=True)
+    
+#     show_projects(self)
+#     if self.repeating_projects_panel.visible == False:
+#         self.repeating_projects_panel.visible = True
+#     else:
+#         self.repeating_projects_panel.visible = False
+#     pass
 
   def text_box_2_pressed_enter(self, **event_args):
     """This method is called when the user presses Enter in this text box"""

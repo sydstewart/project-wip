@@ -13,7 +13,7 @@ allow_embedding: false
 name: Project WIP
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
 metadata: {}
-startup_form: Form1
+startup_form: home
 db_schema:
   projects_stages:
     title: projects_stages

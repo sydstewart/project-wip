@@ -33,4 +33,10 @@ class stacked_bar_chart(stacked_bar_chartTemplate):
 #     go.Bar(x=[r['new_column']  for r in dicts] ,
 #                             y=[r['count'] for r in dicts],  barmode='stack', color = [r['project_board'] for r in dicts] )
 #     pass
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('home')
+    pass
+
  

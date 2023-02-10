@@ -43,6 +43,12 @@ class Dev_board_form(Dev_board_formTemplate):
     self.plot_1.data = go.Bar(x=[r['new_column']  for r in dicts] ,
                           y=[r['count'] for r in dicts],color = r['project_board'] )
     pass
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('home')
+    pass
+
  
 def stacked_board_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
