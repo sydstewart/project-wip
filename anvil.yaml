@@ -69,6 +69,17 @@ db_schema:
     - name: new_column
       admin_ui: {width: 200}
       type: string
+  last_date_refreshed:
+    title: last_date_refreshed
+    client: full
+    server: full
+    columns:
+    - name: last_date_refreshed
+      admin_ui: {width: 200}
+      type: string
+    - name: date_id
+      admin_ui: {width: 200}
+      type: number
 secrets:
   Teamwork Pass:
     value: {? '' : FmcCGvX7vJFW+652Pltsoof66B6i/ul2udoU3/LwRh4UO4IRxuq/2AydKWYQ5YA2zmHLnIACFkrODQuwYfr9OHkPu5Omd+241BwG+Z6ySbDT2vDttHhMkZfd434+qxmtMApTC8jE8lOFNA==}

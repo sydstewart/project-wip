@@ -14,7 +14,7 @@ class stacked_bar_chart(stacked_bar_chartTemplate):
 
     # Any code you write here will run before the form opens.
 
-    records = app_tables.projects_stages.search(tables.order_by('project_column'), project_column=q.not_('90. Gone Live - Completed','40. Done','Released','Archive','Done','To Archive','To be re-visited','Archived', '10. Completed'))
+    records = app_tables.projects_stages.search(tables.order_by('project_column'), project_column=q.not_('90. Gone Live - Completed','40. Done','Released','Archive','Done','To Archive','To be re-visited','Archived','10. Completed'))
     print('No of Stages',len(records))
 #     dicts = {'project_column' : [],'project_board': [],'count':[], 'new_column': []} 
     for r in records:

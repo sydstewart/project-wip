@@ -12,7 +12,7 @@ def search_using_kwargs(self):
     
     search1 = self.boards_dropdown.selected_value
     search2 = self.multi_select_stage_dropdown.selected 
-#     search3 = self.interfaces_drop_down.selected_value
+    search3 = self.exclude_completed_checkbox.checked
 #     search4 = self.apparea_drop_down.selected_value
 #     search5 = self.version_level_dropdown.selected_value 
 #     search6 = self.NOT_interface_chkbox.checked
@@ -53,10 +53,9 @@ def search_using_kwargs(self):
 #          selectedinterface = ('%' + search3['Interface_Type'] + '%')
 #          kwargs['Interfaces'] = q.like('%'+ selectedinterface + '%') 
     
-#     # NOT Interfaces
-#     if search6 == True and search3:
-#          selectedinterface = ('%' + search3['Interface_Type'] + '%')
-#          kwargs['Interfaces'] = q.not_(q.like('%'+ selectedinterface + '%'))
+    # Not  completed
+    if search3 == True:  
+         kwargs['project_column'] =q.not_('90. Gone Live - Completed','40. Done','Released','Archive','Done','To Archive','Archived')
     
 # # Applications  
 #     if  search7:

@@ -39,7 +39,10 @@ components:
     layout_properties: {grid_position: 'SWMYFO,PIKFKA'}
     event_bindings: {change: board_dropdown_change}
   - type: Label
-    properties: {}
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Excludes completed projects, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
     name: label_2
     layout_properties: {grid_position: 'SWMYFO,EVSLUL'}
   - type: ColumnPanel

@@ -6,6 +6,8 @@ from anvil.tables import app_tables
 import anvil.server
 from ..Searches import search_using_kwargs 
 from ..Module1  import show_projects
+from datetime import datetime, time , date , timedelta
+
 class home(homeTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -21,14 +23,17 @@ class home(homeTemplate):
     rows = app_tables.projects_stages.search(tables.order_by('project_column'))
     rows = [dict(x) for x in rows]
     self.repeating_panel_1.items = rows
+    self.exclude_completed_checkbox.checked =  True
 #          self.hits_textbox.text = len(app_tables.projects_stages.search())
 # self.repeating_panel_teams.items = anvil.server.call('get_teams')
-    
+    search_using_kwargs(self)
 
   def refresh_date_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     anvil.server.call('load_data')
-    
+    self.last_refresh_date.text= str(datetime.today()) 
+    t = app_tables.last_date_refreshed.get(date_id =1 )
+    t['last_date_refreshed'] = str(datetime.today() )
     pass
 
   def boards_dropdown_change(self, **event_args):
@@ -63,6 +68,12 @@ class home(homeTemplate):
   def no_of_projects_textbox_pressed_enter(self, **event_args):
     """This method is called when the user presses Enter in this text box"""
     pass
+
+  def exclude_completed_checkbox_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    search_using_kwargs(self)
+    pass
+
 
 
 
