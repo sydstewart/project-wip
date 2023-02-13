@@ -112,13 +112,16 @@ components:
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: Date Last Data Update/Refresh, font_size: null, font: '',
         spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+        background: '', bold: true, underline: false, icon: ''}
       name: label_5
       layout_properties: {}
     - type: TextBox
-      properties: {}
+      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+        font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+        background: '', bold: true, underline: false}
       name: last_refresh_date
-      layout_properties: {width: 167}
+      layout_properties: {width: 156}
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
@@ -130,9 +133,9 @@ components:
       properties:
         role: null
         columns:
-        - {id: RIFSRX, title: Stage, data_key: project_column}
+        - {id: RIFSRX, title: Stage, data_key: project_column, width: '259'}
         - {id: NSRDLZ, title: Board, data_key: project_board}
-        - {id: AEVFTZ, title: Project Count, data_key: count}
+        - {id: AEVFTZ, title: Project Count, data_key: count, width: '50'}
         - {id: YPUBWH, title: '', data_key: column_1}
         auto_header: true
         tooltip: ''

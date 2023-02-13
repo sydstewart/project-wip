@@ -27,6 +27,9 @@ class home(homeTemplate):
 #          self.hits_textbox.text = len(app_tables.projects_stages.search())
 # self.repeating_panel_teams.items = anvil.server.call('get_teams')
     search_using_kwargs(self)
+ #Last Refresh of Data   
+    t = app_tables.last_date_refreshed.get(date_id =1 )
+    self.last_refresh_date.text= t['last_date_refreshed']
 
   def refresh_date_button_click(self, **event_args):
     """This method is called when the button is clicked"""

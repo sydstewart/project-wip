@@ -105,3 +105,5 @@ def search_using_kwargs(self):
     self.repeating_panel_1.items = results
     self.hits_textbox.text  = len(results)
     self.no_of_projects_textbox.text = len(projects)
+
+    pass

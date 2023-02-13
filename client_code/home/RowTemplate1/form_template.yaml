@@ -33,14 +33,6 @@ components:
   data_bindings:
   - {property: text, code: 'self.item[''project_column'']', writeback: true}
   event_bindings: {pressed_enter: text_box_1_pressed_enter}
-- type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: show projects, font_size: null, font: '',
-    spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
-    bold: false, underline: false, icon: ''}
-  name: show_project_button
-  layout_properties: {column: YPUBWH}
-  event_bindings: {click: show_project_button_click}
 - type: TextBox
   properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
     border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
@@ -51,4 +43,12 @@ components:
   data_bindings:
   - {property: text, code: 'self.item[''count'']', writeback: true}
   event_bindings: {pressed_enter: text_box_2_pressed_enter}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: show projects, font_size: null, font: '',
+    spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
+    bold: false, underline: false, icon: ''}
+  name: show_project_button
+  layout_properties: {column: YPUBWH}
+  event_bindings: {click: show_project_button_click}
 is_package: true
