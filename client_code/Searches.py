@@ -41,22 +41,20 @@ def search_using_kwargs(self):
    
 #Boards
     if search1:
-#         self.text_search_box.text = None
+
         kwargs['project_board'] = search1  #q.like('%'+ search1['InUseStatus'] + '%')
-#     kwargs['InUseStatus'] ='Live'# 
 
 # #Stages
     if search2:
         kwargs['project_column'] = q.any_of(*search2)
 
-# #          self.text_search_box.text = None
-#          selectedinterface = ('%' + search3['Interface_Type'] + '%')
-#          kwargs['Interfaces'] = q.like('%'+ selectedinterface + '%') 
+
     
     # Not  completed
-    if search3 == True:  
-         kwargs['project_column'] =q.not_('90. Gone Live - Completed','40. Done','Released','Archive','Done','To Archive','Archived')
-    
+    if search3 == True and   search2:  
+         kwargs['project_column'] =q.all_of(q.not_('90. Gone Live - Completed','40. Done','Released','Archive','Done','To Archive','Archived'),q.any_of(*search2))
+    if search3 == True and not  search2:
+         kwargs['project_column'] = q.not_('90. Gone Live - Completed','40. Done','Released','Archive','Done','To Archive','Archived')
 # # Applications  
 #     if  search7:
 #         kwargs['CFApplicationArea']=q.any_of(*search7)
