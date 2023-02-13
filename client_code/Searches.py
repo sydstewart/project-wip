@@ -13,6 +13,7 @@ def search_using_kwargs(self):
     search1 = self.boards_dropdown.selected_value
     search2 = self.multi_select_stage_dropdown.selected 
     search3 = self.exclude_completed_checkbox.checked
+    search4 = self.project_count_sort_chkbox.checked
 #     search4 = self.apparea_drop_down.selected_value
 #     search5 = self.version_level_dropdown.selected_value 
 #     search6 = self.NOT_interface_chkbox.checked
@@ -97,8 +98,11 @@ def search_using_kwargs(self):
 #     if search14:
 #         kwargs['Account'] =  q.any_of(*search14)
     
-    print(kwargs)
-    results = app_tables.projects_stages.search(tables.order_by('project_column'),**kwargs, )
+#     print(kwargs)
+    if not search4:
+           results = app_tables.projects_stages.search(tables.order_by('project_column'),**kwargs, ) 
+    else:
+           results = app_tables.projects_stages.search(tables.order_by('count',ascending=False ),**kwargs, ) 
     projects = app_tables.projects.search(**kwargs, )
     self.repeating_panel_1.items = results
     self.hits_textbox.text  = len(results)

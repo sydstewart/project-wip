@@ -73,6 +73,14 @@ components:
       name: exclude_completed_checkbox
       layout_properties: {grid_position: 'DDBICH,HLMMHE', full_width_row: true}
       event_bindings: {change: exclude_completed_checkbox_change}
+    - type: CheckBox
+      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
+        foreground: '', allow_indeterminate: false, visible: true, text: Sort by Project Count,
+        font_size: null, font: '', spacing_above: small, spacing_below: small, italic: false,
+        background: '', bold: false, checked: false, underline: false}
+      name: project_count_sort_chkbox
+      layout_properties: {grid_position: 'DDBICH,CYYZVH', full_width_row: true}
+      event_bindings: {change: project_count_sort_chkbox_change}
   - type: FlowPanel
     properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
       foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}

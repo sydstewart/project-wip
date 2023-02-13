@@ -1,9 +1,3 @@
 container: {type: DataRowPanel}
-components:
-- type: TextBox
-  properties: {}
-  name: text_box_1
-  layout_properties: {column: VKZJOM}
-  data_bindings:
-  - {property: text, code: 'self.item[''project_name'']', writeback: true}
+components: []
 is_package: true

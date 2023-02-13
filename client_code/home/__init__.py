@@ -19,13 +19,13 @@ class home(homeTemplate):
     self.multi_select_stage_dropdown.items =stages
     boards =list({(r['project_board']) for r in app_tables.projects_stages.search(tables.order_by('project_board'))})
     self.boards_dropdown.items = boards
-#     if self.boards_dropdown.selected_value:
+ 
     rows = app_tables.projects_stages.search(tables.order_by('project_column'))
     rows = [dict(x) for x in rows]
     self.repeating_panel_1.items = rows
+    
     self.exclude_completed_checkbox.checked =  True
-#          self.hits_textbox.text = len(app_tables.projects_stages.search())
-# self.repeating_panel_teams.items = anvil.server.call('get_teams')
+ 
     search_using_kwargs(self)
  #Last Refresh of Data   
     t = app_tables.last_date_refreshed.get(date_id =1 )
@@ -76,6 +76,12 @@ class home(homeTemplate):
     """This method is called when this checkbox is checked or unchecked"""
     search_using_kwargs(self)
     pass
+
+  def project_count_sort_chkbox_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    search_using_kwargs(self)
+    pass
+
 
 
 
