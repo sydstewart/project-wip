@@ -28,7 +28,7 @@ class Dev_board_form(Dev_board_formTemplate):
 #     dicts = {'project_column' : [],'project_board': [],'count':[], 'new_column': []} 
     for r in records:
 
-      dicts = [{'project_column' : r['project_column'],'project_board': r['project_board'],'count':r['count'], 'new_column': r['new_project_column']['new_column'],'days_work': r['no_of_days_work']} for r in records ]
+      dicts = [{'project_column' : r['project_column'],'project_board': r['project_board'],'count':r['count'], 'new_column': r['new_project_column']['new_column'],'days_work': r['no_of_days_work'], 'total': r['count']*r['no_of_days_work'],'old_column': r['new_project_column']['project_column'] }  for r in records]
 
     dicts = sorted(dicts, key=lambda d: d['new_column']) 
 #     print(newlist)
@@ -41,9 +41,9 @@ class Dev_board_form(Dev_board_formTemplate):
 
 
     self.plot_1.data = go.Bar(x=[r['new_column']  for r in dicts] ,
-                          y=[r['count']*r['days_work'] for r in dicts],color = r['project_column'] )
+                          y=[r['count'] for r  in dicts],color = r['project_column'])
     pass
-
+    self.repeating_panel_1.items = dicts
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
     open_form('home')
@@ -71,5 +71,5 @@ def stacked_board_dropdown_change(self, **event_args):
 
 
     self.plot_1.data = go.Bar(x=[r['new_column']  for r in dicts] ,
-                          y=[r['count'] for r in dicts] )
+                          y=[r['total'] for r in dicts] )
     pass

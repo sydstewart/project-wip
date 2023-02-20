@@ -53,7 +53,39 @@ components:
     - type: Plot
       properties: {height: 566}
       name: plot_1
-      layout_properties: {grid_position: 'ORFDXU,BQPDGS'}
+      layout_properties: {grid_position: 'QWBBYA,TXBUUF'}
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: column_panel_2
+    layout_properties: {grid_position: 'QOWYNE,HSFHZM'}
+    components:
+    - type: DataGrid
+      properties:
+        role: null
+        columns:
+        - {id: GEVPRY, title: New Stage, data_key: new_column}
+        - {id: YRPGJP, title: Old Stage, data_key: old_column}
+        - {id: EWMMTQ, title: count, data_key: count}
+        - {id: UVTNTB, title: Days Work, data_key: days_work}
+        - {id: OGNCXV, title: Total Estimate of Work, data_key: total}
+        auto_header: true
+        tooltip: ''
+        border: ''
+        foreground: ''
+        rows_per_page: 20
+        visible: true
+        wrap_on: never
+        show_page_controls: true
+        spacing_above: small
+        spacing_below: small
+        background: ''
+      name: data_grid_1
+      layout_properties: {grid_position: 'PNOSOV,ADLTDC'}
+      components:
+      - type: RepeatingPanel
+        properties: {spacing_above: none, spacing_below: none, item_template: Dev_board_form.RowTemplate5}
+        name: repeating_panel_1
+        layout_properties: {}
 - type: FlowPanel
   properties: {}
   name: navbar_links
