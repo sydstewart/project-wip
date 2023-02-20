@@ -40,8 +40,9 @@ class Dev_board_form(Dev_board_formTemplate):
     self.plot_1.layout.title= self.board_dropdown.selected_value
 
 
-    self.plot_1.data = go.Bar(x=[r['new_column']  for r in dicts] ,
-                          y=[r['count'] for r  in dicts],color = r['project_column'])
+    self.plot_1.data = go.Bar(x=[r['new_column']  for r in dicts],
+                          y=[r['count']  for r  in dicts], color = r['project_column'],barmode='group')
+ 
     pass
     self.repeating_panel_1.items = dicts
   def button_1_click(self, **event_args):
