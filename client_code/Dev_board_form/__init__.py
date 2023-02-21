@@ -28,7 +28,7 @@ class Dev_board_form(Dev_board_formTemplate):
 #     dicts = {'project_column' : [],'project_board': [],'count':[], 'new_column': []} 
     for r in records:
 
-      dicts = [{'project_column' : r['project_column'],'project_board': r['project_board'],'count':r['count'], 'new_column': r['new_project_column']['new_column'],'days_work': r['no_of_days_work'], 'total': r['count']*r['no_of_days_work'],'old_column': r['new_project_column']['project_column'] }  for r in records]
+      dicts = [{'project_column' : r['project_column'],'project_board': r['project_board'],'count':r['count'], 'new_column': r['new_project_column']['new_column'] }  for r in records] #'days_work': r['no_of_days_work'], 'total': r['count']*r['no_of_days_work'],'old_column': r['new_project_column']['project_column'] }  for r in records]
 
     dicts = sorted(dicts, key=lambda d: d['new_column']) 
 #     print(newlist)

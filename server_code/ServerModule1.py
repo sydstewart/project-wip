@@ -49,14 +49,17 @@ def listprojects():
   # Load Project Stages summary
   with conn.cursor() as cur:
     cur.execute(
-      "SELECT teamwork.portfoliocolumns.columnName, \
-      teamwork.projects.projectname \
-      FROM teamwork.portfoliocards \
-      join teamwork.projects on teamwork.portfoliocards.projectId = teamwork. \
-      projects.projectIdjoin teamwork.portfoliocolumns on teamwork.portfoliocards. \
-      columnId = teamwork.portfoliocolumns.columnId \
-      where teamwork.portfoliocards.boardId = (SELECT boardId FROM teamwork.portfolioboards \
-      where projectStatus = 'active'and cardStatus = 'ACTIVE'order by teamwork.portfoliocolumns.columnName, cardDisplayOrder asc)"
+      "Select  portfolioboards.boardName as boards, teamwork.portfoliocolumns.columnName as stage, teamwork.projects.projectname ,count(*) as count\
+       From teamwork.portfoliocards Join \
+          teamwork.projects On teamwork.portfoliocards.projectId = \
+          teamwork.projects.projectId Join \
+          teamwork.portfoliocolumns On teamwork.portfoliocards.columnId = \
+          teamwork.portfoliocolumns.columnId Join \
+          teamwork.portfolioboards On teamwork.portfolioboards.boardId = \
+          teamwork.portfoliocards.boardId \
+      Where projectStatus = 'active' And cardStatus = 'ACTIVE' \
+      group by  portfolioboards.boardName , portfoliocolumns.columnName \
+      Order By teamwork.portfoliocolumns.columnName, cardDisplayOrder"
                     )   
     # "Select portfolioboards.boardName as boards, \
     # portfoliocolumns.columnName as stage, count(*) as count\
