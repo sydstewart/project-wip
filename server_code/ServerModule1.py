@@ -49,15 +49,24 @@ def listprojects():
   # Load Project Stages summary
   with conn.cursor() as cur:
     cur.execute(
-    "Select portfolioboards.boardName as boards, \
-    portfoliocolumns.columnName as stage, count(*) as count\
-    From projects Inner Join \
-    portfoliocards On projects.projectId = portfoliocards.projectId Inner Join \
-    portfolioboards On portfolioboards.boardId = portfoliocards.boardId Inner Join \
-    portfoliocolumns On portfoliocards.columnId = portfoliocolumns.columnId \
-    group by  portfolioboards.boardName , \
-    portfoliocolumns.columnName"
-   ) 
+      "SELECT teamwork.portfoliocolumns.columnName, \
+      teamwork.projects.projectname \
+      FROM teamwork.portfoliocards \
+      join teamwork.projects on teamwork.portfoliocards.projectId = teamwork. \
+      projects.projectIdjoin teamwork.portfoliocolumns on teamwork.portfoliocards. \
+      columnId = teamwork.portfoliocolumns.columnId \
+      where teamwork.portfoliocards.boardId = (SELECT boardId FROM teamwork.portfolioboards \
+      where projectStatus = 'active'and cardStatus = 'ACTIVE'order by teamwork.portfoliocolumns.columnName, cardDisplayOrder asc)"
+                    )   
+    # "Select portfolioboards.boardName as boards, \
+    # portfoliocolumns.columnName as stage, count(*) as count\
+    # From projects Inner Join \
+    # portfoliocards On projects.projectId = portfoliocards.projectId Inner Join \
+    # portfolioboards On portfolioboards.boardId = portfoliocards.boardId Inner Join \
+    # portfoliocolumns On portfoliocards.columnId = portfoliocolumns.columnId \
+    # group by  portfolioboards.boardName , \
+    # portfoliocolumns.columnName"
+     
   
 #==================================================================================
 # Clear tables   
