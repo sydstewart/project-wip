@@ -90,13 +90,15 @@ def listprojects():
   # Load Projects into separate table          
   with conn.cursor() as cur1:
       cur1.execute(
-    "Select portfolioboards.boardName as boards,  \
-      projects.projectname as project_name, \
-      portfoliocolumns.columnName as stage \
-      From projects Inner Join \
-      portfoliocards On projects.projectId = portfoliocards.projectId Inner Join \
-      portfolioboards On portfolioboards.boardId = portfoliocards.boardId Inner Join \
-      portfoliocolumns On portfoliocards.columnId = portfoliocolumns.columnId"   
+         "Select  portfolioboards.boardName as boards, teamwork.portfoliocolumns.columnName as stage, teamwork.projects.projectname as project_name \
+          From teamwork.portfoliocards Join \
+              teamwork.projects On teamwork.portfoliocards.projectId = \
+              teamwork.projects.projectId Join \
+              teamwork.portfoliocolumns On teamwork.portfoliocards.columnId = \
+              teamwork.portfoliocolumns.columnId Join \
+              teamwork.portfolioboards On teamwork.portfolioboards.boardId = \
+              teamwork.portfoliocards.boardId \
+      Where projectStatus = 'active' And cardStatus = 'ACTIVE'"  
     ) 
     
   print('starting to load projects')
