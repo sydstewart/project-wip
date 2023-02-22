@@ -82,6 +82,18 @@ class home(homeTemplate):
     search_using_kwargs(self)
     pass
 
+  def project_list_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('project_list')
+    pass
+
+
+
+
+
+  
+
+
 
 
 

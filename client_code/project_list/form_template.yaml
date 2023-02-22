@@ -3,6 +3,23 @@ container:
   properties: {col_widths: '{}'}
 components:
 - type: ColumnPanel
+  properties: {role: card, col_widths: '{}'}
+  name: card_1
+  layout_properties: {grid_position: 'EFMTEC,RPIWET'}
+  components:
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Project Name, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_1
+    layout_properties: {grid_position: 'ELQQBI,LRLIKD'}
+  - type: TextBox
+    properties: {}
+    name: project_name_searchbox
+    layout_properties: {grid_position: 'ELQQBI,RLDJQW'}
+    event_bindings: {change: project_name_searchbox_change}
+- type: ColumnPanel
   properties: {col_widths: '{}'}
   name: column_panel_1
   layout_properties: {grid_position: 'PXJJTR,DANREQ'}
@@ -11,7 +28,11 @@ components:
     properties:
       role: null
       columns:
-      - {id: NOUTOE, title: Projects, data_key: project_name}
+      - {id: VTIBZM, title: Project Name, data_key: project_name, $$hashKey: 'object:35670'}
+      - {id: JUOOSF, title: Project Board, data_key: project_board, $$hashKey: 'object:35671'}
+      - {id: DSXDLJ, title: Project Column, data_key: project_column, $$hashKey: 'object:35672'}
+      - {id: SRHTOP, title: Project Stages, data_key: project_stages, $$hashKey: 'object:35673'}
+      - {id: VJOXFG, title: New Stages, data_key: new_stages, $$hashKey: 'object:35674'}
       auto_header: true
       tooltip: ''
       border: ''

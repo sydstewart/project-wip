@@ -9,4 +9,9 @@ class project_list(project_listTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
    self.init_components(**properties)
-#    self.repeating_panel_1.items = app_tables.projects.search(project_board = project_board, project_column=projectcolumn)
+   self.repeating_panel_1.items = app_tables.projects.search()
+
+  def project_name_searchbox_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    self.repeating_panel_1.items = app_tables.projects.search(project_name = q.like('%'  + self.project_name_searchbox.text + '%'))
+    pass
