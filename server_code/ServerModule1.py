@@ -105,7 +105,7 @@ def listprojects():
   for r in cur1.fetchall(): 
         dicts = [{'project_name' : r['project_name'],'project_board': r['boards'],'project_column':r['stage']}]
         for d in dicts:
-#                       getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
+              getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
                                 
               app_tables.projects.add_row( **d)
     
