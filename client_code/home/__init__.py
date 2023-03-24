@@ -1,5 +1,6 @@
 from ._anvil_designer import homeTemplate
 from anvil import *
+import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
@@ -12,7 +13,14 @@ class home(homeTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
+# Login
+    anvil.users.login_with_form()
+    global loggedinuser
+    loggedinuser =  anvil.users.get_user()['email']
+#     self.loggedinuser.text = loggedinuser
+    print('User=',loggedinuser)
+    
+    user_type = anvil.users.get_user()['user_type']
     # Any code you write here will run before the form opens.
 #     self.project_stages_count_textbox.text = len(app_tables.projects_stages.search())
     stages =list({(r['project_column']) for r in app_tables.projects_stages.search(tables.order_by('project_column'))})
@@ -86,6 +94,20 @@ class home(homeTemplate):
     """This method is called when the button is clicked"""
     open_form('project_list')
     pass
+
+  def Logout_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.content_panel.clear()
+    self.column_panel_1.clear()
+    anvil.users.logout()
+    
+    anvil.users.login_with_form()
+    open_form('home') 
+    
+    
+    
+    pass
+
 
 
 

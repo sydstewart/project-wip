@@ -1,5 +1,6 @@
 from ._anvil_designer import stacked_bar_chartTemplate
 from anvil import *
+import anvil.users
 import plotly.graph_objects as go
 import anvil.server
 import anvil.tables as tables

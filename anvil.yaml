@@ -8,6 +8,11 @@ services:
 - source: /runtime/services/tables.yml
   client_config: {}
   server_config: {auto_create_missing_columns: false}
+- source: /runtime/services/anvil/users.yml
+  client_config: {mfa_timeout_days: 0, require_secure_passwords: true, share_login_status: true,
+    use_email: true, allow_remember_me: true, allow_signup: false, enable_automatically: true,
+    confirm_email: true, require_mfa: true, remember_me_days: 30}
+  server_config: {user_table: users}
 package_name: Project_WIP
 allow_embedding: false
 name: Project WIP
@@ -15,6 +20,47 @@ runtime_options: {version: 2, client_version: '3', server_version: python3-full,
 metadata: {}
 startup_form: home
 db_schema:
+  users:
+    title: Users
+    client: full
+    server: full
+    columns:
+    - name: email
+      admin_ui: {width: 200}
+      type: string
+    - name: firstname
+      admin_ui: {width: 200}
+      type: string
+    - name: user_type
+      admin_ui: {width: 200}
+      type: string
+    - name: enabled
+      admin_ui: {width: 100}
+      type: bool
+    - name: last_login
+      admin_ui: {width: 200}
+      type: datetime
+    - name: password_hash
+      admin_ui: {width: 200}
+      type: string
+    - name: confirmed_email
+      admin_ui: {width: 200}
+      type: bool
+    - name: n_password_failures
+      admin_ui: {width: 200}
+      type: number
+    - name: mfa
+      admin_ui: {width: 200}
+      type: simpleObject
+    - name: remembered_logins
+      admin_ui: {width: 200}
+      type: simpleObject
+    - name: signed_up
+      admin_ui: {width: 200}
+      type: datetime
+    - name: email_confirmation_key
+      admin_ui: {width: 200}
+      type: string
   projects_stages:
     title: projects_stages
     client: full
