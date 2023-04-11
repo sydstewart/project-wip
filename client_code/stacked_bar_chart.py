@@ -16,16 +16,16 @@ class stacked_bar_chart(stacked_bar_chartTemplate):
     # Any code you write here will run before the form opens.
 
     records = app_tables.projects_stages.search(tables.order_by('project_column'), project_column=q.not_('90. Gone Live - Completed','40. Done','Released','Archive','Done','To Archive','To be re-visited','Archived','10. Completed'))
-    print(records)
+    # print(records)
     print('No of Stages',len(records))
-#     dicts = {'project_column' : [],'project_board': [],'count':[], 'new_column': []} 
+
     for r in records:
-      print(r)
+      print(r['project_column'],r['project_board'],r['count'],r['new_project_column']['new_column'])
       dicts = [{'project_column' : r['project_column'],'project_board': r['project_board'],'count':r['count'], 'new_column': r['new_project_column']['new_column']} for r in records ]
 
     dicts = sorted(dicts, key=lambda d: d['new_column']) 
 #     print(newlist)
-    print(dicts)
+    # print(dicts)
 #     df = px.data.dicts()
     barchart = anvil.server.call('bar_charts', dicts)
     self.plot_1.layout.title= 'Stacked WIP Bar Chart' 
