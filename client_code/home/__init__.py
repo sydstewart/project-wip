@@ -108,6 +108,12 @@ class home(homeTemplate):
     
     pass
 
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('project_stage_list')
+    pass
+
+
 
 
 
