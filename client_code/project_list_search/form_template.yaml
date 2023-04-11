@@ -51,6 +51,4 @@ components:
       properties: {spacing_above: none, spacing_below: none, item_template: project_list.RowTemplate2}
       name: repeating_panel_1
       layout_properties: {}
-      data_bindings:
-      - {property: items, code: 'self.item[''new_project_column''][''new_column'']'}
 is_package: true
