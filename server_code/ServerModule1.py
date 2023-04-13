@@ -79,55 +79,60 @@ def listprojects():
   # load project_stages
   print('starting to load project_stages')
   for r in cur.fetchall():
-      if r['stage'] :
-          print(r['stage'])
-          new_column = app_tables.stage_translate.get(project_column=r['stage'])
-          if new_column:
-            x_column = new_column['new_column']
-            print(x_column)
-            dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}] #, 'new_column': x_column
-      for d in dicts:
+      if r['stage'] in ['10. Scheduled',	'Planned','Planning','Scheduled','To be re-visited','Today...','To Do']:
+        x_column = '00. Planned'
+        print(x_column)
+        dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count'], 'new_stage': x_column}]  
+      elif r['stage'] in ['05. Enquiry Not yet started', 	'05. Enquiry - Not Yet Started'	]:
+        x_column = '01. Enquiry'
+        print(x_column)
+        dicts = dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count'], 'new_stage': x_column}]  
+      elif r['stage'] in ['10. Order Approved',	'Ordered'	]:
+        x_column = '02. Order Approved'
+        print(x_column)
+        dicts = dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count'], 'new_stage': x_column}]  
+  for d in dicts:
                                   
             app_tables.projects_stages.add_row(**d)
 #             getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
   #=================================================================================
-  # Load Projects into separate table          
-  with conn.cursor() as cur1:
-      cur1.execute(
-         "Select  portfolioboards.boardName as boards, teamwork.portfoliocolumns.columnName as stage, teamwork.projects.projectname as project_name \
-          From teamwork.portfoliocards Join \
-              teamwork.projects On teamwork.portfoliocards.projectId = \
-              teamwork.projects.projectId Join \
-              teamwork.portfoliocolumns On teamwork.portfoliocards.columnId = \
-              teamwork.portfoliocolumns.columnId Join \
-              teamwork.portfolioboards On teamwork.portfolioboards.boardId = \
-              teamwork.portfoliocards.boardId \
-      Where projectStatus = 'active' And cardStatus = 'ACTIVE'"  
-    ) 
+#   # Load Projects into separate table          
+#   with conn.cursor() as cur1:
+#       cur1.execute(
+#          "Select  portfolioboards.boardName as boards, teamwork.portfoliocolumns.columnName as stage, teamwork.projects.projectname as project_name \
+#           From teamwork.portfoliocards Join \
+#               teamwork.projects On teamwork.portfoliocards.projectId = \
+#               teamwork.projects.projectId Join \
+#               teamwork.portfoliocolumns On teamwork.portfoliocards.columnId = \
+#               teamwork.portfoliocolumns.columnId Join \
+#               teamwork.portfolioboards On teamwork.portfolioboards.boardId = \
+#               teamwork.portfoliocards.boardId \
+#       Where projectStatus = 'active' And cardStatus = 'ACTIVE'"  
+#     ) 
     
-  print('starting to load projects')
-  for r in cur1.fetchall(): 
-        dicts = [{'project_name' : r['project_name'],'project_board': r['boards'],'project_column':r['stage']}]
-        for d in dicts:
-              getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
+#   print('starting to load projects')
+#   for r in cur1.fetchall(): 
+#         dicts = [{'project_name' : r['project_name'],'project_board': r['boards'],'project_column':r['stage']}]
+#         for d in dicts:
+#               getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
                                 
-              app_tables.projects.add_row( **d)
+#               app_tables.projects.add_row( **d)
     
-# Link Tables
-  print('Starting to Link')
-  for p in app_tables.projects.search():
-                getstagerow = app_tables.projects_stages.get(project_board= p['project_board'], project_column=p['project_column'])
-                p.update(project_stages = getstagerow)   
+# # Link Tables
+#   print('Starting to Link')
+#   for p in app_tables.projects.search():
+#                 getstagerow = app_tables.projects_stages.get(project_board= p['project_board'], project_column=p['project_column'])
+#                 p.update(project_stages = getstagerow)   
         
         
         
-# link to Project_column translate
+# # link to Project_column translate
 
-  for x in app_tables.projects.search():
-                getsNewstagerow = app_tables.stage_translate.get(project_column=x['project_column'])
-                x.update(new_stages = getsNewstagerow) 
-  for y in app_tables.projects_stages.search():
-                getsNewstagerow = app_tables.stage_translate.get(project_column=y['project_column'])
-                y.update(new_project_column = getsNewstagerow)     
+#   for x in app_tables.projects.search():
+#                 getsNewstagerow = app_tables.stage_translate.get(project_column=x['project_column'])
+#                 x.update(new_stages = getsNewstagerow) 
+#   for y in app_tables.projects_stages.search():
+#                 getsNewstagerow = app_tables.stage_translate.get(project_column=y['project_column'])
+#                 y.update(new_project_column = getsNewstagerow)     
     
         
