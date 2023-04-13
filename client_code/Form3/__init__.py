@@ -12,4 +12,4 @@ class Form3(Form3Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.repeating_panel_1.items= app_tables.projects.search()   
+    self.repeating_panel_1.items= app_tables.projects_stages.search()   

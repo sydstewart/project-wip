@@ -6,4 +6,5 @@ components:
   layout_properties: {column: IKTRTE}
   data_bindings:
   - {property: text, code: 'self.item[''new_project_column''][''new_column''] ', writeback: true}
+  event_bindings: {pressed_enter: text_box_1_pressed_enter}
 is_package: true
