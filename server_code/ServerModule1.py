@@ -79,9 +79,13 @@ def listprojects():
   # load project_stages
   print('starting to load project_stages')
   for r in cur.fetchall():
-#       new_column = app_tables.stage_translate.get(project_column=r['stage'])
-#       x_column = new_column['new_column']
-      dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}] #, 'new_column': x_column
+      
+      if r['stage'] or r['stage'] != 'Archive':
+          print('old stage=',r['stage'])
+          new_column = app_tables.stage_translate.get(project_column=r['stage'])
+          print('new stage='new_column['new_column'])
+          x_column = new_column['new_column']
+          dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}] #, 'new_column': x_column
       for d in dicts:
                                   
             app_tables.projects_stages.add_row(**d)

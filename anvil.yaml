@@ -82,6 +82,9 @@ db_schema:
     - name: no_of_days_work
       admin_ui: {width: 200}
       type: number
+    - name: new_stage
+      admin_ui: {order: 5, width: 200}
+      type: string
   projects:
     title: projects
     client: full
