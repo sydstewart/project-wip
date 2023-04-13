@@ -17,12 +17,16 @@ def groupby_new_column():
 
     df = pd.DataFrame.from_dict(dicts)
     print(df['new_column'])
-
-
-    df = df.groupby('new_column').count() 
-  # \
-  #                            .reset_index(name='count') \
-  #                            .sort_values(['count'], ascending=False)
+    # options = ['02. Order Approved', '03. Pre-requisites'] 
+    # df = df['new_column'].isin(options)
+ 
+    df = df.groupby('new_column')['count'].sum() \
+                               .reset_index(name='count') \
+                             .sort_values(['new_column'], ascending=True)
+  
+    
+# selecting rows based on condition 
+    
     df['sumsystems'] = df['count'].sum()
     df['%'] =(df['count'] * 100)/df['sumsystems']
     df['%'] = df['%'].map('{:,.0f}'.format)    

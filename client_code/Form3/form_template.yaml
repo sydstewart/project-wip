@@ -13,7 +13,7 @@ components:
   properties:
     role: null
     columns:
-    - {id: IKTRTE, title: Overall  Stage, data_key: New_project_column, $$hashKey: 'object:1098',
+    - {id: IKTRTE, title: Overall  Stage, data_key: new_column, $$hashKey: 'object:1098',
       width: 242, expand: false}
     - {id: SYNBBS, title: Count, data_key: count, $$hashKey: 'object:1099', width: 74,
       expand: false}
