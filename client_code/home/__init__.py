@@ -112,8 +112,8 @@ class home(homeTemplate):
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
-    open_form('Form3')
-
+    dicts_stages = anvil.server.call('groupby_new_column')
+    
 
 
 
