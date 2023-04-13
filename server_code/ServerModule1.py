@@ -83,15 +83,15 @@ def listprojects():
       if r['stage'] in ['10. Scheduled',	'Planned','Planning','Scheduled','To be re-visited','Today...','To Do']:
         x_column = '00. Planned'
         print(x_column)
-        dicts = append[{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count'], 'new_stage': x_column}]  
+        dicts = dicts.append[{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count'], 'new_stage': x_column}]  
       elif r['stage'] in ['05. Enquiry Not yet started', 	'05. Enquiry - Not Yet Started'	]:
         x_column = '01. Enquiry'
         print(x_column)
-        dicts = append[{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count'], 'new_stage': x_column}]  
+        dicts = dicts.append[{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count'], 'new_stage': x_column}]  
       elif r['stage'] in ['10. Order Approved',	'Ordered'	]:
         x_column = '02. Order Approved'
         print(x_column)
-        dicts = append[{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count'], 'new_stage': x_column}]  
+        dicts = dicts.append[{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count'], 'new_stage': x_column}]  
   for d in dicts:
                                   
             app_tables.projects_stages.add_row(**d)
