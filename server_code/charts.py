@@ -11,8 +11,8 @@ import plotly.express as px
 def bar_charts(dicts):
 
       df = pd.DataFrame.from_dict(dicts)
-      df.sort_values(by= 'new_column', inplace=True)
+      df = df.sort_values( 'new_column').reset_index(drop=True)
       print(df)
-       
+       # df1 = df.sort_values("S2BillDate").reset_index(drop=True)
       fig = px.bar( df, x=df['new_column'] , y= df['count'] , color =df['project_board'] ,title="Project Stages")
       return fig 

@@ -141,10 +141,10 @@ components:
       properties:
         role: null
         columns:
-        - {id: RIFSRX, title: Stage, data_key: project_column, width: '259'}
-        - {id: NSRDLZ, title: Board, data_key: project_board}
-        - {id: AEVFTZ, title: Project Count, data_key: count, width: '50'}
-        - {id: YPUBWH, title: '', data_key: column_1}
+        - {id: RIFSRX, title: Overall Stage, data_key: new_project_column, width: '259',
+          $$hashKey: 'object:109585'}
+        - {id: AEVFTZ, title: Project Count, data_key: count, width: '50', $$hashKey: 'object:109587'}
+        - {id: YPUBWH, title: '', data_key: column_1, $$hashKey: 'object:109588'}
         auto_header: true
         tooltip: ''
         border: ''
@@ -163,6 +163,7 @@ components:
         properties: {spacing_above: none, spacing_below: none, item_template: home.RowTemplate1}
         name: repeating_panel_1
         layout_properties: {}
+        data_bindings: []
 - type: FlowPanel
   properties: {}
   name: navbar_links

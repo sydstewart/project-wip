@@ -31,7 +31,7 @@ components:
   name: text_box_1
   layout_properties: {column: RIFSRX}
   data_bindings:
-  - {property: text, code: 'self.item[''project_column'']', writeback: true}
+  - {property: text, code: 'self.item[''new_project_column''][''new_column'']', writeback: true}
   event_bindings: {pressed_enter: text_box_1_pressed_enter}
 - type: TextBox
   properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
