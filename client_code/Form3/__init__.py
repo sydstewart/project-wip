@@ -12,4 +12,6 @@ class Form3(Form3Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.repeating_panel_1.items= app_tables.projects_stages.search()   
+    dicts_stages =anvil.server.call('groupby_new_column')
+    self.repeating_panel_1.items = dicts_stages
+  
