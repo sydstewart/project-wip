@@ -19,6 +19,7 @@ class Form4(Form4Template):
     self.New_stage_dropdown.items = new_stages
     
     self.repeating_panel_1.items = app_tables.projects.search()
+    self.no_of_projects_found.text = len(self.repeating_panel_1.items )
     # Any code you write here will run before the form opens.
 
   def board_dropdown_change(self, **event_args):
@@ -33,8 +34,21 @@ class Form4(Form4Template):
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
-    self.board_dropdown
+    self.board_dropdown.selected = None
+    self.New_stage_dropdown.selected_value = None
+    self.exclude_archived_completed.checked= False
+    self.repeating_panel_1.items = app_tables.projects.search()
+    self.no_of_projects_found.text = len(self.repeating_panel_1.items )
     pass
+
+
+
+  def exclude_archived_completed_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    search_using_kwargs(self)
+    pass
+
+
 
 
 

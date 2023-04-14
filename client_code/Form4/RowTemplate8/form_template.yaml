@@ -1,7 +1,14 @@
-container: {type: DataRowPanel}
+container:
+  type: DataRowPanel
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', auto_display_data: true,
+    visible: true, font_size: 14, font: '', spacing_above: none, spacing_below: none,
+    italic: false, background: '', bold: true, underline: false}
 components:
 - type: TextBox
-  properties: {}
+  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+    border: '', enabled: true, foreground: '', visible: true, text: '', font_size: 14,
+    font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+    background: '', bold: true, underline: false}
   name: text_box_1
   layout_properties: {column: NHKHME}
   data_bindings:

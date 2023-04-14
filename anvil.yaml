@@ -18,7 +18,7 @@ package_name: Project_WIP
 allow_embedding: false
 name: Project WIP
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
-metadata: {}
+metadata: {title: Project WIP, logo_img: 'asset:4S logo small.png'}
 startup_form: null
 db_schema:
   users:
