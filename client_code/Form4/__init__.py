@@ -31,5 +31,11 @@ class Form4(Form4Template):
     search_using_kwargs(self)
     pass
 
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.board_dropdown
+    pass
+
+
 
 

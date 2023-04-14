@@ -2,6 +2,13 @@ container:
   type: ColumnPanel
   properties: {col_widths: '{}'}
 components:
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: Select Work Area (Kanban), font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  name: label_1
+  layout_properties: {grid_position: 'KWTJKR,EWRUOR'}
 - type: form:C6ZZPAPN4YYF5NVJ:MultiSelectDropDown
   properties: {width: '', align: left, enable_filtering: true, placeholder: None Selected,
     enabled: true, enable_select_all: true, items: null, visible: true, spacing_above: small,
@@ -9,6 +16,13 @@ components:
   name: board_dropdown
   layout_properties: {grid_position: 'KWTJKR,YLJLAD'}
   event_bindings: {change: board_dropdown_change}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: Select New Overall Stage, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  name: label_2
+  layout_properties: {grid_position: 'KWTJKR,YXSMSN'}
 - type: DropDown
   properties:
     role: null
@@ -32,6 +46,14 @@ components:
   name: New_stage_dropdown
   layout_properties: {grid_position: 'KWTJKR,FJVPDD'}
   event_bindings: {change: New_stage_dropdown_change}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Clear Selection Criteria, font_size: 12,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: true, underline: false, icon: ''}
+  name: button_1
+  layout_properties: {grid_position: 'KWTJKR,HDSBHZ'}
+  event_bindings: {click: button_1_click}
 - type: ColumnPanel
   properties: {col_widths: '{}'}
   name: column_panel_1
