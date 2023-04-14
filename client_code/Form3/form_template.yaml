@@ -4,11 +4,11 @@ container:
 components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: Count of Projects by Overall stage, font_size: null, font: '', spacing_above: small,
-    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
-    underline: false, icon: ''}
+    text: Count of ACTIVE Projects by Overall stage excluding Sales and Marketing,
+    font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: true, underline: false, icon: ''}
   name: label_1
-  layout_properties: {grid_position: 'DEWJKN,AJJAUW RWGUVA,FYBGIJ'}
+  layout_properties: {grid_position: 'RWGUVA,FYBGIJ'}
 - type: DataGrid
   properties:
     role: null
@@ -30,15 +30,10 @@ components:
     spacing_below: small
     background: ''
   name: data_grid_1
-  layout_properties: {grid_position: 'DEWJKN,AJJAUW CXYUJM,BXJFVB'}
+  layout_properties: {grid_position: 'CXYUJM,BXJFVB'}
   components:
   - type: RepeatingPanel
     properties: {spacing_above: none, spacing_below: none, item_template: Form3.RowTemplate7}
     name: repeating_panel_1
     layout_properties: {}
-- type: ColumnPanel
-  properties: {col_widths: '{}'}
-  name: column_panel_1
-  layout_properties: {grid_position: 'DEWJKN,WRCSWK'}
-  components: []
 is_package: true

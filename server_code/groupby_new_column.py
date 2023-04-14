@@ -10,7 +10,9 @@ import pandas as pd
 def groupby_new_column():
 
 # Get an iterable object with all the rows in my_table
-    all_records = app_tables.projects_stages.search( )
+    all_records = app_tables.projects_stages.search(project_column = q.not_('40. Done',	'90. Completed',	'90. Gone Live - Completed', \
+                                                                            'Done',	'Lost/Closed','15. Free of Charge','90. Gone Live - Completed', \
+                                                                            'Released','Archive','To Archive','Archived'), project_board =q.not_('Sales & Marketing') )
     # For each row, pull out only the data we want to put into pandas
     dicts = [{'project_board': r['project_board'],'project_column':r['project_column'], 'new_column':r['new_project_column']['new_column'],'count' : r['count']}
              for r in all_records]
