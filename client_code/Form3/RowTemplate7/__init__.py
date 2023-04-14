@@ -13,7 +13,12 @@ class RowTemplate7(RowTemplate7Template):
 
     # Any code you write here will run before the form opens.
 
-  def text_box_1_pressed_enter(self, **event_args):
-    """This method is called when the user presses Enter in this text box"""
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+   
+    print('Project board of line', self.item['project_board'])
+    result = alert(content=Form2_copy(self.item['project_board'], self.item['new_column']), title="Projects", buttons=[], large=True)
     pass
+
 

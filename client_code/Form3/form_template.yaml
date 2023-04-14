@@ -18,6 +18,7 @@ components:
     - {id: SYNBBS, title: Count, data_key: count, $$hashKey: 'object:1099', width: 74,
       expand: false}
     - {id: ELHUQH, title: '%', data_key: '%', $$hashKey: 'object:1102'}
+    - {id: MZLSHS, title: projects, data_key: column_1, $$hashKey: 'object:29952'}
     auto_header: true
     tooltip: ''
     border: ''

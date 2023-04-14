@@ -13,12 +13,13 @@ services:
     use_email: true, allow_remember_me: true, allow_signup: false, enable_automatically: true,
     confirm_email: true, require_mfa: true, remember_me_days: 30}
   server_config: {user_table: users}
+startup: {type: form, module: home_copy}
 package_name: Project_WIP
 allow_embedding: false
 name: Project WIP
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
 metadata: {}
-startup_form: home
+startup_form: null
 db_schema:
   users:
     title: Users
