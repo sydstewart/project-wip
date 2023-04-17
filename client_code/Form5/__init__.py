@@ -40,11 +40,11 @@ class Form5(Form5Template):
 
   def refresh_date_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    with Notification("Please wait..."):
-       anvil.server.call('load_data')
-       self.last_refresh_date.text= str(datetime.today()) 
-       t = app_tables.last_date_refreshed.get(date_id =1 )
-       t['last_date_refreshed'] = str(datetime.today() )
+   
+    anvil.server.call('load_data')
+    self.last_refresh_date.text= str(datetime.today()) 
+    t = app_tables.last_date_refreshed.get(date_id =1 )
+    t['last_date_refreshed'] = str(datetime.today() )
     pass
 
   

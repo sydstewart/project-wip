@@ -71,14 +71,15 @@ def listprojects():
   # load project_stages
   print('starting to load project_stages')
   print('Stages=' + str(len(cur.fetchall())))
+  dicts=[]
   for r in cur.fetchall():
-    print(r['stage'])
-#     dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}]  
+    print('syd')
+    dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}]  
       
-#   print(dicts)
-#   for d in dicts:
-#             print(d['project_board'],d['project_column'],d['count'])                      
-#             # app_tables.projects_stages.add_row(**d)
+    print(dicts['project_board'])
+  # for d in dicts:
+  #           print(d['project_board'],d['project_column'],d['count'])                      
+  #           # app_tables.projects_stages.add_row(**d)
 # #             getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
   #=================================================================================
 #   # Load Projects into separate table          
