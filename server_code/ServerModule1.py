@@ -11,6 +11,8 @@ import anvil.secrets
 import anvil.server
 import pymysql
 import anvil.tables.query as q
+import anvil.media
+import pandas as pd
 from anvil.tables import app_tables
 from datetime import datetime, time , date , timedelta
 
@@ -71,43 +73,44 @@ def listprojects():
   # load project_stages
   print('starting to load project_stages')
   print('Stages=' + str(len(cur.fetchall())))
+  dicts =[]
   for r in cur.fetchall():
     print(r['stage'])
-#     dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}]  
+    dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}]  
       
-#   print(dicts)
-#   for d in dicts:
-#             print(d['project_board'],d['project_column'],d['count'])                      
-#             # app_tables.projects_stages.add_row(**d)
-# #             getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
+  
+  for d in dicts:
+            print(d['project_board'],d['project_column'],d['count'])                      
+            app_tables.projects_stages.add_row(**d)
+            getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
   #=================================================================================
 #   # Load Projects into separate table          
-#   with conn.cursor() as cur1:
-#       cur1.execute(
-#          "Select  portfolioboards.boardName as boards, teamwork.portfoliocolumns.columnName as stage, teamwork.projects.projectname as project_name \
-#           From teamwork.portfoliocards Join \
-#               teamwork.projects On teamwork.portfoliocards.projectId = \
-#               teamwork.projects.projectId Join \
-#               teamwork.portfoliocolumns On teamwork.portfoliocards.columnId = \
-#               teamwork.portfoliocolumns.columnId Join \
-#               teamwork.portfolioboards On teamwork.portfolioboards.boardId = \
-#               teamwork.portfoliocards.boardId \
-#       Where projectStatus = 'active' And cardStatus = 'ACTIVE'"  
-#     ) 
+  with conn.cursor() as cur1:
+      cur1.execute(
+         "Select  portfolioboards.boardName as boards, teamwork.portfoliocolumns.columnName as stage, teamwork.projects.projectname as project_name \
+          From teamwork.portfoliocards Join \
+              teamwork.projects On teamwork.portfoliocards.projectId = \
+              teamwork.projects.projectId Join \
+              teamwork.portfoliocolumns On teamwork.portfoliocards.columnId = \
+              teamwork.portfoliocolumns.columnId Join \
+              teamwork.portfolioboards On teamwork.portfolioboards.boardId = \
+              teamwork.portfoliocards.boardId \
+      Where projectStatus = 'active' And cardStatus = 'ACTIVE'"  
+    ) 
     
 #   print('starting to load projects')
-#   for r in cur1.fetchall(): 
-#         dicts = [{'project_name' : r['project_name'],'project_board': r['boards'],'project_column':r['stage']}]
-#         for d in dicts:
-#               getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
+  for r in cur1.fetchall(): 
+        dicts = [{'project_name' : r['project_name'],'project_board': r['boards'],'project_column':r['stage']}]
+        for d in dicts:
+              getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
                                 
-#               app_tables.projects.add_row( **d)
+              app_tables.projects.add_row( **d)
     
 # # Link Tables
-#   print('Starting to Link')
-#   for p in app_tables.projects.search():
-#                 getstagerow = app_tables.projects_stages.get(project_board= p['project_board'], project_column=p['project_column'])
-#                 p.update(project_stages = getstagerow)   
+  print('Starting to Link')
+  for p in app_tables.projects.search():
+                getstagerow = app_tables.projects_stages.get(project_board= p['project_board'], project_column=p['project_column'])
+                p.update(project_stages = getstagerow)   
         
         
         
@@ -120,4 +123,16 @@ def listprojects():
 #                 getsNewstagerow = app_tables.stage_translate.get(project_column=y['project_column'])
 #                 y.update(new_project_column = getsNewstagerow)     
     
-        
+@anvil.server.callable
+def store_data(file , tablename):
+  with anvil.media.TempFile(file) as file_name:
+    if file.content_type == 'text/csv':
+      df = pd.read_csv(file_name)
+    else:
+      df = pd.read_excel(file_name)
+    # df['Date_Entered'] = pd.to_datetime(df['Date_Entered'], format='%d/%m/%Y')
+    for d in df.to_dict(orient="records"):
+      # d is now a dict of {columnname -> value} for this row
+      # We use Python's **kwargs syntax to pass the whole dict as
+      # keyword arguments
+      getattr(app_tables, tablename).add_row(**d)
