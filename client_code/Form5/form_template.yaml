@@ -33,3 +33,45 @@ components:
   name: label_6
   layout_properties: {grid_position: 'OKLFWX,DNMQYP', expand: false, width: null,
     slot: title}
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: column_panel_1
+  layout_properties: {slot: left-nav}
+  components:
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Refresh Data, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: refresh_date_button
+    layout_properties:
+      col_widths: {}
+      grid_position: KYOJUO,UIVWLJ
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Bar Charts, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: button_2
+    layout_properties:
+      col_widths: {}
+      grid_position: KNVNFO,AYXFRM
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Stacked Bar Chart, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: stacked_
+    layout_properties:
+      col_widths: {}
+      grid_position: YEYHTL,NCQTNK
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Project Stage List, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: button_1
+    layout_properties:
+      col_widths: {}
+      grid_position: EBMFPR,XMQMLB
+    event_bindings: {click: button_1_click}
