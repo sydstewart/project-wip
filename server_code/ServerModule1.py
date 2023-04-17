@@ -37,15 +37,27 @@ def connect():
 def load_data():
   """Launch a single crawler background task."""
   task = anvil.server.launch_background_task('listprojects')
+    # Output some state from the task
   print(task.get_state())
-
+  if not task.is_completed():
+    return task.get_state()
   # Is the task complete yet?
   if task.is_completed():
-    return task
+    return
+  # anvil.server.task_state['progress'] = 'Progress'
+  # # print(task.get_state())
+  # # # Is the task complete yet?
+  # # if task.is_completed():
+  # #   anvil.server.task_state['completed'] = 'Completed'
+  # #   self.task_status_label.text = anvil.server.task_state['completed'] 
+  # #   return task
   
 
 @anvil.server.background_task
 def listprojects():
+  # anvil.server.task_state['progress'] = 42.
+  # print(task.get_state()['progress'])
+  
   conn = connect()
 #=============================================================================  
   # Load Project Stages summary
