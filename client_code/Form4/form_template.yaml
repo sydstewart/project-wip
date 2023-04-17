@@ -1,6 +1,6 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{"KSMCTZ":10,"RNRUMV":5,"GPEDGG":20,"FYNONG":15,"SRQIGH":10}'}
+  properties: {col_widths: '{"KSMCTZ":10,"RNRUMV":5,"GPEDGG":25,"FYNONG":15,"SRQIGH":5}'}
 components:
 - type: ColumnPanel
   properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,

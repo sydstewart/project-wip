@@ -12,13 +12,6 @@ components:
     properties: {}
     name: form4_1
     layout_properties: {grid_position: 'CIMNRD,GAUHQN', full_width_row: true}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: Date Last Data Update/Refresh, font_size: null, font: '',
-      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: true, underline: false, icon: ''}
-    name: label_5
-    layout_properties: {grid_position: 'UEZQDC,ICZBIC'}
 - type: FlowPanel
   properties: {}
   name: navbar_links
@@ -55,6 +48,10 @@ components:
       col_widths: {}
       grid_position: KYOJUO,UIVWLJ
     event_bindings: {click: refresh_date_button_click}
+  - type: Label
+    properties: {}
+    name: task_status_label
+    layout_properties: {grid_position: 'PCETWH,KWSXHP'}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Bar Charts, font_size: null, font: '',
@@ -85,10 +82,3 @@ components:
       col_widths: {}
       grid_position: EBMFPR,XMQMLB
     event_bindings: {click: button_1_click}
-- type: TextBox
-  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
-    border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-    font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
-    background: '', bold: true, underline: false}
-  name: last_refresh_date
-  layout_properties: {width: 156}

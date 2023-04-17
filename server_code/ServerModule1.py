@@ -63,7 +63,15 @@ def listprojects():
       group by  portfolioboards.boardName , portfoliocolumns.columnName \
       Order By teamwork.portfoliocolumns.columnName, cardDisplayOrder"
                     )   
-    
+    # "Select portfolioboards.boardName as boards, \
+    # portfoliocolumns.columnName as stage, count(*) as count\
+    # From projects Inner Join \
+    # portfoliocards On projects.projectId = portfoliocards.projectId Inner Join \
+    # portfolioboards On portfolioboards.boardId = portfoliocards.boardId Inner Join \
+    # portfoliocolumns On portfoliocards.columnId = portfoliocolumns.columnId \
+    # group by  portfolioboards.boardName , \
+    # portfoliocolumns.columnName"
+     
   
 #==================================================================================
 # Clear tables   
@@ -72,19 +80,16 @@ def listprojects():
 #==========================================================================================    
   # load project_stages
   print('starting to load project_stages')
-  print('Stages=' + str(len(cur.fetchall())))
-  dicts =[]
   for r in cur.fetchall():
-    print(r['stage'])
-    dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}]  
-      
-  
-  for d in dicts:
-            print(d['project_board'],d['project_column'],d['count'])                      
+#       new_column = app_tables.stage_translate.get(project_column=r['stage'])
+#       x_column = new_column['new_column']
+      dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}] #, 'new_column': x_column
+      for d in dicts:
+                                  
             app_tables.projects_stages.add_row(**d)
-            getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
+#             getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
   #=================================================================================
-#   # Load Projects into separate table          
+  # Load Projects into separate table          
   with conn.cursor() as cur1:
       cur1.execute(
          "Select  portfolioboards.boardName as boards, teamwork.portfoliocolumns.columnName as stage, teamwork.projects.projectname as project_name \
@@ -98,7 +103,7 @@ def listprojects():
       Where projectStatus = 'active' And cardStatus = 'ACTIVE'"  
     ) 
     
-#   print('starting to load projects')
+  print('starting to load projects')
   for r in cur1.fetchall(): 
         dicts = [{'project_name' : r['project_name'],'project_board': r['boards'],'project_column':r['stage']}]
         for d in dicts:
@@ -106,7 +111,7 @@ def listprojects():
                                 
               app_tables.projects.add_row( **d)
     
-# # Link Tables
+# Link Tables
   print('Starting to Link')
   for p in app_tables.projects.search():
                 getstagerow = app_tables.projects_stages.get(project_board= p['project_board'], project_column=p['project_column'])
@@ -114,25 +119,29 @@ def listprojects():
         
         
         
-# # link to Project_column translate
+# link to Project_column translate
 
-#   for x in app_tables.projects.search():
-#                 getsNewstagerow = app_tables.stage_translate.get(project_column=x['project_column'])
-#                 x.update(new_stages = getsNewstagerow) 
-#   for y in app_tables.projects_stages.search():
-#                 getsNewstagerow = app_tables.stage_translate.get(project_column=y['project_column'])
-#                 y.update(new_project_column = getsNewstagerow)     
-    
+  for x in app_tables.projects.search():
+                getsNewstagerow = app_tables.stage_translate.get(project_column=x['project_column'])
+                x.update(new_stages = getsNewstagerow) 
+  for y in app_tables.projects_stages.search():
+                getsNewstagerow = app_tables.stage_translate.get(project_column=y['project_column'])
+                y.update(new_project_column = getsNewstagerow)    
+
+
 @anvil.server.callable
-def store_data(file , tablename):
-  with anvil.media.TempFile(file) as file_name:
-    if file.content_type == 'text/csv':
-      df = pd.read_csv(file_name)
+def get_status(id):
+  task = anvil.server.get_background_task(id)
+  if task.is_completed():
+    return None
+  else:
+    return task.get_state()['progress']
+ 
+
+def background_check_tick(self, **event_args):
+    task_status = anvil.server.call_s('get_status', id=self.task_id)
+    if task_status:
+      self.task_status_label.text = task_status
     else:
-      df = pd.read_excel(file_name)
-    # df['Date_Entered'] = pd.to_datetime(df['Date_Entered'], format='%d/%m/%Y')
-    for d in df.to_dict(orient="records"):
-      # d is now a dict of {columnname -> value} for this row
-      # We use Python's **kwargs syntax to pass the whole dict as
-      # keyword arguments
-      getattr(app_tables, tablename).add_row(**d)
+      self.task_status_label.text = 'Done!'
+      self.background_check.interval = 0
