@@ -1,6 +1,6 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{"KSMCTZ":20,"RNRUMV":5,"GPEDGG":35}'}
+  properties: {col_widths: '{"KSMCTZ":10,"RNRUMV":5,"GPEDGG":20,"FYNONG":15,"SRQIGH":10}'}
 components:
 - type: ColumnPanel
   properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
@@ -75,18 +75,38 @@ components:
     spacing_below: small, italic: false, background: '', bold: true, underline: false,
     icon: ''}
   name: label_3
-  layout_properties: {grid_position: 'NQILSK,KSMCTZ'}
+  layout_properties: {grid_position: 'NQILSK,KSMCTZ', full_width_row: true}
 - type: TextBox
   properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
     border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
     font: '', spacing_above: small, type: number, spacing_below: small, italic: false,
     background: '', bold: true, underline: false}
   name: no_of_projects_found
-  layout_properties: {grid_position: 'NQILSK,RNRUMV'}
+  layout_properties: {grid_position: 'NQILSK,RNRUMV', full_width_row: true}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: Date Last Data Update/Refresh, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  name: label_5
+  layout_properties:
+    col_widths: {}
+    grid_position: NQILSK,FYNONG
+    full_width_row: true
+- type: TextBox
+  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+    border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+    font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+    background: '', bold: true, underline: false}
+  name: last_refresh_date
+  layout_properties:
+    col_widths: {}
+    grid_position: NQILSK,SRQIGH
+    full_width_row: true
 - type: Label
   properties: {}
   name: label_4
-  layout_properties: {grid_position: 'NQILSK,GPEDGG'}
+  layout_properties: {grid_position: 'NQILSK,GPEDGG', full_width_row: true}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',

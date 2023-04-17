@@ -61,15 +61,7 @@ def listprojects():
       group by  portfolioboards.boardName , portfoliocolumns.columnName \
       Order By teamwork.portfoliocolumns.columnName, cardDisplayOrder"
                     )   
-    # "Select portfolioboards.boardName as boards, \
-    # portfoliocolumns.columnName as stage, count(*) as count\
-    # From projects Inner Join \
-    # portfoliocards On projects.projectId = portfoliocards.projectId Inner Join \
-    # portfolioboards On portfolioboards.boardId = portfoliocards.boardId Inner Join \
-    # portfoliocolumns On portfoliocards.columnId = portfoliocolumns.columnId \
-    # group by  portfolioboards.boardName , \
-    # portfoliocolumns.columnName"
-     
+    
   
 #==================================================================================
 # Clear tables   
@@ -78,26 +70,16 @@ def listprojects():
 #==========================================================================================    
   # load project_stages
   print('starting to load project_stages')
-  print(len(cur.fetchall()))
+  print('Stages=' + str(len(cur.fetchall())))
   for r in cur.fetchall():
-    dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}]  
-      # if r['stage'] in ['10. Scheduled',	'Planned','Planning','Scheduled','To be re-visited','Today...','To Do']:
-      #   x_column = '00. Planned'
-      #   print(x_column)
-      #   dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count'], 'new_stage': x_column}]  
-      # elif r['stage'] in ['05. Enquiry Not yet started', 	'05. Enquiry - Not Yet Started'	]:
-      #   x_column = '01. Enquiry'
-      #   print(x_column)
-      #   dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count'], 'new_stage': x_column}]  
-      # elif r['stage'] in ['10. Order Approved',	'Ordered'	]:
-      #   x_column = '02. Order Approved'
-      #   print(x_column)
+    print(r['stage'])
+#     dicts = [{'project_board': r['boards'],'project_column':r['stage'], 'count' : r['count']}]  
       
-  # print(dicts)
-  for d in dicts:
-            print(d['project_board'],d['project_column'],d['count'])                      
-            # app_tables.projects_stages.add_row(**d)
-#             getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
+#   print(dicts)
+#   for d in dicts:
+#             print(d['project_board'],d['project_column'],d['count'])                      
+#             # app_tables.projects_stages.add_row(**d)
+# #             getstagerow = app_tables.projects_stages.get(project_board= d['project_board'], project_column=d['project_column'])
   #=================================================================================
 #   # Load Projects into separate table          
 #   with conn.cursor() as cur1:

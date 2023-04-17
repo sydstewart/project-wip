@@ -5,6 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from datetime import datetime, time , date , timedelta
 
 class Form5(Form5Template):
   def __init__(self, **properties):
@@ -26,6 +27,29 @@ class Form5(Form5Template):
     """This method is called when the button is clicked"""
     dicts_stages = anvil.server.call('groupby_new_column')
     open_form('Form3')
+
+  def stacked__click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('stacked_bar_chart')
+    pass
+
+  def button_2_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Dev_board_form')
+    pass
+
+  def refresh_date_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    with Notification("Please wait..."):
+       anvil.server.call('load_data')
+       self.last_refresh_date.text= str(datetime.today()) 
+       t = app_tables.last_date_refreshed.get(date_id =1 )
+       t['last_date_refreshed'] = str(datetime.today() )
+    pass
+
+  
+
+
 
 
 
