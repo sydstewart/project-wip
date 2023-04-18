@@ -1,6 +1,6 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{"KSMCTZ":10,"RNRUMV":5,"GPEDGG":25,"FYNONG":15,"SRQIGH":5}'}
+  properties: {col_widths: '{"JTENYO":15,"HDABZE":5,"KBLVST":20,"JLNBGO":10,"HIHAEA":22}'}
 components:
 - type: ColumnPanel
   properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
@@ -69,20 +69,25 @@ components:
     name: button_1
     layout_properties: {grid_position: 'LSUOAM,BSRTKG', full_width_row: true}
     event_bindings: {click: button_1_click}
-- type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: 'No. of Projects = ', font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: true, underline: false,
-    icon: ''}
-  name: label_3
-  layout_properties: {grid_position: 'NQILSK,KSMCTZ', full_width_row: true}
+- type: DataRowPanel
+  properties: {}
+  name: data_row_panel_1
+  layout_properties: {grid_position: 'DIHVYW,JTENYO'}
+  components:
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'No. of Projects = ', font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+      underline: false, icon: ''}
+    name: label_3
+    layout_properties: {grid_position: 'NQILSK,KSMCTZ', full_width_row: true, column: null}
 - type: TextBox
   properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
     border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
     font: '', spacing_above: small, type: number, spacing_below: small, italic: false,
     background: '', bold: true, underline: false}
   name: no_of_projects_found
-  layout_properties: {grid_position: 'NQILSK,RNRUMV', full_width_row: true}
+  layout_properties: {grid_position: 'DIHVYW,HDABZE', full_width_row: true}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: Date Last Data Update/Refresh, font_size: null, font: '', spacing_above: small,
@@ -91,22 +96,22 @@ components:
   name: label_5
   layout_properties:
     col_widths: {}
-    grid_position: NQILSK,FYNONG
+    grid_position: DIHVYW,KBLVST
     full_width_row: true
 - type: TextBox
   properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
-    border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+    border: '', enabled: true, foreground: '', visible: true, text: '', font_size: 12,
     font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
     background: '', bold: true, underline: false}
   name: last_refresh_date
   layout_properties:
     col_widths: {}
-    grid_position: NQILSK,SRQIGH
+    grid_position: DIHVYW,JLNBGO
     full_width_row: true
 - type: Label
   properties: {}
   name: label_4
-  layout_properties: {grid_position: 'NQILSK,GPEDGG', full_width_row: true}
+  layout_properties: {grid_position: 'DIHVYW,HIHAEA'}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',

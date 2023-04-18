@@ -5,6 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from datetime import datetime, time , date , timedelta
 from ..search_using_kwargs import search_using_kwargs
 class Form4(Form4Template):
   def __init__(self, **properties):
@@ -21,7 +22,7 @@ class Form4(Form4Template):
     self.repeating_panel_1.items = app_tables.projects.search()
     self.no_of_projects_found.text = len(self.repeating_panel_1.items )
     t = app_tables.last_date_refreshed.get(date_id =1 )
-    self.last_refresh_date.text = t['last_date_refreshed']
+    self.last_refresh_date.text = (t['last_date_refreshed'])
     # Any code you write here will run before the form opens.
 
   def board_dropdown_change(self, **event_args):
