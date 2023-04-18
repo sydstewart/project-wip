@@ -44,6 +44,8 @@ class Form5(Form5Template):
     # background_check_tick(self)
     # with Notification("Please wait..."):
     anvil.server.call('load_data')
+    # state = self.task.get_state()
+    # print(state)
     t = app_tables.last_date_refreshed.get(date_id =1 )
     t['last_date_refreshed'] = str(datetime.today() )
     pass

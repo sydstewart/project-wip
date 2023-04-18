@@ -83,7 +83,8 @@ def listprojects():
     # portfoliocolumns On portfoliocards.columnId = portfoliocolumns.columnId \
     # group by  portfolioboards.boardName , \
     # portfoliocolumns.columnName"
-     
+
+      
   
 #==================================================================================
 # Clear tables   
