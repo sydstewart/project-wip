@@ -144,6 +144,29 @@ db_schema:
     - name: project_board
       admin_ui: {width: 200}
       type: string
+  table_7:
+    client: none
+    server: full
+    columns:
+    - name: month_start
+      admin_ui: {order: 0, width: 200}
+      type: date
+    - name: project_type
+      admin_ui: {order: 1, width: 200}
+      type: string
+    - name: enquiry
+      admin_ui: {order: 2, width: 200}
+      type: number
+    - name: planned
+      admin_ui: {order: 3, width: 200}
+      type: number
+    - name: order_approved
+      admin_ui: {order: 4, width: 200}
+      type: number
+    - name: active
+      admin_ui: {order: 5, width: 200}
+      type: number
+    title: Table 7
 secrets:
   Teamwork Pass:
     value: {? '' : FmcCGvX7vJFW+652Pltsoof66B6i/ul2udoU3/LwRh4UO4IRxuq/2AydKWYQ5YA2zmHLnIACFkrODQuwYfr9OHkPu5Omd+241BwG+Z6ySbDT2vDttHhMkZfd434+qxmtMApTC8jE8lOFNA==}
