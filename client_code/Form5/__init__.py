@@ -50,6 +50,13 @@ class Form5(Form5Template):
     t['last_date_refreshed'] = str(datetime.today() )
     pass
 
+  def active_projects_report_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    dicts_boards = anvil.server.call('active_projects')
+    open_form('active_projects_report')
+    pass
+
+
   
 
 

@@ -82,3 +82,11 @@ components:
       col_widths: {}
       grid_position: EBMFPR,XMQMLB
     event_bindings: {click: button_1_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Active Projects Report, font_size: null,
+      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: active_projects_report_button
+    layout_properties: {grid_position: 'LRROYG,COWPER'}
+    event_bindings: {click: active_projects_report_button_click}
