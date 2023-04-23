@@ -8,10 +8,10 @@ components:
   name: content_panel
   layout_properties: {slot: default}
   components:
-  - type: form:Form4
+  - type: form:active_projects_report
     properties: {}
-    name: form4_1
-    layout_properties: {grid_position: 'CIMNRD,GAUHQN', full_width_row: true}
+    name: active_projects_report_1
+    layout_properties: {grid_position: 'XDQDAX,OMNADS'}
 - type: FlowPanel
   properties: {}
   name: navbar_links
@@ -40,53 +40,43 @@ components:
   components:
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Active Projects Report, font_size: null,
+      foreground: '', visible: false, text: Active Projects Report, font_size: null,
       font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: active_projects_report_button
-    layout_properties: {grid_position: 'LROLNJ,UVTGIM'}
+    layout_properties: {grid_position: 'UEWRQC,NXQKNF'}
     event_bindings: {click: active_projects_report_button_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Search Projects, font_size: null, font: '',
+      foreground: '', visible: false, text: Search Projects, font_size: null, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: button_3
-    layout_properties: {grid_position: 'VPJBRI,VIADXH'}
+    layout_properties: {grid_position: 'TTOIRA,EKNLUZ'}
     event_bindings: {click: button_3_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Bar Charts, font_size: null, font: '',
+      foreground: '', visible: false, text: Bar Charts, font_size: null, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: button_2
     layout_properties:
       col_widths: {}
-      grid_position: GJILHW,LVCHVQ
+      grid_position: RAATLT,RGWRCJ
     event_bindings: {click: button_2_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Stacked Bar Chart, font_size: null, font: '',
+      foreground: '', visible: false, text: Stacked Bar Chart, font_size: null, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: stacked_
     layout_properties:
       col_widths: {}
-      grid_position: ANODFL,HQNCOJ
+      grid_position: SWLXBK,IZGQUI
     event_bindings: {click: stacked__click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Project Stage List, font_size: null, font: '',
-      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false, icon: ''}
-    name: button_1
-    layout_properties:
-      col_widths: {}
-      grid_position: KZFDGB,ZVUZHZ
-    event_bindings: {click: button_1_click}
-  - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Refresh Data, font_size: null, font: '',
+      foreground: '', visible: false, text: Refresh Data, font_size: null, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: refresh_date_button

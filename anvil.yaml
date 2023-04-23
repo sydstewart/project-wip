@@ -13,7 +13,7 @@ services:
     use_email: true, allow_remember_me: true, allow_signup: false, enable_automatically: true,
     confirm_email: true, require_mfa: true, remember_me_days: 30}
   server_config: {user_table: users}
-startup: {type: form, module: Form5}
+startup: {type: form, module: Main}
 package_name: Project_WIP
 allow_embedding: false
 name: Project WIP

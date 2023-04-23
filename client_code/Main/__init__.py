@@ -1,4 +1,4 @@
-from ._anvil_designer import Form5Template
+from ._anvil_designer import MainTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -7,7 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime, time , date , timedelta
 from ..Module3 import background_check_tick
-class Form5(Form5Template):
+class Main(MainTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -18,9 +18,9 @@ class Form5(Form5Template):
     """This method is called when the button is clicked"""
     self.content_panel.clear()
     anvil.users.logout()
-    
+
     anvil.users.login_with_form()
-    open_form('active_projects_report') 
+    open_form('Main')
 
     pass
   def button_1_click(self, **event_args):
@@ -40,7 +40,7 @@ class Form5(Form5Template):
 
   def refresh_date_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    
+
     # background_check_tick(self)
     # with Notification("Please wait..."):
     anvil.server.call('load_data')
@@ -52,10 +52,7 @@ class Form5(Form5Template):
 
   def active_projects_report_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    dicts_boards = anvil.server.call('active_projects')
-    self.column_panel_1.clear()
-    self.add_component('active_projects_report')
-    
+    open_form('Main')
     pass
 
   def button_3_click(self, **event_args):
@@ -65,22 +62,21 @@ class Form5(Form5Template):
 
 
 
-  
+
 
 
 
 
 
 def Logout_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    self.content_panel.clear()
-    self.column_panel_1.clear()
-    anvil.users.logout()
-    
-    anvil.users.login_with_form()
-    open_form('home') 
-    
-    
-    
-    pass
+  """This method is called when the button is clicked"""
+  self.content_panel.clear()
+  self.column_panel_1.clear()
+  anvil.users.logout()
 
+  anvil.users.login_with_form()
+  open_form('home')
+
+
+
+  pass

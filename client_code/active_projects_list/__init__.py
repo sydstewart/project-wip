@@ -17,5 +17,6 @@ class active_projects_list(active_projects_listTemplate):
     # print('Project board of line', project_board, project_column)
     self.repeating_panel_1.items = app_tables.projects.search(project_column = q.not_('40. Done',	'90. Completed',	'90. Gone Live - Completed', \
                                                                             'Done',	'Lost/Closed','15. Free of Charge','90. Gone Live - Completed', \
-                                                                            'Released','Archive','To Archive','Archived', '10. Order Approved','Ordered')  \
+                                                                            'Released','Archive','To Archive','Archived', '10. Order Approved','Ordered',  \
+                                                                             '10. Scheduled','To Do', 'To be re-visited','Planning','Planned')  \
                                                                             , project_board = project_board)

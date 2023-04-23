@@ -14,3 +14,8 @@ class active_projects_report(active_projects_reportTemplate):
     # Any code you write here will run before the form opens.
     dicts_boards =anvil.server.call('active_projects')
     self.repeating_panel_1.items = dicts_boards
+
+  def text_area_1_change(self, **event_args):
+    """This method is called when the text in this text area is edited"""
+    pass
+
