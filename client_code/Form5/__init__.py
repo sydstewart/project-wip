@@ -54,12 +54,16 @@ class Form5(Form5Template):
     """This method is called when the button is clicked"""
     dicts_boards = anvil.server.call('active_projects')
     self.column_panel_1.clear()
-    self.add_component('active_projects_report')
+    self.content_panel.clear()
+    open_form('Main')
+    
     
     pass
 
   def button_3_click(self, **event_args):
     """This method is called when the button is clicked"""
+    self.column_panel_1.clear()
+    self.content_panel.clear()
     open_form('Form5')
     pass
 

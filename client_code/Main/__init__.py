@@ -52,6 +52,8 @@ class Main(MainTemplate):
 
   def active_projects_report_button_click(self, **event_args):
     """This method is called when the button is clicked"""
+    self.column_panel_1.clear()
+    self.content_panel.clear()
     open_form('Main')
     pass
 

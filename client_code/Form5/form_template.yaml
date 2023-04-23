@@ -56,7 +56,7 @@ components:
     event_bindings: {click: button_3_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Bar Charts, font_size: null, font: '',
+      foreground: '', visible: false, text: Bar Charts, font_size: null, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: button_2
@@ -66,7 +66,7 @@ components:
     event_bindings: {click: button_2_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Stacked Bar Chart, font_size: null, font: '',
+      foreground: '', visible: false, text: Stacked Bar Chart, font_size: null, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: stacked_
@@ -76,7 +76,7 @@ components:
     event_bindings: {click: stacked__click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Project Stage List, font_size: null, font: '',
+      foreground: '', visible: false, text: Project Stage List, font_size: null, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: button_1
@@ -86,7 +86,7 @@ components:
     event_bindings: {click: button_1_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Refresh Data, font_size: null, font: '',
+      foreground: '', visible: false, text: Refresh Data, font_size: null, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: refresh_date_button
