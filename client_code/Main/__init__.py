@@ -57,10 +57,21 @@ class Main(MainTemplate):
     open_form('Main')
     pass
 
-  def button_3_click(self, **event_args):
+
+
+  def active_projects_by_stage_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Main')
+    self.content_panel.clear()
+    self.add_component(DataGrid()
+    pass
+
+  def search_projects_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     open_form('Form5')
     pass
+
+
 
 
 

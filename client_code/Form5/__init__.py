@@ -67,6 +67,14 @@ class Form5(Form5Template):
     open_form('Form5')
     pass
 
+  def button_4_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.column_panel_1.clear()
+    self.content_panel.clear()
+    open_form('Form3')
+    pass
+
+
 
 
   
