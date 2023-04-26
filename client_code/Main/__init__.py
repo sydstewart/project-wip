@@ -10,12 +10,16 @@ from ..Module3 import background_check_tick
 from ..Form3 import Form3
 from ..Form4 import Form4
 from ..Form5 import Form5
+from ..active_projects_report import active_projects_report
 
 class Main(MainTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
+    user_type = anvil.users.get_user()['user_type'] 
+    if user_type == 'admin':
+      self.refresh_date_button.visible = True
+      self.restore_stage_translate_button.visible = True
     # Any code you write here will run before the form opens.
 
   def Logout_click(self, **event_args):
@@ -24,7 +28,10 @@ class Main(MainTemplate):
     anvil.users.logout()
 
     anvil.users.login_with_form()
-    # open_form('Main')
+    # global user_type
+    # user_type = anvil.users.get_user()['user_type']
+    
+    open_form('Main')
 
     pass
   def button_1_click(self, **event_args):
@@ -57,7 +64,7 @@ class Main(MainTemplate):
   def active_projects_report_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.content_panel.clear()
-    open_form('Main')
+    self.content_panel.add_component(active_projects_report(), full_width_row=True)
     pass
 
 

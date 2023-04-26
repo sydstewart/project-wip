@@ -158,3 +158,17 @@ def background_check_tick(self, **event_args):
     else:
       self.task_status_label.text = 'Done!'
       self.background_check.interval = 0
+
+@anvil.server.callable
+def store_data(file , tablename):
+  with anvil.media.TempFile(file) as file_name:
+    if file.content_type == 'text/csv':
+      df = pd.read_csv(file_name)
+    else:
+      df = pd.read_excel(file_name)
+    # df['Date_Entered'] = pd.to_datetime(df['Date_Entered'], format='%d/%m/%Y')
+    for d in df.to_dict(orient="records"):
+      # d is now a dict of {columnname -> value} for this row
+      # We use Python's **kwargs syntax to pass the whole dict as
+      # keyword arguments
+      getattr(app_tables, tablename).add_row(**d)

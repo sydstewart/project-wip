@@ -13,10 +13,10 @@ class Restore(RestoreTemplate):
 
     # Any code you write here will run before the form opens.
 
-  def upload_stage_translate_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    anvil.server.call(upload_stagetranslate)
-    pass
+  # def upload_stage_translate_click(self, **event_args):
+  #   """This method is called when the button is clicked"""
+  #   anvil.server.call(upload_stagetranslate)
+  #   pass
 
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
