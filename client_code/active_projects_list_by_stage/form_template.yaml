@@ -1,0 +1,51 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{"TITJBG":5}'}
+components:
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: Filter by Board, font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: true, underline: false,
+    icon: ''}
+  name: label_1
+  layout_properties: {grid_position: 'BXQUGV,TITJBG', column: null, full_width_row: true}
+- type: form:C6ZZPAPN4YYF5NVJ:MultiSelectDropDown
+  properties: {width: '', align: left, enable_filtering: true, placeholder: None Selected,
+    enabled: true, enable_select_all: true, items: null, visible: true, spacing_above: small,
+    spacing_below: small, multiple: true}
+  name: multi_select_board_drop_down
+  layout_properties: {grid_position: 'BXQUGV,WZPUGT', full_width_row: true}
+  event_bindings: {change: multi_select_board_drop_down_change}
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: column_panel_1
+  layout_properties: {grid_position: 'PFNPOL,ZEOJLD'}
+  components:
+  - type: DataGrid
+    properties:
+      role: null
+      columns:
+      - {id: TBIRFE, title: Projects, data_key: project_name, $$hashKey: 'object:37676'}
+      - {id: OWZEAV, title: Project_Board, data_key: project_board, $$hashKey: 'object:86272'}
+      - {id: PKJASK, title: Stage, data_key: project_column, $$hashKey: 'object:37717'}
+      - {id: JCIYAE, title: New Stage, data_key: '[new_stages][new_column]', $$hashKey: 'object:47869'}
+      auto_header: true
+      tooltip: ''
+      border: ''
+      foreground: ''
+      rows_per_page: 20
+      visible: true
+      wrap_on: never
+      show_page_controls: true
+      spacing_above: small
+      spacing_below: small
+      background: ''
+    name: data_grid_1
+    layout_properties: {grid_position: 'LHCKPZ,VYUWJQ', full_width_row: true}
+    components:
+    - type: RepeatingPanel
+      properties: {spacing_above: none, spacing_below: none, item_template: Form2.RowTemplate4}
+      name: repeating_panel_1
+      layout_properties: {}
+is_package: true
+custom_component: true
