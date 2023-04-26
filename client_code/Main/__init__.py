@@ -16,10 +16,14 @@ class Main(MainTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    user_type = anvil.users.get_user()['user_type'] 
+    anvil.users.login_with_form()
+    loggedinuser =  anvil.users.get_user()['email']
+   
+    user_type = anvil.users.get_user()['user_type']
     if user_type == 'admin':
       self.refresh_date_button.visible = True
       self.restore_stage_translate_button.visible = True
+
     # Any code you write here will run before the form opens.
 
   def Logout_click(self, **event_args):
@@ -27,11 +31,8 @@ class Main(MainTemplate):
     self.content_panel.clear()
     anvil.users.logout()
 
-    anvil.users.login_with_form()
-    # global user_type
-    # user_type = anvil.users.get_user()['user_type']
-    
-    open_form('Main')
+
+    # open_form('Main')
 
     pass
   def button_1_click(self, **event_args):
