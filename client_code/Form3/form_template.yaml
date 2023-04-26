@@ -4,9 +4,9 @@ container:
 components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: Count of ACTIVE Projects by Overall stage excluding Sales and Marketing,
-    font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-    italic: false, background: '', bold: true, underline: false, icon: ''}
+    text: ACTIVE* Projects by Overall stage excluding Sales and Marketing, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: true, underline: false, icon: ''}
   name: label_1
   layout_properties: {grid_position: 'RWGUVA,FYBGIJ'}
 - type: DataGrid
@@ -37,4 +37,35 @@ components:
     properties: {spacing_above: none, spacing_below: none, item_template: Form3.RowTemplate7}
     name: repeating_panel_1
     layout_properties: {}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: "Excluded stages - '40. Done',\t'90. Completed',\t'90. Gone Live - Completed',\
+      \  'Done',\t'Lost/Closed', '15. Free of Charge', '90. Gone Live - Completed',\
+      \  'Released','Archive', 'To Archive', 'Archived', '10. Order Approved', 'Ordered',\
+      \  '10. Scheduled','To Do',  'To be re-visited', 'Planning', 'Planned'", font_size: 11,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: true, underline: false, icon: ''}
+  name: label_2
+  layout_properties:
+    col_widths: {}
+    grid_position: ZPLRAP,OAXBKL
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: Also excludes Sales and Marketing Board, font_size: 11, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  name: label_4
+  layout_properties:
+    col_widths: {}
+    grid_position: CPMZFT,MKISPL
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Active* Projects are those where you are doing work, having meetings, say
+      over two to three week period', font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  name: label_3
+  layout_properties:
+    col_widths: {}
+    grid_position: VJNUZE,AYBTHG
 is_package: true

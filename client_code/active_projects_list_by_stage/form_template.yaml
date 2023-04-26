@@ -1,21 +1,14 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{"TITJBG":5}'}
+  properties: {col_widths: '{}'}
 components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: Filter by Board, font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: true, underline: false,
-    icon: ''}
+    text: Active Projects by Stage, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
   name: label_1
-  layout_properties: {grid_position: 'BXQUGV,TITJBG', column: null, full_width_row: true}
-- type: form:C6ZZPAPN4YYF5NVJ:MultiSelectDropDown
-  properties: {width: '', align: left, enable_filtering: true, placeholder: None Selected,
-    enabled: true, enable_select_all: true, items: null, visible: true, spacing_above: small,
-    spacing_below: small, multiple: true}
-  name: multi_select_board_drop_down
-  layout_properties: {grid_position: 'BXQUGV,WZPUGT', full_width_row: true}
-  event_bindings: {change: multi_select_board_drop_down_change}
+  layout_properties: {grid_position: 'UKRQTM,NJZXIX'}
 - type: ColumnPanel
   properties: {col_widths: '{}'}
   name: column_panel_1
@@ -47,5 +40,36 @@ components:
       properties: {spacing_above: none, spacing_below: none, item_template: Form2.RowTemplate4}
       name: repeating_panel_1
       layout_properties: {}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: Also excludes Sales and Marketing Board, font_size: 11, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  name: label_4
+  layout_properties:
+    col_widths: {}
+    grid_position: GUBFBC,DNESVN
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: "Excluded stages - '40. Done',\t'90. Completed',\t'90. Gone Live - Completed',\
+      \  'Done',\t'Lost/Closed', '15. Free of Charge', '90. Gone Live - Completed',\
+      \  'Released','Archive', 'To Archive', 'Archived', '10. Order Approved', 'Ordered',\
+      \  '10. Scheduled','To Do',  'To be re-visited', 'Planning', 'Planned'", font_size: 11,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: true, underline: false, icon: ''}
+  name: label_2
+  layout_properties:
+    col_widths: {}
+    grid_position: WBTPCA,THDUCE
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Active* Projects are those where you are doing work, having meetings, say
+      over two to three week period', font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  name: label_3
+  layout_properties:
+    col_widths: {}
+    grid_position: CREDQP,DGETBE
 is_package: true
 custom_component: true

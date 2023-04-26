@@ -24,7 +24,7 @@ class Main(MainTemplate):
     anvil.users.logout()
 
     anvil.users.login_with_form()
-    open_form('Main')
+    # open_form('Main')
 
     pass
   def button_1_click(self, **event_args):
@@ -73,6 +73,12 @@ class Main(MainTemplate):
     self.content_panel.clear()
     self.content_panel.add_component(Form4(), full_width_row=True)
     pass
+
+  def restore_stage_translate_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Restore')
+    pass
+
 
 
 

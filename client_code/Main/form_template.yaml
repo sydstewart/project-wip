@@ -7,11 +7,7 @@ components:
   properties: {col_widths: '{}'}
   name: content_panel
   layout_properties: {slot: default}
-  components:
-  - type: form:active_projects_report
-    properties: {}
-    name: active_projects_report_1
-    layout_properties: {grid_position: 'XDQDAX,OMNADS'}
+  components: []
 - type: FlowPanel
   properties: {}
   name: navbar_links
@@ -64,6 +60,24 @@ components:
     event_bindings: {click: search_projects_button_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Refresh Data, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: refresh_date_button
+    layout_properties:
+      col_widths: {}
+      grid_position: FIBCCP,KCVBLX
+    event_bindings: {click: refresh_date_button_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Restore Stage_Translate, font_size: null,
+      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: restore_stage_translate_button
+    layout_properties: {grid_position: 'SQZJUI,WOYYYU'}
+    event_bindings: {click: restore_stage_translate_button_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: false, text: Bar Charts, font_size: null, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
@@ -82,13 +96,3 @@ components:
       col_widths: {}
       grid_position: SWLXBK,IZGQUI
     event_bindings: {click: stacked__click}
-  - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: false, text: Refresh Data, font_size: null, font: '',
-      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false, icon: ''}
-    name: refresh_date_button
-    layout_properties:
-      col_widths: {}
-      grid_position: KYOJUO,UIVWLJ
-    event_bindings: {click: refresh_date_button_click}
