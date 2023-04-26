@@ -25,7 +25,7 @@ class RowTemplate7(RowTemplate7Template):
 
   def show_projects_by_stage_button_click(self, **event_args):
        """This method is called when the button is clicked"""
-       result = alert(content=active_projects_list_by_stage(self.item['new_column']), title="Projects", buttons=[], large=True)
+       result = alert(content=active_projects_list(self.item['project_board']), title="Projects", buttons=[], large=True)
        pass
    
 

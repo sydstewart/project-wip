@@ -13,8 +13,8 @@ class active_projects_list_by_stage(active_projects_list_by_stageTemplate):
     print('new_column=' + new_column)
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    boards =list({(r['project_board']) for r in app_tables.projects.search(tables.order_by('project_board'))})
-    self.multi_select_board_drop_down.items = boards
+    # boards =list({(r['project_board']) for r in app_tables.projects.search(tables.order_by('project_board'))})
+    # self.multi_select_board_drop_down.items = boards
     project_stages = app_tables.stage_translate.search(new_column = new_column)
     thislist =[]
     for row in project_stages:
