@@ -1,4 +1,4 @@
-from ._anvil_designer import active_projects_listTemplate
+from ._anvil_designer import active_projects_by_board_listTemplate
 from anvil import *
 import anvil.users
 import anvil.server
@@ -6,7 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-class active_projects_list(active_projects_listTemplate):
+class active_projects_by_board_list(active_projects_by_board_listTemplate):
   def __init__(self, project_board, **properties):
 
     # Set Form properties and Data Bindings.

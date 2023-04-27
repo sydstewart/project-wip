@@ -9,7 +9,7 @@ from anvil.tables import app_tables
 class active_projects_list_by_stage(active_projects_list_by_stageTemplate):
   def __init__(self, new_column, **properties):
 
-     
+    self.project_stage_label.text = new_column
     print('new_column=' + new_column)
     # Set Form properties and Data Bindings.
     self.init_components(**properties)

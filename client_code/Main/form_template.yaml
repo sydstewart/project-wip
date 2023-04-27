@@ -39,16 +39,16 @@ components:
       foreground: '', visible: true, text: Active Projects by Board, font_size: null,
       font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
-    name: active_projects_report_button
+    name: active_projects_report_by_board_button
     layout_properties: {grid_position: 'UEWRQC,NXQKNF'}
-    event_bindings: {click: active_projects_report_button_click}
+    event_bindings: {click: active_projects_report_by_board_button_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Active Projects by Stage, font_size: null,
       font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: active_projects_by_stage_button
-    layout_properties: {grid_position: 'YSGYHT,YUTLDA'}
+    layout_properties: {grid_position: 'VFDVEI,URGDRW'}
     event_bindings: {click: active_projects_by_stage_button_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,

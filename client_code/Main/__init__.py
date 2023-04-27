@@ -7,10 +7,10 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime, time , date , timedelta
 from ..Module3 import background_check_tick
-from ..Form3 import Form3
+from ..projects_by_stage import projects_by_stage
 from ..Form4 import Form4
 from ..Form5 import Form5
-from ..active_projects_report import active_projects_report
+from ..active_projects_by_board_report import active_projects_by_board_report
 
 class Main(MainTemplate):
   def __init__(self, **properties):
@@ -73,7 +73,7 @@ class Main(MainTemplate):
   def active_projects_by_stage_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.content_panel.clear()
-    self.content_panel.add_component(Form3(), full_width_row=True)
+    self.content_panel.add_component(projects_by_stage(), full_width_row=True)
     pass
  
   def search_projects_button_click(self, **event_args):
@@ -86,6 +86,14 @@ class Main(MainTemplate):
     """This method is called when the button is clicked"""
     open_form('Restore')
     pass
+
+  def active_projects_report_by_board_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.content_panel.clear()
+    self.content_panel.add_component(active_projects_by_board_report(), full_width_row=True)
+    pass
+    
+
 
 
 

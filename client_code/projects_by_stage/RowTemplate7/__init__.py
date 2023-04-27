@@ -5,9 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from ...active_projects_list import active_projects_list
 from ...active_projects_list_by_stage import active_projects_list_by_stage
-
 class RowTemplate7(RowTemplate7Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -15,19 +13,8 @@ class RowTemplate7(RowTemplate7Template):
 
     # Any code you write here will run before the form opens.
 
-
-  def button_1_click(self, **event_args):
-    """This method is called when the button is clicked"""
-   
-    print('Project board of line', self.item['project_board'])
-    result = alert(content=active_projects_list(self.item['project_board']), title="Projects", buttons=[], large=True)
-    pass
-
   def show_projects_by_stage_button_click(self, **event_args):
-       """This method is called when the button is clicked"""
-       result = alert(content=active_projects_list(self.item['project_board']), title="Projects", buttons=[], large=True)
-       pass
-   
-
-
+    """This method is called when the button is clicked"""
+    result = alert(content=active_projects_list_by_stage(self.item['new_column']), title="Projects", buttons=[], large=True)
+    pass
 

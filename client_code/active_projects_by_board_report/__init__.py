@@ -1,4 +1,4 @@
-from ._anvil_designer import active_projects_reportTemplate
+from ._anvil_designer import active_projects_by_board_reportTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -6,7 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-class active_projects_report(active_projects_reportTemplate):
+class active_projects_by_board_report(active_projects_by_board_reportTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -17,5 +17,6 @@ class active_projects_report(active_projects_reportTemplate):
 
   def text_area_1_change(self, **event_args):
     """This method is called when the text in this text area is edited"""
+    
     pass
 

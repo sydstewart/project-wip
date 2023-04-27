@@ -1,6 +1,6 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"NJZXIX":15,"AZPEAS":45}'}
 components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
@@ -9,6 +9,12 @@ components:
     underline: false, icon: ''}
   name: label_1
   layout_properties: {grid_position: 'UKRQTM,NJZXIX'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: true, underline: false, icon: ''}
+  name: project_stage_label
+  layout_properties: {grid_position: 'UKRQTM,AZPEAS'}
 - type: ColumnPanel
   properties: {col_widths: '{}'}
   name: column_panel_1

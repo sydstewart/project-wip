@@ -1,4 +1,4 @@
-from ._anvil_designer import Form3Template
+from ._anvil_designer import projects_by_stageTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -6,7 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-class Form3(Form3Template):
+class projects_by_stage(projects_by_stageTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
