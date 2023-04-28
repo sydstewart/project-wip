@@ -20,16 +20,8 @@ class active_projects_list_by_stage(active_projects_list_by_stageTemplate):
     for row in project_stages:
         thislist.append(row['project_column'])
       
-    self.repeating_panel_1.items = app_tables.projects.search(project_column = q.any_of(*thislist))
+    self.repeating_panel_1.items = app_tables.projects.search(project_column = q.any_of(*thislist), project_board =q.not_('Sales & Marketing'))
 
-  def multi_select_board_drop_down_change(self, **event_args):
-    """This method is called when the selected values change"""
-    project_stages = app_tables.stage_translate.search(new_column = new_column)
-    thislist =[]
-    for row in project_stages:
-        thislist.append(row['project_column'])
-    self.repeating_panel_1.items = app_tables.projects.search(project_column = q.any_of(*thislist), project_board= self.multi_select_board_drop_down.selected)
-    pass
 
 
                                                                         
