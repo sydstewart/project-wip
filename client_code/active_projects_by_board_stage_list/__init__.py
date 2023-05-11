@@ -15,8 +15,14 @@ class active_projects_by_board_stage_list(active_projects_by_board_stage_listTem
     # self.project_column_textbox.text = project_column
     # Any code you write here will run before the form opens.
     # print('Project board of line', project_board, project_column)
-    self.repeating_panel_1.items = app_tables.projects.search(project_column = q.not_('40. Done',	'90. Completed',	'90. Gone Live - Completed', \
-                                                                            'Done',	'Lost/Closed','15. Free of Charge','90. Gone Live - Completed', \
-                                                                            'Released','Archive','To Archive','Archived', '10. Order Approved','Ordered',  \
-                                                                             '10. Scheduled','To Do', 'To be re-visited','Planning','Planned')  \
-                                                                            , project_board = project_board, new_stages = new_column)
+    newstage_link = app_tables.stage_translate.search(new_column=new_column)
+    thislist =[]
+    for row in newstage_link:
+            thislist.append(row['project_column'])
+      
+    self.repeating_panel_1.items = app_tables.projects.search(project_board = project_board, project_column = q.any_of(*thislist) )
+                                                                            #  project_column = q.not_('40. Done',	'90. Completed',	'90. Gone Live - Completed', \
+                                                                            # 'Done',	'Lost/Closed','15. Free of Charge','90. Gone Live - Completed', \
+                                                                            # 'Released','Archive','To Archive','Archived', '10. Order Approved','Ordered',  \
+                                                                            #  '10. Scheduled','To Do', 'To be re-visited','Planning','Planned') )  
+                                                             
