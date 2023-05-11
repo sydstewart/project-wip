@@ -11,6 +11,7 @@ from ..projects_by_stage import projects_by_stage
 from ..Form4 import Form4
 from ..Form5 import Form5
 from ..active_projects_by_board_report import active_projects_by_board_report
+from ..active_projects_new_column_report import active_projects_new_column_report
 
 class Main(MainTemplate):
   def __init__(self, **properties):
@@ -92,6 +93,13 @@ class Main(MainTemplate):
     self.content_panel.clear()
     self.content_panel.add_component(active_projects_by_board_report(), full_width_row=True)
     pass
+
+  def board_stage_report_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.content_panel.clear()
+    self.content_panel.add_component(active_projects_new_column_report(), full_width_row=True)
+    pass
+
     
 
 

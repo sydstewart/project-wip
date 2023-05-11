@@ -5,7 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from ...active_projects_by_board_list import active_projects_by_board_list
+from ...active_projects_by_board_stage_list import active_projects_by_board_stage_list
 
 class RowTemplate9(RowTemplate9Template):
   def __init__(self, **properties):
@@ -18,7 +18,7 @@ class RowTemplate9(RowTemplate9Template):
 
   def projects_by_project_board_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    result = alert(content=active_projects_by_board_list(self.item['project_board']), title="Projects", buttons=[], large=True)
+    result = alert(content=active_projects_by_board_stage_list(self.item['project_board'],self.item['new_column']), title="Projects", buttons=[], large=True)
     pass
 
 

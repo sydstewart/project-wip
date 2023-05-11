@@ -7,13 +7,7 @@ components:
   properties: {col_widths: '{}'}
   name: content_panel
   layout_properties: {slot: default}
-  components:
-  - type: form:C6ZZPAPN4YYF5NVJ:Pivot
-    properties: {}
-    name: pivot_1
-    layout_properties: {grid_position: 'HPGJRS,WNNNIF'}
-    data_bindings:
-    - {property: columns, code: 'self.item['''']'}
+  components: []
 - type: FlowPanel
   properties: {}
   name: navbar_links
@@ -64,6 +58,14 @@ components:
     name: search_projects_button
     layout_properties: {grid_position: 'TTOIRA,EKNLUZ'}
     event_bindings: {click: search_projects_button_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Board Stage Report, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: board_stage_report
+    layout_properties: {grid_position: 'VACYWC,ZPWRUS'}
+    event_bindings: {click: board_stage_report_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: false, text: Refresh Data, font_size: null, font: '',

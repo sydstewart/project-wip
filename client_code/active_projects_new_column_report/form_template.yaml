@@ -1,0 +1,67 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: ACTIVE* Projects by Overall Boards  - see exclusion list below, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: true, underline: false, icon: ''}
+  name: label_1
+  layout_properties: {grid_position: 'RWGUVA,FYBGIJ'}
+- type: DataGrid
+  properties:
+    role: null
+    columns:
+    - {id: FPHNRR, title: Project Board, data_key: project_board, $$hashKey: 'object:127075',
+      width: 339, expand: false}
+    - {id: AAWLFT, title: Stage, data_key: new_column, $$hashKey: 'object:1510', width: 176,
+      expand: false}
+    - {id: EYDEKD, title: Count, data_key: count, $$hashKey: 'object:127076'}
+    - {id: JUAKJQ, title: '%', data_key: '%', $$hashKey: 'object:127077'}
+    - {id: LBBOQH, title: Column 1, data_key: column_1, $$hashKey: 'object:127113'}
+    auto_header: true
+    tooltip: ''
+    border: ''
+    foreground: ''
+    rows_per_page: 20
+    visible: true
+    wrap_on: never
+    show_page_controls: true
+    spacing_above: small
+    spacing_below: small
+    background: ''
+  name: data_grid_1
+  layout_properties: {grid_position: 'BQGCGW,XZJVCU', full_width_row: true}
+  components:
+  - type: RepeatingPanel
+    properties: {spacing_above: none, spacing_below: none, item_template: active_projects_by_board_report.RowTemplate9}
+    name: repeating_panel_1
+    layout_properties: {}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: "Excluded stages - '40. Done',\t'90. Completed',\t'90. Gone Live - Completed',\
+      \  'Done',\t'Lost/Closed', '15. Free of Charge', '90. Gone Live - Completed',\
+      \  'Released','Archive', 'To Archive', 'Archived', '10. Order Approved', 'Ordered',\
+      \  '10. Scheduled','To Do',  'To be re-visited', 'Planning', 'Planned'", font_size: 11,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: true, underline: false, icon: ''}
+  name: label_2
+  layout_properties: {grid_position: 'PXBRAI,HOYIHF'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: Also excludes Sales and Marketing Board, font_size: 11, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  name: label_4
+  layout_properties: {grid_position: 'VMJOYB,FZTCVP'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Active* Projects are those where you are doing work, having meetings, say
+      over two to three week period', font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  name: label_3
+  layout_properties: {grid_position: 'FWITJY,LWVJXF'}
+is_package: true
+custom_component: true
