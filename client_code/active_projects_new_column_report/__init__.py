@@ -15,6 +15,7 @@ class active_projects_new_column_report(active_projects_new_column_reportTemplat
     # Any code you write here will run before the form opens.
     dicts_boards =anvil.server.call('active_board_stages')
     dicts_boards=sorted(dicts_boards, key = lambda i: (i['project_board'], i['new_column']))
+    dicts_boards = {key:value for (key, value) in dicts_boards.items() if value >= 170}
     self.repeating_panel_1.items = dicts_boards
 
   def text_area_1_change(self, **event_args):
