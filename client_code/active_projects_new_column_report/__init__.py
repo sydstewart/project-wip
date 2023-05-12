@@ -20,3 +20,8 @@ class active_projects_new_column_report(active_projects_new_column_reportTemplat
     """This method is called when the text in this text area is edited"""
 
     pass
+
+  def project_board_dropdown_change(self, **event_args):
+    """This method is called when an item is selected"""
+    pass
+

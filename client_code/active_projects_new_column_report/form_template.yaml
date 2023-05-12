@@ -9,6 +9,11 @@ components:
     background: '', bold: true, underline: false, icon: ''}
   name: label_1
   layout_properties: {grid_position: 'RWGUVA,FYBGIJ'}
+- type: DropDown
+  properties: {}
+  name: project_board_dropdown
+  layout_properties: {grid_position: 'RMJGWL,HKJTDF'}
+  event_bindings: {change: project_board_dropdown_change}
 - type: DataGrid
   properties:
     role: null
