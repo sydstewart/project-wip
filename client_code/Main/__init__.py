@@ -30,8 +30,9 @@ class Main(MainTemplate):
   def Logout_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.content_panel.clear()
+    self.column_panel_1.clear()
     anvil.users.logout()
-
+    anvil.users.login_with_form()
 
     # open_form('Main')
 
