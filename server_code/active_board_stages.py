@@ -9,7 +9,7 @@ import pandas as pd
 def active_board_stages():
 
 # Get an iterable object with all the rows in my_table
-    all_records = app_tables.projects_stages.search(project_column = q.not_('40. Done',	'90. Completed',	'90. Gone Live - Completed', \
+    all_records = app_tables.projects_stages.search(project_column = q.not_('40. Done',	'90. Completed',	'90. Gone Live - Completed','05. Enquiry - Not Yet Started' \
                                                                             'Done',	'Lost/Closed','15. Free of Charge','90. Gone Live - Completed', \
                                                                             'Released','Archive','To Archive','Archived', '10. Order Approved','Ordered',  \
                                                                              '10. Scheduled','To Do', 'To be re-visited','Planning','Planned')
