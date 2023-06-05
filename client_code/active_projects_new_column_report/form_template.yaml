@@ -10,7 +10,25 @@ components:
   name: label_1
   layout_properties: {grid_position: 'RWGUVA,FYBGIJ'}
 - type: DropDown
-  properties: {}
+  properties:
+    role: null
+    align: full
+    tooltip: ''
+    placeholder: ''
+    border: ''
+    enabled: true
+    foreground: ''
+    items: []
+    visible: true
+    font_size: null
+    font: ''
+    spacing_above: small
+    spacing_below: small
+    italic: false
+    background: ''
+    bold: false
+    underline: false
+    include_placeholder: true
   name: project_board_dropdown
   layout_properties: {grid_position: 'RMJGWL,PFUBLG'}
   event_bindings: {change: project_board_dropdown_change}

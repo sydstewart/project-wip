@@ -6,8 +6,8 @@ import anvil.server
 import pandas as pd
 #
 @anvil.server.callable
-def active_board_stages():
-
+def active_board_stages(board):
+    print(board)
 # Get an iterable object with all the rows in my_table
     all_records = app_tables.projects_stages.search(project_column = q.not_('40. Done',	'90. Completed',	'90. Gone Live - Completed','05. Enquiry - Not Yet Started' \
                                                                             'Done',	'Lost/Closed','15. Free of Charge','90. Gone Live - Completed', \
@@ -23,7 +23,9 @@ def active_board_stages():
     print(df['new_column'])
     # options = ['02. Order Approved', '03. Pre-requisites'] 
     # df = df['new_column'].isin(options)
- 
+    # board = 'Development'
+    df = df[df.project_board == board]
+    print(df['new_column'])
     df = df.groupby(['project_board','new_column'])['count'].sum() \
                                .reset_index(name='count') \
                              .sort_values(['count'], ascending=False)
