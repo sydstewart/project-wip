@@ -1,0 +1,32 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:standard-page.html'}
+components:
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: content_panel
+  layout_properties: {slot: default}
+  components:
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: column_panel_1
+    layout_properties: {grid_position: 'ZKMUZY,XJMULM'}
+    components:
+    - type: DataGrid
+      properties:
+        columns:
+        - {id: ACPZXM, title: Column 1, data_key: column_1}
+        - {id: VANMPE, title: Column 2, data_key: column_2}
+        - {id: NVBIXU, title: Column 3, data_key: column_3}
+      name: data_grid_1
+      layout_properties: {grid_position: 'JWTUSV,HJZCHA'}
+      components:
+      - type: RepeatingPanel
+        properties: {spacing_above: none, spacing_below: none, item_template: Form3.RowTemplate11}
+        name: repeating_panel_1
+        layout_properties: {}
+- type: FlowPanel
+  properties: {}
+  name: navbar_links
+  layout_properties: {slot: nav-right}

@@ -12,7 +12,7 @@ components:
 - type: DropDown
   properties: {}
   name: project_board_dropdown
-  layout_properties: {grid_position: 'RMJGWL,HKJTDF'}
+  layout_properties: {grid_position: 'RMJGWL,PFUBLG'}
   event_bindings: {change: project_board_dropdown_change}
 - type: DataGrid
   properties:

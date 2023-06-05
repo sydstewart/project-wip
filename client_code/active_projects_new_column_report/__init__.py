@@ -25,8 +25,6 @@ class active_projects_new_column_report(active_projects_new_column_reportTemplat
 
   def project_board_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
-    dicts_boards =anvil.server.call('active_board_stages')
-    dicts_boards=sorted(dicts_boards, key = lambda i: (i['project_board'], i['new_column']))
-    self.repeating_panel_1.items = dicts_boards
+    search_using_kwargs(self)
     pass
 
