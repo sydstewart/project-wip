@@ -14,7 +14,8 @@ class active_projects_new_column_report(active_projects_new_column_reportTemplat
     self.project_board_dropdown.items = boards
     # Any code you write here will run before the form opens.
     dicts_boards =anvil.server.call('active_board_stages')
-    dicts_boards=sorted(dicts_boards, key = lambda i: (i['project_board'], i['new_column']))
+    print(dicts_boards)
+    result = {key:value for (key, value) in dicts_boards.items() if key = "Maintenance Upgrades, Server Moves, Add on Modules"}
     # dicts_boards = {key:value for (key, value) in dicts_boards.items() if value >= 170}
     self.repeating_panel_1.items = dicts_boards
 
