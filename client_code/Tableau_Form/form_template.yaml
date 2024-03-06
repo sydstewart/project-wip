@@ -4,7 +4,7 @@ container:
   properties: {html: '@theme:standard-page.html'}
 components:
 - type: ColumnPanel
-  properties: {}
+  properties: {col_widths: '{}'}
   name: content_panel
   layout_properties: {slot: default}
   components:
@@ -12,17 +12,32 @@ components:
     properties: {}
     type: Label
     layout_properties: {grid_position: 'LAKRAK,QPDPXP'}
-  - name: data_grid_1
+  - type: DataGrid
     properties:
+      role: null
       columns:
-      - {id: JKSDUP, title: Date_Created, data_key: date_entered}
-      - {id: VJQQOR, title: Order No, data_key: so_number}
-    type: DataGrid
+      - {id: KUTYFK, title: Order Value_Excl_VAT, data_key: Order_value_Excl_VAT,
+        $$hashKey: 'object:7442'}
+      - {id: KFELRV, title: Sales Order_No, data_key: Sales_Order_No, $$hashKey: 'object:7443'}
+      - {id: RXXNRI, title: Date Entered, data_key: Date_entered, $$hashKey: 'object:7444'}
+      auto_header: true
+      tooltip: ''
+      border: ''
+      foreground: ''
+      rows_per_page: 20
+      visible: true
+      wrap_on: never
+      show_page_controls: true
+      spacing_above: small
+      spacing_below: small
+      background: ''
+    name: data_grid_1
+    layout_properties: {grid_position: 'KXAYQL,DMKCGB'}
     components:
-    - name: repeating_panel_1
-      properties: {item_template: Tableau_Form.RowTemplate12}
-      type: RepeatingPanel
-    layout_properties: {grid_position: 'BHLJZZ,ORQRVH', full_width_row: true}
+    - type: RepeatingPanel
+      properties: {spacing_above: none, spacing_below: none, item_template: Tableau_Form.RowTemplate13}
+      name: repeating_panel_1
+      layout_properties: {}
 - type: FlowPanel
   properties: {}
   name: navbar_links

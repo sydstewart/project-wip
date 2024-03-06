@@ -301,14 +301,17 @@ def wipprojects():
       WHERE `sales_orders`.`date_entered` > '2024-01-01'"
                     )   
   number_of_records = len(cur.fetchall())
-  # for r in cur.fetchall():
-  #    print(r['date_entered'])
-  # # dicts ={}
-  # for r in cur.fetchall():
-  #   dicts = ([{'Sales_Order_No':r['so_number'], 'Date_entered' : r['date_entered']}]  )
-  # print('dicts',dicts)
-  # result = cur.fetchall()
-  # print(result) # python 3 print syntax
-  result = cur.fetchone()
-  print(result) # python 3 print syntax
-  return result,  number_of_records
+  # result = cur.fetchone()
+  # print(result) 
+  for r in cur.fetchall():
+       dicts = [{'Sales_Order_No':r['so_number'],'Date_entered' : r['date_entered']}]
+  for d in dicts:
+      app_tables.tableau.add_row(**d)
+
+  # stages =list({(r['so_number']) for r in cur.fetchall())})
+
+  #   for r in stages: 
+  #       dicts = [{'so_number' : r}]
+  #       for d in dicts:
+  #             app_tables.stage_translate.add_row( **d)
+  return  number_of_records
