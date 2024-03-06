@@ -304,9 +304,11 @@ def wipprojects():
   # for r in cur.fetchall():
   #    print(r['date_entered'])
   # # dicts ={}
-  for r in cur.fetchall():
-    dicts = ([{'Sales_Order_No':r['so_number'], 'Date_entered' : r['date_entered']}]  )
-  print('dicts',dicts)
-  result = cur.fetchall()
+  # for r in cur.fetchall():
+  #   dicts = ([{'Sales_Order_No':r['so_number'], 'Date_entered' : r['date_entered']}]  )
+  # print('dicts',dicts)
+  # result = cur.fetchall()
+  # print(result) # python 3 print syntax
+  result = cur.fetchone()
   print(result) # python 3 print syntax
-  return cur.fetchall(),  number_of_records
+  return result,  number_of_records
