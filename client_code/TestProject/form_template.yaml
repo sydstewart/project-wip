@@ -1,0 +1,40 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:standard-page.html'}
+components:
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: content_panel
+  layout_properties: {slot: default}
+  components:
+  - type: DataGrid
+    properties:
+      role: null
+      columns:
+      - {id: CXNYEW, title: Name, data_key: name, $$hashKey: 'object:6059'}
+      - {id: TYTPDJ, title: Date Entered, data_key: date_entered, $$hashKey: 'object:6060'}
+      - {id: KYZGTV, title: Stage, data_key: so_stage, $$hashKey: 'object:6446'}
+      - {id: LERXVY, title: Order Value, data_key: Order_Value, $$hashKey: 'object:6448'}
+      auto_header: true
+      tooltip: ''
+      border: ''
+      foreground: ''
+      rows_per_page: 20
+      visible: true
+      wrap_on: never
+      show_page_controls: true
+      spacing_above: small
+      spacing_below: small
+      background: ''
+    name: data_grid_1
+    layout_properties: {grid_position: 'SSYBAT,EDYPDA'}
+    components:
+    - type: RepeatingPanel
+      properties: {spacing_above: none, spacing_below: none, item_template: TestProject.RowTemplate14}
+      name: repeating_panel_1
+      layout_properties: {}
+- type: FlowPanel
+  properties: {}
+  name: navbar_links
+  layout_properties: {slot: nav-right}

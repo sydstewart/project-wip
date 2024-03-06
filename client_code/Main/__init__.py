@@ -106,6 +106,12 @@ class Main(MainTemplate):
     open_form('Tableau_Form')
     pass
 
+  def test_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('TestProject')
+    pass
+
+
     
 
 
