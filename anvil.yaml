@@ -167,6 +167,20 @@ db_schema:
       admin_ui: {order: 5, width: 200}
       type: number
     title: Table 7
+  tableau:
+    client: full
+    server: full
+    columns:
+    - name: Order_value_Excl_VAT
+      admin_ui: {order: 2, width: 200}
+      type: number
+    - name: Sales_Order_No
+      admin_ui: {width: 200, order: 3}
+      type: number
+    - name: Date_entered
+      admin_ui: {width: 200, order: 4}
+      type: datetime
+    title: tableau
 secrets:
   Teamwork Pass:
     value: {? '' : FmcCGvX7vJFW+652Pltsoof66B6i/ul2udoU3/LwRh4UO4IRxuq/2AydKWYQ5YA2zmHLnIACFkrODQuwYfr9OHkPu5Omd+241BwG+Z6ySbDT2vDttHhMkZfd434+qxmtMApTC8jE8lOFNA==}

@@ -37,10 +37,7 @@ class Main(MainTemplate):
     # open_form('Main')
 
     pass
-  def button_1_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    dicts_stages = anvil.server.call('groupby_new_column')
-    open_form('Form3')
+
 
   def stacked__click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -99,6 +96,14 @@ class Main(MainTemplate):
     """This method is called when the button is clicked"""
     self.content_panel.clear()
     self.content_panel.add_component(active_projects_new_column_report(), full_width_row=True)
+    pass
+
+  def tableau_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    
+    # number_of_records = anvil.server.call('wipprojects')
+    # alert(number_of_records)
+    open_form('Tableau_Form')
     pass
 
     

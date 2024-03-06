@@ -104,3 +104,8 @@ components:
       col_widths: {}
       grid_position: SWLXBK,IZGQUI
     event_bindings: {click: stacked__click}
+  - name: tableau_button
+    properties: {text: RUN Tableau}
+    type: Button
+    layout_properties: {grid_position: 'MTFBKI,RSHAWW'}
+    event_bindings: {click: tableau_button_click}

@@ -45,3 +45,4 @@ def active_board_stages(board):
     dicts_boards = df.to_dict(orient='records')
     
     return dicts_boards 
+
