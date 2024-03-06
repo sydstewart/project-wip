@@ -300,13 +300,12 @@ def wipprojects():
     LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`)"
                     )   
   number_of_records = len(cur.fetchall())
-  # for r in cur.fetchall():
-  
-  #   dicts = [{'Sales_Order_No':r['so_number'], 'Date_entered' : r['date_entered']}] #'Order_value_Excl_VAT': r['subtotal_usd'],
-  
+  for r in cur.fetchall():
+      dicts = [{'Sales_Order_No':r['so_number'], 'Date_entered' : r['date_entered']}] #'Order_value_Excl_VAT': r['subtotal_usd'],
+      print(dicts)
   # for d in dicts:
                                 
   #         app_tables.tableau.add_row(**d)
   
   # number_of_records = len(dicts)
-  return number_of_records
+  return  dicts, number_of_records
