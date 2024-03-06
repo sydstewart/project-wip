@@ -8,14 +8,29 @@ components:
   name: content_panel
   layout_properties: {slot: default}
   components:
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: No of Records, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_1
+    layout_properties: {grid_position: 'FXGYDK,KMVXAZ'}
+  - type: TextBox
+    properties: {}
+    name: text_box_1
+    layout_properties: {grid_position: 'FXGYDK,GQIIJK'}
   - type: DataGrid
     properties:
       role: null
       columns:
+      - {id: WPWEHS, title: Order No, data_key: so_number, $$hashKey: 'object:3686'}
       - {id: CXNYEW, title: Name, data_key: name, $$hashKey: 'object:6059'}
       - {id: TYTPDJ, title: Date Entered, data_key: date_entered, $$hashKey: 'object:6060'}
       - {id: KYZGTV, title: Stage, data_key: so_stage, $$hashKey: 'object:6446'}
       - {id: LERXVY, title: Order Value, data_key: Order_Value, $$hashKey: 'object:6448'}
+      - {id: DBGBXH, title: Percent Complete, data_key: workinprogresspercentcomplete_c,
+        $$hashKey: 'object:307'}
+      - {id: YITGSY, title: Order Category, data_key: OrderCategory, $$hashKey: 'object:3339'}
       auto_header: true
       tooltip: ''
       border: ''
@@ -33,6 +48,37 @@ components:
     - type: RepeatingPanel
       properties: {spacing_above: none, spacing_below: none, item_template: TestProject.RowTemplate14}
       name: repeating_panel_1
+      layout_properties: {}
+  - type: DataGrid
+    properties:
+      role: null
+      columns:
+      - {id: WPWEHS, title: Order No, data_key: '', $$hashKey: 'object:3686'}
+      - {id: CXNYEW, title: Name, data_key: '', $$hashKey: 'object:6059'}
+      - {id: TYTPDJ, title: Date Entered, data_key: '', $$hashKey: 'object:6060'}
+      - {id: KYZGTV, title: Stage, data_key: '', $$hashKey: 'object:6446'}
+      - {id: LERXVY, title: Order Value, data_key: totals, $$hashKey: 'object:6448'}
+      - {id: DBGBXH, title: Percent Complete, data_key: '', $$hashKey: 'object:307'}
+      - {id: YITGSY, title: Order Category, data_key: '', $$hashKey: 'object:3339'}
+      auto_header: true
+      tooltip: ''
+      border: ''
+      foreground: ''
+      rows_per_page: 20
+      visible: false
+      wrap_on: never
+      show_page_controls: true
+      spacing_above: small
+      spacing_below: small
+      background: ''
+    name: totals_grid
+    layout_properties:
+      col_widths: {}
+      grid_position: WSLUHO,AZHBMA
+    components:
+    - type: RepeatingPanel
+      properties: {spacing_above: none, spacing_below: none, item_template: TestProject.RowTemplate14}
+      name: repeating_panel_1_copy
       layout_properties: {}
 - type: FlowPanel
   properties: {}

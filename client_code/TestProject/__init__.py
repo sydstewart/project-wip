@@ -13,7 +13,8 @@ class TestProject(TestProjectTemplate):
 
         # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    records = anvil.server.call('testprojects')
-    # self.label_1.text = number_of_records
+    records, number_of_records = anvil.server.call('testprojects')
+    self.text_box_1.text = number_of_records
     self.repeating_panel_1.items = records
+    self.repeating_panel_1_copy.items =records
     # Any code you write here will run before the form opens.
