@@ -298,9 +298,15 @@ def wipprojects():
         INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
         INNER JOIN `accounts` ON (`sales_orders`.`shipping_account_id` = `accounts`.`id`)\
         LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
-      WHERE `sales_orders`.`date_entered` > '2020-01-01'"
+      WHERE `sales_orders`.`date_entered` > '2024-01-01'"
                     )   
   number_of_records = len(cur.fetchall())
-  dicts = {([{'Sales_Order_No':r['so_number'], 'Date_entered' : r['date_entered']}] for r in cur.fetchall()          )}
-
-  return dicts, number_of_records
+  # for r in cur.fetchall():
+  #    print(r['date_entered'])
+  # # dicts ={}
+  for r in cur.fetchall():
+    dicts = ([{'Sales_Order_No':r['so_number'], 'Date_entered' : r['date_entered']}]  )
+  print('dicts',dicts)
+  result = cur.fetchall()
+  print(result) # python 3 print syntax
+  return cur.fetchall(),  number_of_records

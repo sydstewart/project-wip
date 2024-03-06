@@ -15,9 +15,8 @@ components:
   - name: data_grid_1
     properties:
       columns:
-      - {id: JKSDUP, title: Date_Created, data_key: Date_entered}
-      - {id: VJQQOR, title: Order No, data_key: Sales_Order_No}
-      - {id: OJLQEN, title: Order_value Excl_VAT, data_key: ' Order_value_Excl_VAT'}
+      - {id: JKSDUP, title: Date_Created, data_key: date_entered}
+      - {id: VJQQOR, title: Order No, data_key: so_number}
     type: DataGrid
     components:
     - name: repeating_panel_1
