@@ -15,7 +15,7 @@ class TestProject(TestProjectTemplate):
 
         # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
+    records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
     line_plots = anvil.server.call('get_run_chart')
     
     # Specify the layout
