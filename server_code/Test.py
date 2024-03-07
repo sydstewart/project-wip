@@ -64,11 +64,17 @@ def testprojects():
                   sales_orders.so_stage  <> 'Closed'"
         )
   for r in cur1.fetchall():
+        Total_Order_Value =r['Total_Order_Value']
+        Total_Order_Value = f"{Total_Order_Value :.2f}"
         print('Total_Order_Value=',r['Total_Order_Value'])
-        print('Average_WIP=',r['Average_WIP'])
+        Average_WIP = (r['Average_WIP'])
+        Average_WIP  = f"{Average_WIP :.2f}"
+        print('Average_WIP=',Average_WIP )
         print('Total_WIP_VaLUE',r['Total_WIP_VaLUE'])
+        Total_WIP_VaLUE = r['Total_WIP_VaLUE']
+        Total_WIP_VaLUE = f"{Total_WIP_VaLUE :.2f}"
   totals = cur1.fetchall()
 
   totals = cur.fetchall()
-  return records, totals, number_of_records
+  return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
  

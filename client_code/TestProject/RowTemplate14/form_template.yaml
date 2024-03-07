@@ -8,5 +8,5 @@ components:
   name: text_box_1
   layout_properties: {column: LERXVY}
   data_bindings:
-  - {property: text, code: 'self.item[''Order_Value'']', writeback: true}
+  - {property: text, code: 'self.item[''Order_Value'']{:.2f}', writeback: true}
 is_package: true

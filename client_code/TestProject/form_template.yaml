@@ -4,7 +4,7 @@ container:
   properties: {html: '@theme:standard-page.html'}
 components:
 - type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"NAYYCN":10,"XINOZR":5,"CGCDAC":10,"EVZORX":5,"FOPHZQ":15,"AMWVNY":10,"WCMKAI":13}'}
   name: content_panel
   layout_properties: {slot: default}
   components:
@@ -49,55 +49,52 @@ components:
       properties: {spacing_above: none, spacing_below: none, item_template: TestProject.RowTemplate14}
       name: repeating_panel_1
       layout_properties: {}
-  - type: DataGrid
-    properties:
-      role: null
-      columns:
-      - {id: MICVZB, title: Total Order Value, data_key: Total_Order_Value, $$hashKey: 'object:3511'}
-      - {id: KKIPFA, title: Average % Completion, data_key: Average_WIP, $$hashKey: 'object:3512'}
-      - {id: JNSPMS, title: Total Value Completed, data_key: Total_WIP_VaLUE, $$hashKey: 'object:3513'}
-      auto_header: true
-      tooltip: ''
-      border: ''
-      foreground: ''
-      rows_per_page: 20
-      visible: true
-      wrap_on: never
-      show_page_controls: true
-      spacing_above: small
-      spacing_below: small
-      background: ''
-    name: data_grid_2
-    layout_properties: {grid_position: 'OKLGAR,MIGPPE'}
-    components:
-    - type: RepeatingPanel
-      properties: {spacing_above: none, spacing_below: none, item_template: TestProject.RowTemplate15}
-      name: repeating_panel_2
-      layout_properties: {}
   - type: Label
-    properties: {}
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Total Order Value, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+      underline: false, icon: ''}
     name: label_2
     layout_properties: {grid_position: 'GUTOZN,NAYYCN'}
   - type: TextBox
-    properties: {}
+    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+      font: '', spacing_above: small, type: number, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false}
     name: text_box_2
     layout_properties: {grid_position: 'GUTOZN,XINOZR'}
   - type: Label
-    properties: {}
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Average % Completion, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+      underline: false, icon: ''}
     name: label_3
     layout_properties: {grid_position: 'GUTOZN,CGCDAC'}
   - type: TextBox
-    properties: {}
+    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+      font: '', spacing_above: small, type: number, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false}
     name: text_box_3
     layout_properties: {grid_position: 'GUTOZN,EVZORX'}
   - type: Label
-    properties: {}
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Total Value of Work Completed, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: true, underline: false, icon: ''}
     name: label_4
     layout_properties: {grid_position: 'GUTOZN,FOPHZQ'}
   - type: TextBox
-    properties: {}
+    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+      font: '', spacing_above: small, type: number, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false}
     name: text_box_4
     layout_properties: {grid_position: 'GUTOZN,AMWVNY'}
+  - type: Label
+    properties: {}
+    name: label_5
+    layout_properties: {grid_position: 'GUTOZN,WCMKAI'}
 - type: FlowPanel
   properties: {}
   name: navbar_links
