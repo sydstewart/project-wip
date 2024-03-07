@@ -17,6 +17,7 @@ from anvil.tables import app_tables
 from datetime import datetime, time , date , timedelta
 
 
+
 def connect():
   connection = pymysql.connect(host='51.141.236.29',
                                port=3306,
@@ -28,7 +29,7 @@ def connect():
      alert(' Connection down')
   return connection
   
-@anvil.server.callable
+@anvil.server.background_task
 def testprojects():
   
   conn = connect()
@@ -73,7 +74,19 @@ def testprojects():
         print('Total_WIP_VaLUE',r['Total_WIP_VaLUE'])
         Total_WIP_VaLUE = r['Total_WIP_VaLUE']
         Total_WIP_VaLUE = f"{Total_WIP_VaLUE :.2f}"
+        Total_WIP_VaLUE = float(Total_WIP_VaLUE)
   totals = cur1.fetchall()
-
+  today = datetime.today()
+  last_row = app_tables.completed_work.search(tables.order_by('Date_entered', ascending=False))[0]
+  last_reading = last_row['Order_Value_Completed']
+  print('last_reading=', last_reading)
+  delta = Total_WIP_VaLUE - float(last_reading)
+  app_tables.completed_work.add_row(Order_Value_Completed=Total_WIP_VaLUE,Date_entered = today,delta_work= delta)
   totals = cur.fetchall()
   return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
+
+
+@anvil.server.callable
+def get_run_chart():
+   chart_data = app_tables.completed_work.search()
+   return chart_data

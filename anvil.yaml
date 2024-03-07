@@ -1,3 +1,10 @@
+scheduled_tasks:
+- task_name: testprojects
+  time_spec:
+    n: 5
+    every: minute
+    at: {}
+  job_id: SWXYQIMB
 dependencies:
 - app_id: C6ZZPAPN4YYF5NVJ
   version: {dev: true}
@@ -13,7 +20,7 @@ services:
     use_email: true, allow_remember_me: true, allow_signup: false, enable_automatically: true,
     confirm_email: true, require_mfa: true, remember_me_days: 30}
   server_config: {user_table: users}
-startup: {type: form, module: Main}
+startup: {type: form, module: TestProject}
 package_name: Project_WIP
 allow_embedding: false
 name: Project WIP
@@ -167,20 +174,20 @@ db_schema:
       admin_ui: {order: 5, width: 200}
       type: number
     title: Table 7
-  tableau:
+  completed_work:
     client: full
     server: full
     columns:
-    - name: Order_value_Excl_VAT
-      admin_ui: {order: 2, width: 200}
-      type: number
-    - name: Sales_Order_No
-      admin_ui: {width: 200, order: 3}
+    - name: Order_Value_Completed
+      admin_ui: {order: 3, width: 200}
       type: number
     - name: Date_entered
       admin_ui: {width: 200, order: 4}
       type: datetime
-    title: tableau
+    - name: delta_work
+      admin_ui: {width: 200, order: 5}
+      type: number
+    title: Completed_work
 secrets:
   Teamwork Pass:
     value: {? '' : FmcCGvX7vJFW+652Pltsoof66B6i/ul2udoU3/LwRh4UO4IRxuq/2AydKWYQ5YA2zmHLnIACFkrODQuwYfr9OHkPu5Omd+241BwG+Z6ySbDT2vDttHhMkZfd434+qxmtMApTC8jE8lOFNA==}
