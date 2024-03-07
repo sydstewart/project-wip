@@ -45,26 +45,30 @@ def testprojects():
               From sales_orders\
                INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
               Where sales_orders.date_entered > '2024-01-01' AND \
-                  sales_orders_cstm.OrderCategory <> 'Maintenance'"
+                  sales_orders_cstm.OrderCategory <> 'Maintenance' AND \
+                  sales_orders.so_stage  <> 'Closed'"
                     )  
   records = cur.fetchall()
   number_of_records =len(records)
+
 # calculate WIP
-  with conn.cursor() as cur:
-        cur.execute(
-              "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
-                sales_orders.so_number As so_number, sales_orders.so_stage As so_stage, \
-                sales_orders.subtotal_usd AS Order_Value, \
-               sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
-               sales_orders_cstm.OrderCategory AS OrderCategory,\
-               sales_orders.so_number AS so_number\
-              From sales_orders\
-               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+  with conn.cursor() as cur1:
+        cur1.execute(
+          "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
+            Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_WIP,\
+            Sum(sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100) As Total_WIP_VaLUE \
+          From sales_orders \
+              INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
               Where sales_orders.date_entered > '2024-01-01' AND \
-                  sales_orders_cstm.OrderCategory <> 'Maintenance'"
+                  sales_orders_cstm.OrderCategory <> 'Maintenance' AND \
+                  sales_orders.so_stage  <> 'Closed'"
+        )
+  for r in cur1.fetchall():
+        print('Total_Order_Value=',r['Total_Order_Value'])
+        print('Average_WIP=',r['Average_WIP'])
+        print('Total_WIP_VaLUE',r['Total_WIP_VaLUE'])
+  totals = cur1.fetchall()
 
-
-
-  
-  return records, number_of_records
+  totals = cur.fetchall()
+  return records, totals, number_of_records
  

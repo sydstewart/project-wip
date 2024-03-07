@@ -53,33 +53,51 @@ components:
     properties:
       role: null
       columns:
-      - {id: WPWEHS, title: Order No, data_key: '', $$hashKey: 'object:3686'}
-      - {id: CXNYEW, title: Name, data_key: '', $$hashKey: 'object:6059'}
-      - {id: TYTPDJ, title: Date Entered, data_key: '', $$hashKey: 'object:6060'}
-      - {id: KYZGTV, title: Stage, data_key: '', $$hashKey: 'object:6446'}
-      - {id: LERXVY, title: Order Value, data_key: totals, $$hashKey: 'object:6448'}
-      - {id: DBGBXH, title: Percent Complete, data_key: '', $$hashKey: 'object:307'}
-      - {id: YITGSY, title: Order Category, data_key: '', $$hashKey: 'object:3339'}
+      - {id: MICVZB, title: Total Order Value, data_key: Total_Order_Value, $$hashKey: 'object:3511'}
+      - {id: KKIPFA, title: Average % Completion, data_key: Average_WIP, $$hashKey: 'object:3512'}
+      - {id: JNSPMS, title: Total Value Completed, data_key: Total_WIP_VaLUE, $$hashKey: 'object:3513'}
       auto_header: true
       tooltip: ''
       border: ''
       foreground: ''
       rows_per_page: 20
-      visible: false
+      visible: true
       wrap_on: never
       show_page_controls: true
       spacing_above: small
       spacing_below: small
       background: ''
-    name: totals_grid
-    layout_properties:
-      col_widths: {}
-      grid_position: WSLUHO,AZHBMA
+    name: data_grid_2
+    layout_properties: {grid_position: 'OKLGAR,MIGPPE'}
     components:
     - type: RepeatingPanel
-      properties: {spacing_above: none, spacing_below: none, item_template: TestProject.RowTemplate14}
-      name: repeating_panel_1_copy
+      properties: {spacing_above: none, spacing_below: none, item_template: TestProject.RowTemplate15}
+      name: repeating_panel_2
       layout_properties: {}
+  - type: Label
+    properties: {}
+    name: label_2
+    layout_properties: {grid_position: 'GUTOZN,NAYYCN'}
+  - type: TextBox
+    properties: {}
+    name: text_box_2
+    layout_properties: {grid_position: 'GUTOZN,XINOZR'}
+  - type: Label
+    properties: {}
+    name: label_3
+    layout_properties: {grid_position: 'GUTOZN,CGCDAC'}
+  - type: TextBox
+    properties: {}
+    name: text_box_3
+    layout_properties: {grid_position: 'GUTOZN,EVZORX'}
+  - type: Label
+    properties: {}
+    name: label_4
+    layout_properties: {grid_position: 'GUTOZN,FOPHZQ'}
+  - type: TextBox
+    properties: {}
+    name: text_box_4
+    layout_properties: {grid_position: 'GUTOZN,AMWVNY'}
 - type: FlowPanel
   properties: {}
   name: navbar_links
