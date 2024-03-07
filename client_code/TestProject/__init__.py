@@ -16,12 +16,8 @@ class TestProject(TestProjectTemplate):
         # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
-    data = anvil.server.call('get_run_chart')
-    line_plots = [
-   
-      go.Scatter(x=data['Date_entered'], y=data['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000')),
-
-    ]
+    line_plots = anvil.server.call('get_run_chart')
+    
     # Specify the layout
     layout = {
       'title': 'Work Completion',
@@ -34,8 +30,8 @@ class TestProject(TestProjectTemplate):
     }
 
     # # Make the multi-bar plot
-    # self.plot_1.data = line_plots
-    # self.plot_1.layout = layout
+    self.plot_1.data = line_plots
+    self.plot_1.layout = layout
     # self.text_box_1.text = number_of_records
     # self.text_box_2.text = Total_Order_Value
     # self.text_box_3.text = Average_WIP

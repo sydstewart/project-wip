@@ -1,9 +1,9 @@
 scheduled_tasks:
 - task_name: testprojects
   time_spec:
-    n: 5
-    every: minute
-    at: {}
+    n: 1
+    every: day
+    at: {hour: 9, minute: 0}
   job_id: SWXYQIMB
 dependencies:
 - app_id: C6ZZPAPN4YYF5NVJ

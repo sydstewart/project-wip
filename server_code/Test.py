@@ -88,5 +88,11 @@ def testprojects():
 
 @anvil.server.callable
 def get_run_chart():
+   import plotly.graph_objects as go
    chart_data = app_tables.completed_work.search()
-   return chart_data
+   dicts = [{'Date_entered': r['Date_entered'], 'delta_work': r['delta_work']}
+         for r in chart_data]
+   df = pd.DataFrame.from_dict(dicts)
+   line_plots = go.Scatter(x=df['Date_entered'], y=df['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000'))
+   
+   return line_plots
