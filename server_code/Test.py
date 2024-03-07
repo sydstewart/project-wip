@@ -49,5 +49,22 @@ def testprojects():
                     )  
   records = cur.fetchall()
   number_of_records =len(records)
+# calculate WIP
+  with conn.cursor() as cur:
+        cur.execute(
+              "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
+                sales_orders.so_number As so_number, sales_orders.so_stage As so_stage, \
+                sales_orders.subtotal_usd AS Order_Value, \
+               sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
+               sales_orders_cstm.OrderCategory AS OrderCategory,\
+               sales_orders.so_number AS so_number\
+              From sales_orders\
+               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+              Where sales_orders.date_entered > '2024-01-01' AND \
+                  sales_orders_cstm.OrderCategory <> 'Maintenance'"
+
+
+
+  
   return records, number_of_records
  
