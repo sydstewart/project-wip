@@ -8,5 +8,16 @@ components:
   name: text_box_1
   layout_properties: {column: LERXVY}
   data_bindings:
-  - {property: text, code: 'self.item[''Order_Value''{:.2f}]', writeback: true}
+  - {property: text, code: 'f"{self.item[''Order_Value'']:.2f}"', writeback: false}
+  event_bindings: {pressed_enter: text_box_1_pressed_enter}
+- type: TextBox
+  properties: {role: null, align: center, hide_text: false, tooltip: '', placeholder: '',
+    border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+    font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false}
+  name: text_box_2
+  layout_properties: {column: DBGBXH}
+  data_bindings:
+  - {property: text, code: 'f"{self.item[''workinprogresspercentcomplete_c'']:.2f}"',
+    writeback: true}
 is_package: true
