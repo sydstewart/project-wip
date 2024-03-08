@@ -112,9 +112,11 @@ def testprojects():
                 sales_orders.subtotal_usd AS Order_Value, \
                sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
                sales_orders_cstm.OrderCategory AS OrderCategory,\
-               sales_orders.so_number AS so_number\
+               sales_orders.so_number AS so_number,\
+               users.user_name AS user_name\
               From sales_orders\
                INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+               LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
               Where sales_orders.date_entered > '2015-09-30' AND \
                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
                   sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Work In Progress - 4S')"
