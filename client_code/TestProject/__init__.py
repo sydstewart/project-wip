@@ -40,4 +40,4 @@ class TestProject(TestProjectTemplate):
     # # self.repeating_panel_2.items =totals
     # Any code you write here will run before the form opens.
    
-    anvil.server.call('send_pdf_email')
+    # anvil.server.call('send_pdf_email')

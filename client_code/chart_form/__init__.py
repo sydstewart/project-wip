@@ -17,7 +17,7 @@ class chart_form(chart_formTemplate):
     
     # Specify the layout
     layout = {
-      'title': 'Work Completion',
+      'title': 'Test Work Flow Rate at:' today()
       'yaxis': {'title': 'Value'},
       # 'xaxis': {
       #   'tickmode': 'array',
@@ -31,7 +31,7 @@ class chart_form(chart_formTemplate):
     self.plot_1.layout = layout
 
    
-    anvil.server.call('send_pdf_email')
+    # anvil.server.call('send_pdf_email')
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
