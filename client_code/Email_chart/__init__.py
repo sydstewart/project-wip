@@ -18,8 +18,8 @@ class Email_chart(Email_chartTemplate):
         
         # Specify the layout
         layout = {
-          'title': 'Test Work Flow Rate created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
-          'yaxis': {'title': 'Value'},
+          'title': 'Run Chart of Project Work Flow Rate created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
+          'yaxis': {'title': '£ Value'},
           # 'xaxis': {
           #   'tickmode': 'array',
           #   'tickvals': list(range(27)),
