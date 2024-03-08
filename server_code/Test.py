@@ -94,6 +94,7 @@ def get_run_chart():
    dicts = [{'Date_entered': r['Date_entered'], 'delta_work': r['delta_work']}
          for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
+   print('df',df)
    line_plots = go.Scatter(x=df['Date_entered'], y=df['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000'))
    
    return line_plots
@@ -159,7 +160,7 @@ import anvil.pdf
 
 @anvil.server.callable
 def create_zaphod_pdf():
-  media_object = anvil.pdf.render_form('TestProject')
+  media_object = anvil.pdf.render_form('chart_form')
   return media_object
 
 @anvil.server.callable
@@ -169,5 +170,5 @@ def send_pdf_email():
     to="sydney.w.stewart@gmail.com", 
     subject="An auto-generated Project Flow Run Chart",
     text="Your auto-generated Project Flow Run Chart is attached to this email as a PDF.",
-    attachments=anvil.pdf.render_form('TestProject')
+    attachments=anvil.pdf.render_form('chart_form')
   )

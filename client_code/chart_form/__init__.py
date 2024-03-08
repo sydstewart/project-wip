@@ -9,10 +9,9 @@ from anvil.tables import app_tables
 
 class chart_form(chart_formTemplate):
   def __init__(self, **properties):
-   def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
+     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
+    print('Syd')
     # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
     line_plots = anvil.server.call('get_run_chart')
     
@@ -32,4 +31,8 @@ class chart_form(chart_formTemplate):
     self.plot_1.layout = layout
 
    
+    anvil.server.call('send_pdf_email')
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
     anvil.server.call('send_pdf_email')
