@@ -1,3 +1,4 @@
+import anvil.email
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
@@ -152,3 +153,21 @@ def testprojects():
   app_tables.completed_work.add_row(Order_Value_Completed=Total_WIP_VaLUE,Date_entered = today,delta_work= delta)
   totals = cur.fetchall()
   return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
+
+
+import anvil.pdf
+
+@anvil.server.callable
+def create_zaphod_pdf():
+  media_object = anvil.pdf.render_form('TestProject')
+  return media_object
+
+@anvil.server.callable
+def send_pdf_email():
+  anvil.email.send(
+    from_name="Project Flow Run Chart", 
+    to="sydney.w.stewart@gmail.com", 
+    subject="An auto-generated Project Flow Run Chart",
+    text="Your auto-generated Project Flow Run Chart is attached to this email as a PDF.",
+    attachments=anvil.pdf.render_form('TestProject')
+  )
