@@ -1,0 +1,12 @@
+container: {type: ColumnPanel}
+components:
+- name: plot_1
+  properties: {}
+  type: Plot
+  layout_properties: {grid_position: 'RMMDJX,HMJPJQ'}
+- name: button_1
+  properties: {text: Send Email}
+  type: Button
+  layout_properties: {grid_position: 'XQQNOX,NSZAZC'}
+  event_bindings: {click: button_1_click}
+is_package: true

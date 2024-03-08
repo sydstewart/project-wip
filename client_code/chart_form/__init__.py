@@ -6,6 +6,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from datetime import datetime, time , date , timedelta
 
 class chart_form(chart_formTemplate):
   def __init__(self, **properties):
@@ -17,7 +18,7 @@ class chart_form(chart_formTemplate):
     
     # Specify the layout
     layout = {
-      'title': 'Test Work Flow Rate at:' today()
+      'title': 'Test Work Flow Rate created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
       'yaxis': {'title': 'Value'},
       # 'xaxis': {
       #   'tickmode': 'array',

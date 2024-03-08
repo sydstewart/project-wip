@@ -166,9 +166,11 @@ def create_zaphod_pdf():
 @anvil.server.callable
 def send_pdf_email():
   anvil.email.send(
-    from_name="Project Flow Run Chart", 
+    from_name="Test Project Work Flow Run Chart", 
     to="sydney.w.stewart@gmail.com", 
     subject="An auto-generated Project Flow Run Chart",
     text="Your auto-generated Project Flow Run Chart is attached to this email as a PDF.",
-    attachments=anvil.pdf.render_form('chart_form')
+    attachments=anvil.pdf.render_form('Email_chart')
   )
+
+# syd@4s-dawn.com, 4salistair@gmail.com,

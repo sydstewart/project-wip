@@ -22,8 +22,8 @@ services:
   server_config: {user_table: users}
 - source: /runtime/services/anvil/email.yml
   client_config: {}
-  server_config: {test_mode: true}
-startup: {type: form, module: chart_form}
+  server_config: {test_mode: false}
+startup: {type: form, module: Email_chart}
 package_name: Project_WIP
 allow_embedding: false
 name: Project WIP
