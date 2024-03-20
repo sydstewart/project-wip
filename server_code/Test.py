@@ -90,7 +90,7 @@ def testprojects():
 @anvil.server.callable
 def get_run_chart():
    import plotly.graph_objects as go
-   chart_data = app_tables.completed_work.search()
+   chart_data = app_tables.completed_work.search(Date_entered = q.greater_than(date(year=2024, month=3, day=9)))
    dicts = [{'Date_entered': r['Date_entered'], 'delta_work': r['delta_work']}
          for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
@@ -169,7 +169,7 @@ def create_zaphod_pdf():
 def send_pdf_email():
   anvil.email.send(
     from_name="Test Project Work Flow Run Chart", 
-    to="sydney.w.stewart@gmail.com", 
+    to="sydney.w.stewart@gmail.com,alistair@4s-dawn.com",
     subject="An auto-generated Project Flow Run Chart",
     text="Your auto-generated Project Flow Run Chart is attached to this email as a PDF.",
     attachments=anvil.pdf.render_form('Email_chart')
