@@ -9,4 +9,9 @@ components:
   type: Button
   layout_properties: {grid_position: 'XQQNOX,NSZAZC'}
   event_bindings: {click: button_1_click}
+- name: populate_Burndown
+  properties: {text: Populate Burndown}
+  type: Button
+  layout_properties: {grid_position: 'XLMZMP,XEXEIL'}
+  event_bindings: {click: populate_Burndown_click}
 is_package: true

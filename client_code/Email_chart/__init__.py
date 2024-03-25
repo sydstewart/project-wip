@@ -38,3 +38,8 @@ class Email_chart(Email_chartTemplate):
       """This method is called when the button is clicked"""
       anvil.server.call('send_pdf_email')
 
+    def populate_Burndown_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      anvil.server.call('burndown')
+      pass
+

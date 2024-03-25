@@ -176,3 +176,30 @@ def send_pdf_email():
   )
 
 # syd@4s-dawn.com, 4salistair@gmail.com,
+
+@anvil.server.callable
+def burndown():
+  
+  conn = connect()
+#=============================================================================  
+  # Load Orders 
+  with conn.cursor() as cur2:
+        cur2.execute(
+              "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
+                CONCAT(sales_orders.prefix,sales_orders.so_number) As so_number, sales_orders.so_stage As so_stage, \
+                sales_orders.subtotal_usd AS Order_Value, \
+               sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
+               sales_orders_cstm.OrderCategory AS OrderCategory,\
+               sales_orders.so_number AS so_number\
+              From sales_orders\
+               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+              Where sales_orders.date_entered > '2015-09-30' AND \
+                  sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+                  sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Work In Progress - 4S')"
+                    )  
+  records = cur2.fetchall()
+  number_of_records =len(records)
+  print('Number of timeline records loaded = ',number_of_records)
+  for r in records:
+        print('Order No', r['so_number'] )
+        app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(),project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'], percent_complete =r['workinprogresspercentcomplete_c'],order_category = r['OrderCategory'])
