@@ -14,7 +14,9 @@ import pymysql
 import anvil.tables.query as q
 import anvil.media
 import pandas as pd
+import plotly.graph_objects as go
 from anvil.tables import app_tables
+
 from datetime import datetime, time , date , timedelta
 
 
@@ -186,14 +188,16 @@ def burndown():
   # Load Orders 
   with conn.cursor() as cur2:
         cur2.execute(
-              "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
+              "Select sales_orders.name As name, sales_orders.date_entered As date_entered,\
                 CONCAT(sales_orders.prefix,sales_orders.so_number) As so_number, sales_orders.so_stage As so_stage, \
                 sales_orders.subtotal_usd AS Order_Value, \
                sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
                sales_orders_cstm.OrderCategory AS OrderCategory,\
-               sales_orders.so_number AS so_number\
-              From sales_orders\
+               sales_orders.so_number AS so_number,\
+               users.first_name AS first_name\
+               From sales_orders\
                INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+               LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
               Where sales_orders.date_entered > '2015-09-30' AND \
                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
                   sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Work In Progress - 4S')"
@@ -207,23 +211,46 @@ def burndown():
         if projrec:
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link= projrec)
         else: # add new project master then burndown
-          app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],order_category = r['OrderCategory'])
+          app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],order_category = r['OrderCategory'], user = r['first_name'])
           order_link =  app_tables.projects_master.get(order_no=r['so_number'])
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link)
  
 @anvil.server.callable
 def show_progress(project):
-      if project:
-            pronum = app_tables.projects_master.get(project_name = project)
-      dicts ={}
-      project_burndown = app_tables.burndown.search(order_no_link.project_name = pronum)
-      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date']} for r in project_burndown ]
-      projects =list({(r['project_name']) for r in app_tables.projects_master.search(tables.order_by('project_name'))})
-      # print(dicts)
-      return dicts, projects
+      order_no = app_tables.projects_master.get(project_name=project)
+      project_burndown = app_tables.burndown.search(order_no_link  = order_no)
+      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'user':r['order_no_link']['user'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date']} for r in project_burndown ]
+      print(dicts)
+      return dicts 
+
+@anvil.server.callable
+def show_progress_managers(user):
+      order_no = app_tables.projects_master.get(user=user)
+      for r in order_no:
+           project_burndown = app_tables.burndown.search(order_no_link  = order_no)
+           last_row = app_tables.burndown.search(tables.order_by('timeline_date', ascending=False))[0]
+           dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'user':r['order_no_link']['user'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date']} for r in project_burndown ]
+      print(dicts)
+      return dicts 
+
 
 @anvil.server.callable
 def project_list():
    projects =list({(r['project_name']) for r in app_tables.projects_master.search(tables.order_by('project_name'))})
    return projects
-  
+
+@anvil.server.callable
+def managers_list():
+   managers =list({(r['user']) for r in app_tables.projects_master.search(tables.order_by('user'))})
+   return managers
+
+@anvil.server.callable
+def individual_chart(project):
+      order_no = app_tables.projects_master.get(project_name=project)
+      project_burndown = app_tables.burndown.search(order_no_link  = order_no)
+      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date']} for r in project_burndown ]
+      df = pd.DataFrame.from_dict(dicts)
+      print('df',df)
+      line_plots = go.Scatter(x=df['timeline_date'], y=df['percent_complete'], name='Project Progress', marker=dict(color='#e50000'))
+   
+      return line_plots

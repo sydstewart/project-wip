@@ -1,7 +1,27 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"UQKTAG":10,"WJIDIE":10,"HMJPJQ":50}'}
 components:
+- name: column_panel_1
+  properties: {}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'RMMDJX,WJIDIE SFFZEE,CHXZOO', full_width_row: true}
+  components:
+  - name: individual_projects_button
+    properties: {text: Individual Projects}
+    type: Button
+    layout_properties: {grid_position: 'XAYXDD,BHULXX'}
+    event_bindings: {click: indivindividual_projects_button_click}
+- name: populate_Burndown
+  properties: {text: Populate Burndown}
+  type: Button
+  layout_properties: {grid_position: 'RMMDJX,WJIDIE BJTVWS,BCPNNO'}
+  event_bindings: {click: populate_Burndown_click}
+- name: projects_by_manager_button
+  properties: {text: Projects by Manager}
+  type: Button
+  layout_properties: {grid_position: 'RMMDJX,WJIDIE LRESVF,KNQPJG'}
+  event_bindings: {click: projects_by_manager_button_click}
 - name: plot_1
   properties: {}
   type: Plot
@@ -11,50 +31,4 @@ components:
   type: Button
   layout_properties: {grid_position: 'XQQNOX,NSZAZC'}
   event_bindings: {click: button_1_click}
-- name: button_2
-  properties: {text: Show progress}
-  type: Button
-  layout_properties: {grid_position: 'XLMZMP,MULHQI'}
-  event_bindings: {click: button_2_click}
-- name: populate_Burndown
-  properties: {text: Populate Burndown}
-  type: Button
-  layout_properties: {grid_position: 'XLMZMP,XEXEIL'}
-  event_bindings: {click: populate_Burndown_click}
-- type: Label
-  properties: {}
-  name: label_1
-  layout_properties: {grid_position: 'PDQWAK,UQKTAG'}
-- type: DropDown
-  properties: {include_placeholder: true}
-  name: project_drop_down
-  layout_properties: {grid_position: 'PDQWAK,RWMLRN'}
-  event_bindings: {change: project_drop_down_change}
-- name: data_grid_1
-  properties:
-    role: null
-    columns:
-    - {id: JKSDUP, title: Order No., data_key: order_no, $$hashKey: 'object:260'}
-    - {id: DEZDSM, title: Order Date, data_key: order_date, $$hashKey: 'object:325'}
-    - {id: VJQQOR, title: Project Name, data_key: project_name, $$hashKey: 'object:261'}
-    - {id: OJLQEN, title: Order Value, data_key: order_value, $$hashKey: 'object:262'}
-    - {id: HXABAG, data_key: timeline_date, title: Time Line, $$hashKey: 'object:264'}
-    - {id: BKDQXH, data_key: percent_complete, title: Percent_complete, $$hashKey: 'object:263'}
-    auto_header: true
-    tooltip: ''
-    border: ''
-    foreground: ''
-    rows_per_page: 20
-    visible: true
-    wrap_on: never
-    show_page_controls: true
-    spacing_above: small
-    spacing_below: small
-    background: ''
-  type: DataGrid
-  components:
-  - name: repeating_panel_1
-    properties: {item_template: Email_chart.RowTemplate16}
-    type: RepeatingPanel
-  layout_properties: {grid_position: 'JIAHDR,UQKVZA'}
 is_package: true
