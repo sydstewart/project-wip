@@ -210,14 +210,20 @@ def burndown():
           app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],order_category = r['OrderCategory'])
           order_link =  app_tables.projects_master.get(order_no=r['so_number'])
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link)
-  pronum = app_tables.projects_master.search()
-  burnnum = app_tables.burndown.search()
-  print('No of projects = ', len(pronum)  )
-  print('No of burndown records = ', len(burnnum)  )
-  dicts ={}
-  project_burndown = app_tables.burndown.search()
-  dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date']} for r in project_burndown ]
+ 
+@anvil.server.callable
+def show_progress_project(project):
+      if project:
+            pronum = app_tables.projects_master.get(project_name = project)
+      dicts ={}
+      project_burndown = app_tables.burndown.search(order_no_link= pronum)
+      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date']} for r in project_burndown ]
+      projects =list({(r['project_name']) for r in app_tables.projects_master.search(tables.order_by('project_name'))})
+      # print(dicts)
+      return dicts, projects
 
-  print(dicts)
-  return dicts
-     
+@anvil.server.callable
+def project_list():
+   projects =list({(r['project_name']) for r in app_tables.projects_master.search(tables.order_by('project_name'))})
+   return projects
+  

@@ -11,6 +11,11 @@ components:
   type: Button
   layout_properties: {grid_position: 'XQQNOX,NSZAZC'}
   event_bindings: {click: button_1_click}
+- name: button_2
+  properties: {text: Show progress}
+  type: Button
+  layout_properties: {grid_position: 'XLMZMP,MULHQI'}
+  event_bindings: {click: button_2_click}
 - name: populate_Burndown
   properties: {text: Populate Burndown}
   type: Button
@@ -24,6 +29,7 @@ components:
   properties: {include_placeholder: true}
   name: project_drop_down
   layout_properties: {grid_position: 'PDQWAK,RWMLRN'}
+  event_bindings: {change: project_drop_down_change}
 - name: data_grid_1
   properties:
     role: null
