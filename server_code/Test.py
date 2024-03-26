@@ -210,8 +210,11 @@ def burndown():
         print('Order No', r['so_number'] )
         if projrec:
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link= projrec)
+          update_row = app_tables.projects_master.get(order_no =  r['so_number'])
+          update_row['latest_percent_complete'] = r['workinprogresspercentcomplete_c']
+          
         else: # add new project master then burndown
-          app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],order_category = r['OrderCategory'], user = r['first_name'])
+          app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'])
           order_link =  app_tables.projects_master.get(order_no=r['so_number'])
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link)
  
@@ -225,11 +228,8 @@ def show_progress(project):
 
 @anvil.server.callable
 def show_progress_managers(user):
-      order_no = app_tables.projects_master.get(user=user)
-      for r in order_no:
-           project_burndown = app_tables.burndown.search(order_no_link  = order_no)
-           last_row = app_tables.burndown.search(tables.order_by('timeline_date', ascending=False))[0]
-           dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'user':r['order_no_link']['user'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date']} for r in project_burndown ]
+      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user=user)
+      dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value']} for r in order_no]
       print(dicts)
       return dicts 
 

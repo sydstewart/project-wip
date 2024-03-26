@@ -57,8 +57,8 @@ class manager_projects(manager_projectsTemplate):
 
   def managers_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
-    dicts = anvil.server.call('show_progress_managers', self.project_drop_down.selected_value)
-    self.repeating_panel_1.items = dicts
+    dicts = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
+    self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['latest_percent_complete'])
     # layout = {
     #     'title': 'Run Chart of Project Work Flow Rate created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + self.project_drop_down.selected_value,
     #     'yaxis': {'title': 'Percentage complete'},

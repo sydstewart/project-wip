@@ -20,7 +20,8 @@ components:
     - {id: VJQQOR, title: Project Name, data_key: project_name, $$hashKey: 'object:261'}
     - {id: OJLQEN, title: Order Value, data_key: order_value, $$hashKey: 'object:262'}
     - {id: HXABAG, data_key: timeline_date, title: Time Line, $$hashKey: 'object:264'}
-    - {id: BKDQXH, data_key: percent_complete, title: Percent_complete, $$hashKey: 'object:263'}
+    - {id: BKDQXH, data_key: latest_percent_complete, title: Latest Percent_complete,
+      $$hashKey: 'object:263'}
     - {id: BULXHK, data_key: user, title: Manager, width: 100, expand: false}
     auto_header: true
     tooltip: ''

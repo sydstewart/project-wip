@@ -231,6 +231,9 @@ db_schema:
     - name: user
       admin_ui: {width: 200, order: 5}
       type: string
+    - name: latest_percent_complete
+      admin_ui: {width: 200, order: 6}
+      type: number
     title: Projects_master
 secrets:
   Teamwork Pass:
