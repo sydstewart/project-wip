@@ -165,21 +165,13 @@ db_schema:
     - name: percent_complete
       admin_ui: {order: 1.5, width: 200}
       type: number
-    - name: project_name
-      admin_ui: {order: 1.125, width: 200}
-      type: string
-    - name: order_category
-      admin_ui: {order: 1.40625, width: 200}
-      type: string
     - name: timeline_date
       admin_ui: {order: 1.3125, width: 200}
       type: datetime
-    - name: order_value
-      admin_ui: {order: 1.453125, width: 200}
-      type: number
-    - name: order_date
-      admin_ui: {order: 0.75, width: 200}
-      type: datetime
+    - name: order_no_link
+      admin_ui: {width: 200, order: 2.5}
+      type: link_single
+      target: projects_master
     title: burndown
   work:
     title: work
@@ -217,6 +209,26 @@ db_schema:
       admin_ui: {width: 200}
       type: link_single
       target: stage_translate
+  projects_master:
+    client: none
+    server: full
+    columns:
+    - name: order_no
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: order_date
+      admin_ui: {width: 200, order: 1}
+      type: datetime
+    - name: project_name
+      admin_ui: {width: 200, order: 2}
+      type: string
+    - name: order_category
+      admin_ui: {width: 200, order: 3}
+      type: string
+    - name: order_value
+      admin_ui: {width: 200, order: 4}
+      type: number
+    title: Projects_master
 secrets:
   Teamwork Pass:
     value: {? '' : FmcCGvX7vJFW+652Pltsoof66B6i/ul2udoU3/LwRh4UO4IRxuq/2AydKWYQ5YA2zmHLnIACFkrODQuwYfr9OHkPu5Omd+241BwG+Z6ySbDT2vDttHhMkZfd434+qxmtMApTC8jE8lOFNA==}

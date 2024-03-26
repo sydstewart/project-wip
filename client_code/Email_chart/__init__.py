@@ -40,6 +40,8 @@ class Email_chart(Email_chartTemplate):
 
     def populate_Burndown_click(self, **event_args):
       """This method is called when the button is clicked"""
-      anvil.server.call('burndown')
+      dicts = anvil.server.call('burndown')
+      self.project_drop_down.items = dicts['project_name']
+      self.repeating_panel_1.items = dicts
       pass
 
