@@ -212,11 +212,11 @@ def burndown():
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link)
  
 @anvil.server.callable
-def show_progress_project(project):
+def show_progress(project):
       if project:
             pronum = app_tables.projects_master.get(project_name = project)
       dicts ={}
-      project_burndown = app_tables.burndown.search(order_no_link= pronum)
+      project_burndown = app_tables.burndown.search(order_no_link.project_name = pronum)
       dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date']} for r in project_burndown ]
       projects =list({(r['project_name']) for r in app_tables.projects_master.search(tables.order_by('project_name'))})
       # print(dicts)
