@@ -77,10 +77,10 @@ class manager_projects(manager_projectsTemplate):
     """This method is called when this checkbox is checked or unchecked"""
     dicts = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
     self.repeating_panel_1.items = dicts
-    # self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: row['latest_percent_complete'], reverse = (sort_order == ‘desc’)) 
+    self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['latest_percent_complete'])
     pass
 
   def elapsed_days_sort_checkbox_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     dicts = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
-    self.repeating_panel_1.items =  sorted(items, key=lambda row: row['key'])
+    self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['elapsed_time'], reverse = True)
