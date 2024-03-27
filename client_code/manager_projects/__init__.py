@@ -61,6 +61,7 @@ class manager_projects(manager_projectsTemplate):
     """This method is called when an item is selected"""
     self.elapsed_days_sort_checkbox.checked = False
     self.percent_complete_sort_checkboxheck_box_1.checked = False
+    self.days_since_updated_checkbox.checked = False
     dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
     self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['latest_percent_complete'])
     layout = {
@@ -98,3 +99,15 @@ class manager_projects(manager_projectsTemplate):
         dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
         self.repeating_panel_1.items = dicts
         self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['elapsed_time'], reverse = False)
+
+  def days_since_updated_checkbox_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    if self.days_since_updated_checkbox.checked == True:
+        dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
+        self.repeating_panel_1.items = dicts
+        self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['days_since_updated'], reverse = True)
+    else:
+        dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
+        self.repeating_panel_1.items = dicts
+        self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['days_since_updated'], reverse = False)
+    pass

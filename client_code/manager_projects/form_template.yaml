@@ -21,6 +21,11 @@ components:
   type: CheckBox
   layout_properties: {grid_position: 'PDQWAK,RWMLRN XSJQXM,HXSSJU'}
   event_bindings: {change: elapsed_days_sort_checkbox_change}
+- name: days_since_updated_checkbox
+  properties: {text: Days Since Updated}
+  type: CheckBox
+  layout_properties: {grid_position: 'PDQWAK,RWMLRN XSJQXM,AMNMSF'}
+  event_bindings: {change: days_since_updated_checkbox_change}
 - name: plot_1
   properties: {}
   type: Plot
@@ -38,6 +43,7 @@ components:
       $$hashKey: 'object:263'}
     - {id: BULXHK, data_key: user, title: Manager, width: 117.727294921875, expand: false}
     - {id: UTPPDM, data_key: elapsed_time, title: Elapsed Days}
+    - {id: GRXYXO, data_key: days_since_updated, title: Days since Updated}
     auto_header: true
     tooltip: ''
     border: ''

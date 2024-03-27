@@ -240,6 +240,9 @@ db_schema:
     - name: elapsed_time
       admin_ui: {width: 200, order: 7}
       type: number
+    - name: days_since_updated
+      admin_ui: {width: 200, order: 8}
+      type: number
     title: Projects_master
 secrets:
   Teamwork Pass:

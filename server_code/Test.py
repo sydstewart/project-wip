@@ -211,14 +211,17 @@ def burndown():
         print('Order No', r['so_number'] )
         today = date.today()
         date_entered = (r['date_entered']).date()
+        date_modified = (r['date_modified']).date()
         days_elapsed = abs(today - date_entered).days
+        days_since_updated =  abs(today - date_modified).days
         print('days elapsed=', days_elapsed)
+        print('days since updated=', days_since_updated )
         if projrec:
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link= projrec, elapsed_days= days_elapsed)
           update_row = app_tables.projects_master.get(order_no =  r['so_number'])
           update_row['latest_percent_complete'] = r['workinprogresspercentcomplete_c']
           update_row['elapsed_time'] = days_elapsed
-          update_row['last_updated'] = date_modified
+          update_row['days_since_updated'] = days_since_updated
         else: # add new project master then burndown
           app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],
                                              order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'],                            
@@ -237,7 +240,7 @@ def show_progress(project):
 @anvil.server.callable
 def show_progress_managers(user):
       order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user=user)
-      dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time']} for r in order_no]
+      dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated']} for r in order_no]
       print(dicts)
       df = pd.DataFrame.from_dict(dicts)
       print('df',df)
@@ -252,7 +255,8 @@ def project_list():
 
 @anvil.server.callable
 def managers_list():
-   managers =list({(r['user']) for r in app_tables.projects_master.search(tables.order_by('user'))})
+   # managers =list({(r['user']) for r in app_tables.projects_master.search(tables.order_by('user', ascending = True))})
+   managers = [(str(r['user']), r) for r in app_tables.projects_master.search(tables.order_by('user', ascending = True))]
    return managers
 
 @anvil.server.callable
