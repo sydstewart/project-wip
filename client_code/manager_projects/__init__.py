@@ -83,4 +83,4 @@ class manager_projects(manager_projectsTemplate):
   def elapsed_days_sort_checkbox_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     dicts = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
-    self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['elapsed_time'], reverse =True)
+    self.repeating_panel_1.items =  sorted(items, key=lambda row: row['key'])
