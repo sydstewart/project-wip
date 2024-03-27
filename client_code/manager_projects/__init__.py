@@ -15,7 +15,11 @@ class manager_projects(manager_projectsTemplate):
     self.elapsed_days_sort_checkbox.checked = False
     self.percent_complete_sort_checkboxheck_box_1.checked = False
     managers = anvil.server.call('managers_list')
-    self.managers_dropdown.items = managers # [(str(row['user']), row) for row in app_tables.projects_master.search()]
+    print('managers', managers)
+    # managers = managers.sort()
+    # print('managers', managers)
+    
+    self.managers_dropdown.items = managers #.sort() # [(str(row['user']), row) for row in app_tables.projects_master.search()]
     print('Syd')
     # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
     # line_plots = anvil.server.call('get_run_chart')
