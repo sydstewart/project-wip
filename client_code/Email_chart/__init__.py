@@ -14,23 +14,23 @@ class Email_chart(Email_chartTemplate):
         self.init_components(**properties)
         print('Syd')
         # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
-        line_plots = anvil.server.call('get_run_chart')
-        # projects = anvil.server.call('project_list')
-        # self.project_drop_down.items = projects
-        # Specify the layout
-        layout = {
-          'title': 'Run Chart of Project Work Flow Rate created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
-          'yaxis': {'title': '£ Value'},
-          # 'xaxis': {
-          #   'tickmode': 'array',
-          #   'tickvals': list(range(27)),
-          #   'ticktext': data['year'],
-          # },
-        }
+        # line_plots = anvil.server.call('get_run_chart')
+        # # projects = anvil.server.call('project_list')
+        # # self.project_drop_down.items = projects
+        # # Specify the layout
+        # layout = {
+        #   'title': 'Run Chart of Project Work Flow Rate created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
+        #   'yaxis': {'title': '£ Value'},
+        #   # 'xaxis': {
+        #   #   'tickmode': 'array',
+        #   #   'tickvals': list(range(27)),
+        #   #   'ticktext': data['year'],
+        #   # },
+        # }
     
-        # # Make the multi-bar plot
-        self.plot_1.data = line_plots
-        self.plot_1.layout = layout
+        # # # Make the multi-bar plot
+        # self.plot_1.data = line_plots
+        # self.plot_1.layout = layout
     
       
         # anvil.server.call('send_pdf_email')
@@ -78,5 +78,10 @@ class Email_chart(Email_chartTemplate):
     def projects_by_manager_button_click(self, **event_args):
       """This method is called when the button is clicked"""
       open_form('manager_projects')
+      pass
+
+    def button_2_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      open_form('run_chart')
       pass
 
