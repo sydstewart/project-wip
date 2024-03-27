@@ -208,13 +208,19 @@ def burndown():
   for r in records:
         projrec = app_tables.projects_master.get(order_no = r['so_number'])
         print('Order No', r['so_number'] )
+        today = date.today()
+        date_entered = (r['date_entered']).date()
+        days_elapsed = abs(today - date_entered).days
+        print('days elapsed=', days_elapsed)
         if projrec:
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link= projrec)
           update_row = app_tables.projects_master.get(order_no =  r['so_number'])
           update_row['latest_percent_complete'] = r['workinprogresspercentcomplete_c']
-          
+          update_row['elapsed_time'] = days_elapsed
         else: # add new project master then burndown
-          app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'])
+          app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],
+                                             order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'],                            
+                                             elapsed_time  = days_elapsed)
           order_link =  app_tables.projects_master.get(order_no=r['so_number'])
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link)
  
@@ -222,7 +228,7 @@ def burndown():
 def show_progress(project):
       order_no = app_tables.projects_master.get(project_name=project)
       project_burndown = app_tables.burndown.search(order_no_link  = order_no)
-      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'user':r['order_no_link']['user'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date']} for r in project_burndown ]
+      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'user':r['order_no_link']['user'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date'],'elapsed_time':} for r in project_burndown ]
       print(dicts)
       return dicts 
 

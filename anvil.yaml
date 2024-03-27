@@ -234,6 +234,9 @@ db_schema:
     - name: latest_percent_complete
       admin_ui: {width: 200, order: 6}
       type: number
+    - name: elapsed_time
+      admin_ui: {width: 200, order: 7}
+      type: number
     title: Projects_master
 secrets:
   Teamwork Pass:
