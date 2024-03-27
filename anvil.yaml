@@ -213,7 +213,7 @@ db_schema:
       type: link_single
       target: stage_translate
   projects_master:
-    client: none
+    client: full
     server: full
     columns:
     - name: order_no
