@@ -57,21 +57,29 @@ class manager_projects(manager_projectsTemplate):
 
   def managers_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
-    dicts = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
+    dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
     self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['latest_percent_complete'])
-    # layout = {
-    #     'title': 'Run Chart of Project Work Flow Rate created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + self.project_drop_down.selected_value,
-    #     'yaxis': {'title': 'Percentage complete'},
-    #     # 'xaxis': {
-    #     #   'tickmode': 'array',
-    #     #   'tickvals': list(range(27)),
-    #     #   'ticktext': data['year'],
-    #     # },
-    #   }
+    layout = {
+        'title': 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + self.managers_dropdown.selected_value,
+        'yaxis': {'title': 'Percentage complete', 'range' :[0, 100]},
+        'xaxis': {'x0': 0,'title': 'Days Elapsed'}, 
+     
+      }
     # line_plots = anvil.server.call('individual_chart',self.project_drop_down.selected_value)
-    # self.plot_2.layout = layout
-    # self.plot_2.data = line_plots
+    self.plot_1.layout = layout
+    self.plot_1.data = line_plots
     # # self.project_drop_down.items = projects
     self.repeating_panel_1.items = dicts
     pass
     pass
+
+  def percent_complete_sort_checkboxheck_box_1_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    dicts = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
+    self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['latest_percent_complete'], reverse = True)
+    pass
+
+  def elapsed_days_sort_checkbox_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    dicts = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
+    self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['elapsed_time'], reverse =True)

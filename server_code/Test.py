@@ -213,7 +213,7 @@ def burndown():
         days_elapsed = abs(today - date_entered).days
         print('days elapsed=', days_elapsed)
         if projrec:
-          app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link= projrec)
+          app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link= projrec, elapsed_days= days_elapsed)
           update_row = app_tables.projects_master.get(order_no =  r['so_number'])
           update_row['latest_percent_complete'] = r['workinprogresspercentcomplete_c']
           update_row['elapsed_time'] = days_elapsed
@@ -222,22 +222,25 @@ def burndown():
                                              order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'],                            
                                              elapsed_time  = days_elapsed)
           order_link =  app_tables.projects_master.get(order_no=r['so_number'])
-          app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link)
+          app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link,elapsed_days= days_elapsed)
  
 @anvil.server.callable
 def show_progress(project):
       order_no = app_tables.projects_master.get(project_name=project)
       project_burndown = app_tables.burndown.search(order_no_link  = order_no)
-      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'user':r['order_no_link']['user'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date'],'elapsed_time':} for r in project_burndown ]
+      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'user':r['order_no_link']['user'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date'],'elapsed_time':r['elapsed_days']} for r in project_burndown ]
       print(dicts)
       return dicts 
 
 @anvil.server.callable
 def show_progress_managers(user):
       order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user=user)
-      dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value']} for r in order_no]
+      dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time']} for r in order_no]
       print(dicts)
-      return dicts 
+      df = pd.DataFrame.from_dict(dicts)
+      print('df',df)
+      line_plots = go.Scatter(x=df['elapsed_time'], y=df['latest_percent_complete'], name='Project Progress', marker=dict(color='#e50000'), mode="markers", text=df['project_name'])
+      return dicts, line_plots 
 
 
 @anvil.server.callable
@@ -254,9 +257,9 @@ def managers_list():
 def individual_chart(project):
       order_no = app_tables.projects_master.get(project_name=project)
       project_burndown = app_tables.burndown.search(order_no_link  = order_no)
-      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date']} for r in project_burndown ]
+      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date'],'elapsed_days':r['elapsed_days']} for r in project_burndown ]
       df = pd.DataFrame.from_dict(dicts)
       print('df',df)
-      line_plots = go.Scatter(x=df['timeline_date'], y=df['percent_complete'], name='Project Progress', marker=dict(color='#e50000'))
+      line_plots = go.Scatter(x=df['elapsed_days'], y=df['percent_complete'], name='Project Progress', marker=dict(color='#e50000'))
    
       return line_plots
