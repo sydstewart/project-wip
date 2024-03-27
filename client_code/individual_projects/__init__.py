@@ -62,6 +62,8 @@ class individual_projects(individual_projectsTemplate):
     layout = {
         'title': 'Run Chart of Project Work Flow Rate created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + self.project_drop_down.selected_value,
         'yaxis': {'title': 'Percentage complete'},
+        'xaxis': {'x0': 0,'title': 'Days Elapsed'}, 
+        # 'yaxis': list(rangemode = "tozero")
         # 'xaxis': {
         #   'tickmode': 'array',
         #   'tickvals': list(range(27)),
