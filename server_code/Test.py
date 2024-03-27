@@ -194,7 +194,8 @@ def burndown():
                sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
                sales_orders_cstm.OrderCategory AS OrderCategory,\
                sales_orders.so_number AS so_number,\
-               users.first_name AS first_name\
+               users.first_name AS first_name,\
+               sales_orders.date_modified AS date_modified \
                From sales_orders\
                INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
@@ -217,6 +218,7 @@ def burndown():
           update_row = app_tables.projects_master.get(order_no =  r['so_number'])
           update_row['latest_percent_complete'] = r['workinprogresspercentcomplete_c']
           update_row['elapsed_time'] = days_elapsed
+          update_row['last_updated'] = date_modified
         else: # add new project master then burndown
           app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],
                                              order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'],                            

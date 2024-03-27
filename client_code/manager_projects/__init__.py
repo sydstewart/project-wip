@@ -12,6 +12,8 @@ class manager_projects(manager_projectsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.elapsed_days_sort_checkbox.checked = False
+    self.percent_complete_sort_checkboxheck_box_1.checked = False
     managers = anvil.server.call('managers_list')
     self.managers_dropdown.items = managers
     print('Syd')
@@ -57,6 +59,8 @@ class manager_projects(manager_projectsTemplate):
 
   def managers_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
+    self.elapsed_days_sort_checkbox.checked = False
+    self.percent_complete_sort_checkboxheck_box_1.checked = False
     dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
     self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['latest_percent_complete'])
     layout = {
