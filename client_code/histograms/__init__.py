@@ -13,6 +13,7 @@ class histograms(histogramsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     project_count, line_plots = anvil.server.call('show_histograms')
+    self.no_of_projects_textbox.text =project_count
     layout = {
         'title': 'Histogram of Elapsed days created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
         'yaxis': {'title': 'Percentage of projects', 'range' :[-5, 104]},

@@ -282,7 +282,7 @@ def show_histograms():
       dfelapsed = df['elapsed_days']
       project_count = len(df)
       print('dfelapsed',dfelapsed)
-      project_count,line_plots = go.Histogram(x= dfelapsed, xbins =dict(start=0, end=3500, size=365))
+      line_plots = go.Histogram(x= dfelapsed, xbins =dict(start=0, end=3500, size=365), histnorm = 'percent', cumulative_enabled=True)
    
       return project_count, line_plots
  
