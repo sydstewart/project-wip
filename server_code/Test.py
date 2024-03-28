@@ -281,8 +281,13 @@ def show_histograms():
       df = pd.DataFrame.from_dict(dicts)
       dfelapsed = df['elapsed_days']
       project_count = len(df)
+      average_elapsed = df['elapsed_days'].mean()
       print('dfelapsed',dfelapsed)
+      # fig = go.Figure()
+      # fig.add_trace(go.Histogram(x= dfelapsed, xbins =dict(start=0, end=3500, size=365), histnorm = 'percent', cumulative_enabled=True))
+ 
       line_plots = go.Histogram(x= dfelapsed, xbins =dict(start=0, end=3500, size=365), histnorm = 'percent', cumulative_enabled=True)
-   
-      return project_count, line_plots
+      # # line_plots.add_vline(x =average_elapsed)
+      # # fig.add_hline(y=0.9)
+      return project_count, line_plots, average_elapsed
  
