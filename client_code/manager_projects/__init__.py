@@ -70,7 +70,7 @@ class manager_projects(manager_projectsTemplate):
     self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['latest_percent_complete'])
     layout = {
         'title': 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + self.managers_dropdown.selected_value,
-        'yaxis': {'title': 'Percentage complete', 'range' :[0, 101]},
+        'yaxis': {'title': 'Percentage complete', 'range' :[-5, 104]},
         'xaxis': {'x0': 0,'title': 'Days Elapsed'}, 
      
       }

@@ -1,0 +1,9 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: Plot
+  properties: {}
+  name: plot_1
+  layout_properties: {grid_position: 'IISXLN,NEKJHQ'}
+is_package: true

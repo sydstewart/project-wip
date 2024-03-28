@@ -85,3 +85,8 @@ class Email_chart(Email_chartTemplate):
       open_form('run_chart')
       pass
 
+    def histogram_button_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      open_form('histograms')
+      pass
+
