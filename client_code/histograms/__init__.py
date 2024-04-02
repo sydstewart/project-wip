@@ -25,3 +25,7 @@ class histograms(histogramsTemplate):
     self.plot_1.data = line_plots
     self.plot_1.layout = layout
     # Any code you write here will run before the form opens.
+
+    project_count, fig , average_elapsed = anvil.server.call('show_histograms_px')
+    self.plot_2.figure = fig
+ 
