@@ -14,7 +14,7 @@ class manager_projects(manager_projectsTemplate):
     self.init_components(**properties)
     self.elapsed_days_sort_checkbox.checked = False
     self.percent_complete_sort_checkboxheck_box_1.checked = False
-    managers = anvil.server.call('managers_list')
+    self.managers_dropdown.items = managers = anvil.server.call('managers_list')
     print('managers', managers)
     # managers = managers.sort()
     # print('managers', managers)
@@ -66,10 +66,13 @@ class manager_projects(manager_projectsTemplate):
     self.elapsed_days_sort_checkbox.checked = False
     self.percent_complete_sort_checkboxheck_box_1.checked = False
     self.days_since_updated_checkbox.checked = False
-    dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
+    user = self.managers_dropdown.selected_value 
+    user = user['firstname']
+    print(user)
+    dicts, line_plots = anvil.server.call('show_progress_managers', user)
     self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['latest_percent_complete'])
     layout = {
-        'title': 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + self.managers_dropdown.selected_value,
+        'title': 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + user,
         'yaxis': {'title': 'Percentage complete', 'range' :[-5, 104]},
         'xaxis': {'x0': 0,'title': 'Days Elapsed'}, 
      
