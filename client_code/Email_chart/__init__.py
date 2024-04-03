@@ -14,7 +14,7 @@ class Email_chart(Email_chartTemplate):
         self.init_components(**properties)
         print('Syd')
         t= app_tables.database_env.get()
-        self.text_box_1.text = t['database_env'] + 'Project WIP System'
+        self.text_box_1.text = t['database_env'] + ' Project WIP System'
         # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
         # line_plots = anvil.server.call('get_run_chart')
         # # projects = anvil.server.call('project_list')
