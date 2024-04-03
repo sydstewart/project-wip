@@ -42,6 +42,20 @@ db_schema:
     - name: new_column
       admin_ui: {width: 200}
       type: string
+  completed_work_2:
+    title: Completed_work
+    client: none
+    server: full
+    columns:
+    - name: Order_Value_Completed
+      admin_ui: {width: 200}
+      type: number
+    - name: Date_entered
+      admin_ui: {width: 200}
+      type: datetime
+    - name: delta_work
+      admin_ui: {width: 200}
+      type: number
   last_date_refreshed:
     title: last_date_refreshed
     client: full
