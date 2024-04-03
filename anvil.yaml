@@ -3,7 +3,7 @@ scheduled_tasks:
   time_spec:
     n: 1
     every: week
-    at: {day: 4, hour: 9, minute: 30}
+    at: {day: 4, hour: 14, minute: 59}
   job_id: SWXYQIMB
 dependencies:
 - app_id: C6ZZPAPN4YYF5NVJ
@@ -31,6 +31,47 @@ runtime_options: {version: 2, client_version: '3', server_version: python3-full,
 metadata: {title: Project WIP, logo_img: 'asset:4S logo small.png'}
 startup_form: null
 db_schema:
+  users_2:
+    title: Users
+    client: full
+    server: full
+    columns:
+    - name: email
+      admin_ui: {width: 200}
+      type: string
+    - name: firstname
+      admin_ui: {width: 200}
+      type: string
+    - name: user_type
+      admin_ui: {width: 200}
+      type: string
+    - name: enabled
+      admin_ui: {width: 100}
+      type: bool
+    - name: last_login
+      admin_ui: {width: 200}
+      type: datetime
+    - name: password_hash
+      admin_ui: {width: 200}
+      type: string
+    - name: confirmed_email
+      admin_ui: {width: 200}
+      type: bool
+    - name: n_password_failures
+      admin_ui: {width: 200}
+      type: number
+    - name: mfa
+      admin_ui: {width: 200}
+      type: simpleObject
+    - name: remembered_logins
+      admin_ui: {width: 200}
+      type: simpleObject
+    - name: signed_up
+      admin_ui: {width: 200}
+      type: datetime
+    - name: email_confirmation_key
+      admin_ui: {width: 200}
+      type: string
   stage_translate:
     title: stage_translate
     client: full
@@ -42,6 +83,20 @@ db_schema:
     - name: new_column
       admin_ui: {width: 200}
       type: string
+  completed_work_2:
+    title: Completed_work
+    client: none
+    server: full
+    columns:
+    - name: Order_Value_Completed
+      admin_ui: {width: 200}
+      type: number
+    - name: Date_entered
+      admin_ui: {width: 200}
+      type: datetime
+    - name: delta_work
+      admin_ui: {width: 200}
+      type: number
   last_date_refreshed:
     title: last_date_refreshed
     client: full
@@ -114,47 +169,6 @@ db_schema:
       admin_ui: {order: 5, width: 200}
       type: number
     title: Table 7
-  users:
-    title: Users
-    client: full
-    server: full
-    columns:
-    - name: email
-      admin_ui: {width: 200}
-      type: string
-    - name: firstname
-      admin_ui: {width: 200}
-      type: string
-    - name: user_type
-      admin_ui: {width: 200}
-      type: string
-    - name: enabled
-      admin_ui: {width: 100}
-      type: bool
-    - name: last_login
-      admin_ui: {width: 200}
-      type: datetime
-    - name: password_hash
-      admin_ui: {width: 200}
-      type: string
-    - name: confirmed_email
-      admin_ui: {width: 200}
-      type: bool
-    - name: n_password_failures
-      admin_ui: {width: 200}
-      type: number
-    - name: mfa
-      admin_ui: {width: 200}
-      type: simpleObject
-    - name: remembered_logins
-      admin_ui: {width: 200}
-      type: simpleObject
-    - name: signed_up
-      admin_ui: {width: 200}
-      type: datetime
-    - name: email_confirmation_key
-      admin_ui: {width: 200}
-      type: string
   burndown:
     client: full
     server: full
