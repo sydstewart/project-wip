@@ -257,7 +257,9 @@ def project_list():
 
 @anvil.server.callable
 def managers_list():
-   managers =list({(r['user']) for r in app_tables.projects_master.search(tables.order_by('user',ascending=True ))})
+   managers =list({(r['firstname'], r) for r in app_tables.users_2.search(firstname <> '',tables.order_by('firstname',ascending=True ))})
+   managers.sort()
+   # managers = [(cat['user'], cat) for cat in app_tables.projects_master.search(tables.order_by('user',ascending=True ))]
    return managers
    # [(row['Year'], row) for row in app_tables.testcars.search()]
 
@@ -276,71 +278,32 @@ def individual_chart(project):
 
 @anvil.server.callable
 def show_histograms():
+  # get data for chart into a dataframe
       order_no = app_tables.projects_master.search()
       dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'], 'elapsed_days':r['elapsed_time']} for r in order_no]
       df = pd.DataFrame.from_dict(dicts)
+  # calculate number of projects and average running time
       dfelapsed = df['elapsed_days']
       project_count = len(df)
       average_elapsed = df['elapsed_days'].mean()
       print('dfelapsed',dfelapsed)
-      # fig = go.Figure()
-      # fig.add_trace(go.Histogram(x= dfelapsed, xbins =dict(start=0, end=3500, size=365), histnorm = 'percent', cumulative_enabled=True))
-         
-      print(df)
-      # fig = px.histogram(df,
-      #   x='dfelapsed',
-      #   y='count',
-      #   xbins =dict(start=0, end=3500, size=365),
-      #   cumulative =True
-      #   # marginal='box'
-      #   )
-       
-      # fig.add_vline(x=average_elapsed, line_width=2, line_dash='dash', line_color='red', col=1)
-      # # fig.add_vline(x=3.4, line_width=1, line_dash='dash', line_color='gray', col=2)
-      # # fig.add_vline(x=4.1, line_width=1, line_dash='dash', line_color='gray', col=3)
-      
-      # return project_count, fig, average_elapsed
+   # prepare histogram using plotly go  
       line_plots = go.Histogram(x= dfelapsed, xbins =dict(start=0, end=3500, size=365), histnorm = 'percent', cumulative_enabled=True)
-      #   # # # line_plots.add_vline(x =average_elapsed)
-      #   # # # fig.add_hline(y=0.9)
-      #   # return project_count, line_plots, average_elapsed
-      # line_plots = go.Histogram(x= dfelapsed, xbins =dict(start=0, end=3500, size=365), histnorm = 'percent', cumulative_enabled=True)
-      # # line_plots.add_vline(x =average_elapsed)
-      # # fig.add_hline(y=0.9)
+  
+      # return project_count, fig, average_elapsed
       return project_count, line_plots, average_elapsed
 
 @anvil.server.callable
 def show_histograms_px():
+  # get data into a dataframe
       order_no = app_tables.projects_master.search()
       dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'], 'elapsed_days':r['elapsed_time']} for r in order_no]
       df = pd.DataFrame.from_dict(dicts)
-      fig = px.histogram(df, x="elapsed_days",cumulative=True,histnorm = 'percent', nbins =35, marginal ='violin' )
+  # prepare histogram  in plotly using express (px)
+      fig = px.histogram(df, x="elapsed_days",cumulative=True,histnorm = 'percent', nbins =35 )
       # dfelapsed = df['elapsed_days']
       project_count = len(df)
       average_elapsed = df['elapsed_days'].mean()
-      # print('dfelapsed',dfelapsed)
-      # # fig = go.Figure()
-      # # fig.add_trace(go.Histogram(x= dfelapsed, xbins =dict(start=0, end=3500, size=365), histnorm = 'percent', cumulative_enabled=True))
-         
-      # print(df)
-      # # fig = px.histogram(df,
-      # #   x='dfelapsed',
-      # #   y='count',
-      # #   xbins =dict(start=0, end=3500, size=365),
-      # #   cumulative =True
-      # #   # marginal='box'
-      # #   )
-       
+  # add an average line        
       fig.add_vline(x=average_elapsed, line_width=2, line_dash='dash', line_color='red', col=1,  annotation_text="Average Days in Progress= " + str(int(average_elapsed)), annotation_position="top right" )
-      # # # fig.add_vline(x=3.4, line_width=1, line_dash='dash', line_color='gray', col=2)
-      # # # fig.add_vline(x=4.1, line_width=1, line_dash='dash', line_color='gray', col=3)
-      
-      # # return project_count, fig, average_elapsed
-      # line_plots = go.Histogram(x= dfelapsed, xbins =dict(start=0, end=3500, size=365), histnorm = 'percent', cumulative_enabled=True)
-      # #   # # # line_plots.add_vline(x =average_elapsed)
-      # #   # # # fig.add_hline(y=0.9)
-      # #   # return project_count, line_plots, average_elapsed
-      # # line_plots = go.Histogram(x= dfelapsed, xbins =dict(start=0, end=3500, size=365), histnorm = 'percent', cumulative_enabled=True)
-      # # # line_plots.add_vline(x =average_elapsed)
-      # # # fig.add_hline(y=0.9)
       return project_count, fig, average_elapsed
