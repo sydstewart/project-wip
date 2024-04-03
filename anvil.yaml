@@ -15,6 +15,42 @@ runtime_options: {version: 2, client_version: '3', server_version: python3-full,
 metadata: {}
 startup_form: home
 db_schema:
+  stage_translate:
+    title: stage_translate
+    client: full
+    server: full
+    columns:
+    - name: project_column
+      admin_ui: {width: 200}
+      type: string
+    - name: new_column
+      admin_ui: {width: 200}
+      type: string
+  completed_work_2:
+    title: Completed_work
+    client: none
+    server: full
+    columns:
+    - name: Order_Value_Completed
+      admin_ui: {width: 200}
+      type: number
+    - name: Date_entered
+      admin_ui: {width: 200}
+      type: datetime
+    - name: delta_work
+      admin_ui: {width: 200}
+      type: number
+  last_date_refreshed:
+    title: last_date_refreshed
+    client: full
+    server: full
+    columns:
+    - name: last_date_refreshed
+      admin_ui: {width: 200}
+      type: string
+    - name: date_id
+      admin_ui: {width: 200}
+      type: number
   projects_stages:
     title: projects_stages
     client: full
@@ -33,7 +69,109 @@ db_schema:
       admin_ui: {width: 200}
       type: link_single
       target: stage_translate
-    - name: new_column
+    - name: new_stage
+      admin_ui: {width: 200}
+      type: string
+    - name: no_of_days_work
+      admin_ui: {width: 200}
+      type: number
+  table_7:
+    title: Table 7
+    client: none
+    server: full
+    columns:
+    - name: month_start
+      admin_ui: {width: 200}
+      type: date
+    - name: project_type
+      admin_ui: {width: 200}
+      type: string
+    - name: enquiry
+      admin_ui: {width: 200}
+      type: number
+    - name: planned
+      admin_ui: {width: 200}
+      type: number
+    - name: order_approved
+      admin_ui: {width: 200}
+      type: number
+    - name: active
+      admin_ui: {width: 200}
+      type: number
+  users:
+    title: Users
+    client: full
+    server: full
+    columns:
+    - name: email
+      admin_ui: {width: 200}
+      type: string
+    - name: firstname
+      admin_ui: {width: 200}
+      type: string
+    - name: user_type
+      admin_ui: {width: 200}
+      type: string
+    - name: enabled
+      admin_ui: {width: 100}
+      type: bool
+    - name: last_login
+      admin_ui: {width: 200}
+      type: datetime
+    - name: password_hash
+      admin_ui: {width: 200}
+      type: string
+    - name: confirmed_email
+      admin_ui: {width: 200}
+      type: bool
+    - name: n_password_failures
+      admin_ui: {width: 200}
+      type: number
+    - name: mfa
+      admin_ui: {width: 200}
+      type: simpleObject
+    - name: remembered_logins
+      admin_ui: {width: 200}
+      type: simpleObject
+    - name: signed_up
+      admin_ui: {width: 200}
+      type: datetime
+    - name: email_confirmation_key
+      admin_ui: {width: 200}
+      type: string
+  burndown:
+    title: burndown
+    client: full
+    server: full
+    columns:
+    - name: order_no
+      admin_ui: {width: 200}
+      type: string
+    - name: timeline_date
+      admin_ui: {width: 200}
+      type: datetime
+    - name: percent_complete
+      admin_ui: {width: 200}
+      type: number
+    - name: order_no_link
+      admin_ui: {width: 200}
+      type: link_single
+      target: projects_master
+    - name: elapsed_days
+      admin_ui: {width: 200}
+      type: number
+  work:
+    title: work
+    client: none
+    server: full
+    columns:
+    - name: new_project_column
+      admin_ui: {width: 200}
+      type: string
+    - name: No_of_days_work
+      admin_ui: {width: 200}
+      type: number
+    - name: project_board
       admin_ui: {width: 200}
       type: string
   projects:
@@ -58,26 +196,36 @@ db_schema:
       admin_ui: {width: 200}
       type: link_single
       target: stage_translate
-  stage_translate:
-    title: stage_translate
+  projects_master:
+    title: Projects_master
     client: full
     server: full
     columns:
-    - name: project_column
+    - name: order_no
       admin_ui: {width: 200}
       type: string
-    - name: new_column
+    - name: order_date
+      admin_ui: {width: 200}
+      type: datetime
+    - name: project_name
       admin_ui: {width: 200}
       type: string
-  last_date_refreshed:
-    title: last_date_refreshed
-    client: full
-    server: full
-    columns:
-    - name: last_date_refreshed
+    - name: order_category
       admin_ui: {width: 200}
       type: string
-    - name: date_id
+    - name: order_value
+      admin_ui: {width: 200}
+      type: number
+    - name: user
+      admin_ui: {width: 200}
+      type: string
+    - name: latest_percent_complete
+      admin_ui: {width: 200}
+      type: number
+    - name: elapsed_time
+      admin_ui: {width: 200}
+      type: number
+    - name: days_since_updated
       admin_ui: {width: 200}
       type: number
 secrets:
