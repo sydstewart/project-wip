@@ -257,9 +257,9 @@ def project_list():
 
 @anvil.server.callable
 def managers_list():
-   managers =list({(r['firstname'], r) for r in app_tables.users_2.search(tables.order_by('firstname',ascending=True ))})
-   managers.sort()
-   # managers = [(cat['user'], cat) for cat in app_tables.projects_master.search(tables.order_by('user',ascending=True ))]
+   # managers =list({(r['firstname'], r) for r in app_tables.users.search(tables.order_by('firstname',ascending=True ))})
+   # managers.sort()
+   managers = [(cat['firstname'], cat) for cat in app_tables.users.search(tables.order_by('firstname',ascending=True ))]
    return managers
    # [(row['Year'], row) for row in app_tables.testcars.search()]
 
