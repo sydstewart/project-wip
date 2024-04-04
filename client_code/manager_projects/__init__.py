@@ -14,34 +14,14 @@ class manager_projects(manager_projectsTemplate):
     self.init_components(**properties)
     self.elapsed_days_sort_checkbox.checked = False
     self.percent_complete_sort_checkboxheck_box_1.checked = False
-    self.managers_dropdown.items = managers = anvil.server.call('managers_list')
-    print('managers', managers)
+    self.managers_dropdown.items = anvil.server.call('managers_list')
+    # print('managers', managers)
     # managers = managers.sort()
     # print('managers', managers)
     
-    self.managers_dropdown.items = managers #.sort() # [(str(row['user']), row) for row in app_tables.projects_master.search()]
+    # self.managers_dropdown.items = managers #.sort() # [(str(row['user']), row) for row in app_tables.projects_master.search()]
     print('Syd')
-    # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
-    # line_plots = anvil.server.call('get_run_chart')
-    # projects = anvil.server.call('project_list')
-    # self.project_drop_down.items = projects
-    # # Specify the layout
-    # layout = {
-    #   'title': 'Run Chart of Project Work Flow Rate created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
-    #   'yaxis': {'title': '£ Value'},
-    #   # 'xaxis': {
-    #   #   'tickmode': 'array',
-    #   #   'tickvals': list(range(27)),
-    #   #   'ticktext': data['year'],
-    #   # },
-    # }
-
-    # # # Make the multi-bar plot
-    # self.plot_2.data = line_plots
-    # self.plot_2.layout = layout
-
-
-    # anvil.server.call('send_pdf_email')
+    
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -67,7 +47,7 @@ class manager_projects(manager_projectsTemplate):
     self.percent_complete_sort_checkboxheck_box_1.checked = False
     self.days_since_updated_checkbox.checked = False
     user = self.managers_dropdown.selected_value 
-    user = user['firstname']
+    user = user['email']
     print(user)
     dicts, line_plots = anvil.server.call('show_progress_managers', user)
     self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['latest_percent_complete'])
@@ -88,7 +68,7 @@ class manager_projects(manager_projectsTemplate):
   def percent_complete_sort_checkboxheck_box_1_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     user = self.managers_dropdown.selected_value 
-    user = user['firstname']
+    user = user['email']
     dicts, line_plots = anvil.server.call('show_progress_managers', user)
     if self.percent_complete_sort_checkboxheck_box_1.checked == True:
         self.repeating_panel_1.items = dicts

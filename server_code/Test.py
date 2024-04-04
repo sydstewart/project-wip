@@ -243,7 +243,7 @@ def show_progress(project):
 @anvil.server.callable
 def show_progress_managers(user):
       print(user)
-      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user=user)
+      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user_email =user)
       dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated']} for r in order_no]
       print(dicts)
       df = pd.DataFrame.from_dict(dicts)
@@ -261,7 +261,7 @@ def project_list():
 def managers_list():
    # managers =list({(r['firstname'], r) for r in app_tables.users.search(tables.order_by('firstname',ascending=True ))})
    # managers.sort()
-   managers = [(cat['firstname'], cat) for cat in app_tables.users.search(tables.order_by('firstname',ascending=True ))]
+   managers = [(cat['email'], cat) for cat in app_tables.users.search(tables.order_by('email',ascending=True ))]
    return managers
    # [(row['Year'], row) for row in app_tables.testcars.search()]
 
