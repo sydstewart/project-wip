@@ -87,7 +87,9 @@ class manager_projects(manager_projectsTemplate):
 
   def percent_complete_sort_checkboxheck_box_1_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
-    dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
+    user = self.managers_dropdown.selected_value 
+    user = user['firstname']
+    dicts, line_plots = anvil.server.call('show_progress_managers', user)
     if self.percent_complete_sort_checkboxheck_box_1.checked == True:
         self.repeating_panel_1.items = dicts
         self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['latest_percent_complete'], reverse = True)
