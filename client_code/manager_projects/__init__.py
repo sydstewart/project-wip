@@ -13,7 +13,7 @@ class manager_projects(manager_projectsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.elapsed_days_sort_checkbox.checked = False
-    self.percent_complete_sort_checkboxheck_box_1.checked = False
+    self.percent_complete_sort_checkbox.checked = False
     self.managers_dropdown.items = anvil.server.call('managers_list')
     # print('managers', managers)
     # managers = managers.sort()
@@ -44,7 +44,7 @@ class manager_projects(manager_projectsTemplate):
   def managers_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
     self.elapsed_days_sort_checkbox.checked = False
-    self.percent_complete_sort_checkboxheck_box_1.checked = False
+    self.percent_complete_sort_checkbox.checked = False
     self.days_since_updated_checkbox.checked = False
     user = self.managers_dropdown.selected_value 
     user = user['email']
@@ -67,38 +67,36 @@ class manager_projects(manager_projectsTemplate):
         alert('No Projects Found for ' + user)      
     pass
 
-  def percent_complete_sort_checkboxheck_box_1_change(self, **event_args):
+  def percent_complete_sort_checkbox_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
-    user = self.managers_dropdown.selected_value 
-    user = user['email']
-    dicts, line_plots = anvil.server.call('show_progress_managers', user)
-    if self.percent_complete_sort_checkboxheck_box_1.checked == True:
-        self.repeating_panel_1.items = dicts
+    # user = self.managers_dropdown.selected_value 
+    # user = user['email']
+    # dicts, line_plots = anvil.server.call('show_progress_managers', user)
+    self.elapsed_days_sort_checkbox.checked = False
+    self.days_since_updated_checkbox.checked = False
+    if self.percent_complete_sort_checkbox.checked == True:
+        # self.repeating_panel_1.items = dicts
         self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['latest_percent_complete'], reverse = True)
     else:
-        self.repeating_panel_1.items = dicts 
+        # self.repeating_panel_1.items = dicts 
         self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['latest_percent_complete'], reverse = False)
         pass
 
   def elapsed_days_sort_checkbox_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
+    self.percent_complete_sort_checkbox.checked = False
+    self.days_since_updated_checkbox.checked = False
     if self.elapsed_days_sort_checkbox.checked ==  True:
-        dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
-        self.repeating_panel_1.items = dicts
         self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['elapsed_time'], reverse = True)
     else:
-        dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
-        self.repeating_panel_1.items = dicts
         self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['elapsed_time'], reverse = False)
 
   def days_since_updated_checkbox_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
+    self.percent_complete_sort_checkbox.checked = False
+    self.elapsed_days_sort_checkbox.checked = False
     if self.days_since_updated_checkbox.checked == True:
-        dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
-        self.repeating_panel_1.items = dicts
         self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['days_since_updated'], reverse = True)
     else:
-        dicts, line_plots = anvil.server.call('show_progress_managers', self.managers_dropdown.selected_value)
-        self.repeating_panel_1.items = dicts
         self.repeating_panel_1.items =  sorted(self.repeating_panel_1.items, key=lambda row: row['days_since_updated'], reverse = False)
     pass
