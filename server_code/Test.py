@@ -217,6 +217,9 @@ def burndown():
         date_modified = (r['date_modified']).date()
         days_elapsed = abs(today - date_entered).days
         days_since_updated =  abs(today - date_modified).days
+    
+        email = (r['users_email1'].lower())  # emails in CRM different with some capitalised first letter
+    
         print('days elapsed=', days_elapsed)
         print('days since updated=', days_since_updated )
         if projrec:
@@ -228,7 +231,7 @@ def burndown():
         else: # add new project master then burndown
           app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],
                                              order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'],                            
-                                             elapsed_time  = days_elapsed, user_email = r['users_email1'] )
+                                             elapsed_time  = days_elapsed, user_email = email )
           order_link =  app_tables.projects_master.get(order_no=r['so_number'])
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link,elapsed_days= days_elapsed)
  
@@ -243,13 +246,21 @@ def show_progress(project):
 @anvil.server.callable
 def show_progress_managers(user):
       print(user)
-      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user_email =user)
-      dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated']} for r in order_no]
-      print(dicts)
-      df = pd.DataFrame.from_dict(dicts)
-      print('df',df)
-      line_plots = go.Scatter(x=df['elapsed_time'], y=df['latest_percent_complete'], name='Project Progress', marker=dict(color='#e50000', size=df['order_value']/3000 +4), mode="markers", text=df['project_name'] + "<br>Order Value: £" + df['order_value'].astype(str) )
-      return dicts, line_plots 
+      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user_email = user)
+      count_found = len(order_no)
+      print('Count Found',count_found)
+      print('user', user)
+      if count_found != 0:
+            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated']} for r in order_no]
+            print(dicts)
+            df = pd.DataFrame.from_dict(dicts)
+            print('df',df)
+            line_plots = go.Scatter(x=df['elapsed_time'], y=df['latest_percent_complete'], name='Project Progress', marker=dict(color='#e50000', size=df['order_value']/3000 +4), mode="markers", text=df['project_name'] + "<br>Order Value: £" + df['order_value'].astype(str) )
+            return dicts, line_plots, count_found
+      else:
+          dicts =[]
+          line_plots= []
+          return dicts, line_plots, count_found
 
 
 @anvil.server.callable
