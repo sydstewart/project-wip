@@ -307,7 +307,7 @@ def show_histograms():
       return project_count, line_plots, average_elapsed
 
 @anvil.server.callable
-def show_histograms_px():
+def show_histograms_px():  #using plotly express
   # get data into a dataframe
       order_no = app_tables.projects_master.search()
       dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'], 'elapsed_days':r['elapsed_time']} for r in order_no]
