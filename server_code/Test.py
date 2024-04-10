@@ -258,8 +258,15 @@ def show_progress_managers(user):
             print('df',df)
             color_map = {'Implementation':'yellow', 'Interface(s)':'blue', 'Questionnaire(s)':'orange','Configuration/Dev':'pink','Server Mover with Interfaces': 'brown','Server Mover with NO Interfaces':'green','Re-installation':'purple' }
             cat_color = df['order_category'].map(color_map)
-            fig = px.scatter(df, x= 'elapsed_time', y='latest_percent_complete', color = 'order_category', size ='order_value', hover_name  = 'project_name', title = 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + user,)
+            fig = px.scatter(df, x= 'elapsed_time',
+                             y='latest_percent_complete', 
+                             color = 'order_category',  
+                             size ='order_value', 
+                             hover_name  = 'project_name', 
+                             title = 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + user,
+                            )
             fig.update_layout(showlegend=True)
+            fig.update_layout(hoverlabel=dict(bgcolor="white", ))
             return dicts, fig, count_found
       else:
           dicts =[]
