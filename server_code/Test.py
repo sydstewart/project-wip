@@ -212,27 +212,32 @@ def burndown():
   print('Number of timeline records loaded = ',number_of_records)
   for r in records:
         projrec = app_tables.projects_master.get(order_no = r['so_number'])
-        print('Order No', r['so_number'] )
+        print('Order No', r['so_number'] ) 
         today = date.today()
         date_entered = (r['date_entered']).date()
         date_modified = (r['date_modified']).date()
         days_elapsed = abs(today - date_entered).days
         days_since_updated =  abs(today - date_modified).days
-    
+        
+        # print('Last percent change= ',last_percent_complete) 
         email = (r['users_email1'].lower())  # emails in CRM different with some capitalised first letter
     
         print('days elapsed=', days_elapsed)
         print('days since updated=', days_since_updated )
         if projrec:
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link= projrec, elapsed_days= days_elapsed)
+          projreclast = app_tables.projects_master.get(order_no = r['so_number'])   
+          order_value = projreclast['order_value']
           update_row = app_tables.projects_master.get(order_no =  r['so_number'])
           update_row['latest_percent_complete'] = r['workinprogresspercentcomplete_c']
+          update_row['percent_change']= r['workinprogresspercentcomplete_c'] - last_percent_complete
           update_row['elapsed_time'] = days_elapsed
           update_row['days_since_updated'] = days_since_updated
+          update_row['value_change'] = update_row['order_value'] * update_row['percent_change']/100
         else: # add new project master then burndown
           app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],
                                              order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'],                            
-                                             elapsed_time  = days_elapsed, user_email = email, days_since_updated= days_since_updated )
+                                             elapsed_time  = days_elapsed, user_email = email, days_since_updated= days_since_updated, percent_change=  r['workinprogresspercentcomplete_c'] )
           order_link =  app_tables.projects_master.get(order_no=r['so_number'])
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link,elapsed_days= days_elapsed)
  
@@ -240,7 +245,7 @@ def burndown():
 def show_progress(project):
       order_no = app_tables.projects_master.get(project_name=project)
       project_burndown = app_tables.burndown.search(order_no_link  = order_no)
-      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'user':r['order_no_link']['user'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date'],'elapsed_time':r['elapsed_days']} for r in project_burndown ]
+      dicts = [{'order_no': r['order_no'], 'order_date':r['order_no_link']['order_date'],'user':r['order_no_link']['user'],'percent_complete': r['percent_complete'], 'project_name':r['order_no_link']['project_name'], 'order_value':r['order_no_link']['order_value'], 'timeline_date':r['timeline_date'],'elapsed_time':r['elapsed_days', 'percent_change':r['percent_change']]} for r in project_burndown ]
       print(dicts)
       return dicts 
 
@@ -276,13 +281,13 @@ def show_progress_managers(user):
 @anvil.server.callable
 def show_changes():
 
-     burndown =  app_tables.burndown.search(tables.order_by('latest_percent_complete', ascending=False), days_since_updated =q.less_than_or_equal_to(7))
+     # burndown =  app_tables.burndown.search(tables.order_by('latest_percent_complete', ascending=False), days_since_updated =q.less_than_or_equal_to(7))
       order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), days_since_updated =q.less_than_or_equal_to(7))
       count_found = len(order_no)
       print('Count Found',count_found)
     
       if count_found != 0:
-            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], 'order_category': r['order_category']} for r in order_no]
+            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], 'order_category': r['order_category'],'percent_change': r['percent_change']} for r in order_no]
             print(dicts)
             # df = pd.DataFrame.from_dict(dicts)
             return dicts, count_found

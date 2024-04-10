@@ -61,6 +61,7 @@ components:
       $$hashKey: 'object:3436'}
     - {id: UTPPDM, data_key: elapsed_time, title: Elapsed Days, $$hashKey: 'object:3437'}
     - {id: GRXYXO, data_key: days_since_updated, title: Days since Updated, $$hashKey: 'object:3438'}
+    - {id: BTCPJK, data_key: percent_change, title: Percent Change}
     auto_header: true
     tooltip: ''
     border: ''
@@ -77,5 +78,5 @@ components:
   - name: repeating_panel_1
     properties: {item_template: Email_chart.RowTemplate16}
     type: RepeatingPanel
-  layout_properties: {grid_position: 'JIAHDR,UQKVZA', full_width_row: false}
+  layout_properties: {grid_position: 'JIAHDR,UQKVZA', full_width_row: true}
 is_package: true
