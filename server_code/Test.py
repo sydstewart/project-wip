@@ -250,17 +250,21 @@ def show_progress_managers(user):
       count_found = len(order_no)
       print('Count Found',count_found)
       print('user', user)
+
       if count_found != 0:
-            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated']} for r in order_no]
+            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], 'order_category': r['order_category']} for r in order_no]
             print(dicts)
             df = pd.DataFrame.from_dict(dicts)
             print('df',df)
-            line_plots = go.Scatter(x=df['elapsed_time'], y=df['latest_percent_complete'], name='Project Progress', marker=dict(color='#e50000', size=df['order_value']/3000 +4), mode="markers", text=df['project_name'] + "<br>Order Value: £" + df['order_value'].astype(str) )
-            return dicts, line_plots, count_found
+            color_map = {'Implementation':'yellow', 'Interface(s)':'blue', 'Questionnaire(s)':'orange','Configuration/Dev':'pink','Server Mover with Interfaces': 'brown','Server Mover with NO Interfaces':'green','Re-installation':'purple' }
+            cat_color = df['order_category'].map(color_map)
+            fig = px.scatter(df, x= 'elapsed_time', y='latest_percent_complete', color = 'order_category', size ='order_value', hover_name  = 'project_name', title = 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + user,)
+            fig.update_layout(showlegend=True)
+            return dicts, fig, count_found
       else:
           dicts =[]
           line_plots= []
-          return dicts, line_plots, count_found
+          return dicts, fig, count_found
 
 
 @anvil.server.callable

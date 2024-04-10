@@ -3,7 +3,7 @@ scheduled_tasks:
   time_spec:
     n: 1
     every: week
-    at: {day: 4, hour: 14, minute: 59}
+    at: {day: 4, hour: 8, minute: 30}
   job_id: SWXYQIMB
 dependencies:
 - app_id: C6ZZPAPN4YYF5NVJ

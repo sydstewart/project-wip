@@ -49,7 +49,7 @@ class manager_projects(manager_projectsTemplate):
     user = self.managers_dropdown.selected_value 
     user = user['email']
     print(user)
-    dicts, line_plots, count_found = anvil.server.call('show_progress_managers', user)
+    dicts, fig, count_found = anvil.server.call('show_progress_managers', user)
     if count_found > 0 :
         self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['latest_percent_complete'])
         layout = {
@@ -59,8 +59,8 @@ class manager_projects(manager_projectsTemplate):
         
           }
         # line_plots = anvil.server.call('individual_chart',self.project_drop_down.selected_value)
-        self.plot_1.layout = layout
-        self.plot_1.data = line_plots
+        self.plot_1.figure = fig
+        # self.plot_1.data = line_plots
         # # self.project_drop_down.items = projects
         self.repeating_panel_1.items = dicts
     else:
