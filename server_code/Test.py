@@ -237,7 +237,7 @@ def burndown():
         else: # add new project master then burndown
           app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],
                                              order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'],                            
-                                             elapsed_time  = days_elapsed, user_email = email, days_since_updated= days_since_updated, percent_change=  r['workinprogresspercentcomplete_c'] )
+                                             elapsed_time  = days_elapsed, user_email = email, days_since_updated= days_since_updated, percent_change=  r['workinprogresspercentcomplete_c'] , value_change= order_value*percent_change/100 )
           order_link =  app_tables.projects_master.get(order_no=r['so_number'])
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link,elapsed_days= days_elapsed)
  
@@ -252,7 +252,7 @@ def show_progress(project):
 @anvil.server.callable
 def show_progress_managers(user):
       print(user)
-      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), days_since_updated <= 7)
+      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user_email= user)
       count_found = len(order_no)
       print('Count Found',count_found)
       print('user', user)
@@ -276,7 +276,7 @@ def show_progress_managers(user):
             return dicts, fig, count_found
       else:
           dicts =[]
-          line_plots= []
+          fig = []
           return dicts, fig, count_found
 @anvil.server.callable
 def show_changes():
