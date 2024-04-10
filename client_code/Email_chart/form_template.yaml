@@ -11,6 +11,11 @@ components:
   type: Button
   layout_properties: {grid_position: 'YKIRLE,JBNJUJ'}
   event_bindings: {click: button_2_click}
+- name: changes_last_7_days_button
+  properties: {text: Changes in Last 7 Days}
+  type: Button
+  layout_properties: {grid_position: 'QDYPST,LNNUJY'}
+  event_bindings: {click: changes_last_7_days_button_click}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Project Histograms, font_size: null, font: '',

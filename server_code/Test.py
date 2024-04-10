@@ -176,8 +176,9 @@ def send_pdf_email():
     to="sydney.w.stewart@gmail.com,alistair@4s-dawn.com",
     subject="An auto-generated Project Flow Run Chart",
     text="Your auto-generated Project Flow Run Chart is attached to this email as a PDF.",
-    attachments=anvil.pdf.render_form('Email_chart')
+    attachments=anvil.pdf.render_form('run_chart')
   )
+
 
 # syd@4s-dawn.com, 4salistair@gmail.com,
 
@@ -246,7 +247,7 @@ def show_progress(project):
 @anvil.server.callable
 def show_progress_managers(user):
       print(user)
-      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user_email = user)
+      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), days_since_updated <= 7)
       count_found = len(order_no)
       print('Count Found',count_found)
       print('user', user)
@@ -272,7 +273,22 @@ def show_progress_managers(user):
           dicts =[]
           line_plots= []
           return dicts, fig, count_found
+@anvil.server.callable
+def show_changes():
 
+     burndown =  app_tables.burndown.search(tables.order_by('latest_percent_complete', ascending=False), days_since_updated =q.less_than_or_equal_to(7))
+      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), days_since_updated =q.less_than_or_equal_to(7))
+      count_found = len(order_no)
+      print('Count Found',count_found)
+    
+      if count_found != 0:
+            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], 'order_category': r['order_category']} for r in order_no]
+            print(dicts)
+            # df = pd.DataFrame.from_dict(dicts)
+            return dicts, count_found
+      else:
+          dicts =[]
+          return dicts, count_found
 
 @anvil.server.callable
 def project_list():

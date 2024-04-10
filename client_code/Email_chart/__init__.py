@@ -92,3 +92,8 @@ class Email_chart(Email_chartTemplate):
       open_form('histograms')
       pass
 
+    def changes_last_7_days_button_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      open_form('changes_projects')
+      pass
+
