@@ -251,8 +251,15 @@ def show_progress(project):
 
 @anvil.server.callable
 def show_progress_managers(user):
-      print(user)
-      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user_email= user)
+      print('past user',user)
+      
+     
+      if user and user != 'All':
+          order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user_email= user)
+          titledesc = 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + (user)
+      if user == 'All':
+          order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False))
+          titledesc = 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M')
       count_found = len(order_no)
       print('Count Found',count_found)
       print('user', user)
@@ -268,8 +275,8 @@ def show_progress_managers(user):
                              y='latest_percent_complete', 
                              color = 'order_category',  
                              size ='order_value', 
-                             hover_name  = 'project_name', 
-                             title = 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + user,
+                             hover_name  = 'project_name',
+                             title = titledesc
                             )
             fig.update_layout(showlegend=True)
             fig.update_layout(hoverlabel=dict(bgcolor="white", ))

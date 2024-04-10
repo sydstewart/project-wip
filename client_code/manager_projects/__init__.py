@@ -18,10 +18,17 @@ class manager_projects(manager_projectsTemplate):
     # print('managers', managers)
     # managers = managers.sort()
     # print('managers', managers)
-    
+    user = self.managers_dropdown.selected_value
+    if user:
+       user = user['email']
+    else:
+       user ='All'
     # self.managers_dropdown.items = managers #.sort() # [(str(row['user']), row) for row in app_tables.projects_master.search()]
     print('Syd')
-    
+    dicts, fig, count_found = anvil.server.call('show_progress_managers', user)
+    self.plot_1.figure = fig
+    if count_found > 0 :
+        self.repeating_panel_1.items =  sorted(dicts, key=lambda row: row['latest_percent_complete'])
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -47,7 +54,8 @@ class manager_projects(manager_projectsTemplate):
     self.percent_complete_sort_checkbox.checked = False
     self.days_since_updated_checkbox.checked = False
     user = self.managers_dropdown.selected_value 
-    user = user['email']
+    if user:
+      user = user['email']
     print(user)
     dicts, fig, count_found = anvil.server.call('show_progress_managers', user)
     if count_found > 0 :
@@ -56,8 +64,7 @@ class manager_projects(manager_projectsTemplate):
             'title': 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M') + ' for ' + user,
             'yaxis': {'title': 'Percentage complete', 'range' :[-5, 104]},
             'xaxis': {'x0': 0,'title': 'Days Elapsed'}, 
-        
-          }
+                  }
         # line_plots = anvil.server.call('individual_chart',self.project_drop_down.selected_value)
         self.plot_1.figure = fig
         # self.plot_1.data = line_plots
