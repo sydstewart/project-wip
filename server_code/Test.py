@@ -278,6 +278,8 @@ def show_progress_managers(user):
                              hover_name  = 'project_name',
                              title = titledesc
                             )
+
+            fig.add_shape(type="line",  x0=1, y0=0, x1=200, y1=100, line=dict(color="green",width=2) )
             fig.update_layout(showlegend=True)
             fig.update_layout(hoverlabel=dict(bgcolor="white", ))
             return dicts, fig, count_found
