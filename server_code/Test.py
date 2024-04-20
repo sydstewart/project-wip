@@ -16,7 +16,7 @@ import anvil.media
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
-
+import math
 from anvil.tables import app_tables
 
 from datetime import datetime, time , date , timedelta
@@ -100,7 +100,27 @@ def get_run_chart():
    df = pd.DataFrame.from_dict(dicts)
    print('df',df)
    line_plots = go.Scatter(x=df['Date_entered'], y=df['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000'))
-   
+   df['mean'] = df['delta_work'].mean()
+   Mean = df['delta_work'].mean()
+   print('Mean=', df['delta_work'].mean())
+   df['Range']= abs(df['delta_work'] - df['delta_work'].shift(1))
+   df['Range'].dropna()
+   print('Ranges', df['Range'])
+   df['rangemean']  = df['Range'].mean()
+   RangeMean =  df['Range'].mean() 
+   print('rangemean=', df['Range'].mean())
+   df['median'] = df['Range'].median()
+   RangeMedian= df['Range'].median()
+   print('median of Range=', RangeMedian)
+  
+  #== Calcuate UCLs ========================================================
+   UCLMedian = (RangeMedian  * 3.14) + Mean
+   print(' UCL using Range Median =', UCLMedian)
+   UCLMean = RangeMean *2.66 + Mean
+   print(' UCL using Range Mean =', UCLMean)
+   UCLcChart = (math.sqrt(Mean) * 3) + Mean
+   LCL = Mean - (RangeMedian  * 3.14) 
+   print(' LCL using Range Medeian =', LCL)
    return line_plots
   
 @anvil.server.callable
