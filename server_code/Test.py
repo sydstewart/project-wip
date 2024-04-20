@@ -100,6 +100,12 @@ def get_run_chart():
    df = pd.DataFrame.from_dict(dicts)
    print('df',df)
    line_plots = go.Scatter(x=df['Date_entered'], y=df['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000'))
+
+
+
+
+
+  
    df['mean'] = df['delta_work'].mean()
    Mean = df['delta_work'].mean()
    print('Mean=', df['delta_work'].mean())
