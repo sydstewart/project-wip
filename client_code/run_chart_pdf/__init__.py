@@ -1,4 +1,4 @@
-from ._anvil_designer import run_chartTemplate
+from ._anvil_designer import run_chart_pdfTemplate
 from anvil import *
 import plotly.graph_objects as go
 import anvil.server
@@ -8,7 +8,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime, time , date , timedelta
 
-class run_chart(run_chartTemplate):
+class run_chart_pdf(run_chart_pdfTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)

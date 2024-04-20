@@ -9,7 +9,7 @@ components:
 - name: button_2
   properties: {text: To Main Menu}
   type: Button
-  layout_properties: {grid_position: 'XQQNOX,XGXWMM'}
+  layout_properties: {grid_position: 'XQQNOX,XGXWMM', full_width_row: true}
   event_bindings: {click: button_2_click}
 - name: button_1
   properties: {text: Send Email}

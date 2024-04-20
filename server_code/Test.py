@@ -219,10 +219,10 @@ def create_zaphod_pdf():
 def send_pdf_email():
   anvil.email.send(
     from_name="Test Project Work Flow Run Chart", 
-    to="sydney.w.stewart@gmail.com", # ,alistair@4s-dawn.com",
+    to="sydney.w.stewart@gmail.com, alistair@4s-dawn.com",
     subject="An auto-generated Project Flow Run Chart",
     text="Your auto-generated Project Flow Run Chart is attached to this email as a PDF.",
-    attachments=anvil.PDFRenderer(page_size='A4'. landscape = True).render_form('run_chart')   #     pdf.render_form(page_size='A4')('run_chart')
+    attachments= PDFRenderer(page_size='A4', landscape = True, margins = 1).render_form('run_chart_pdf')   #     pdf.render_form(page_size='A4')('run_chart')
   
   )
 
