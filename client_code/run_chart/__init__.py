@@ -37,6 +37,8 @@ class run_chart(run_chartTemplate):
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
+    self.button_1.visible = False
+    self.button_2.visible = False
     anvil.server.call('send_pdf_email')
 
   def populate_Burndown_click(self, **event_args):
@@ -78,4 +80,9 @@ class run_chart(run_chartTemplate):
   def projects_by_manager_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     open_form('manager_projects')
+    pass
+
+  def button_2_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Email_chart')
     pass

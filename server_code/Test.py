@@ -18,6 +18,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import math
 from anvil.tables import app_tables
+from anvil.pdf import PDFRenderer
 
 from datetime import datetime, time , date , timedelta
 
@@ -99,13 +100,7 @@ def get_run_chart():
          for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
    print('df',df)
-   line_plots = go.Scatter(x=df['Date_entered'], y=df['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000'))
-
-
-
-
-
-  
+     
    df['mean'] = df['delta_work'].mean()
    Mean = df['delta_work'].mean()
    print('Mean=', df['delta_work'].mean())
@@ -127,6 +122,31 @@ def get_run_chart():
    UCLcChart = (math.sqrt(Mean) * 3) + Mean
    LCL = Mean - (RangeMedian  * 3.14) 
    print(' LCL using Range Medeian =', LCL)
+  
+   line_plots = [
+          
+           go.Scatter(x=df['Date_entered'], y=df['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000')),
+        
+           go.Scatter(x=df['Date_entered'], y=df['mean'],  name='Mean of Delta Work per week='  + str(round(Mean,1))),
+    
+          # go.Scatter(x=res['ym-date'], 
+          #           y=(res['rangemean'] * 2.66) + res['mean'], 
+          #           name='UCL based on range mean = ' + str(round(UCLMean,1))),
+    
+          go.Scatter(x= df['Date_entered'], 
+                    y=(df['median'] * 3.14) + df['mean'], 
+                    name='UCL based on range median  =' + str(round(UCLMedian,1)) ),
+          
+          # go.Scatter(x=res['ym-date'], 
+          #           y= ((res['sqmean'])) * 3 + res['mean'], 
+          #           name='UCL based on c-Chart  =' + str(round(UCLcChart,1)) )
+                    
+                    ]
+
+
+
+
+
    return line_plots
   
 @anvil.server.callable
@@ -199,10 +219,11 @@ def create_zaphod_pdf():
 def send_pdf_email():
   anvil.email.send(
     from_name="Test Project Work Flow Run Chart", 
-    to="sydney.w.stewart@gmail.com,alistair@4s-dawn.com",
+    to="sydney.w.stewart@gmail.com", # ,alistair@4s-dawn.com",
     subject="An auto-generated Project Flow Run Chart",
     text="Your auto-generated Project Flow Run Chart is attached to this email as a PDF.",
-    attachments=anvil.pdf.render_form('run_chart')
+    attachments=anvil.PDFRenderer(page_size='A4'. landscape = True).render_form('run_chart')   #     pdf.render_form(page_size='A4')('run_chart')
+  
   )
 
 
