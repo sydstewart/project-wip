@@ -316,7 +316,7 @@ def individual_chart(project):
       df = pd.DataFrame.from_dict(dicts)
       print('df',df)
       line_plots = go.Scatter(x=df['elapsed_days'], y=df['percent_complete'], name='Project Progress', marker=dict(color='#e50000'))
-   
+      
       return line_plots
 
 
