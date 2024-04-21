@@ -106,6 +106,9 @@ def get_run_chart():
    print('Mean=', df['delta_work'].mean())
    df['Range']= abs(df['delta_work'] - df['delta_work'].shift(1))
    df['Range'].dropna()
+   max_x = df['Range'].max()
+   print('max range=', max_x)
+   # df =  df.drop(df.loc[df['Range']==max_x].index, inplace=True)
    print('Ranges', df['Range'])
    df['rangemean']  = df['Range'].mean()
    RangeMean =  df['Range'].mean() 
@@ -122,7 +125,7 @@ def get_run_chart():
    UCLcChart = (math.sqrt(Mean) * 3) + Mean
    LCL = Mean - (RangeMedian  * 3.14) 
    print(' LCL using Range Medeian =', LCL)
-  
+   
    line_plots = [
           
            go.Scatter(x=df['Date_entered'], y=df['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000')),
