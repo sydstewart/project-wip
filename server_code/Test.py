@@ -411,3 +411,28 @@ def show_histograms_px():  #using plotly express
   # add an average line        
       fig.add_vline(x=average_elapsed, line_width=2, line_dash='dash', line_color='red', col=1,  annotation_text="Average Days in Progress= " + str(int(average_elapsed)), annotation_position="top right" )
       return project_count, fig, average_elapsed
+    
+@anvil.server.callable
+def timeline():
+  
+     
+     times = app_tables.time_analysis.search(tables.order_by('Date'))
+  
+     dicts = [{'Date': r['Date'], 'Action':r['Action'],'Percent_Complete': r['Percent_Completion']} for r in times]
+     df = pd.DataFrame.from_dict(dicts)
+     
+     fig = px.line(df, x="Date", y="Percent_Complete", text="Action" )
+     # for row = df.iloc[index_position]
+     # def set_text_position(rowno):
+     #     if (rowno % 2) == 0:
+     #         return 'top center'
+     #     else:
+     #         return 'bottom center'
+      
+     fig.update_traces(textposition='top center')
+
+     fig.update_layout(
+           height=1200,
+          title_text='Project Timeline)'
+             )
+     return fig

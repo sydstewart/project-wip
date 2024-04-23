@@ -198,6 +198,20 @@ db_schema:
     - name: project_board
       admin_ui: {width: 200}
       type: string
+  time_analysis:
+    client: none
+    server: full
+    columns:
+    - name: Date
+      admin_ui: {width: 200, order: 0}
+      type: date
+    - name: Action
+      admin_ui: {width: 200, order: 1}
+      type: string
+    - name: Percent_Completion
+      admin_ui: {width: 200, order: 2}
+      type: number
+    title: Time_Analysis
   projects:
     title: projects
     client: full

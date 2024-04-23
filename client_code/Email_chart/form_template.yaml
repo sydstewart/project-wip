@@ -39,6 +39,11 @@ components:
   type: Button
   layout_properties: {grid_position: 'MIHWAM,HGFVNI'}
   event_bindings: {click: populate_Burndown_click}
+- name: time_line
+  properties: {text: Trial TimeLine}
+  type: Button
+  layout_properties: {grid_position: 'ZTYJFB,AQICEH'}
+  event_bindings: {click: time_line_click}
 - name: button_1
   properties: {text: Send Email}
   type: Button
