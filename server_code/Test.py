@@ -431,9 +431,10 @@ def timeline():
              return 'top center'
          else:
              return 'bottom center'
-      
-     fig.update_traces(textposition=set_text_position(df['seq']))
-
+     if df['seq']/2 == 0: 
+           fig.update_traces(textposition='top center'))
+     else:
+       
      fig.update_layout(
            height=1200,
           title_text='Project Timeline)'
