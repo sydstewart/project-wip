@@ -417,9 +417,11 @@ def timeline():
   
      
      times = app_tables.time_analysis.search(tables.order_by('DateT'))
-     total_elapsed time = df['DateT'].max() - df['DateT'].min()]
+
      dicts = [{'DateT': r['DateT'], 'Action':r['Action'],'Percent_Complete': r['Percent_Completion']} for r in times]
      df = pd.DataFrame.from_dict(dicts)
+     total_elapsed_time = df['DateT'].max() - df['DateT'].min()
+     total_elapsed_time = total_elapsed_time.days
      df['seq'] = ""
      for i in range(0, len(df)):
           if i % 2 == 0: # uses mod function to test even and odd
@@ -459,4 +461,4 @@ def timeline():
            height=1200,
           title_text='Project Timeline)'
              )
-     return fig
+     return fig, total_elapsed_time 
