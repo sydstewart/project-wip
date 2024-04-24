@@ -1,6 +1,6 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{"HMJPJQ":60,"DITVUX":20}'}
+  properties: {col_widths: '{"HMJPJQ":60}'}
 components:
 - name: plot_1
   properties: {}
@@ -9,11 +9,19 @@ components:
 - name: label_1
   properties: {text: Total Elapsed Time}
   type: Label
-  layout_properties: {grid_position: 'YURIOR,BSUYIY'}
+  layout_properties: {grid_position: 'YURIOR,BSUYIY LETBYJ,JJMAUS'}
+- name: label_2
+  properties: {text: Value Add days}
+  type: Label
+  layout_properties: {grid_position: 'YURIOR,BSUYIY SIFVFQ,BYPDZA'}
 - name: total_elapsed_time
   properties: {type: number}
   type: TextBox
-  layout_properties: {grid_position: 'YURIOR,MBGMOI'}
+  layout_properties: {grid_position: 'YURIOR,MBGMOI RFNYOT,ASZEEA'}
+- name: value_add_days
+  properties: {type: number}
+  type: TextBox
+  layout_properties: {grid_position: 'YURIOR,MBGMOI PYZVYH,NHWTPG'}
 - name: button_2
   properties: {text: To Main Menu}
   type: Button

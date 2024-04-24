@@ -422,13 +422,24 @@ def timeline():
      df = pd.DataFrame.from_dict(dicts)
      total_elapsed_time = df['DateT'].max() - df['DateT'].min()
      total_elapsed_time = total_elapsed_time.days
+     df['diff'] = df['Percent_Complete'].diff()
+     df['daysdiff'] = df['DateT'].diff()
+     value_add_days = 0
      df['seq'] = ""
+     df['daysdiff'].dt.days
      for i in range(0, len(df)):
           if i % 2 == 0: # uses mod function to test even and odd
             df.loc[i, 'seq'] = 'top center'
           else:
             df.loc[i, 'seq'] = 'bottom center' 
-     print (df)
+          if df.loc[i, 'diff'] != 0:
+             print( df.loc[i, 'daysdiff'])
+             days = df.loc[i, 'daysdiff']
+              
+             value_add_days = value_add_days + days
+
+     print('value_add_days=', value_add_days)
+     print (df['diff'], df['daysdiff'])
      fig = px.line(df, x="DateT", y="Percent_Complete" )
 
      arrow_list=[]
@@ -461,4 +472,4 @@ def timeline():
            height=1200,
           title_text='Project Timeline)'
              )
-     return fig, total_elapsed_time 
+     return fig, total_elapsed_time , value_add_days

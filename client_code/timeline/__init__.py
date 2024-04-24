@@ -15,8 +15,9 @@ class timeline(timelineTemplate):
     self.init_components(**properties)
     print("Syd")
     # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
-    fig, elapsed_time = anvil.server.call("timeline")
+    fig, elapsed_time, value_add_days = anvil.server.call("timeline")
     self.total_elapsed_time.text = elapsed_time
+    self.value_add_days.text = value_add_days
     # projects = anvil.server.call('project_list')
     # self.project_drop_down.items = projects
     # Specify the layout
