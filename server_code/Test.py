@@ -420,16 +420,19 @@ def timeline():
   
      dicts = [{'Date': r['Date'], 'Action':r['Action'],'Percent_Complete': r['Percent_Completion']} for r in times]
      df = pd.DataFrame.from_dict(dicts)
-     
+     df['seq'] = ""
+     for i in range(0, len(df)):
+          df.loc[i, 'seq'] = i + 1
+     print (df)
      fig = px.line(df, x="Date", y="Percent_Complete", text="Action" )
      # for row = df.iloc[index_position]
-     # def set_text_position(rowno):
-     #     if (rowno % 2) == 0:
-     #         return 'top center'
-     #     else:
-     #         return 'bottom center'
+     def set_text_position(rowno):
+         if (rowno // 2) == 0:
+             return 'top center'
+         else:
+             return 'bottom center'
       
-     fig.update_traces(textposition='top center')
+     fig.update_traces(textposition=set_text_position(df['seq']))
 
      fig.update_layout(
            height=1200,
