@@ -422,18 +422,39 @@ def timeline():
      df = pd.DataFrame.from_dict(dicts)
      df['seq'] = ""
      for i in range(0, len(df)):
-          df.loc[i, 'seq'] = i + 1
+          if i % 2 == 0: # uses mod function to test even and odd
+            df.loc[i, 'seq'] = 'top center'
+          else:
+            df.loc[i, 'seq'] = 'bottom center' 
      print (df)
-     fig = px.line(df, x="Date", y="Percent_Complete", text="Action" )
-     # for row = df.iloc[index_position]
-     def set_text_position(rowno):
-         if (rowno // 2) == 0:
-             return 'top center'
-         else:
-             return 'bottom center'
-      
-     fig.update_traces(textposition=set_text_position(df['seq']))
+     fig = px.line(df, x="Date", y="Percent_Complete" )
 
+
+     # fig.update_traces(textposition=df['seq'], showarrow=True,
+     #        arrowhead=1)
+
+     # fig.add_annotation(x=df['Date'], y=df['Percent_Complete'],
+     #        text= df['Action'])
+     arrow_list=[]
+     counter=0
+     for i in df['Action'].tolist():
+      if counter % 2 == 0:
+          yg = 12
+      else:
+         yg = 1
+      if i != "":
+          arrow=dict(x=df['Date'].values[counter],y=df['Percent_Complete'].values[counter],xref="x",yref="y",text=i,arrowhead = 2,
+          arrowwidth=1.5,
+          yshift = yg,
+          # textposition=df['seq'],
+          arrowcolor='rgb(255,51,0)',)
+          arrow_list.append(arrow)
+          counter+=1
+      else:
+          counter+=1
+
+     fig.update_layout(annotations=arrow_list)
+                        
      fig.update_layout(
            height=1200,
           title_text='Project Timeline)'
