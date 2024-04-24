@@ -16,6 +16,7 @@ class timeline(timelineTemplate):
     print("Syd")
     # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
     fig = anvil.server.call("timeline")
+    
     # projects = anvil.server.call('project_list')
     # self.project_drop_down.items = projects
     # Specify the layout

@@ -211,6 +211,9 @@ db_schema:
     - name: Percent_Completion
       admin_ui: {width: 200, order: 2}
       type: number
+    - name: DateT
+      admin_ui: {width: 200, order: 3}
+      type: datetime
     title: Time_Analysis
   projects:
     title: projects

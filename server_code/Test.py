@@ -416,9 +416,9 @@ def show_histograms_px():  #using plotly express
 def timeline():
   
      
-     times = app_tables.time_analysis.search(tables.order_by('Date'))
-  
-     dicts = [{'Date': r['Date'], 'Action':r['Action'],'Percent_Complete': r['Percent_Completion']} for r in times]
+     times = app_tables.time_analysis.search(tables.order_by('DateT'))
+     total_elapsed time = df['DateT'].max() - df['DateT'].min()]
+     dicts = [{'DateT': r['DateT'], 'Action':r['Action'],'Percent_Complete': r['Percent_Completion']} for r in times]
      df = pd.DataFrame.from_dict(dicts)
      df['seq'] = ""
      for i in range(0, len(df)):
@@ -427,25 +427,25 @@ def timeline():
           else:
             df.loc[i, 'seq'] = 'bottom center' 
      print (df)
-     fig = px.line(df, x="Date", y="Percent_Complete" )
+     fig = px.line(df, x="DateT", y="Percent_Complete" )
 
-
-     # fig.update_traces(textposition=df['seq'], showarrow=True,
-     #        arrowhead=1)
-
-     # fig.add_annotation(x=df['Date'], y=df['Percent_Complete'],
-     #        text= df['Action'])
      arrow_list=[]
      counter=0
      for i in df['Action'].tolist():
       if counter % 2 == 0:
-          yg = 12
+          yg = 15
+          xg = 0
+          algn = 'right'
       else:
          yg = 1
+         xg = 0
+         algn = 'left'
       if i != "":
-          arrow=dict(x=df['Date'].values[counter],y=df['Percent_Complete'].values[counter],xref="x",yref="y",text=i,arrowhead = 2,
+          arrow=dict(x=df['DateT'].values[counter],y=df['Percent_Complete'].values[counter],xref="x",yref="y",text=i,arrowhead = 2,
           arrowwidth=1.5,
           yshift = yg,
+          xshift = xg, 
+          align = algn,
           # textposition=df['seq'],
           arrowcolor='rgb(255,51,0)',)
           arrow_list.append(arrow)
