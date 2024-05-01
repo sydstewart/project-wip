@@ -268,7 +268,7 @@ def burndown():
         date_modified = (r['date_modified']).date()
         days_elapsed = abs(today - date_entered).days
         days_since_updated =  abs(today - date_modified).days
-        
+        last_percent_complete = r['last_perce']
         # print('Last percent change= ',last_percent_complete) 
         email = (r['users_email1'].lower())  # emails in CRM different with some capitalised first letter
     
