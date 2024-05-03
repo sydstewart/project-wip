@@ -373,8 +373,8 @@ def burndownprojects():
                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
                   sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Work In Progress - 4S')"
                     )  
-  records = cur.fetchall()
+  # records = cur.fetchall()
   today = datetime.today()
   for r in cur.fetchall():
-     app_tables.burndown.add_row(order_no = r['so_number'],  timeline_date = today, percent_complete = r['workinprogresspercentcomplete_c'] , elapsed_days= today - r['date_entered'] )
-    
+     app_tables.burndown.add_row(order_no = r['so_number'],  timeline_date = today, percent_complete = r['workinprogresspercentcomplete_c'] )
+     print(r['so_number'],r['workinprogresspercentcomplete_c'])

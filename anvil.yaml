@@ -7,7 +7,7 @@ scheduled_tasks:
   job_id: SWXYQIMB
 - task_name: burndownprojects
   time_spec:
-    n: 5
+    n: 2
     every: minute
     at: {}
   job_id: MYYMNUZP
@@ -204,6 +204,23 @@ db_schema:
     - name: project_board
       admin_ui: {width: 200}
       type: string
+  time_analysis:
+    title: Time_Analysis
+    client: none
+    server: full
+    columns:
+    - name: Date
+      admin_ui: {width: 200}
+      type: date
+    - name: Action
+      admin_ui: {width: 200}
+      type: string
+    - name: Percent_Completion
+      admin_ui: {width: 200}
+      type: number
+    - name: DateT
+      admin_ui: {width: 200}
+      type: datetime
   projects:
     title: projects
     client: full
