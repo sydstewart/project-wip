@@ -1,0 +1,33 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:standard-page.html'}
+components:
+- type: ColumnPanel
+  properties: {}
+  name: content_panel
+  layout_properties: {slot: default}
+  components:
+  - name: Order_no_dropdown
+    properties: {}
+    type: DropDown
+    layout_properties: {grid_position: 'CHQAMY,WLWCHL'}
+    event_bindings: {change: Order_no_dropdown_change}
+  - name: data_grid_2
+    properties:
+      columns:
+      - {id: IANFLJ, data_key: order_no, title: order_no}
+      - {id: FIUYOJ, data_key: timeline_date, title: timeline_date}
+      - {id: MHGEFN, data_key: percent_complete, title: percent_complete}
+      - {id: ADHCQB, data_key: order_no_link.project_name, title: order_name}
+      - {id: YUMLIM, data_key: elapsed_days, title: elapsed_days}
+    type: DataGrid
+    components:
+    - name: repeating_panel_2
+      properties: {item_template: burndown_records.RowTemplate18}
+      type: RepeatingPanel
+    layout_properties: {grid_position: 'AQDZAR,NIZMAY'}
+- type: FlowPanel
+  properties: {}
+  name: navbar_links
+  layout_properties: {slot: nav-right}

@@ -39,6 +39,11 @@ components:
   type: Button
   layout_properties: {grid_position: 'MIHWAM,HGFVNI'}
   event_bindings: {click: populate_Burndown_click}
+- name: button_3
+  properties: {text: Burndown Records}
+  type: Button
+  layout_properties: {grid_position: 'HRQXUZ,EFQOFA'}
+  event_bindings: {click: button_3_click}
 - name: button_1
   properties: {text: Send Email}
   type: Button
