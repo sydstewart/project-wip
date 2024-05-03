@@ -224,6 +224,7 @@ def burndown():
     
         print('days elapsed=', days_elapsed)
         print('days since updated=', days_since_updated )
+        order_link =  app_tables.projects_master.get(order_no=r['so_number'])
         if projrec:
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link= projrec, elapsed_days= days_elapsed)
           projreclast = app_tables.projects_master.get(order_no = r['so_number'])   
@@ -233,12 +234,16 @@ def burndown():
           # update_row['percent_change']= r['workinprogresspercentcomplete_c'] - last_percent_complete
           update_row['elapsed_time'] = days_elapsed
           update_row['days_since_updated'] = days_since_updated
-          update_row['value_change'] = update_row['order_value'] * update_row['percent_change']/100
+          
+          if update_row['order_value'] and update_row['percent_change']:
+               update_row['value_change'] = update_row['order_value'] * update_row['percent_change']/100
+          else:
+              update_row['value_change']= 0
         else: # add new project master then burndown
           app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],
                                              order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'],                            
                                              elapsed_time  = days_elapsed, user_email = email, days_since_updated= days_since_updated, percent_change=  r['workinprogresspercentcomplete_c'] , value_change= order_value*percent_change/100 )
-          order_link =  app_tables.projects_master.get(order_no=r['so_number'])
+          # order_link =  app_tables.projects_master.get(order_no=r['so_number'])
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link,elapsed_days= days_elapsed)
  
 @anvil.server.callable
@@ -384,3 +389,36 @@ def burndownprojects():
      datediff = (today_d - f_date)
      app_tables.burndown.add_row(order_no = r['so_number'],  timeline_date = today, percent_complete = r['workinprogresspercentcomplete_c'], elapsed_days=datediff )
      print(r['so_number'],r['workinprogresspercentcomplete_c'], datediff)
+
+
+@anvil.server.callable
+def burndownproj():
+ 
+  conn = connect()
+#=============================================================================  
+  # Load Orders 
+  with conn.cursor() as cur:
+        cur.execute(
+              "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
+                CONCAT(sales_orders.prefix,sales_orders.so_number) As so_number, sales_orders.so_stage As so_stage, \
+                sales_orders.subtotal_usd AS Order_Value, \
+               sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
+               sales_orders_cstm.OrderCategory AS OrderCategory,\
+               sales_orders.so_number AS so_number\
+              From sales_orders\
+               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+              Where sales_orders.date_entered > '2015-09-30' AND \
+                  sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+                  sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Work In Progress - 4S')"
+                    )  
+  # records = cur.fetchall()
+  today = datetime.today()
+  for r in cur.fetchall():
+     year= r['date_entered'].year
+     month = r['date_entered'].month
+     day = r['date_entered'].day
+     f_date = date(year, month, day)
+     today_d = date(today.year, today.month, today.day)
+     datediff = (today_d - f_date).days
+     app_tables.burndown.add_row(order_no = r['so_number'],  timeline_date = today, percent_complete = r['workinprogresspercentcomplete_c'], elapsed_days=datediff )
+     print(r['so_number'],r['workinprogresspercentcomplete_c'])

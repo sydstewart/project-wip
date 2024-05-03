@@ -9,7 +9,7 @@ components:
   layout_properties: {slot: default}
   components:
   - name: Order_no_dropdown
-    properties: {}
+    properties: {include_placeholder: true, placeholder: Select Project}
     type: DropDown
     layout_properties: {grid_position: 'CHQAMY,WLWCHL'}
     event_bindings: {change: Order_no_dropdown_change}
@@ -19,7 +19,7 @@ components:
       - {id: IANFLJ, data_key: order_no, title: order_no}
       - {id: FIUYOJ, data_key: timeline_date, title: timeline_date}
       - {id: MHGEFN, data_key: percent_complete, title: percent_complete}
-      - {id: ADHCQB, data_key: order_no_link.project_name, title: order_name}
+      - {id: ADHCQB, data_key: '', title: order_name}
       - {id: YUMLIM, data_key: elapsed_days, title: elapsed_days}
     type: DataGrid
     components:
