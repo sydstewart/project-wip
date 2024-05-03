@@ -213,6 +213,9 @@ def burndown():
   for r in records:
         projrec = app_tables.projects_master.get(order_no = r['so_number'])
         print('Order No', r['so_number'] ) 
+        
+        projectname = projrec['project_name']
+        print('Project Name',projrec['project_name'])
         today = date.today()
         date_entered = (r['date_entered']).date()
         date_modified = (r['date_modified']).date()
@@ -225,8 +228,9 @@ def burndown():
         print('days elapsed=', days_elapsed)
         print('days since updated=', days_since_updated )
         order_link =  app_tables.projects_master.get(order_no=r['so_number'])
+        projectname = order_link['project_name']
         if projrec:
-          app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link= projrec, elapsed_days= days_elapsed)
+          app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], projectname = projectname, elapsed_days= days_elapsed)
           projreclast = app_tables.projects_master.get(order_no = r['so_number'])   
           order_value = projreclast['order_value']
           update_row = app_tables.projects_master.get(order_no =  r['so_number'])
@@ -244,7 +248,7 @@ def burndown():
                                              order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'],                            
                                              elapsed_time  = days_elapsed, user_email = email, days_since_updated= days_since_updated, percent_change=  r['workinprogresspercentcomplete_c'] , value_change= order_value*percent_change/100 )
           # order_link =  app_tables.projects_master.get(order_no=r['so_number'])
-          app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], order_no_link=order_link,elapsed_days= days_elapsed)
+          app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], projectname=projectname,elapsed_days= days_elapsed)
  
 @anvil.server.callable
 def show_progress(project):

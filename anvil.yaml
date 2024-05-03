@@ -189,6 +189,9 @@ db_schema:
     - name: elapsed_days
       admin_ui: {width: 200, order: 3.5}
       type: number
+    - name: projectname
+      admin_ui: {width: 200, order: 5}
+      type: string
     title: burndown
   work:
     title: work
