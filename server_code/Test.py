@@ -352,3 +352,29 @@ def show_histograms_px():  #using plotly express
   # add an average line        
       fig.add_vline(x=average_elapsed, line_width=2, line_dash='dash', line_color='red', col=1,  annotation_text="Average Days in Progress= " + str(int(average_elapsed)), annotation_position="top right" )
       return project_count, fig, average_elapsed
+
+@anvil.server.background_task
+def burndownprojects():
+  
+  conn = connect()
+#=============================================================================  
+  # Load Orders 
+  with conn.cursor() as cur:
+        cur.execute(
+              "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
+                CONCAT(sales_orders.prefix,sales_orders.so_number) As so_number, sales_orders.so_stage As so_stage, \
+                sales_orders.subtotal_usd AS Order_Value, \
+               sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
+               sales_orders_cstm.OrderCategory AS OrderCategory,\
+               sales_orders.so_number AS so_number\
+              From sales_orders\
+               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+              Where sales_orders.date_entered > '2015-09-30' AND \
+                  sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+                  sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Work In Progress - 4S')"
+                    )  
+  records = cur.fetchall()
+  today = datetime.today()
+  for r in cur.fetchall():
+     app_tables.burndown.add_row(order_no = r['so_number'],  timeline_date = today, percent_complete = r['workinprogresspercentcomplete_c'] , elapsed_days= today - r['date_entered'] )
+    
