@@ -7,9 +7,9 @@ scheduled_tasks:
   job_id: SWXYQIMB
 - task_name: burndownprojects
   time_spec:
-    n: 2
-    every: minute
-    at: {}
+    n: 1
+    every: week
+    at: {day: 6, hour: 15, minute: 0}
   job_id: MYYMNUZP
 dependencies:
 - app_id: C6ZZPAPN4YYF5NVJ

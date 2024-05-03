@@ -376,5 +376,11 @@ def burndownprojects():
   # records = cur.fetchall()
   today = datetime.today()
   for r in cur.fetchall():
-     app_tables.burndown.add_row(order_no = r['so_number'],  timeline_date = today, percent_complete = r['workinprogresspercentcomplete_c'] )
-     print(r['so_number'],r['workinprogresspercentcomplete_c'])
+     year= r['date_entered'].year
+     month = r['date_entered'].month
+     day = r['date_entered'].day
+     f_date = date(year, month, day)
+     today_d = date(today.year, today.month, today.day)
+     datediff = (today_d - f_date)
+     app_tables.burndown.add_row(order_no = r['so_number'],  timeline_date = today, percent_complete = r['workinprogresspercentcomplete_c'], elapsed_days=datediff )
+     print(r['so_number'],r['workinprogresspercentcomplete_c'], datediff)
