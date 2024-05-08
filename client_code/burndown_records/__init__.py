@@ -10,7 +10,7 @@ from anvil.tables import app_tables
 class burndown_records(burndown_recordsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
-   orders =list({(r['order_no']) for r in app_tables.burndown.search(tables.order_by('order_no',ascending = True))})
+   orders =list({(r['order_no']) for r in app_tables.burndown.search(tables.order_by('order_no',ascending = True), projectname )})
    self.Order_no_dropdown.items = orders 
    self.repeating_panel_2.items = app_tables.burndown.search(tables.order_by('timeline_date',ascending = False))
     # Any code you write here will run before the form opens.
