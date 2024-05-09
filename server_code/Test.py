@@ -333,7 +333,7 @@ def individual_chart(project):
 @anvil.server.callable
 def show_histograms():
   # get data for chart into a dataframe
-      order_no = app_tables.projects_master.search()
+      order_no = app_tables.projects_master.search(latest_percent_complete=q.less_than(100))
       dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'], 'elapsed_days':r['elapsed_time']} for r in order_no]
       df = pd.DataFrame.from_dict(dicts)
   # calculate number of projects and average running time
