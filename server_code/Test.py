@@ -213,14 +213,15 @@ def burndown():
   for r in records:
         projrec = app_tables.projects_master.get(order_no = r['so_number'])
         print('Order No', r['so_number'] ) 
-        
-        projectname = projrec['project_name']
-        print('Project Name',projrec['project_name'])
-        today = date.today()
-        date_entered = (r['date_entered']).date()
-        date_modified = (r['date_modified']).date()
-        days_elapsed = abs(today - date_entered).days
-        days_since_updated =  abs(today - date_modified).days
+        print('Name', r['name'])
+        if projrec['project_name']:  
+            projectname = projrec['project_name']
+            print('Project Name',projrec['project_name'])
+            today = date.today()
+            date_entered = (r['date_entered']).date()
+            date_modified = (r['date_modified']).date()
+            days_elapsed = abs(today - date_entered).days
+            days_since_updated =  abs(today - date_modified).days
         
         # print('Last percent change= ',last_percent_complete) 
         email = (r['users_email1'].lower())  # emails in CRM different with some capitalised first letter
