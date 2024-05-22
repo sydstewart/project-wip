@@ -181,8 +181,8 @@ def send_pdf_email():
 
 
 # syd@4s-dawn.com, 4salistair@gmail.com,
-
-@anvil.server.callable
+@anvil.server.background_task
+# @anvil.server.callable
 @anvil.tables.in_transaction
 def burndown():
   
@@ -214,14 +214,14 @@ def burndown():
         projrec = app_tables.projects_master.get(order_no = r['so_number'])
         print('Order No', r['so_number'] ) 
         print('Name', r['name'])
-        if projrec['project_name']:  
-            projectname = projrec['project_name']
-            print('Project Name',projrec['project_name'])
-            today = date.today()
-            date_entered = (r['date_entered']).date()
-            date_modified = (r['date_modified']).date()
-            days_elapsed = abs(today - date_entered).days
-            days_since_updated =  abs(today - date_modified).days
+         
+        projectname = r['name']
+        # print('Project Name',projrec['project_name'])
+        today = date.today()
+        date_entered = (r['date_entered']).date()
+        date_modified = (r['date_modified']).date()
+        days_elapsed = abs(today - date_entered).days
+        days_since_updated =  abs(today - date_modified).days
         
         # print('Last percent change= ',last_percent_complete) 
         email = (r['users_email1'].lower())  # emails in CRM different with some capitalised first letter
@@ -229,7 +229,7 @@ def burndown():
         print('days elapsed=', days_elapsed)
         print('days since updated=', days_since_updated )
         order_link =  app_tables.projects_master.get(order_no=r['so_number'])
-        projectname = order_link['project_name']
+        # projectname = order_link['project_name']
         if projrec:
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], projectname = projectname, elapsed_days= days_elapsed)
           projreclast = app_tables.projects_master.get(order_no = r['so_number'])   
