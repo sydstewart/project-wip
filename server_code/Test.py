@@ -62,7 +62,7 @@ def testprojects():
         cur1.execute(
           "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
             Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_WIP,\
-            Sum((sales_orders.subtotal_usd *  sales_orders_cstm.workinprogresspercentcomplete_c) / 100) As Total_WIP_VaLUE \
+            Sum((sales_orders.subtotal_usd *  Avg(sales_orders_cstm.workinprogresspercentcomplete_c) / 100) As Total_WIP_VaLUE \
           From sales_orders \
               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
               Where sales_orders.date_entered > '2015-09-30' AND \
@@ -151,15 +151,15 @@ def testprojects():
         Total_WIP_VaLUE = r['Total_WIP_VaLUE']
         Total_WIP_VaLUE = f"{Total_WIP_VaLUE :.2f}"
         Total_WIP_VaLUE = float(Total_WIP_VaLUE)
-  totals = cur1.fetchall()
-  today = datetime.today()
-  last_row = app_tables.completed_work.search(tables.order_by('Date_entered', ascending=False))[0]
-  last_reading = last_row['Order_Value_Completed']
-  print('last_reading=', last_reading)
-  delta = Total_WIP_VaLUE - float(last_reading)
-  app_tables.completed_work.add_row(Order_Value_Completed=Total_WIP_VaLUE,Date_entered = today,delta_work= delta)
-  totals = cur.fetchall()
-  return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
+  # totals = cur1.fetchall()
+  # today = datetime.today()
+  # last_row = app_tables.completed_work.search(tables.order_by('Date_entered', ascending=False))[0]
+  # last_reading = last_row['Order_Value_Completed']
+  # print('last_reading=', last_reading)
+  # delta = Total_WIP_VaLUE - float(last_reading)
+  # app_tables.completed_work.add_row(Order_Value_Completed=Total_WIP_VaLUE,Date_entered = today,delta_work= delta)
+  # totals = cur.fetchall()
+  # return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
 
 
 import anvil.pdf

@@ -16,8 +16,7 @@ components:
     properties:
       role: null
       columns:
-      - {id: KUTYFK, title: Order Value_Excl_VAT, data_key: Order_value_Excl_VAT,
-        $$hashKey: 'object:7442'}
+      - {id: KUTYFK, title: Order Value_Excl_VAT, data_key: Order_value_Excl_VAT, $$hashKey: 'object:7442'}
       - {id: KFELRV, title: Sales Order_No, data_key: Sales_Order_No, $$hashKey: 'object:7443'}
       - {id: RXXNRI, title: Date Entered, data_key: Date_entered, $$hashKey: 'object:7444'}
       auto_header: true
