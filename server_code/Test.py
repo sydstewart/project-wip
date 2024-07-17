@@ -127,13 +127,14 @@ def testprojects():
                     )  
   records = cur.fetchall()
   number_of_records =len(records)
+  print('No of projects',number_of_records)
 
 # calculate WIP
   with conn.cursor() as cur1:
         cur1.execute(
           "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
             Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_WIP,\
-            Sum((sales_orders.subtotal_usd *  sales_orders_cstm.workinprogresspercentcomplete_c) / 100) As Total_WIP_VaLUE \
+            Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100) As Total_WIP_VaLUE \
           From sales_orders \
               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
               Where sales_orders.date_entered > '2015-09-30' AND \

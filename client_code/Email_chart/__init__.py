@@ -102,3 +102,8 @@ class Email_chart(Email_chartTemplate):
       open_form('burndown_records')
       pass
 
+    def button_4_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      anvil.server.call('testprojects')
+      pass
+
