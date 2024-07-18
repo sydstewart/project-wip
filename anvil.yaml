@@ -2,8 +2,8 @@ scheduled_tasks:
 - task_name: testprojects
   time_spec:
     n: 1
-    every: week
-    at: {day: 4, hour: 8, minute: 30}
+    every: day
+    at: {hour: 11, minute: 36}
   job_id: SWXYQIMB
 - task_name: burndownprojects
   time_spec:
