@@ -173,26 +173,6 @@ db_schema:
       admin_ui: {order: 5, width: 200}
       type: number
     title: Table 7
-  table_13:
-    client: none
-    server: full
-    columns:
-    - name: Date_of_WIP
-      admin_ui: {width: 200, order: 0}
-      type: date
-    - name: Total_Order_Value
-      admin_ui: {width: 200, order: 1}
-      type: number
-    - name: Average_Percent_Work_Complete
-      admin_ui: {order: 2, width: 300}
-      type: number
-    - name: Total_Work_Completed
-      admin_ui: {width: 200, order: 3}
-      type: number
-    - name: Total_Work_To_Do_Value
-      admin_ui: {width: 200, order: 4}
-      type: number
-    title: Table 13
   time_analysis:
     title: Time_Analysis
     client: none
@@ -253,6 +233,26 @@ db_schema:
     - name: database_env
       admin_ui: {width: 200}
       type: string
+  daily_wip:
+    client: none
+    server: full
+    columns:
+    - name: Total_Order_Value
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: Average_Percent_Work_Complete
+      admin_ui: {order: 2, width: 300}
+      type: number
+    - name: Total_Work_Completed
+      admin_ui: {width: 200, order: 3}
+      type: number
+    - name: Total_Work_To_Do_Value
+      admin_ui: {width: 200, order: 4}
+      type: number
+    - name: Date_of_WIP
+      admin_ui: {order: 0, width: 200}
+      type: datetime
+    title: Daily_WIP
   users:
     title: Users
     client: none
