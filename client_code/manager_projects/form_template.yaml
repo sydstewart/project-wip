@@ -45,8 +45,7 @@ components:
   layout_properties: {grid_position: 'PDQWAK,RWMLRN XSJQXM,AMNMSF', full_width_row: true}
   event_bindings: {change: days_since_updated_checkbox_change}
 - name: plot_1
-  properties: {spacing_above: small, spacing_below: small, height: 450, visible: true,
-    tooltip: '', interactive: true}
+  properties: {spacing_above: small, spacing_below: small, height: 450, visible: true, tooltip: '', interactive: true}
   type: Plot
   layout_properties: {grid_position: 'TIJRZE,VGGZPF', full_width_row: false}
 - name: data_grid_1
@@ -56,14 +55,11 @@ components:
     - {id: JKSDUP, title: Order No., data_key: order_no, $$hashKey: 'object:260'}
     - {id: DEZDSM, title: Order Date, data_key: order_date, $$hashKey: 'object:325'}
     - {id: VJQQOR, title: Project Name, data_key: project_name, $$hashKey: 'object:261'}
-    - {id: OJLQEN, title: Order Value, data_key: '"{0:.2f}".format(self.item[''order_value''])',
-      $$hashKey: 'object:262'}
+    - {id: OJLQEN, title: Order Value, data_key: '"{0:.2f}".format(self.item[''order_value''])', $$hashKey: 'object:262'}
     - {id: ZSCOAN, data_key: order_category, title: Order Category}
     - {id: HXABAG, data_key: timeline_date, title: Time Line, $$hashKey: 'object:264'}
-    - {id: BKDQXH, data_key: latest_percent_complete, title: Latest Percent complete,
-      $$hashKey: 'object:263'}
-    - {id: BULXHK, data_key: user, title: Manager, width: 117.727294921875, expand: false,
-      $$hashKey: 'object:3436'}
+    - {id: BKDQXH, data_key: latest_percent_complete, title: Latest Percent complete, $$hashKey: 'object:263'}
+    - {id: BULXHK, data_key: user, title: Manager, width: 117.727294921875, expand: false, $$hashKey: 'object:3436'}
     - {id: UTPPDM, data_key: elapsed_time, title: Elapsed Days, $$hashKey: 'object:3437'}
     - {id: GRXYXO, data_key: days_since_updated, title: Days since Updated, $$hashKey: 'object:3438'}
     auto_header: true

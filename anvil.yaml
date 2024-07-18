@@ -2,8 +2,8 @@ scheduled_tasks:
 - task_name: testprojects
   time_spec:
     n: 1
-    every: week
-    at: {day: 4, hour: 8, minute: 30}
+    every: day
+    at: {hour: 15, minute: 35}
   job_id: SWXYQIMB
 - task_name: burndownprojects
   time_spec:
@@ -22,9 +22,7 @@ services:
   client_config: {enable_v2: false}
   server_config: {auto_create_missing_columns: false}
 - source: /runtime/services/anvil/users.yml
-  client_config: {mfa_timeout_days: 0, require_secure_passwords: true, share_login_status: true,
-    use_email: true, allow_remember_me: true, allow_signup: false, enable_automatically: true,
-    confirm_email: true, require_mfa: true, remember_me_days: 30}
+  client_config: {mfa_timeout_days: 0, require_secure_passwords: true, share_login_status: true, use_email: true, allow_remember_me: true, allow_signup: false, enable_automatically: true, confirm_email: true, require_mfa: true, remember_me_days: 30}
   server_config: {user_table: users}
 - source: /runtime/services/anvil/email.yml
   client_config: {}
@@ -37,193 +35,6 @@ runtime_options: {version: 2, client_version: '3', server_version: python3-full,
 metadata: {title: Project WIP, logo_img: 'asset:4S logo small.png'}
 startup_form: null
 db_schema:
-  database_env:
-    title: database_env
-    client: full
-    server: full
-    columns:
-    - name: database_env
-      admin_ui: {width: 200}
-      type: string
-  stage_translate:
-    title: stage_translate
-    client: full
-    server: full
-    columns:
-    - name: project_column
-      admin_ui: {width: 200}
-      type: string
-    - name: new_column
-      admin_ui: {width: 200}
-      type: string
-  last_date_refreshed:
-    title: last_date_refreshed
-    client: full
-    server: full
-    columns:
-    - name: last_date_refreshed
-      admin_ui: {width: 200}
-      type: string
-    - name: date_id
-      admin_ui: {width: 200}
-      type: number
-  projects_stages:
-    title: projects_stages
-    client: full
-    server: full
-    columns:
-    - name: project_board
-      admin_ui: {width: 200}
-      type: string
-    - name: project_column
-      admin_ui: {width: 200}
-      type: string
-    - name: count
-      admin_ui: {width: 200}
-      type: number
-    - name: new_project_column
-      admin_ui: {width: 200}
-      type: link_single
-      target: stage_translate
-    - name: no_of_days_work
-      admin_ui: {width: 200}
-      type: number
-    - name: new_stage
-      admin_ui: {order: 5, width: 200}
-      type: string
-  completed_work:
-    client: none
-    server: full
-    columns:
-    - name: Order_Value_Completed
-      admin_ui: {order: 3, width: 200}
-      type: number
-    - name: Date_entered
-      admin_ui: {width: 200, order: 4}
-      type: datetime
-    - name: delta_work
-      admin_ui: {width: 200, order: 5}
-      type: number
-    title: Completed_work
-  table_7:
-    client: none
-    server: full
-    columns:
-    - name: month_start
-      admin_ui: {order: 0, width: 200}
-      type: date
-    - name: project_type
-      admin_ui: {order: 1, width: 200}
-      type: string
-    - name: enquiry
-      admin_ui: {order: 2, width: 200}
-      type: number
-    - name: planned
-      admin_ui: {order: 3, width: 200}
-      type: number
-    - name: order_approved
-      admin_ui: {order: 4, width: 200}
-      type: number
-    - name: active
-      admin_ui: {order: 5, width: 200}
-      type: number
-    title: Table 7
-  users:
-    title: Users
-    client: none
-    server: full
-    columns:
-    - name: email
-      admin_ui: {width: 200}
-      type: string
-    - name: firstname
-      admin_ui: {width: 200}
-      type: string
-    - name: user_type
-      admin_ui: {width: 200}
-      type: string
-    - name: enabled
-      admin_ui: {width: 100}
-      type: bool
-    - name: last_login
-      admin_ui: {width: 200}
-      type: datetime
-    - name: password_hash
-      admin_ui: {width: 200}
-      type: string
-    - name: confirmed_email
-      admin_ui: {width: 200}
-      type: bool
-    - name: n_password_failures
-      admin_ui: {width: 200}
-      type: number
-    - name: mfa
-      admin_ui: {width: 200}
-      type: simpleObject
-    - name: remembered_logins
-      admin_ui: {width: 611}
-      type: simpleObject
-    - name: signed_up
-      admin_ui: {width: 200}
-      type: datetime
-    - name: email_confirmation_key
-      admin_ui: {width: 200}
-      type: string
-  burndown:
-    client: full
-    server: full
-    columns:
-    - name: order_no
-      admin_ui: {order: 0, width: 200}
-      type: string
-    - name: percent_complete
-      admin_ui: {order: 1.5, width: 200}
-      type: number
-    - name: timeline_date
-      admin_ui: {order: 1.3125, width: 200}
-      type: datetime
-    - name: order_no_link
-      admin_ui: {width: 200, order: 2.5}
-      type: link_single
-      target: projects_master
-    - name: elapsed_days
-      admin_ui: {width: 200, order: 3.5}
-      type: number
-    - name: projectname
-      admin_ui: {width: 200, order: 5}
-      type: string
-    title: burndown
-  work:
-    title: work
-    client: none
-    server: full
-    columns:
-    - name: new_project_column
-      admin_ui: {width: 200}
-      type: string
-    - name: No_of_days_work
-      admin_ui: {width: 200}
-      type: number
-    - name: project_board
-      admin_ui: {width: 200}
-      type: string
-  time_analysis:
-    title: Time_Analysis
-    client: none
-    server: full
-    columns:
-    - name: Date
-      admin_ui: {width: 200}
-      type: date
-    - name: Action
-      admin_ui: {width: 200}
-      type: string
-    - name: Percent_Completion
-      admin_ui: {width: 200}
-      type: number
-    - name: DateT
-      admin_ui: {width: 200}
-      type: datetime
   projects:
     title: projects
     client: full
@@ -287,6 +98,213 @@ db_schema:
       admin_ui: {width: 200, order: 10}
       type: number
     title: Projects_master
+  completed_work:
+    client: none
+    server: full
+    columns:
+    - name: Order_Value_Completed
+      admin_ui: {order: 3, width: 200}
+      type: number
+    - name: Date_entered
+      admin_ui: {width: 200, order: 4}
+      type: datetime
+    - name: delta_work
+      admin_ui: {width: 200, order: 5}
+      type: number
+    title: Completed_work
+  burndown:
+    client: full
+    server: full
+    columns:
+    - name: order_no
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: percent_complete
+      admin_ui: {order: 1.5, width: 200}
+      type: number
+    - name: timeline_date
+      admin_ui: {order: 1.3125, width: 200}
+      type: datetime
+    - name: order_no_link
+      admin_ui: {width: 200, order: 2.5}
+      type: link_single
+      target: projects_master
+    - name: elapsed_days
+      admin_ui: {width: 200, order: 3.5}
+      type: number
+    - name: projectname
+      admin_ui: {width: 200, order: 5}
+      type: string
+    title: burndown
+  work:
+    title: work
+    client: none
+    server: full
+    columns:
+    - name: new_project_column
+      admin_ui: {width: 200}
+      type: string
+    - name: No_of_days_work
+      admin_ui: {width: 200}
+      type: number
+    - name: project_board
+      admin_ui: {width: 200}
+      type: string
+  table_7:
+    client: none
+    server: full
+    columns:
+    - name: month_start
+      admin_ui: {order: 0, width: 200}
+      type: date
+    - name: project_type
+      admin_ui: {order: 1, width: 200}
+      type: string
+    - name: enquiry
+      admin_ui: {order: 2, width: 200}
+      type: number
+    - name: planned
+      admin_ui: {order: 3, width: 200}
+      type: number
+    - name: order_approved
+      admin_ui: {order: 4, width: 200}
+      type: number
+    - name: active
+      admin_ui: {order: 5, width: 200}
+      type: number
+    title: Table 7
+  time_analysis:
+    title: Time_Analysis
+    client: none
+    server: full
+    columns:
+    - name: Date
+      admin_ui: {width: 200}
+      type: date
+    - name: Action
+      admin_ui: {width: 200}
+      type: string
+    - name: Percent_Completion
+      admin_ui: {width: 200}
+      type: number
+    - name: DateT
+      admin_ui: {width: 200}
+      type: datetime
+  projects_stages:
+    title: projects_stages
+    client: full
+    server: full
+    columns:
+    - name: project_board
+      admin_ui: {width: 200}
+      type: string
+    - name: project_column
+      admin_ui: {width: 200}
+      type: string
+    - name: count
+      admin_ui: {width: 200}
+      type: number
+    - name: new_project_column
+      admin_ui: {width: 200}
+      type: link_single
+      target: stage_translate
+    - name: no_of_days_work
+      admin_ui: {width: 200}
+      type: number
+    - name: new_stage
+      admin_ui: {order: 5, width: 200}
+      type: string
+  last_date_refreshed:
+    title: last_date_refreshed
+    client: full
+    server: full
+    columns:
+    - name: last_date_refreshed
+      admin_ui: {width: 200}
+      type: string
+    - name: date_id
+      admin_ui: {width: 200}
+      type: number
+  database_env:
+    title: database_env
+    client: full
+    server: full
+    columns:
+    - name: database_env
+      admin_ui: {width: 200}
+      type: string
+  daily_wip:
+    client: none
+    server: full
+    columns:
+    - name: Total_Order_Value
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: Average_Percent_Work_Complete
+      admin_ui: {order: 2, width: 300}
+      type: number
+    - name: Total_Work_Completed
+      admin_ui: {width: 200, order: 3}
+      type: number
+    - name: Total_Work_To_Do_Value
+      admin_ui: {width: 200, order: 4}
+      type: number
+    - name: Date_of_WIP
+      admin_ui: {order: 0, width: 200}
+      type: datetime
+    title: Daily_WIP
+  users:
+    title: Users
+    client: none
+    server: full
+    columns:
+    - name: email
+      admin_ui: {width: 200}
+      type: string
+    - name: firstname
+      admin_ui: {width: 200}
+      type: string
+    - name: user_type
+      admin_ui: {width: 200}
+      type: string
+    - name: enabled
+      admin_ui: {width: 100}
+      type: bool
+    - name: last_login
+      admin_ui: {width: 200}
+      type: datetime
+    - name: password_hash
+      admin_ui: {width: 200}
+      type: string
+    - name: confirmed_email
+      admin_ui: {width: 200}
+      type: bool
+    - name: n_password_failures
+      admin_ui: {width: 200}
+      type: number
+    - name: mfa
+      admin_ui: {width: 200}
+      type: simpleObject
+    - name: remembered_logins
+      admin_ui: {width: 611}
+      type: simpleObject
+    - name: signed_up
+      admin_ui: {width: 200}
+      type: datetime
+    - name: email_confirmation_key
+      admin_ui: {width: 200}
+      type: string
+  stage_translate:
+    title: stage_translate
+    client: full
+    server: full
+    columns:
+    - name: project_column
+      admin_ui: {width: 200}
+      type: string
+    - name: new_column
+      admin_ui: {width: 200}
+      type: string
 secrets:
   Teamwork Pass:
     value: {? '' : FmcCGvX7vJFW+652Pltsoof66B6i/ul2udoU3/LwRh4UO4IRxuq/2AydKWYQ5YA2zmHLnIACFkrODQuwYfr9OHkPu5Omd+241BwG+Z6ySbDT2vDttHhMkZfd434+qxmtMApTC8jE8lOFNA==}

@@ -36,6 +36,7 @@ def connect():
   
 @anvil.server.background_task
 def testprojects():
+  # ++++++++++++++++++++++++++++++++++++++
   
   conn = connect()
 #=============================================================================  
@@ -47,48 +48,117 @@ def testprojects():
                 sales_orders.subtotal_usd AS Order_Value, \
                sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
                sales_orders_cstm.OrderCategory AS OrderCategory,\
-               sales_orders.so_number AS so_number\
+               sales_orders.so_number AS so_number,\
+               users.user_name AS user_name\
               From sales_orders\
                INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
-              Where sales_orders.date_entered > '2015-09-30' AND \
+               LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
+              Where sales_orders.date_entered > '2020-01-01' AND \
                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
-                  sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Work In Progress - 4S')"
+                  sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Complete')"
                     )  
   records = cur.fetchall()
   number_of_records =len(records)
+  print('No of projects',number_of_records)
 
 # calculate WIP
   with conn.cursor() as cur1:
         cur1.execute(
           "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
-            Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_WIP,\
-            Sum((sales_orders.subtotal_usd *  sales_orders_cstm.workinprogresspercentcomplete_c) / 100) As Total_WIP_VaLUE \
+            Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
+            Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100)) As Total_Completed_VaLUE \
           From sales_orders \
               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
-              Where sales_orders.date_entered > '2015-09-30' AND \
+              Where sales_orders.date_entered > '2020-01-01' AND \
                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
-                  sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Work In Progress - 4S')"
+                  sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Complete')"
         )
+
   for r in cur1.fetchall():
+
         Total_Order_Value =r['Total_Order_Value']
-        Total_Order_Value = f"{Total_Order_Value  :.2f}"
-        print('Total_Order_Value=',r['Total_Order_Value'])
-        Average_WIP = (r['Average_WIP'])
-        Average_WIP  = f"{Average_WIP :.2f}"
-        print('Average_WIP=',Average_WIP )
-        print('Total_WIP_VaLUE',r['Total_WIP_VaLUE'])
-        Total_WIP_VaLUE = r['Total_WIP_VaLUE']
-        Total_WIP_VaLUE = f"{Total_WIP_VaLUE :.2f}"
-        Total_WIP_VaLUE = float(Total_WIP_VaLUE)
-  totals = cur1.fetchall()
+        Total_Order_Value = float(Total_Order_Value)
+        # Total_Order_Value = f"{Total_Order_Value  :.2f}"
+        print('Total_Order_Value=',Total_Order_Value)
+    
+        Average_Percent_Work_Complete = (r['Average_Percent_Work_Complete'])
+        # Average_Percent_Work_Complete  = f"{Average_Percent_Work_Complete :.2f}"
+        print('Average_Percent_Work_Complete=',Average_Percent_Work_Complete )
+    
+        Total_Work_Completed_VaLUE = r['Total_Completed_VaLUE']
+        Total_Work_Completed_VaLUE = float(Total_Work_Completed_VaLUE)
+        # Total_Work_Completed_VaLUE = f"{Total_Work_Completed_VaLUE :.2f}"
+        print('Total_Work_Completed_VaLUE',Total_Work_Completed_VaLUE)
+
+        Total_Work_Left = float(Total_Order_Value) - float(Total_Work_Completed_VaLUE)
+        print('Total_Work_Left_VaLUE',Total_Work_Left)
+
+
+  # totals = cur1.fetchall()
   today = datetime.today()
-  last_row = app_tables.completed_work.search(tables.order_by('Date_entered', ascending=False))[0]
-  last_reading = last_row['Order_Value_Completed']
-  print('last_reading=', last_reading)
-  delta = Total_WIP_VaLUE - float(last_reading)
-  app_tables.completed_work.add_row(Order_Value_Completed=Total_WIP_VaLUE,Date_entered = today,delta_work= delta)
-  totals = cur.fetchall()
-  return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
+  # last_row = app_tables.completed_work.search(tables.order_by('Date_entered', ascending=False))[0]
+  # last_reading = last_row['Order_Value_Completed']
+  # print('last_reading=', last_reading)
+  # delta = Total_WIP_VaLUE - float(last_reading)
+  app_tables.daily_wip.add_row(Date_of_WIP = (today),  Total_Order_Value = round(float(Total_Order_Value),2) , Average_Percent_Work_Complete = int(Average_Percent_Work_Complete), Total_Work_Completed = int(Total_Work_Completed_VaLUE), Total_Work_To_Do_Value = int(Total_Work_Left))
+  # totals = cur.fetchall()
+  # return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
+
+
+
+#++++++++++++++++++++++++++++++++++++++++++
+#   conn = connect()
+# #=============================================================================  
+#   # Load Orders 
+#   with conn.cursor() as cur:
+#         cur.execute(
+#               "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
+#                 CONCAT(sales_orders.prefix,sales_orders.so_number) As so_number, sales_orders.so_stage As so_stage, \
+#                 sales_orders.subtotal_usd AS Order_Value, \
+#                sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
+#                sales_orders_cstm.OrderCategory AS OrderCategory,\
+#                sales_orders.so_number AS so_number\
+#               From sales_orders\
+#                INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+#               Where sales_orders.date_entered > '2015-09-30' AND \
+#                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+#                   sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Work In Progress - 4S')"
+#                     )  
+#   records = cur.fetchall()
+#   number_of_records =len(records)
+
+# # calculate WIP
+#   with conn.cursor() as cur1:
+#         cur1.execute(
+#           "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
+#             Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_WIP,\
+#             Sum((sales_orders.subtotal_usd *  Avg(sales_orders_cstm.workinprogresspercentcomplete_c) / 100) As Total_WIP_VaLUE \
+#           From sales_orders \
+#               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+#               Where sales_orders.date_entered > '2015-09-30' AND \
+#                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+#                   sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Work In Progress - 4S')"
+#         )
+#   for r in cur1.fetchall():
+#         Total_Order_Value =r['Total_Order_Value']
+#         Total_Order_Value = f"{Total_Order_Value  :.2f}"
+#         print('Total_Order_Value=',r['Total_Order_Value'])
+#         Average_WIP = (r['Average_WIP'])
+#         Average_WIP  = f"{Average_WIP :.2f}"
+#         print('Average_WIP=',Average_WIP )
+#         print('Total_WIP_VaLUE',r['Total_WIP_VaLUE'])
+#         Total_WIP_VaLUE = r['Total_WIP_VaLUE']
+#         Total_WIP_VaLUE = f"{Total_WIP_VaLUE :.2f}"
+#         Total_WIP_VaLUE = float(Total_WIP_VaLUE)
+#   totals = cur1.fetchall()
+#   today = datetime.today()
+#   last_row = app_tables.completed_work.search(tables.order_by('Date_entered', ascending=False))[0]
+#   last_reading = last_row['Order_Value_Completed']
+#   print('last_reading=', last_reading)
+#   delta = Total_WIP_VaLUE - float(last_reading)
+#   app_tables.completed_work.add_row(Order_Value_Completed=Total_WIP_VaLUE,Date_entered = today,delta_work= delta)
+#   totals = cur.fetchall()
+#   return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
 
 
 @anvil.server.callable
@@ -121,45 +191,56 @@ def testprojects():
               From sales_orders\
                INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
-              Where sales_orders.date_entered > '2015-09-30' AND \
+              Where sales_orders.date_entered > '2020-01-01' AND \
                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
-                  sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Work In Progress - 4S')"
+                  sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Complete')"
                     )  
   records = cur.fetchall()
   number_of_records =len(records)
+  print('No of projects',number_of_records)
 
 # calculate WIP
   with conn.cursor() as cur1:
         cur1.execute(
           "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
-            Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_WIP,\
-            Sum((sales_orders.subtotal_usd *  sales_orders_cstm.workinprogresspercentcomplete_c) / 100) As Total_WIP_VaLUE \
+            Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
+            Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100)) As Total_Completed_VaLUE \
           From sales_orders \
               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
-              Where sales_orders.date_entered > '2015-09-30' AND \
+              Where sales_orders.date_entered > '2020-01-01' AND \
                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
-                  sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Work In Progress - 4S')"
+                  sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Complete')"
         )
+
   for r in cur1.fetchall():
+
         Total_Order_Value =r['Total_Order_Value']
-        Total_Order_Value = f"{Total_Order_Value  :.2f}"
-        print('Total_Order_Value=',r['Total_Order_Value'])
-        Average_WIP = (r['Average_WIP'])
-        Average_WIP  = f"{Average_WIP :.2f}"
-        print('Average_WIP=',Average_WIP )
-        print('Total_WIP_VaLUE',r['Total_WIP_VaLUE'])
-        Total_WIP_VaLUE = r['Total_WIP_VaLUE']
-        Total_WIP_VaLUE = f"{Total_WIP_VaLUE :.2f}"
-        Total_WIP_VaLUE = float(Total_WIP_VaLUE)
-  totals = cur1.fetchall()
+        Total_Order_Value = float(Total_Order_Value)
+        # Total_Order_Value = f"{Total_Order_Value  :.2f}"
+        print('Total_Order_Value=',Total_Order_Value)
+    
+        Average_Percent_Work_Complete = (r['Average_Percent_Work_Complete'])
+        # Average_Percent_Work_Complete  = f"{Average_Percent_Work_Complete :.2f}"
+        print('Average_Percent_Work_Complete=',Average_Percent_Work_Complete )
+    
+        Total_Work_Completed_VaLUE = r['Total_Completed_VaLUE']
+        Total_Work_Completed_VaLUE = float(Total_Work_Completed_VaLUE)
+        # Total_Work_Completed_VaLUE = f"{Total_Work_Completed_VaLUE :.2f}"
+        print('Total_Work_Completed_VaLUE',Total_Work_Completed_VaLUE)
+
+        Total_Work_Left = float(Total_Order_Value) - float(Total_Work_Completed_VaLUE)
+        print('Total_Work_Left_VaLUE',Total_Work_Left)
+
+
+  # totals = cur1.fetchall()
   today = datetime.today()
-  last_row = app_tables.completed_work.search(tables.order_by('Date_entered', ascending=False))[0]
-  last_reading = last_row['Order_Value_Completed']
-  print('last_reading=', last_reading)
-  delta = Total_WIP_VaLUE - float(last_reading)
-  app_tables.completed_work.add_row(Order_Value_Completed=Total_WIP_VaLUE,Date_entered = today,delta_work= delta)
-  totals = cur.fetchall()
-  return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
+  # last_row = app_tables.completed_work.search(tables.order_by('Date_entered', ascending=False))[0]
+  # last_reading = last_row['Order_Value_Completed']
+  # print('last_reading=', last_reading)
+  # delta = Total_WIP_VaLUE - float(last_reading)
+  app_tables.daily_wip.add_row(Date_of_WIP = (today),  Total_Order_Value = round(float(Total_Order_Value),2) , Average_Percent_Work_Complete = int(Average_Percent_Work_Complete), Total_Work_Completed = int(Total_Work_Completed_VaLUE), Total_Work_To_Do_Value = int(Total_Work_Left))
+  # totals = cur.fetchall()
+  # return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
 
 
 import anvil.pdf
@@ -181,8 +262,8 @@ def send_pdf_email():
 
 
 # syd@4s-dawn.com, 4salistair@gmail.com,
-
-@anvil.server.callable
+@anvil.server.background_task
+# @anvil.server.callable
 @anvil.tables.in_transaction
 def burndown():
   
@@ -213,9 +294,10 @@ def burndown():
   for r in records:
         projrec = app_tables.projects_master.get(order_no = r['so_number'])
         print('Order No', r['so_number'] ) 
-        
-        projectname = projrec['project_name']
-        print('Project Name',projrec['project_name'])
+        print('Name', r['name'])
+         
+        projectname = r['name']
+        # print('Project Name',projrec['project_name'])
         today = date.today()
         date_entered = (r['date_entered']).date()
         date_modified = (r['date_modified']).date()
@@ -228,7 +310,7 @@ def burndown():
         print('days elapsed=', days_elapsed)
         print('days since updated=', days_since_updated )
         order_link =  app_tables.projects_master.get(order_no=r['so_number'])
-        projectname = order_link['project_name']
+        # projectname = order_link['project_name']
         if projrec:
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], projectname = projectname, elapsed_days= days_elapsed)
           projreclast = app_tables.projects_master.get(order_no = r['so_number'])   
@@ -333,7 +415,7 @@ def individual_chart(project):
 @anvil.server.callable
 def show_histograms():
   # get data for chart into a dataframe
-      order_no = app_tables.projects_master.search()
+      order_no = app_tables.projects_master.search(latest_percent_complete=q.less_than(100))
       dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'], 'elapsed_days':r['elapsed_time']} for r in order_no]
       df = pd.DataFrame.from_dict(dicts)
   # calculate number of projects and average running time

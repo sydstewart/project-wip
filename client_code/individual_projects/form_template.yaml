@@ -22,14 +22,10 @@ components:
     - {id: JKSDUP, title: Order No., data_key: order_no, $$hashKey: 'object:260'}
     - {id: DEZDSM, title: Order Date, data_key: order_date, $$hashKey: 'object:325'}
     - {id: VJQQOR, title: Project Name, data_key: project_name, $$hashKey: 'object:261'}
-    - {id: OJLQEN, title: Order Value, data_key: order_value, $$hashKey: 'object:262',
-      width: 99, expand: false}
-    - {id: HXABAG, data_key: timeline_date, title: Time Line, $$hashKey: 'object:264',
-      width: 109.18182373046875, expand: false}
-    - {id: BKDQXH, data_key: percent_complete, title: Percent complete, $$hashKey: 'object:263',
-      width: 122.3636474609375, expand: false}
-    - {id: MSFRUV, data_key: elapsed_time, title: Elapsed Days, width: 100.3636474609375,
-      expand: false}
+    - {id: OJLQEN, title: Order Value, data_key: order_value, $$hashKey: 'object:262', width: 99, expand: false}
+    - {id: HXABAG, data_key: timeline_date, title: Time Line, $$hashKey: 'object:264', width: 109.18182373046875, expand: false}
+    - {id: BKDQXH, data_key: percent_complete, title: Percent complete, $$hashKey: 'object:263', width: 122.3636474609375, expand: false}
+    - {id: MSFRUV, data_key: elapsed_time, title: Elapsed Days, width: 100.3636474609375, expand: false}
     - {id: BULXHK, data_key: user, title: Manager, width: 100, expand: false}
     auto_header: true
     tooltip: ''
