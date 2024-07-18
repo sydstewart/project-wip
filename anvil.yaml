@@ -3,7 +3,7 @@ scheduled_tasks:
   time_spec:
     n: 1
     every: day
-    at: {hour: 15, minute: 35}
+    at: {hour: 16, minute: 15}
   job_id: SWXYQIMB
 - task_name: burndownprojects
   time_spec:
