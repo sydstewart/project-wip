@@ -101,6 +101,74 @@ def testprojects():
   # print('last_reading=', last_reading)
   # delta = Total_WIP_VaLUE - float(last_reading)
   app_tables.daily_wip.add_row(Date_of_WIP = (today),  Total_Order_Value = round(float(Total_Order_Value),2) , Average_Percent_Work_Complete = int(Average_Percent_Work_Complete), Total_Work_Completed = int(Total_Work_Completed_VaLUE), Total_Work_To_Do_Value = int(Total_Work_Left))
+
+  conn = connect()
+#=============================================================================  
+  # Load Orders 
+  with conn.cursor() as cur:
+        cur.execute(
+              "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
+                CONCAT(sales_orders.prefix,sales_orders.so_number) As so_number, sales_orders.so_stage As so_stage, \
+                sales_orders.subtotal_usd AS Order_Value, \
+               sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
+               sales_orders_cstm.OrderCategory AS OrderCategory,\
+               sales_orders.so_number AS so_number,\
+               users.user_name AS user_name\
+              From sales_orders\
+               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+               LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
+              Where sales_orders.date_entered > '2020-01-01' AND \
+                  sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+                  sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Complete')"
+                    )  
+  records = cur.fetchall()
+  number_of_records =len(records)
+  print('No of projects',number_of_records)
+
+# calculate WIP
+  with conn.cursor() as cur1:
+        cur1.execute(
+          "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
+            Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
+            Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100)) As Total_Completed_VaLUE \
+          From sales_orders \
+              INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+              Where sales_orders.date_entered > '2020-01-01' AND \
+                  sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+                  sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Complete')"
+        )
+
+  for r in cur1.fetchall():
+
+        Total_Order_Value =r['Total_Order_Value']
+        Total_Order_Value = float(Total_Order_Value)
+        # Total_Order_Value = f"{Total_Order_Value  :.2f}"
+        print('Total_Order_Value=',Total_Order_Value)
+    
+        Average_Percent_Work_Complete = (r['Average_Percent_Work_Complete'])
+        # Average_Percent_Work_Complete  = f"{Average_Percent_Work_Complete :.2f}"
+        print('Average_Percent_Work_Complete=',Average_Percent_Work_Complete )
+    
+        Total_Work_Completed_VaLUE = r['Total_Completed_VaLUE']
+        Total_Work_Completed_VaLUE = float(Total_Work_Completed_VaLUE)
+        # Total_Work_Completed_VaLUE = f"{Total_Work_Completed_VaLUE :.2f}"
+        print('Total_Work_Completed_VaLUE',Total_Work_Completed_VaLUE)
+
+        Total_Work_Left = float(Total_Order_Value) - float(Total_Work_Completed_VaLUE)
+        print('Total_Work_Left_VaLUE',Total_Work_Left)
+
+
+  # totals = cur1.fetchall()
+  today = datetime.today()
+  # last_row = app_tables.completed_work.search(tables.order_by('Date_entered', ascending=False))[0]
+  # last_reading = last_row['Order_Value_Completed']
+  # print('last_reading=', last_reading)
+  # delta = Total_WIP_VaLUE - float(last_reading)
+  app_tables.daily_wip.add_row(Date_of_WIP = (today),  Total_Order_Value = round(float(Total_Order_Value),2) , Average_Percent_Work_Complete = int(Average_Percent_Work_Complete), Total_Work_Completed = int(Total_Work_Completed_VaLUE), Total_Work_To_Do_Value = int(Total_Work_Left))
+  # totals = cur.fetchall()
+  # return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
+
+
   # totals = cur.fetchall()
   # return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
 
