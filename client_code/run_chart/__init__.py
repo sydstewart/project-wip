@@ -21,6 +21,11 @@ class run_chart(run_chartTemplate):
     layout = {
       'title': 'Run Chart of Project Work Flow Rate created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
       'yaxis': {'title': '£ Value'},
+      'yaxis_range':[0,1500000],
+       'autosize' : False, 
+       'width': 700, 
+       'height': 2400,
+       'showlegend': True
       # 'xaxis': {
       #   'tickmode': 'array',
       #   'tickvals': list(range(27)),
@@ -29,7 +34,7 @@ class run_chart(run_chartTemplate):
     }
 
     # # Make the multi-bar plot
-    self.plot_1.data = line_plots
+    self.plot_1.figure = line_plots
     self.plot_1.layout = layout
 
 

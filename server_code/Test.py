@@ -243,14 +243,16 @@ def get_run_chart():
 
 @anvil.server.callable
 def wip_run_chart():
-   import plotly.graph_objects as go
+   # import plotly.graph_objects as go
+   import plotly.express as px 
    chart_data = app_tables.daily_wip.search(Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17)))
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
    print('df',df)
-   line_plots = go.Scatter(x=df['Date_entered'], y=df['Total Order Value'], name='Total Order Value', marker=dict(color='#e50000'))
-   
-   return line_plots
+   fig = px.line(df, x= 'Date_entered', y='Total Order Value', markers=True)
+   # line_plots = go.Scatter(x=df['Date_entered'], y=df['Total Order Value'], name='Total Order Value', marker=dict(color='#e50000'))
+   fig.add_scatter(x=df['Date_entered'], y=df['Total Work To Do Value'], mode='markers+lines')
+   return fig
 @anvil.server.callable
 def testprojects():
   
