@@ -15,6 +15,7 @@ class Form6(Form6Template):
     self.init_components(**properties)
     print('Syd')
     # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
+    
     line_plots = anvil.server.call('wip_run_chart')
     # projects = anvil.server.call('project_list')
     # self.project_drop_down.items = projects
