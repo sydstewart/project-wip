@@ -6,6 +6,11 @@ components:
   properties: {}
   type: TextBox
   layout_properties: {grid_position: 'EQIOLP,QKLDNQ'}
+- name: button_5
+  properties: {text: Total Orders and Work Still to be Done Values Chart}
+  type: Button
+  layout_properties: {grid_position: 'JAISJP,UJWFIU'}
+  event_bindings: {click: button_5_click}
 - name: button_2
   properties: {text: Run Chart}
   type: Button
@@ -51,9 +56,4 @@ components:
   type: Button
   layout_properties: {grid_position: 'CABFLA,KMWZTI'}
   event_bindings: {click: button_4_click}
-- name: button_5
-  properties: {text: button_5}
-  type: Button
-  layout_properties: {grid_position: 'HXRJTW,BTSFJN'}
-  event_bindings: {click: button_5_click}
 is_package: true
