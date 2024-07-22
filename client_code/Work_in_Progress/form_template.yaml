@@ -9,7 +9,7 @@ components:
   layout_properties: {slot: default}
   components:
   - name: plot_1
-    properties: {}
+    properties: {height: 631}
     type: Plot
     layout_properties: {grid_position: 'SDIMQO,KPSZJS', full_width_row: true}
 - type: FlowPanel
