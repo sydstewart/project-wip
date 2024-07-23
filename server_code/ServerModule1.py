@@ -173,3 +173,8 @@ def store_data(file , tablename):
       # We use Python's **kwargs syntax to pass the whole dict as
       # keyword arguments
       getattr(app_tables, tablename).add_row(**d)
+
+@anvil.server.callable
+def get_Daily_WIP():
+   dataWIP = app_tables.daily_wip.search(tables.order_by("Date_of_WIP", ascending=False))
+   return dataWIP

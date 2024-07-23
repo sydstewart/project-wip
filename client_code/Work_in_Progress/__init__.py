@@ -38,4 +38,6 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     # # Make the multi-bar plot
     self.plot_1.figure = line_plots
     self.plot_1.layout = layout
+    dataWIP = anvil.server.call('get_Daily_WIP')
+    self.repeating_panel_1.items = dataWIP 
 

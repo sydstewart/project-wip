@@ -12,6 +12,24 @@ components:
     properties: {height: 631}
     type: Plot
     layout_properties: {grid_position: 'SDIMQO,KPSZJS', full_width_row: true}
+  - name: label_1
+    properties: {text: Table of Daily Work in Progress, bold: true, align: center}
+    type: Label
+    layout_properties: {grid_position: 'YBSHQX,IFEHTO'}
+  - name: data_grid_1
+    properties:
+      columns:
+      - {id: TTYPTS, data_key: Date_of_WIP, title: Date_of_WIP}
+      - {id: RJTHRV, data_key: Total_Order_Value, title: Total_Order_Value}
+      - {id: TADKNT, data_key: Average_Percent_Work_Complete, title: Average_Percent_Work_Complete}
+      - {id: RWCKUD, data_key: Total_Work_Completed, title: Total_Work_Completed}
+      - {id: ZFRRWP, data_key: Total_Work_To_Do_Value, title: Total_Work_To_Do_Value}
+    type: DataGrid
+    components:
+    - name: repeating_panel_1
+      properties: {item_template: Work_in_Progress.RowTemplate19}
+      type: RepeatingPanel
+    layout_properties: {grid_position: 'EBALEN,NVMTKC', full_width_row: true}
 - type: FlowPanel
   properties: {}
   name: navbar_links
