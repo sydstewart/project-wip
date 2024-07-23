@@ -5,12 +5,6 @@ scheduled_tasks:
     every: day
     at: {hour: 7, minute: 0}
   job_id: SWXYQIMB
-- task_name: burndownprojects
-  time_spec:
-    n: 1
-    every: week
-    at: {day: 4, hour: 9, minute: 0}
-  job_id: MYYMNUZP
 dependencies:
 - app_id: C6ZZPAPN4YYF5NVJ
   version: {dev: true}
