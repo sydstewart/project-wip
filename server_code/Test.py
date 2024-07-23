@@ -255,7 +255,8 @@ def wip_run_chart():
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
    print('df',df)
-
+ 
+ 
    fig = go.Figure([
     go.Scatter(
         name='Total Order Value',
