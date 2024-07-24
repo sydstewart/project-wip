@@ -71,6 +71,7 @@ def testprojects():
                   "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
                     Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
                     Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100)) As Total_Completed_VaLUE \
+                    Count(`sales_orders`.`id) As 'No_of_projects' \
                   From sales_orders \
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                       Where sales_orders.date_entered > '2020-01-01' AND \
@@ -96,6 +97,8 @@ def testprojects():
         
                 Total_Work_Left = float(Total_Order_Value) - float(Total_Work_Completed_VaLUE)
                 print('Total_Work_Left_VaLUE',Total_Work_Left)
+
+                
         
         
           # totals = cur1.fetchall()
@@ -104,7 +107,8 @@ def testprojects():
           # last_reading = last_row['Order_Value_Completed']
           # print('last_reading=', last_reading)
           # delta = Total_WIP_VaLUE - float(last_reading)
-          app_tables.daily_wip.add_row(Date_of_WIP = (today),  Total_Order_Value = round(float(Total_Order_Value),2) , Average_Percent_Work_Complete = int(Average_Percent_Work_Complete), Total_Work_Completed = int(Total_Work_Completed_VaLUE), Total_Work_To_Do_Value = int(Total_Work_Left))
+          app_tables.daily_wip.add_row(Date_of_WIP = (today),  Total_Order_Value = round(float(Total_Order_Value),2) , Average_Percent_Work_Complete = int(Average_Percent_Work_Complete), Total_Work_Completed = int(Total_Work_Completed_VaLUE), Total_Work_To_Do_Value = int(Total_Work_Left), No_of_projects = number_of_records)
+          print('Produced from background')
   else:
           print('Not a week day - no update of Daily WIP table', datetime.today().weekday())
     
@@ -349,7 +353,7 @@ def testprojects():
   app_tables.daily_wip.add_row(Date_of_WIP = (today),  Total_Order_Value = round(float(Total_Order_Value),2) , Average_Percent_Work_Complete = int(Average_Percent_Work_Complete), Total_Work_Completed = int(Total_Work_Completed_VaLUE), Total_Work_To_Do_Value = int(Total_Work_Left))
   # totals = cur.fetchall()
   # return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
-
+  print('Produced from Stand alone version')
 
 import anvil.pdf
 
