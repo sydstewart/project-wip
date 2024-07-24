@@ -24,6 +24,7 @@ components:
       - {id: TADKNT, data_key: Average_Percent_Work_Complete, title: Average_Percent_Work_Complete}
       - {id: RWCKUD, data_key: Total_Work_Completed, title: Total_Work_Completed}
       - {id: ZFRRWP, data_key: Total_Work_To_Do_Value, title: Total_Work_To_Do_Value}
+      - {id: HKGGGB, data_key: No_of_projects, title: No_of_projects}
     type: DataGrid
     components:
     - name: repeating_panel_1
