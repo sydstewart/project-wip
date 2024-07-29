@@ -429,6 +429,7 @@ def burndown():
           projreclast = app_tables.projects_master.get(order_no = r['so_number'])   
           # order_value = projreclast['order_value']
           update_row = app_tables.projects_master.get(order_no =  r['so_number'])
+          print(r['so_number'], 'has', r['workinprogresspercentcomplete_c'], ' percent complete')
           if r['workinprogresspercentcomplete_c']:
                update_row['latest_percent_complete'] = r['workinprogresspercentcomplete_c']
           # update_row['percent_change']= r['workinprogresspercentcomplete_c'] - last_percent_complete
