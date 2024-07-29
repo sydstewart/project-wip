@@ -397,11 +397,13 @@ def burndown():
                LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
               Where sales_orders.date_entered > '2015-09-30' AND \
                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
-                  sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Work In Progress - 4S')"
+                  sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled')"
                     )  
   records = cur2.fetchall()
   number_of_records =len(records)
   print('Number of timeline records loaded = ',number_of_records)
+  max_date = app_tables.projects_master.search(tables.order_by("date_entered", ascending=False))[0]['date_entered']
+  print('Max_Date', max_date)
   for r in records:
         projrec = app_tables.projects_master.get(order_no = r['so_number'])
         print('Order No', r['so_number'] ) 
@@ -422,7 +424,7 @@ def burndown():
         print('days since updated=', days_since_updated )
         order_link =  app_tables.projects_master.get(order_no=r['so_number'])
         # projectname = order_link['project_name']
-        if projrec:
+        if date_entered <= max_date:
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], projectname = projectname, elapsed_days= days_elapsed)
           projreclast = app_tables.projects_master.get(order_no = r['so_number'])   
           order_value = projreclast['order_value']
