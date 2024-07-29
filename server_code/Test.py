@@ -402,7 +402,7 @@ def burndown():
   records = cur2.fetchall()
   number_of_records =len(records)
   print('Number of timeline records loaded = ',number_of_records)
-  max_date = app_tables.projects_master.search(tables.order_by("date_entered", ascending=False))[0]['date_entered']
+  max_date = app_tables.projects_master.search(tables.order_by("order_date", ascending=False))[0]['order_date']
   print('Max_Date', max_date)
   for r in records:
         projrec = app_tables.projects_master.get(order_no = r['so_number'])
@@ -424,12 +424,13 @@ def burndown():
         print('days since updated=', days_since_updated )
         order_link =  app_tables.projects_master.get(order_no=r['so_number'])
         # projectname = order_link['project_name']
-        if date_entered <= max_date:
+        if date_entered <= max_date.date():
           app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], projectname = projectname, elapsed_days= days_elapsed)
           projreclast = app_tables.projects_master.get(order_no = r['so_number'])   
-          order_value = projreclast['order_value']
+          # order_value = projreclast['order_value']
           update_row = app_tables.projects_master.get(order_no =  r['so_number'])
-          update_row['latest_percent_complete'] = r['workinprogresspercentcomplete_c']
+          if r['workinprogresspercentcomplete_c']:
+               update_row['latest_percent_complete'] = r['workinprogresspercentcomplete_c']
           # update_row['percent_change']= r['workinprogresspercentcomplete_c'] - last_percent_complete
           update_row['elapsed_time'] = days_elapsed
           update_row['days_since_updated'] = days_since_updated
