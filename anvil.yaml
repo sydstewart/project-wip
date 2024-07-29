@@ -9,7 +9,7 @@ scheduled_tasks:
   time_spec:
     n: 1
     every: day
-    at: {hour: 8, minute: 38}
+    at: {hour: 8, minute: 0}
   job_id: GBSBDIJP
 dependencies:
 - app_id: C6ZZPAPN4YYF5NVJ
