@@ -15,11 +15,9 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     self.init_components(**properties)
     print('Syd')
     # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
-    
+#=============================================================================    
     line_plots = anvil.server.call('wip_run_chart')
-    # projects = anvil.server.call('project_list')
-    # self.project_drop_down.items = projects
-    # Specify the layout
+ 
     layout = {
       'title': 'Total Order Value and Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
       'yaxis': {'title': '£ Value'},
@@ -38,6 +36,34 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     # # Make the multi-bar plot
     self.plot_1.figure = line_plots
     self.plot_1.layout = layout
+#============================================================================
+    line_plots_1 = anvil.server.call('work_to_do_chart')
+    layout_1 = {
+      'title': 'Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
+      'yaxis': {'title': '£ Value'},
+      'yaxis_range':[0,600,000],
+       'autosize' : False, 
+       'width': 700, 
+       'height': 2400,
+       'showlegend': True
+     }
+    self.plot_2.figure = line_plots_1
+    self.plot_2.layout = layout_1
+#===================================================================    
+    line_plots_2 = anvil.server.call('orders_chart')
+    layout_2 = {
+      'title': 'Open Orders Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
+      'yaxis': {'title': '£ Value'},
+      # 'yaxis_range':[0,600,000],
+       'autosize' : False, 
+       'width': 700, 
+       'height': 2400,
+       'showlegend': True
+     }
+    self.plot_3.figure = line_plots_2
+    self.plot_3.layout = layout_2
+#=======================================================================
+    
     dataWIP = anvil.server.call('get_Daily_WIP')
     self.repeating_panel_1.items = dataWIP 
 

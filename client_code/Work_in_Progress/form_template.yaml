@@ -12,6 +12,14 @@ components:
     properties: {height: 631}
     type: Plot
     layout_properties: {grid_position: 'SDIMQO,KPSZJS', full_width_row: true}
+  - name: plot_3
+    properties: {height: 571.1818237304688}
+    type: Plot
+    layout_properties: {grid_position: 'SDIMQO,GRLMHB'}
+  - name: plot_2
+    properties: {height: 629.3636474609375}
+    type: Plot
+    layout_properties: {grid_position: 'SDIMQO,WYXABK'}
   - name: label_1
     properties: {text: Table of Daily Work in Progress, bold: true, align: center}
     type: Label
