@@ -424,8 +424,8 @@ def send_pdf_email():
 
 
 # syd@4s-dawn.com, 4salistair@gmail.com,
-@anvil.server.background_task
-# @anvil.server.callable
+# @anvil.server.background_task
+@anvil.server.callable
 @anvil.tables.in_transaction
 def burndown():
   
@@ -457,50 +457,60 @@ def burndown():
   print('Max_Date', max_date)
   for r in records:
         projrec = app_tables.projects_master.get(order_no = r['so_number'])
-        print('Order No', r['so_number'] ) 
-        print('Name', r['name'])
-         
-        projectname = r['name']
-        percent_completed = projrec['workinprogresspercentcomplete_c']
-        # print('Project Name',projrec['project_name'])
-        today = date.today()
-        date_entered = (r['date_entered']).date()
-        date_modified = (r['date_modified']).date()
-        days_elapsed = abs(today - date_entered).days
-        days_since_updated =  abs(today - date_modified).days
+        if projrec:
+              print('Order No', r['so_number'] ) 
+              print('Name', r['name'])
+              
+              projectname = r['name']
+              # if projrec['latest_percent_complete'] >=0:
+              percent_completed = projrec['latest_percent_complete']
+              # print('Project Name',projrec['project_name'])
+              today = date.today()
+              date_entered = (r['date_entered']).date()
+              date_modified = (r['date_modified']).date()
+              days_elapsed = abs(today - date_entered).days
+              days_since_updated =  abs(today - date_modified).days
+              
+              # print('Last percent change= ',last_percent_complete) 
+              email = (r['users_email1'].lower())  # emails in CRM different with some capitalised first letter
+          
+              print('days elapsed=', days_elapsed)
+              print('days since updated=', days_since_updated )
+              order_link =  app_tables.projects_master.get(order_no=r['so_number'])
+              # projectname = order_link['project_name']
+              percent_completed = 0
         
-        # print('Last percent change= ',last_percent_complete) 
-        email = (r['users_email1'].lower())  # emails in CRM different with some capitalised first letter
+             
+              # app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], projectname = projectname, elapsed_days= days_elapsed)
+              # projreclast = app_tables.projects_master.get(order_no = r['so_number'])  
+              # order_value = projreclast['order_value']
+              update_row = app_tables.projects_master.get(order_no =  r['so_number'])
+              
+              print(r['so_number'], 'has', r['workinprogresspercentcomplete_c'], ' percent complete')
+            
+              update_row['latest_percent_complete'] = percent_completed
+              update_row['percent_change']= r['workinprogresspercentcomplete_c'] - percent_completed
+              update_row['elapsed_time'] = days_elapsed
+              update_row['days_since_updated'] = days_since_updated
+              
+              if update_row['order_value'] and update_row['percent_change']:
+                  update_row['value_change'] = update_row['order_value'] * update_row['percent_change']/100
+              else:
+                  update_row['value_change']= 0
+        else:
+            # add new project master then burndown
+            percent_change = 0
+            if r['Order_Value']:
+              order_value = r['Order_Value']
+            else:
+              order_value = 0
+              
+            app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = order_value,order_date = r['date_entered'],
+                                                order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'],                            
+                                                elapsed_time  = days_elapsed, user_email = email, days_since_updated= days_since_updated, percent_change=  r['workinprogresspercentcomplete_c'] , value_change= order_value*percent_change/100 )
+              # order_link =  app_tables.projects_master.get(order_no=r['so_number'])
+              # app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], projectname=projectname,elapsed_days= days_elapsed)
     
-        print('days elapsed=', days_elapsed)
-        print('days since updated=', days_since_updated )
-        order_link =  app_tables.projects_master.get(order_no=r['so_number'])
-        # projectname = order_link['project_name']
-        percent_completed = 0
-        if date_entered <= max_date.date():
-          # app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], projectname = projectname, elapsed_days= days_elapsed)
-          # projreclast = app_tables.projects_master.get(order_no = r['so_number'])  
-          # order_value = projreclast['order_value']
-          update_row = app_tables.projects_master.get(order_no =  r['so_number'])
-          
-          print(r['so_number'], 'has', r['workinprogresspercentcomplete_c'], ' percent complete')
-         
-          update_row['latest_percent_complete'] = percent_completed
-          # update_row['percent_change']= r['workinprogresspercentcomplete_c'] - last_percent_complete
-          update_row['elapsed_time'] = days_elapsed
-          update_row['days_since_updated'] = days_since_updated
-          
-          if update_row['order_value'] and update_row['percent_change']:
-               update_row['value_change'] = update_row['order_value'] * update_row['percent_change']/100
-          else:
-              update_row['value_change']= 0
-        else: # add new project master then burndown
-          app_tables.projects_master.add_row(order_no = r['so_number'],project_name =r['name'], order_value = r['Order_Value'],order_date = r['date_entered'],
-                                             order_category = r['OrderCategory'], user = r['first_name'], latest_percent_complete =r['workinprogresspercentcomplete_c'],                            
-                                             elapsed_time  = days_elapsed, user_email = email, days_since_updated= days_since_updated, percent_change=  r['workinprogresspercentcomplete_c'] , value_change= order_value*percent_change/100 )
-          # order_link =  app_tables.projects_master.get(order_no=r['so_number'])
-          # app_tables.burndown.add_row(order_no = r['so_number'],timeline_date = datetime.today(), percent_complete =r['workinprogresspercentcomplete_c'], projectname=projectname,elapsed_days= days_elapsed)
- 
 @anvil.server.callable
 def show_progress(project):
       order_no = app_tables.projects_master.get(project_name=project)
