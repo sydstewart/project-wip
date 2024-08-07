@@ -112,3 +112,7 @@ class Email_chart(Email_chartTemplate):
       open_form('Work_in_Progress')
       pass
 
+    def button_6_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      open_form('Form6')
+

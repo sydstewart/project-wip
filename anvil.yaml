@@ -99,7 +99,7 @@ db_schema:
       type: number
     title: Projects_master
   completed_work:
-    client: none
+    client: full
     server: full
     columns:
     - name: Order_Value_Completed
