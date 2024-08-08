@@ -17,7 +17,8 @@ class all_projects(all_projectsTemplate):
     self.percent_complete_sort_checkbox.checked = False
     self.managers_dropdown.items = anvil.server.call("managers_list")
     dicts, fig, count_found = anvil.server.call('show_all_projects')
-    self.plot
+    self.plot_1.figure=fig
+    self.repeating_panel_1.items = dicts
     # print('managers', managers)
     # managers = managers.sort()
     # print('managers', managers)
@@ -126,5 +127,20 @@ class all_projects(all_projectsTemplate):
         self.repeating_panel_1.items,
         key=lambda row: row["days_since_updated"],
         reverse=False,
+      )
+    pass
+
+  def value_sort_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    self.percent_complete_sort_checkbox.checked = False
+    self.days_since_updated_checkbox.checked = False
+    
+    if self.value_sort.checked == True:
+      self.repeating_panel_1.items = sorted(
+        self.repeating_panel_1.items, key=lambda row: row["order_value"], reverse=True
+      )
+    else:
+      self.repeating_panel_1.items = sorted(
+        self.repeating_panel_1.items, key=lambda row: row["order_value"], reverse=False
       )
     pass
