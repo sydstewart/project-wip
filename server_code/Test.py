@@ -688,3 +688,33 @@ def burndownproj():
      print('datedif',datediff)
      app_tables.burndown.add_row(order_no = r['so_number'],  timeline_date = today, percent_complete = r['workinprogresspercentcomplete_c'], elapsed_days=datediff )
      print(r['so_number'],r['workinprogresspercentcomplete_c'])
+
+
+@anvil.server.callable
+def show_all_projects():
+      order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False))
+      count_found = len(order_no)
+      print('Count Found',count_found)
+
+
+      if count_found != 0:
+            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], 'order_category': r['order_category']} for r in order_no]
+            print(dicts)
+            df = pd.DataFrame.from_dict(dicts)
+            print('df',df)
+            color_map = {'Implementation':'yellow', 'Interface(s)':'blue', 'Questionnaire(s)':'orange','Configuration/Dev':'pink','Server Mover with Interfaces': 'brown','Server Mover with NO Interfaces':'green','Re-installation':'purple' }
+            cat_color = df['order_category'].map(color_map)
+            fig = px.scatter(df, x= 'elapsed_time',
+                             y='latest_percent_complete', 
+                             color = 'order_category',  
+                             size ='order_value', 
+                             hover_name  = 'project_name', 
+                             title = 'Heat Map of Projects created at ' + datetime.now().strftime('%d %B %Y %H:%M') 
+                            )
+            fig.update_layout(showlegend=True)
+            fig.update_layout(hoverlabel=dict(bgcolor="white", ))
+            return dicts, fig, count_found
+      else:
+          dicts =[]
+          fig = []
+          return dicts, fig, count_found
