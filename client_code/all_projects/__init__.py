@@ -15,8 +15,10 @@ class all_projects(all_projectsTemplate):
     self.init_components(**properties)
     self.elapsed_days_sort_checkbox.checked = False
     self.percent_complete_sort_checkbox.checked = False
+    self.number_displayed.text = 10
+    self.number_display_label.visible = True
     self.managers_dropdown.items = anvil.server.call("managers_list")
-    dicts, fig, count_found = anvil.server.call('show_all_projects')
+    dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text,self.managers_dropdown.selected_value)
     self.plot_1.figure=fig
     self.repeating_panel_1.items = dicts
     # print('managers', managers)
@@ -26,9 +28,11 @@ class all_projects(all_projectsTemplate):
     # self.managers_dropdown.items = managers #.sort() # [(str(row['user']), row) for row in app_tables.projects_master.search()]
     print("Syd")
 
-  def button_1_click(self, **event_args):
+  def refresh_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call("send_pdf_email")
+    # anvil.server.call("send_pdf_email") 
+    open_form('all_projects')
+
 
   def populate_Burndown_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -53,28 +57,37 @@ class all_projects(all_projectsTemplate):
     self.days_since_updated_checkbox.checked = False
     user = self.managers_dropdown.selected_value
     user = user["email"]
-    print(user)
-    dicts, fig, count_found = anvil.server.call("show_progress_managers", user)
-    if count_found > 0:
-      self.repeating_panel_1.items = sorted(
-        dicts, key=lambda row: row["latest_percent_complete"]
-      )
-      layout = {
-        "title": "Heat Map of Projects created at "
-        + datetime.now().strftime("%d %B %Y %H:%M")
-        + " for "
-        + user,
-        "yaxis": {"title": "Percentage complete", "range": [-5, 104]},
-        "xaxis": {"x0": 0, "title": "Days Elapsed"},
-      }
-      # line_plots = anvil.server.call('individual_chart',self.project_drop_down.selected_value)
-      self.plot_1.figure = fig
-      # self.plot_1.data = line_plots
-      # # self.project_drop_down.items = projects
-      self.repeating_panel_1.items = dicts
-    else:
-      alert("No Projects Found for " + user)
-    pass
+    # if not self.managers_dropdown.selected_value:
+    dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text, user)
+    self.plot_1.figure=fig
+    self.repeating_panel_1.items = dicts
+    # else:
+    #     dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text)
+    #     self.plot_1.figure=fig
+    #     self.repeating_panel_1.items = dicts
+    #     pass
+    # print(user)
+    # dicts, fig, count_found = anvil.server.call("show_progress_managers", user)
+    # if count_found > 0:
+    #   self.repeating_panel_1.items = sorted(
+    #     dicts, key=lambda row: row["latest_percent_complete"]
+    #   )
+    #   layout = {
+    #     "title": "Heat Map of Projects created at "
+    #     + datetime.now().strftime("%d %B %Y %H:%M")
+    #     + " for "
+    #     + user,
+    #     "yaxis": {"title": "Percentage complete", "range": [-5, 104]},
+    #     "xaxis": {"x0": 0, "title": "Days Elapsed"},
+    #   }
+    #   # line_plots = anvil.server.call('individual_chart',self.project_drop_down.selected_value)
+    #   self.plot_1.figure = fig
+    #   # self.plot_1.data = line_plots
+    #   # # self.project_drop_down.items = projects
+    #   self.repeating_panel_1.items = dicts
+    # else:
+    #   alert("No Projects Found for " + user)
+    # pass
 
   def percent_complete_sort_checkbox_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
@@ -134,8 +147,11 @@ class all_projects(all_projectsTemplate):
     """This method is called when this checkbox is checked or unchecked"""
     self.percent_complete_sort_checkbox.checked = False
     self.days_since_updated_checkbox.checked = False
+
     
     if self.value_sort.checked == True:
+      self.number_displayed.visible = True
+      self.number_display_label.visible = True
       self.repeating_panel_1.items = sorted(
         self.repeating_panel_1.items, key=lambda row: row["order_value"], reverse=True
       )
@@ -144,3 +160,15 @@ class all_projects(all_projectsTemplate):
         self.repeating_panel_1.items, key=lambda row: row["order_value"], reverse=False
       )
     pass
+
+  def number_displayed_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    if not self.managers_dropdown.selected_value:
+        dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text, self.managers_dropdown.selected_value)
+        self.plot_1.figure=fig
+        self.repeating_panel_1.items = dicts
+    else:
+        dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text)
+        self.plot_1.figure=fig
+        self.repeating_panel_1.items = dicts
+        pass
