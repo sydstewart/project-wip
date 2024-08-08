@@ -693,6 +693,7 @@ def burndownproj():
 @anvil.server.callable
 def show_all_projects():
       order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False))
+      
       count_found = len(order_no)
       print('Count Found',count_found)
 
@@ -701,6 +702,7 @@ def show_all_projects():
             dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], 'order_category': r['order_category']} for r in order_no]
             print(dicts)
             df = pd.DataFrame.from_dict(dicts)
+            df= df.nlargest(10, 'order_value')
             print('df',df)
             color_map = {'Implementation':'yellow', 'Interface(s)':'blue', 'Questionnaire(s)':'orange','Configuration/Dev':'pink','Server Mover with Interfaces': 'brown','Server Mover with NO Interfaces':'green','Re-installation':'purple' }
             cat_color = df['order_category'].map(color_map)
@@ -713,6 +715,7 @@ def show_all_projects():
                             )
             fig.update_layout(showlegend=True)
             fig.update_layout(hoverlabel=dict(bgcolor="white", ))
+            dicts = df.to_dict(orient='records')  
             return dicts, fig, count_found
       else:
           dicts =[]
