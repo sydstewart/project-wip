@@ -528,7 +528,9 @@ def show_progress_managers(user):
       print('user', user)
 
       if count_found != 0:
-            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], 'order_category': r['order_category']} for r in order_no]
+            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'user_email':r['user_email'],'latest_percent_complete': r['latest_percent_complete'], \
+                'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], \
+                'order_category': r['order_category']} for r in order_no]
             print(dicts)
             df = pd.DataFrame.from_dict(dicts)
             print('df',df)
@@ -573,8 +575,9 @@ def project_list():
 @anvil.server.callable
 def managers_list():
    # managers =list({(r['firstname'], r) for r in app_tables.users.search(tables.order_by('firstname',ascending=True ))})
-   # managers.sort()
-   managers = [(cat['email'], cat) for cat in app_tables.users.search(tables.order_by('email',ascending=True ))]
+   managers= [(row["firstname"], row) for row in app_tables.users.search()]
+   managers.sort()
+   # managers = [(cat['email'], cat) for cat in app_tables.users.search(tables.order_by('email',ascending=True ))]
    return managers
    # [(row['Year'], row) for row in app_tables.testcars.search()]
 
@@ -691,19 +694,30 @@ def burndownproj():
 
 
 @anvil.server.callable
-def show_all_projects(num_displayed, user):
+def show_all_projects(num_displayed, user_selected):
+     # Find number of records
       order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False))
       print('num_displayed', num_displayed)
+      print('user selected', user_selected)
       count_found = len(order_no)
       print('Count Found',count_found)
       # if not num_displayed:
       #       num_displayed= 10
+     # Create a dictionary of the records found
       if count_found != 0:
-            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], 'order_category': r['order_category']} for r in order_no]
-            print(dicts)
+            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'user_email':r['user_email'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], 'order_category': r['order_category']} for r in order_no]
+            print('dicts', dicts)
+            # Create a Pandas dataframe from the Dictionary
             df = pd.DataFrame.from_dict(dicts)
-            if user:
-                df =  df[df['user'] == user] 
+            # print(df['user_email'])
+            # Filter dataframe for  User if User exists in search criteria
+            if user_selected != 'All':
+                user_selected = user_selected['firstname']
+                print('User selected', user_selected)
+                df = df[df["user"].str.contains(user_selected)]
+                # df =  df[(df['user'] == user)] 
+                print('df',df)
+            # filter the number of records to be displayed using the number displayed serach criteria
             df= df.nlargest(num_displayed, 'order_value')
             print('df',df)
             color_map = {'Implementation':'yellow', 'Interface(s)':'blue', 'Questionnaire(s)':'orange','Configuration/Dev':'pink','Server Mover with Interfaces': 'brown','Server Mover with NO Interfaces':'green','Re-installation':'purple' }

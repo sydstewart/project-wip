@@ -17,8 +17,16 @@ class all_projects(all_projectsTemplate):
     self.percent_complete_sort_checkbox.checked = False
     self.number_displayed.text = 10
     self.number_display_label.visible = True
+    # self.managers_dropdown.items = [(row["firstname"], row) for row in app_tables.users.search()]
     self.managers_dropdown.items = anvil.server.call("managers_list")
-    dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text,self.managers_dropdown.selected_value)
+    print(self.managers_dropdown.selected_value)
+    row = self.managers_dropdown.selected_value
+    
+    if row:
+         self.item['firstname'] = row['firstname']
+         dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text, self.item['firstname'])
+    else:
+        dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text,'All')
     self.plot_1.figure=fig
     self.repeating_panel_1.items = dicts
     # print('managers', managers)
@@ -26,11 +34,11 @@ class all_projects(all_projectsTemplate):
     # print('managers', managers)
 
     # self.managers_dropdown.items = managers #.sort() # [(str(row['user']), row) for row in app_tables.projects_master.search()]
-    print("Syd")
+    # print("Syd")
 
   def refresh_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    # anvil.server.call("send_pdf_email") 
+    anvil.server.call("show_all_projects",self.number_displayed, self.managers_dropdown.selected_value) 
     open_form('all_projects')
 
 
@@ -56,7 +64,8 @@ class all_projects(all_projectsTemplate):
     self.percent_complete_sort_checkbox.checked = False
     self.days_since_updated_checkbox.checked = False
     user = self.managers_dropdown.selected_value
-    user = user["email"]
+    # user = user["email"]
+    print('User', user)
     # if not self.managers_dropdown.selected_value:
     dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text, user)
     self.plot_1.figure=fig
@@ -163,12 +172,17 @@ class all_projects(all_projectsTemplate):
 
   def number_displayed_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
-    if not self.managers_dropdown.selected_value:
-        dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text, self.managers_dropdown.selected_value)
-        self.plot_1.figure=fig
-        self.repeating_panel_1.items = dicts
+    row = self.managers_dropdown.selected_value
+    
+    if row:
+         self.item['firstname'] = row['firstname']
+         dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text, self.item['firstname'])
     else:
-        dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text)
-        self.plot_1.figure=fig
-        self.repeating_panel_1.items = dicts
-        pass
+        dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text,'All')
+    self.plot_1.figure=fig
+    self.repeating_panel_1.items = dicts
+
+  def number_displayed_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
+    pass
+ 
