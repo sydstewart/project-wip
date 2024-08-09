@@ -692,18 +692,26 @@ def burndownproj():
 
 @anvil.server.callable
 def show_all_projects(num_displayed, user):
+     # Find number of records
       order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False))
       print('num_displayed', num_displayed)
+      print('user', user)
       count_found = len(order_no)
       print('Count Found',count_found)
       # if not num_displayed:
       #       num_displayed= 10
+     # Create a dictionary of the records found
       if count_found != 0:
             dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], 'order_category': r['order_category']} for r in order_no]
-            print(dicts)
+            # print(dicts)
+            # Create a Pandas dataframe from the Dictionary
             df = pd.DataFrame.from_dict(dicts)
+            print(df)
+            # Filter dataframe for  User if User exists in search criteria
             if user:
+                print('User', user)
                 df =  df[df['user'] == user] 
+            # filter the number of records to be displayed using the number displayed serach criteria
             df= df.nlargest(num_displayed, 'order_value')
             print('df',df)
             color_map = {'Implementation':'yellow', 'Interface(s)':'blue', 'Questionnaire(s)':'orange','Configuration/Dev':'pink','Server Mover with Interfaces': 'brown','Server Mover with NO Interfaces':'green','Re-installation':'purple' }

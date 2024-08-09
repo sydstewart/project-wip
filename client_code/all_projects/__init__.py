@@ -57,6 +57,7 @@ class all_projects(all_projectsTemplate):
     self.days_since_updated_checkbox.checked = False
     user = self.managers_dropdown.selected_value
     user = user["email"]
+    print('User', user)
     # if not self.managers_dropdown.selected_value:
     dicts, fig, count_found = anvil.server.call('show_all_projects', self.number_displayed.text, user)
     self.plot_1.figure=fig
