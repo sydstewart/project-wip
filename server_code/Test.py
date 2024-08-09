@@ -711,8 +711,8 @@ def show_all_projects(num_displayed, user_selected):
             df = pd.DataFrame.from_dict(dicts)
             # print(df['user_email'])
             # Filter dataframe for  User if User exists in search criteria
-            if user_selected != 'All':
-                user_selected = user_selected['firstname']
+            if user_selected:
+                # user_selected = user_selected['firstname']
                 print('User selected', user_selected)
                 df = df[df["user"].str.contains(user_selected)]
                 # df =  df[(df['user'] == user)] 
