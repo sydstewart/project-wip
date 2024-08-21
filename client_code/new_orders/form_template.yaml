@@ -1,0 +1,28 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:standard-page.html'}
+components:
+- type: ColumnPanel
+  properties: {}
+  name: content_panel
+  layout_properties: {slot: default}
+  components:
+  - name: data_grid_1
+    properties:
+      columns:
+      - {id: SRIVKQ, data_key: order_no, title: order_no}
+      - {id: WWBLLF, data_key: order_date, title: order_date}
+      - {id: QVOFYV, data_key: project_name, title: project_name}
+      - {id: DJBPNI, data_key: order_category, title: order_category}
+      - {id: LFPRNM, data_key: order_value, title: order_value}
+    type: DataGrid
+    components:
+    - name: repeating_panel_1
+      properties: {item_template: new_orders.RowTemplate20}
+      type: RepeatingPanel
+    layout_properties: {grid_position: 'YDWJBZ,ZSSUVJ', full_width_row: true}
+- type: FlowPanel
+  properties: {}
+  name: navbar_links
+  layout_properties: {slot: nav-right}

@@ -520,6 +520,36 @@ def show_progress(project):
       return dicts 
 
 @anvil.server.callable
+def show_new_orders():
+      # Get today's date
+      today = date.today()
+      print("Today is: ", today)
+     
+      # Yesterday date
+      # yesterday = today - timedelta(days = 1)
+      # day= day(yesterday)
+      # month = month(yesterday)
+      # year= year(yesterday)
+      
+      # print("Yesterday was: ", yesterday)
+      order_no = app_tables.projects_master.search(order_date = datetime(day= 20, month=8, year=2024))
+      count_found = len(order_no)
+      print('Count Found',count_found)
+      # if not num_displayed:
+      #       num_displayed= 10
+      if count_found != 0:
+            dicts = [{'order_no': r['order_no'], 'order_date':r['order_date'],'user':r['user'],'latest_percent_complete': r['latest_percent_complete'], 'project_name':r['project_name'], 'order_value':r['order_value'],'elapsed_time':r['elapsed_time'],'days_since_updated': r['days_since_updated'], 'order_category': r['order_category']} for r in order_no]
+            print(dicts)
+            df = pd.DataFrame.from_dict(dicts)
+            dicts = df.to_dict(orient='records')  
+            return dictsd
+      else:
+          dicts =[]
+          fig = []
+          return dicts
+
+
+@anvil.server.callable
 def show_progress_managers(user):
       print(user)
       order_no = app_tables.projects_master.search(tables.order_by('latest_percent_complete', ascending=False), user_email= user)
