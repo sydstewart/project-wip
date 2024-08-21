@@ -8,14 +8,23 @@ components:
   name: content_panel
   layout_properties: {slot: default}
   components:
+  - name: check_box_1
+    properties: {text: Sort by Update Date}
+    type: CheckBox
+    layout_properties: {grid_position: 'DJLHFC,TKFTMI'}
+    event_bindings: {change: check_box_1_change}
   - name: data_grid_1
     properties:
       columns:
-      - {id: SRIVKQ, data_key: order_no, title: order_no}
-      - {id: WWBLLF, data_key: order_date, title: order_date}
-      - {id: QVOFYV, data_key: project_name, title: project_name}
-      - {id: DJBPNI, data_key: order_category, title: order_category}
-      - {id: LFPRNM, data_key: order_value, title: order_value}
+      - {id: SRIVKQ, data_key: order_no, title: Order No, width: 104.22219848632812, expand: false}
+      - {id: WWBLLF, data_key: order_date, title: Order Date, width: 117.77777099609375, expand: false}
+      - {id: QVOFYV, data_key: project_name, title: Project Name, width: 311.4443359375, expand: false}
+      - {id: IZESLT, data_key: Assigned_to, title: Assigned_to, width: 123.111083984375, expand: false}
+      - {id: LFPRNM, data_key: order_value, title: Order Value GBP Excl. VAT, width: 132.8887939453125, expand: false}
+      - {id: RIPNUY, data_key: Update_Date, title: Update Date, width: 122.22216796875, expand: false}
+      - {id: YOOVOM, data_key: Updated_by, title: Updated_by, width: 108.333251953125, expand: false}
+      - {id: NDUMDE, data_key: Percent_Completion_Before, title: Percent Completion Before, width: 108.4443359375, expand: false}
+      - {id: PRVQWE, data_key: Percent_Completion_After, title: Percent Completion After, width: 106.9998779296875, expand: false}
     type: DataGrid
     components:
     - name: repeating_panel_1

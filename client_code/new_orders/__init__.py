@@ -11,7 +11,23 @@ class new_orders(new_ordersTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    dicts = anvil.server.call('show_new_orders')
+    dicts = anvil.server.call('get_changes')
    
     self.repeating_panel_1.items = dicts
     # Any code you write here will run before the form opens.
+
+  def check_box_1_change(self, **event_args):
+      """This method is called when this checkbox is checked or unchecked"""
+      self.repeating_panel_1.items = sorted(
+        self.repeating_panel_1.items,
+        key=lambda row: row["Update_Date"],
+        reverse=True,
+      )
+    # else:
+    #   # self.repeating_panel_1.items = dicts
+    #   self.repeating_panel_1.items = sorted(
+    #     self.repeating_panel_1.items,
+    #     key=lambda row: row["latest_percent_complete"],
+    #     reverse=False,
+    #   )
+    # pass

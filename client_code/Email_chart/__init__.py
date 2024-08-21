@@ -125,5 +125,7 @@ class Email_chart(Email_chartTemplate):
     def button_8_click(self, **event_args):
       """This method is called when the button is clicked"""
       open_form('new_orders')
+      # dicts = anvil.server.call('get_changes')
+      
       pass
 

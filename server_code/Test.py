@@ -753,3 +753,39 @@ def show_all_projects(num_displayed, user):
           dicts =[]
           fig = []
           return dicts, fig, count_found
+
+@anvil.server.callable  
+def get_changes():
+
+  conn = connect()
+#=============================================================================  
+  # Load order changes 
+  with conn.cursor() as curaudit:
+        curaudit.execute(
+            "Select Concat(sales_orders.prefix, sales_orders.so_number) As Order_No, \
+              sales_orders.name, sales_orders_cstm.neworexistingsystem_c, users1.first_name  \
+              As Assigned_to, sales_orders.date_entered as date_entered, sales_orders_audit.date_created As Update_date, users.first_name \
+              As Updated_by, \
+              sales_orders_audit.field_name, \
+              sales_orders_audit.before_value_string as BeforePercent, sales_orders_audit.after_value_string as AfterPercent, \
+              sales_orders.subtotal_usd As GBP_Excl_Vat, sales_orders.amount_usdollar As \
+              GBP_Incl_VAT \
+            From sales_orders Inner Join \
+              sales_orders_audit On sales_orders.id = sales_orders_audit.parent_id \
+              Inner Join \
+              sales_orders_cstm On sales_orders_cstm.id_c = sales_orders.id Inner Join \
+              users On sales_orders_audit.created_by = users.id Inner Join \
+              users users1 On sales_orders.created_by = users1.id \
+            Where sales_orders_cstm.neworexistingsystem_c In ('New', 'Existing') And \
+              sales_orders_audit.field_name = 'workinprogresspercentcomplete_c' And \
+              sales_orders.date_entered  > '2020-01-01' \
+              Order By  Concat(sales_orders.prefix, sales_orders.so_number) Desc   , sales_orders_audit.date_created Desc "  
+            )
+  records = curaudit.fetchall()
+  number_of_records =len(records)
+  print('No of changes',number_of_records)
+  if number_of_records:
+            dicts = [{'order_no': r['Order_No'], 'project_name':r['name'] ,'order_date':r['date_entered'],'Assigned_to':r['Assigned_to'] , 'order_value':r['GBP_Excl_Vat'] , 'Update_Date':r['Update_date'], \
+                     'Updated_by':r['Updated_by'],'Percent_Completion_Before':r['BeforePercent'],'Percent_Completion_After':r['AfterPercent']} for r in records]
+            # print(dicts)
+            return dicts
