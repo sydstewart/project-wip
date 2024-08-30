@@ -37,4 +37,9 @@ class new_orders(new_ordersTemplate):
   #   anvil.media.download(csv_file)
   #   pass
 
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    dicts  = anvil.server.call('get_changes')
+    pass
+
 
