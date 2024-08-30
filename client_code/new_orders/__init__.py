@@ -12,7 +12,7 @@ class new_orders(new_ordersTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    dicts  = anvil.server.call('get_changes')
+    dicts, XMedia  = anvil.server.call('get_changes')
    
     self.repeating_panel_1.items = dicts
     # anvil.media.download(Y)
@@ -39,7 +39,8 @@ class new_orders(new_ordersTemplate):
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
-    dicts  = anvil.server.call('get_changes')
+    dicts , Xmedia = anvil.server.call('get_changes')
+    download(Xmedia)
     pass
 
 
