@@ -1,92 +1,92 @@
-is_package: true
-container:
-  type: HtmlTemplate
-  properties: {html: '@theme:standard-page.html'}
 components:
-- type: ColumnPanel
-  properties: {col_widths: '{"IISQIY":5,"PIKFKA":45,"EVSLUL":30}'}
-  name: content_panel
-  layout_properties: {slot: default}
-  components:
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: Board, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: true, underline: false, icon: ''}
+- components:
+  - layout_properties: {grid_position: 'SWMYFO,IISQIY'}
     name: label_1
-    layout_properties: {grid_position: 'SWMYFO,IISQIY'}
-  - type: DropDown
+    properties: {align: left, background: '', bold: true, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Board, tooltip: '', underline: false, visible: true}
+    type: Label
+  - event_bindings: {change: board_dropdown_change}
+    layout_properties: {grid_position: 'SWMYFO,PIKFKA'}
+    name: board_dropdown
     properties:
-      role: null
       align: full
-      tooltip: ''
-      placeholder: ''
-      border: ''
-      enabled: true
-      foreground: ''
-      items: []
-      visible: true
-      font_size: null
-      font: ''
-      spacing_above: small
-      spacing_below: small
-      italic: false
       background: ''
       bold: false
-      underline: false
+      border: ''
+      enabled: true
+      font: ''
+      font_size: null
+      foreground: ''
       include_placeholder: true
-    name: board_dropdown
-    layout_properties: {grid_position: 'SWMYFO,PIKFKA'}
-    event_bindings: {change: board_dropdown_change}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: Excludes completed projects, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
+      italic: false
+      items: []
+      placeholder: ''
+      role: null
+      spacing_above: small
+      spacing_below: small
+      tooltip: ''
+      underline: false
+      visible: true
+    type: DropDown
+  - layout_properties: {grid_position: 'SWMYFO,EVSLUL'}
     name: label_2
-    layout_properties: {grid_position: 'SWMYFO,EVSLUL'}
-  - type: ColumnPanel
-    properties: {col_widths: '{}'}
-    name: column_panel_1
-    layout_properties: {grid_position: 'EWARKC,VIESFO'}
-    components:
-    - type: Plot
-      properties: {height: 566}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Excludes completed projects, tooltip: '', underline: false, visible: true}
+    type: Label
+  - components:
+    - layout_properties: {grid_position: 'QWBBYA,TXBUUF'}
       name: plot_1
-      layout_properties: {grid_position: 'QWBBYA,TXBUUF'}
-  - type: ColumnPanel
+      properties: {height: 566}
+      type: Plot
+    layout_properties: {grid_position: 'EWARKC,VIESFO'}
+    name: column_panel_1
     properties: {col_widths: '{}'}
-    name: column_panel_2
-    layout_properties: {grid_position: 'QOWYNE,HSFHZM'}
-    components:
-    - type: DataGrid
+    type: ColumnPanel
+  - components:
+    - components:
+      - layout_properties: {}
+        name: repeating_panel_1
+        properties: {item_template: Dev_board_form.RowTemplate5, spacing_above: none, spacing_below: none}
+        type: RepeatingPanel
+      layout_properties: {grid_position: 'PNOSOV,ADLTDC'}
+      name: data_grid_1
       properties:
-        role: null
-        columns:
-        - {id: GEVPRY, title: New Stage, data_key: new_column}
-        - {id: YRPGJP, title: Old Stage, data_key: old_column}
-        - {id: EWMMTQ, title: count, data_key: count}
-        - {id: UVTNTB, title: Days Work, data_key: days_work}
-        - {id: OGNCXV, title: Total Estimate of Work, data_key: total}
         auto_header: true
-        tooltip: ''
+        background: ''
         border: ''
+        columns:
+        - {data_key: new_column, id: GEVPRY, title: New Stage}
+        - {data_key: old_column, id: YRPGJP, title: Old Stage}
+        - {data_key: count, id: EWMMTQ, title: count}
+        - {data_key: days_work, id: UVTNTB, title: Days Work}
+        - {data_key: total, id: OGNCXV, title: Total Estimate of Work}
         foreground: ''
+        role: null
         rows_per_page: 20
-        visible: true
-        wrap_on: never
         show_page_controls: true
         spacing_above: small
         spacing_below: small
-        background: ''
-      name: data_grid_1
-      layout_properties: {grid_position: 'PNOSOV,ADLTDC'}
-      components:
-      - type: RepeatingPanel
-        properties: {spacing_above: none, spacing_below: none, item_template: Dev_board_form.RowTemplate5}
-        name: repeating_panel_1
-        layout_properties: {}
-- type: FlowPanel
-  properties: {}
-  name: navbar_links
-  layout_properties: {slot: nav-right}
-  components:
-  - type: Button
-    properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true, foreground: '', visible: true, text: Home, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
-    name: button_1
+        tooltip: ''
+        visible: true
+        wrap_on: never
+      type: DataGrid
+    layout_properties: {grid_position: 'QOWYNE,HSFHZM'}
+    name: column_panel_2
+    properties: {col_widths: '{}'}
+    type: ColumnPanel
+  layout_properties: {slot: default}
+  name: content_panel
+  properties: {col_widths: '{"IISQIY":5,"PIKFKA":45,"EVSLUL":30}'}
+  type: ColumnPanel
+- components:
+  - event_bindings: {click: button_1_click}
     layout_properties: {}
-    event_bindings: {click: button_1_click}
+    name: button_1
+    properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: primary-color, spacing_above: small, spacing_below: small, text: Home, tooltip: '', underline: false, visible: true}
+    type: Button
+  layout_properties: {slot: nav-right}
+  name: navbar_links
+  properties: {}
+  type: FlowPanel
+container:
+  properties: {html: '@theme:standard-page.html'}
+  type: HtmlTemplate
+is_package: true

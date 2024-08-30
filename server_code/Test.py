@@ -788,4 +788,7 @@ def get_changes():
             dicts = [{'order_no': r['Order_No'], 'project_name':r['name'] ,'order_date':r['date_entered'],'Assigned_to':r['Assigned_to'] , 'order_value':r['GBP_Excl_Vat'] , 'Update_Date':r['Update_date'], \
                      'Updated_by':r['Updated_by'],'Percent_Completion_Before':r['BeforePercent'],'Percent_Completion_After':r['AfterPercent']} for r in records]
             # print(dicts)
-            return dicts
+  # df = pd.DataFrame(dicts)
+  # X = df.to_csv()
+  # Y =  BlobMedia(content=X.read(), content_type="application/vnd.ms-excel")
+  return dicts

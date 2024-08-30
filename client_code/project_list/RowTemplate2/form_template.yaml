@@ -1,11 +1,11 @@
-container: {type: DataRowPanel}
 components:
-- type: TextBox
-  properties: {}
+- layout_properties: {column: SRHTOP}
   name: text_box_1
-  layout_properties: {column: SRHTOP}
-- type: TextBox
   properties: {}
+  type: TextBox
+- layout_properties: {column: VJOXFG}
   name: text_box_2
-  layout_properties: {column: VJOXFG}
+  properties: {}
+  type: TextBox
+container: {type: DataRowPanel}
 is_package: true

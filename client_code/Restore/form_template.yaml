@@ -1,46 +1,46 @@
-is_package: true
-container:
-  type: HtmlTemplate
-  properties: {html: '@theme:standard-page.html'}
 components:
-- type: ColumnPanel
-  properties: {col_widths: '{}'}
-  name: content_panel
-  layout_properties: {slot: default}
-  components:
-  - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true, foreground: '', visible: true, text: Uplaod Excel statetranslate table, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
-    name: upload_stage_translate
+- components:
+  - event_bindings: {click: upload_stage_translate_click}
     layout_properties: {grid_position: 'GOZDBU,MMOJED'}
-    event_bindings: {click: upload_stage_translate_click}
-  - type: DropDown
+    name: upload_stage_translate
+    properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Uplaod Excel statetranslate table, tooltip: '', underline: false, visible: true}
+    type: Button
+  - layout_properties: {grid_position: 'FLUHLH,UQFWGR'}
+    name: select_table_dropdown
     properties:
-      role: null
       align: full
-      tooltip: ''
-      placeholder: ''
-      border: ''
-      enabled: true
-      foreground: ''
-      items: [stage_translate, project_stages, projects]
-      visible: true
-      font_size: null
-      font: ''
-      spacing_above: small
-      spacing_below: small
-      italic: false
       background: ''
       bold: false
-      underline: false
+      border: ''
+      enabled: true
+      font: ''
+      font_size: null
+      foreground: ''
       include_placeholder: true
-    name: select_table_dropdown
-    layout_properties: {grid_position: 'FLUHLH,UQFWGR'}
-  - type: FileLoader
-    properties: {}
-    name: file_loader_1
+      italic: false
+      items: [stage_translate, project_stages, projects]
+      placeholder: ''
+      role: null
+      spacing_above: small
+      spacing_below: small
+      tooltip: ''
+      underline: false
+      visible: true
+    type: DropDown
+  - event_bindings: {change: file_loader_1_change}
     layout_properties: {grid_position: 'SELPEC,IXLZVD'}
-    event_bindings: {change: file_loader_1_change}
-- type: FlowPanel
-  properties: {}
+    name: file_loader_1
+    properties: {}
+    type: FileLoader
+  layout_properties: {slot: default}
+  name: content_panel
+  properties: {col_widths: '{}'}
+  type: ColumnPanel
+- layout_properties: {slot: nav-right}
   name: navbar_links
-  layout_properties: {slot: nav-right}
+  properties: {}
+  type: FlowPanel
+container:
+  properties: {html: '@theme:standard-page.html'}
+  type: HtmlTemplate
+is_package: true

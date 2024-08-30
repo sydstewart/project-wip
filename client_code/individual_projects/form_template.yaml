@@ -1,47 +1,47 @@
-container:
-  type: ColumnPanel
-  properties: {col_widths: '{"UQKTAG":10,"RWMLRN":50}'}
 components:
-- type: Label
-  properties: {text: Select Project, align: right, bold: true}
+- layout_properties: {grid_position: 'PDQWAK,UQKTAG'}
   name: label_1
-  layout_properties: {grid_position: 'PDQWAK,UQKTAG'}
-- type: DropDown
-  properties: {include_placeholder: true}
-  name: project_drop_down
+  properties: {align: right, bold: true, text: Select Project}
+  type: Label
+- event_bindings: {change: project_drop_down_change}
   layout_properties: {grid_position: 'PDQWAK,RWMLRN'}
-  event_bindings: {change: project_drop_down_change}
-- name: plot_2
+  name: project_drop_down
+  properties: {include_placeholder: true}
+  type: DropDown
+- layout_properties: {grid_position: 'OBWMQS,HTNMUQ'}
+  name: plot_2
   properties: {}
   type: Plot
-  layout_properties: {grid_position: 'OBWMQS,HTNMUQ'}
-- name: data_grid_1
-  properties:
-    role: null
-    columns:
-    - {id: JKSDUP, title: Order No., data_key: order_no, $$hashKey: 'object:260'}
-    - {id: DEZDSM, title: Order Date, data_key: order_date, $$hashKey: 'object:325'}
-    - {id: VJQQOR, title: Project Name, data_key: project_name, $$hashKey: 'object:261'}
-    - {id: OJLQEN, title: Order Value, data_key: order_value, $$hashKey: 'object:262', width: 99, expand: false}
-    - {id: HXABAG, data_key: timeline_date, title: Time Line, $$hashKey: 'object:264', width: 109.18182373046875, expand: false}
-    - {id: BKDQXH, data_key: percent_complete, title: Percent complete, $$hashKey: 'object:263', width: 122.3636474609375, expand: false}
-    - {id: MSFRUV, data_key: elapsed_time, title: Elapsed Days, width: 100.3636474609375, expand: false}
-    - {id: BULXHK, data_key: user, title: Manager, width: 100, expand: false}
-    auto_header: true
-    tooltip: ''
-    border: ''
-    foreground: ''
-    rows_per_page: 20
-    visible: true
-    wrap_on: never
-    show_page_controls: true
-    spacing_above: small
-    spacing_below: small
-    background: ''
-  type: DataGrid
-  components:
+- components:
   - name: repeating_panel_1
     properties: {item_template: Email_chart.RowTemplate16}
     type: RepeatingPanel
   layout_properties: {grid_position: 'JIAHDR,UQKVZA'}
+  name: data_grid_1
+  properties:
+    auto_header: true
+    background: ''
+    border: ''
+    columns:
+    - {$$hashKey: 'object:260', data_key: order_no, id: JKSDUP, title: Order No.}
+    - {$$hashKey: 'object:325', data_key: order_date, id: DEZDSM, title: Order Date}
+    - {$$hashKey: 'object:261', data_key: project_name, id: VJQQOR, title: Project Name}
+    - {$$hashKey: 'object:262', data_key: order_value, expand: false, id: OJLQEN, title: Order Value, width: 99}
+    - {$$hashKey: 'object:264', data_key: timeline_date, expand: false, id: HXABAG, title: Time Line, width: 109.18182373046875}
+    - {$$hashKey: 'object:263', data_key: percent_complete, expand: false, id: BKDQXH, title: Percent complete, width: 122.3636474609375}
+    - {data_key: elapsed_time, expand: false, id: MSFRUV, title: Elapsed Days, width: 100.3636474609375}
+    - {data_key: user, expand: false, id: BULXHK, title: Manager, width: 100}
+    foreground: ''
+    role: null
+    rows_per_page: 20
+    show_page_controls: true
+    spacing_above: small
+    spacing_below: small
+    tooltip: ''
+    visible: true
+    wrap_on: never
+  type: DataGrid
+container:
+  properties: {col_widths: '{"UQKTAG":10,"RWMLRN":50}'}
+  type: ColumnPanel
 is_package: true

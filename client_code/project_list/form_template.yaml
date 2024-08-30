@@ -1,53 +1,53 @@
-container:
-  type: ColumnPanel
-  properties: {col_widths: '{}'}
 components:
-- type: ColumnPanel
-  properties: {role: card, col_widths: '{}'}
-  name: card_1
-  layout_properties: {grid_position: 'EFMTEC,RPIWET'}
-  components:
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: Project Name, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
+- components:
+  - layout_properties: {grid_position: 'ELQQBI,LRLIKD'}
     name: label_1
-    layout_properties: {grid_position: 'ELQQBI,LRLIKD'}
-  - type: TextBox
-    properties: {}
-    name: project_name_searchbox
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Project Name, tooltip: '', underline: false, visible: true}
+    type: Label
+  - event_bindings: {change: project_name_searchbox_change}
     layout_properties: {grid_position: 'ELQQBI,RLDJQW'}
-    event_bindings: {change: project_name_searchbox_change}
-- type: ColumnPanel
-  properties: {col_widths: '{}'}
-  name: column_panel_1
-  layout_properties: {grid_position: 'PXJJTR,DANREQ'}
-  components:
-  - type: DataGrid
+    name: project_name_searchbox
+    properties: {}
+    type: TextBox
+  layout_properties: {grid_position: 'EFMTEC,RPIWET'}
+  name: card_1
+  properties: {col_widths: '{}', role: card}
+  type: ColumnPanel
+- components:
+  - components:
+    - data_bindings:
+      - {code: 'self.item[''new_project_column''][''new_column'']', property: items}
+      layout_properties: {}
+      name: repeating_panel_1
+      properties: {item_template: project_list.RowTemplate2, spacing_above: none, spacing_below: none}
+      type: RepeatingPanel
+    layout_properties: {grid_position: 'BDEQIO,SNGCBC'}
+    name: data_grid_1
     properties:
-      role: null
-      columns:
-      - {id: VTIBZM, title: Project Name, data_key: project_name, $$hashKey: 'object:35670'}
-      - {id: JUOOSF, title: Project Board, data_key: project_board, $$hashKey: 'object:35671'}
-      - {id: DSXDLJ, title: Project Column, data_key: project_column, $$hashKey: 'object:35672'}
-      - {id: SRHTOP, title: Project Stages, data_key: project_stages, $$hashKey: 'object:35673'}
-      - {id: VJOXFG, title: New Stages, data_key: new_stages, $$hashKey: 'object:35674'}
       auto_header: true
-      tooltip: ''
+      background: ''
       border: ''
+      columns:
+      - {$$hashKey: 'object:35670', data_key: project_name, id: VTIBZM, title: Project Name}
+      - {$$hashKey: 'object:35671', data_key: project_board, id: JUOOSF, title: Project Board}
+      - {$$hashKey: 'object:35672', data_key: project_column, id: DSXDLJ, title: Project Column}
+      - {$$hashKey: 'object:35673', data_key: project_stages, id: SRHTOP, title: Project Stages}
+      - {$$hashKey: 'object:35674', data_key: new_stages, id: VJOXFG, title: New Stages}
       foreground: ''
+      role: null
       rows_per_page: 20
-      visible: true
-      wrap_on: never
       show_page_controls: true
       spacing_above: small
       spacing_below: small
-      background: ''
-    name: data_grid_1
-    layout_properties: {grid_position: 'BDEQIO,SNGCBC'}
-    components:
-    - type: RepeatingPanel
-      properties: {spacing_above: none, spacing_below: none, item_template: project_list.RowTemplate2}
-      name: repeating_panel_1
-      layout_properties: {}
-      data_bindings:
-      - {property: items, code: 'self.item[''new_project_column''][''new_column'']'}
+      tooltip: ''
+      visible: true
+      wrap_on: never
+    type: DataGrid
+  layout_properties: {grid_position: 'PXJJTR,DANREQ'}
+  name: column_panel_1
+  properties: {col_widths: '{}'}
+  type: ColumnPanel
+container:
+  properties: {col_widths: '{}'}
+  type: ColumnPanel
 is_package: true

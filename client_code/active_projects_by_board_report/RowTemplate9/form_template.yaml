@@ -1,10 +1,10 @@
-container:
-  type: DataRowPanel
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', auto_display_data: true, visible: true, font_size: null, font: '', spacing_above: none, spacing_below: none, italic: false, background: '', bold: true, underline: false}
 components:
-- type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: true, foreground: '', visible: true, text: show projects, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
-  name: projects_by_project_board_button
+- event_bindings: {click: projects_by_project_board_button_click}
   layout_properties: {column: LBBOQH}
-  event_bindings: {click: projects_by_project_board_button_click}
+  name: projects_by_project_board_button
+  properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: show projects, tooltip: '', underline: false, visible: true}
+  type: Button
+container:
+  properties: {align: left, auto_display_data: true, background: '', bold: true, border: '', font: '', font_size: null, foreground: '', italic: false, role: null, spacing_above: none, spacing_below: none, tooltip: '', underline: false, visible: true}
+  type: DataRowPanel
 is_package: true

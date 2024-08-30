@@ -1,7 +1,7 @@
-is_package: true
-container:
-  type: DataRowPanel
-  data_bindings:
-  - {property: tag, code: 'self.item[''date_entered'']'}
-  - {property: tag, code: 'self.item[''so_number'']'}
 components: []
+container:
+  data_bindings:
+  - {code: 'self.item[''date_entered'']', property: tag}
+  - {code: 'self.item[''so_number'']', property: tag}
+  type: DataRowPanel
+is_package: true

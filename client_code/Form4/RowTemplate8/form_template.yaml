@@ -1,12 +1,12 @@
-container:
-  type: DataRowPanel
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', auto_display_data: true, visible: true, font_size: 14, font: '', spacing_above: none, spacing_below: none, italic: false, background: '', bold: true, underline: false}
 components:
-- type: TextBox
-  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '', border: '', enabled: true, foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: small, type: text, spacing_below: small, italic: false, background: '', bold: true, underline: false}
-  name: text_box_1
-  layout_properties: {column: NHKHME}
-  data_bindings:
-  - {property: text, code: 'self.item[''new_stages''][''new_column'']', writeback: true}
+- data_bindings:
+  - {code: 'self.item[''new_stages''][''new_column'']', property: text, writeback: true}
   event_bindings: {pressed_enter: text_box_1_pressed_enter}
+  layout_properties: {column: NHKHME}
+  name: text_box_1
+  properties: {align: left, background: '', bold: true, border: '', enabled: true, font: '', font_size: 14, foreground: '', hide_text: false, italic: false, placeholder: '', role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: text, underline: false, visible: true}
+  type: TextBox
+container:
+  properties: {align: left, auto_display_data: true, background: '', bold: true, border: '', font: '', font_size: 14, foreground: '', italic: false, role: null, spacing_above: none, spacing_below: none, tooltip: '', underline: false, visible: true}
+  type: DataRowPanel
 is_package: true

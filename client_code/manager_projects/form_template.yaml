@@ -1,82 +1,82 @@
-container:
-  type: ColumnPanel
-  properties: {col_widths: '{"UQKTAG":10,"RWMLRN":50}'}
 components:
-- type: Label
-  properties: {text: Select Manager, align: right, bold: true}
+- layout_properties: {full_width_row: true, grid_position: 'PDQWAK,UQKTAG'}
   name: label_1
-  layout_properties: {grid_position: 'PDQWAK,UQKTAG', full_width_row: true}
-- type: DropDown
+  properties: {align: right, bold: true, text: Select Manager}
+  type: Label
+- event_bindings: {change: managers_dropdown_change}
+  layout_properties: {full_width_row: true, grid_position: 'PDQWAK,RWMLRN FGLLSG,NJITUK'}
+  name: managers_dropdown
   properties:
-    role: null
     align: full
-    tooltip: ''
-    placeholder: ''
-    border: ''
-    enabled: true
-    foreground: ''
-    items: []
-    visible: true
-    font_size: null
-    font: ''
-    spacing_above: small
-    spacing_below: small
-    italic: false
     background: ''
     bold: false
-    underline: false
-    include_placeholder: true
-  name: managers_dropdown
-  layout_properties: {grid_position: 'PDQWAK,RWMLRN FGLLSG,NJITUK', full_width_row: true}
-  event_bindings: {change: managers_dropdown_change}
-- name: percent_complete_sort_checkbox
-  properties: {text: Percent Complete Sort}
-  type: CheckBox
-  layout_properties: {grid_position: 'PDQWAK,RWMLRN XSJQXM,SPCDLL', full_width_row: true}
-  event_bindings: {change: percent_complete_sort_checkbox_change}
-- name: elapsed_days_sort_checkbox
-  properties: {text: Elapsed Days Sort}
-  type: CheckBox
-  layout_properties: {grid_position: 'PDQWAK,RWMLRN XSJQXM,HXSSJU', full_width_row: true}
-  event_bindings: {change: elapsed_days_sort_checkbox_change}
-- name: days_since_updated_checkbox
-  properties: {text: Days Since Updated}
-  type: CheckBox
-  layout_properties: {grid_position: 'PDQWAK,RWMLRN XSJQXM,AMNMSF', full_width_row: true}
-  event_bindings: {change: days_since_updated_checkbox_change}
-- name: plot_1
-  properties: {spacing_above: small, spacing_below: small, height: 450, visible: true, tooltip: '', interactive: true}
-  type: Plot
-  layout_properties: {grid_position: 'TIJRZE,VGGZPF', full_width_row: false}
-- name: data_grid_1
-  properties:
-    role: null
-    columns:
-    - {id: JKSDUP, title: Order No., data_key: order_no, $$hashKey: 'object:260'}
-    - {id: DEZDSM, title: Order Date, data_key: order_date, $$hashKey: 'object:325'}
-    - {id: VJQQOR, title: Project Name, data_key: project_name, $$hashKey: 'object:261'}
-    - {id: OJLQEN, title: Order Value, data_key: '"{0:.2f}".format(self.item[''order_value''])', $$hashKey: 'object:262'}
-    - {id: ZSCOAN, data_key: order_category, title: Order Category}
-    - {id: HXABAG, data_key: timeline_date, title: Time Line, $$hashKey: 'object:264'}
-    - {id: BKDQXH, data_key: latest_percent_complete, title: Latest Percent complete, $$hashKey: 'object:263'}
-    - {id: BULXHK, data_key: user, title: Manager, width: 117.727294921875, expand: false, $$hashKey: 'object:3436'}
-    - {id: UTPPDM, data_key: elapsed_time, title: Elapsed Days, $$hashKey: 'object:3437'}
-    - {id: GRXYXO, data_key: days_since_updated, title: Days since Updated, $$hashKey: 'object:3438'}
-    auto_header: true
-    tooltip: ''
     border: ''
+    enabled: true
+    font: ''
+    font_size: null
     foreground: ''
-    rows_per_page: 20
-    visible: true
-    wrap_on: never
-    show_page_controls: true
+    include_placeholder: true
+    italic: false
+    items: []
+    placeholder: ''
+    role: null
     spacing_above: small
     spacing_below: small
-    background: ''
-  type: DataGrid
-  components:
+    tooltip: ''
+    underline: false
+    visible: true
+  type: DropDown
+- event_bindings: {change: percent_complete_sort_checkbox_change}
+  layout_properties: {full_width_row: true, grid_position: 'PDQWAK,RWMLRN XSJQXM,SPCDLL'}
+  name: percent_complete_sort_checkbox
+  properties: {text: Percent Complete Sort}
+  type: CheckBox
+- event_bindings: {change: elapsed_days_sort_checkbox_change}
+  layout_properties: {full_width_row: true, grid_position: 'PDQWAK,RWMLRN XSJQXM,HXSSJU'}
+  name: elapsed_days_sort_checkbox
+  properties: {text: Elapsed Days Sort}
+  type: CheckBox
+- event_bindings: {change: days_since_updated_checkbox_change}
+  layout_properties: {full_width_row: true, grid_position: 'PDQWAK,RWMLRN XSJQXM,AMNMSF'}
+  name: days_since_updated_checkbox
+  properties: {text: Days Since Updated}
+  type: CheckBox
+- layout_properties: {full_width_row: false, grid_position: 'TIJRZE,VGGZPF'}
+  name: plot_1
+  properties: {height: 450, interactive: true, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+  type: Plot
+- components:
   - name: repeating_panel_1
     properties: {item_template: Email_chart.RowTemplate16}
     type: RepeatingPanel
-  layout_properties: {grid_position: 'JIAHDR,UQKVZA', full_width_row: false}
+  layout_properties: {full_width_row: false, grid_position: 'JIAHDR,UQKVZA'}
+  name: data_grid_1
+  properties:
+    auto_header: true
+    background: ''
+    border: ''
+    columns:
+    - {$$hashKey: 'object:260', data_key: order_no, id: JKSDUP, title: Order No.}
+    - {$$hashKey: 'object:325', data_key: order_date, id: DEZDSM, title: Order Date}
+    - {$$hashKey: 'object:261', data_key: project_name, id: VJQQOR, title: Project Name}
+    - {$$hashKey: 'object:262', data_key: '"{0:.2f}".format(self.item[''order_value''])', id: OJLQEN, title: Order Value}
+    - {data_key: order_category, id: ZSCOAN, title: Order Category}
+    - {$$hashKey: 'object:264', data_key: timeline_date, id: HXABAG, title: Time Line}
+    - {$$hashKey: 'object:263', data_key: latest_percent_complete, id: BKDQXH, title: Latest Percent complete}
+    - {$$hashKey: 'object:3436', data_key: user, expand: false, id: BULXHK, title: Manager, width: 117.727294921875}
+    - {$$hashKey: 'object:3437', data_key: elapsed_time, id: UTPPDM, title: Elapsed Days}
+    - {$$hashKey: 'object:3438', data_key: days_since_updated, id: GRXYXO, title: Days since Updated}
+    foreground: ''
+    role: null
+    rows_per_page: 20
+    show_page_controls: true
+    spacing_above: small
+    spacing_below: small
+    tooltip: ''
+    visible: true
+    wrap_on: never
+  type: DataGrid
+container:
+  properties: {col_widths: '{"UQKTAG":10,"RWMLRN":50}'}
+  type: ColumnPanel
 is_package: true

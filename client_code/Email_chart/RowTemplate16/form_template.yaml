@@ -1,13 +1,13 @@
-is_package: true
-container: {type: DataRowPanel}
 components:
-- type: Label
-  properties: {}
-  name: label_1
+- data_bindings:
+  - {code: '"{0:.2f}".format(self.item[''order_value''])', property: text}
   layout_properties: {column: OJLQEN}
-  data_bindings:
-  - {property: text, code: '"{0:.2f}".format(self.item[''order_value''])'}
-- type: Label
-  properties: {role: headline}
+  name: label_1
+  properties: {}
+  type: Label
+- layout_properties: {column: null}
   name: headline_1
-  layout_properties: {column: null}
+  properties: {role: headline}
+  type: Label
+container: {type: DataRowPanel}
+is_package: true

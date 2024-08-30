@@ -1,45 +1,45 @@
-container: {type: DataRowPanel}
 components:
-- type: DataGrid
+- components:
+  - layout_properties: {}
+    name: repeating_projects_panel
+    properties: {item_template: home.RowTemplate1.RowTemplate3, spacing_above: none, spacing_below: none}
+    type: RepeatingPanel
+  data_bindings: []
+  layout_properties: {column: null}
+  name: data_grid_1
   properties:
-    role: null
-    columns: []
     auto_header: true
-    tooltip: ''
+    background: ''
     border: ''
+    columns: []
     foreground: ''
+    role: null
     rows_per_page: 40
-    visible: true
-    wrap_on: never
     show_page_controls: true
     spacing_above: small
     spacing_below: small
-    background: ''
-  name: data_grid_1
-  layout_properties: {column: null}
-  components:
-  - type: RepeatingPanel
-    properties: {spacing_above: none, spacing_below: none, item_template: home.RowTemplate1.RowTemplate3}
-    name: repeating_projects_panel
-    layout_properties: {}
-  data_bindings: []
-- type: TextBox
-  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '', border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small, type: text, spacing_below: small, italic: false, background: '', bold: true, underline: false}
-  name: text_box_1
-  layout_properties: {column: RIFSRX}
-  data_bindings:
-  - {property: text, code: 'self.item[''new_project_column''][''new_column'']', writeback: true}
+    tooltip: ''
+    visible: true
+    wrap_on: never
+  type: DataGrid
+- data_bindings:
+  - {code: 'self.item[''new_project_column''][''new_column'']', property: text, writeback: true}
   event_bindings: {pressed_enter: text_box_1_pressed_enter}
-- type: TextBox
-  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '', border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small, type: number, spacing_below: small, italic: false, background: '', bold: true, underline: false}
-  name: text_box_2
-  layout_properties: {column: AEVFTZ}
-  data_bindings:
-  - {property: text, code: 'self.item[''count'']', writeback: true}
+  layout_properties: {column: RIFSRX}
+  name: text_box_1
+  properties: {align: left, background: '', bold: true, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: '', role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: text, underline: false, visible: true}
+  type: TextBox
+- data_bindings:
+  - {code: 'self.item[''count'']', property: text, writeback: true}
   event_bindings: {pressed_enter: text_box_2_pressed_enter}
-- type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: true, foreground: '', visible: true, text: show projects, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
-  name: show_project_button
+  layout_properties: {column: AEVFTZ}
+  name: text_box_2
+  properties: {align: left, background: '', bold: true, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: '', role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: number, underline: false, visible: true}
+  type: TextBox
+- event_bindings: {click: show_project_button_click}
   layout_properties: {column: YPUBWH}
-  event_bindings: {click: show_project_button_click}
+  name: show_project_button
+  properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: show projects, tooltip: '', underline: false, visible: true}
+  type: Button
+container: {type: DataRowPanel}
 is_package: true

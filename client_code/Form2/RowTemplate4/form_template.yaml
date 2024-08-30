@@ -1,10 +1,10 @@
-container: {type: DataRowPanel}
 components:
-- type: TextBox
-  properties: {}
-  name: text_box_1
+- data_bindings:
+  - {code: 'self.item[''new_stages''][''new_column'']', property: text, writeback: true}
   layout_properties: {column: JCIYAE}
-  data_bindings:
-  - {property: text, code: 'self.item[''new_stages''][''new_column'']', writeback: true}
+  name: text_box_1
+  properties: {}
+  type: TextBox
+container: {type: DataRowPanel}
 is_package: true
 untouched: true
