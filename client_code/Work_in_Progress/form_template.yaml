@@ -39,6 +39,15 @@ components:
   name: navbar_links
   properties: {}
   type: FlowPanel
+- event_bindings: {click: button_1_click}
+  layout_properties: {slot: left-nav}
+  name: button_1
+  properties: {text: Changes List}
+  type: Button
+- layout_properties: {slot: top-left-btn}
+  name: button_2
+  properties: {text: button_2}
+  type: Button
 container:
   properties: {html: '@theme:standard-page.html'}
   type: HtmlTemplate

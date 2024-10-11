@@ -43,4 +43,9 @@ class new_orders(new_ordersTemplate):
     download(Xmedia)
     pass
 
+  def button_2_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Work_in_Progress')
+    pass
+
 

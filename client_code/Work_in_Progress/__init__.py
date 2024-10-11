@@ -67,3 +67,11 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     dataWIP = anvil.server.call('get_Daily_WIP')
     self.repeating_panel_1.items = dataWIP 
 
+  def button_1_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      open_form('new_orders')
+      # dicts = anvil.server.call('get_changes')
+      
+      pass
+
+
