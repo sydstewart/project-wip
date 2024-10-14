@@ -766,6 +766,7 @@ def get_changes():
               sales_orders.name, sales_orders_cstm.neworexistingsystem_c, users1.first_name  \
               As Assigned_to, sales_orders.date_entered as date_entered, sales_orders_audit.date_created As Update_date, users.first_name \
               As Updated_by, \
+              sales_orders_cstm.OrderCategory as order_category, \
               sales_orders_audit.field_name, \
               sales_orders_audit.before_value_string as BeforePercent, sales_orders_audit.after_value_string as AfterPercent, \
               sales_orders.subtotal_usd As GBP_Excl_Vat, sales_orders.amount_usdollar As \
@@ -785,7 +786,7 @@ def get_changes():
   number_of_records =len(records)
   print('No of changes',number_of_records)
   if number_of_records:
-            dicts = [{'order_no': r['Order_No'], 'project_name':r['name'] ,'order_date':r['date_entered'],'Assigned_to':r['Assigned_to'] , 'order_value':r['GBP_Excl_Vat'] , 'Update_Date':r['Update_date'], \
+            dicts = [{'order_no': r['Order_No'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['order_category'],'Assigned_to':r['Assigned_to'] , 'order_value':r['GBP_Excl_Vat'] , 'Update_Date':r['Update_date'], \
                      'Updated_by':r['Updated_by'],'Percent_Completion_Before':r['BeforePercent'],'Percent_Completion_After':r['AfterPercent']} for r in records]
             # print(dicts)
   X = pd.DataFrame.from_dict(dicts)

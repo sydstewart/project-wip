@@ -25,6 +25,7 @@ components:
       - {data_key: order_no, expand: false, id: SRIVKQ, title: Order No, width: 104.22219848632812}
       - {data_key: order_date, expand: false, id: WWBLLF, title: Order Date, width: 117.77777099609375}
       - {data_key: project_name, expand: false, id: QVOFYV, title: Project Name, width: 311.4443359375}
+      - {data_key: order_category, expand: false, id: MBIDDQ, title: Order Category, width: 189.44439697265625}
       - {data_key: Assigned_to, expand: false, id: IZESLT, title: Assigned_to, width: 123.111083984375}
       - {data_key: order_value, expand: false, id: LFPRNM, title: Order Value GBP Excl. VAT, width: 132.8887939453125}
       - {data_key: Update_Date, expand: false, id: RIPNUY, title: Update Date, width: 122.22216796875}
