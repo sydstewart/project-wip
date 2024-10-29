@@ -97,7 +97,40 @@ def testprojects():
                 Total_Work_Left = float(Total_Order_Value) - float(Total_Work_Completed_VaLUE)
                 print('Total_Work_Left_VaLUE',Total_Work_Left)
 
-                
+        # calculate WIP by order category
+          with conn.cursor() as cur2:
+                cur2.execute(
+                   "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
+                   Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
+                   Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100)) As Total_Completed_VaLUE \
+                   count(sales_orders.id) as No_of_projects
+                   From sales_orders \
+                      INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+                      Where sales_orders.date_entered > '2020-01-01' AND \
+                          sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+                          sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Complete'), \
+                      Group By sales_orders_cstm.OrderCategory, \
+                      Having sales_orders_cstm.OrderCategory Not In ('Maintenance')    "
+                )
+        
+          for r in cur2.fetchall():
+        
+                Total_Order_Value =r['Total_Order_Value']
+                Total_Order_Value = float(Total_Order_Value)
+                # Total_Order_Value = f"{Total_Order_Value  :.2f}"
+                print('Total_Order_Value=',Total_Order_Value)
+            
+                Average_Percent_Work_Complete = (r['Average_Percent_Work_Complete'])
+                # Average_Percent_Work_Complete  = f"{Average_Percent_Work_Complete :.2f}"
+                print('Average_Percent_Work_Complete=',Average_Percent_Work_Complete )
+            
+                Total_Work_Completed_VaLUE = r['Total_Completed_VaLUE']
+                Total_Work_Completed_VaLUE = float(Total_Work_Completed_VaLUE)
+                # Total_Work_Completed_VaLUE = f"{Total_Work_Completed_VaLUE :.2f}"
+                print('Total_Work_Completed_VaLUE',Total_Work_Completed_VaLUE)
+        
+                Total_Work_Left = float(Total_Order_Value) - float(Total_Work_Completed_VaLUE)
+                print('Total_Work_Left_VaLUE',Total_Work_Left)                
         
         
           # totals = cur1.fetchall()
