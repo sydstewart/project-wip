@@ -42,11 +42,19 @@ components:
 - event_bindings: {click: button_1_click}
   layout_properties: {slot: left-nav}
   name: button_1
-  properties: {text: Changes List}
+  properties: {bold: true, enabled: true, text: Changes List}
   type: Button
 - layout_properties: {slot: top-left-btn}
   name: button_2
   properties: {text: button_2}
+  type: Button
+- layout_properties: {slot: title}
+  name: button_3
+  properties: {text: button_3}
+  type: Button
+- layout_properties: {slot: top-left-btn}
+  name: button_4
+  properties: {text: button_4}
   type: Button
 container:
   properties: {html: '@theme:standard-page.html'}
