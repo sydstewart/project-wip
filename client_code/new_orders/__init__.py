@@ -15,6 +15,7 @@ class new_orders(new_ordersTemplate):
     dicts, XMedia  = anvil.server.call('get_changes')
    
     self.repeating_panel_1.items = dicts
+   
     # anvil.media.download(Y)
     # Any code you write here will run before the form opens.
 
@@ -51,7 +52,7 @@ class new_orders(new_ordersTemplate):
   def check_box_2_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     dicts , Xmedia = anvil.server.call('get_changes')
-    for row in dicts:
-       print(dicts['Percent_Completion_After'])
 
+
+      
 

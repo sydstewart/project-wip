@@ -4,6 +4,10 @@ components:
     name: label_1
     properties: {align: center, bold: true, font_size: 16, text: Updates to Projects created after January 1st  2020}
     type: Label
+  - layout_properties: {grid_position: 'DJLHFC,LEKOBZ'}
+    name: project_found_text
+    properties: {}
+    type: TextBox
   - event_bindings: {change: check_box_1_change}
     layout_properties: {grid_position: 'DJLHFC,TKFTMI'}
     name: check_box_1
