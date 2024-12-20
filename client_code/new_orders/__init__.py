@@ -48,4 +48,10 @@ class new_orders(new_ordersTemplate):
     open_form('Work_in_Progress')
     pass
 
+  def check_box_2_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    dicts , Xmedia = anvil.server.call('get_changes')
+    for row in dicts:
+       print(dicts['Percent_Completion_After'])
+
 
