@@ -14,7 +14,7 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     print('Syd')
-    # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
+    # self.no_of_open_projects = anvil.server.call('no_open_projects')
 #=============================================================================    
     line_plots = anvil.server.call('wip_run_chart')
  

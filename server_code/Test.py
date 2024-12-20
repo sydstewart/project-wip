@@ -312,6 +312,9 @@ def work_to_do_chart():
    # fig.add_scatter(x=df['Date_entered'], y=df['Total Work To Do Value'], mode='markers+lines', name= 'Total Work To Do Value')
    return fig
 
+ # @anvil.server.callable
+ # def work_to_do_chart(): 
+
 @anvil.server.callable
 def orders_chart():
    import plotly.graph_objects as go
@@ -337,11 +340,14 @@ def orders_chart():
   
 @anvil.server.callable
 def testprojects():
-  
-  conn = connect()
+   import plotly.graph_objects as go
+   import plotly.express as px 
+   chart_data = app_tables.daily_wip.search(Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17)))
+
+   conn = connect()
 #=============================================================================  
   # Load Orders 
-  with conn.cursor() as cur:
+   with conn.cursor() as cur:
         cur.execute(
               "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
                 CONCAT(sales_orders.prefix,sales_orders.so_number) As so_number, sales_orders.so_stage As so_stage, \
@@ -357,12 +363,12 @@ def testprojects():
                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
                   sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Complete')"
                     )  
-  records = cur.fetchall()
-  number_of_records =len(records)
-  print('No of projects',number_of_records)
+        records = cur.fetchall()
+        number_of_records =len(records)
+        print('No of projects',number_of_records)
 
 # calculate WIP
-  with conn.cursor() as cur1:
+   with conn.cursor() as cur1:
         cur1.execute(
           "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
             Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
