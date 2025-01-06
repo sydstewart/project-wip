@@ -15,7 +15,24 @@ class new_orders(new_ordersTemplate):
     dicts, XMedia  = anvil.server.call('get_changes')
    
     self.repeating_panel_1.items = dicts
-   
+# initializing dictionary
+ 
+# printing original dictionary
+    print("The original dictionary : " + str(dicts))
+  
+  # initializing K
+    K = 5
+  
+  # Filter and Double keys greater than K
+  # Using loop
+    res = dict()
+    for key, val in dicts.items():
+        if val > K and key == 'Percent_Completion_Before':
+            res[key] = val  
+    
+    # printing result
+    print("The filtered dictionary : " + str(res))
+
     # anvil.media.download(Y)
     # Any code you write here will run before the form opens.
 
