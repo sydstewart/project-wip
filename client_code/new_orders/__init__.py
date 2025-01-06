@@ -12,26 +12,26 @@ class new_orders(new_ordersTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    dicts, XMedia  = anvil.server.call('get_changes')
+    start = self.level_textbox.text
+    dicts, XMedia  = anvil.server.call('get_changes', start)
    
     self.repeating_panel_1.items = dicts
 # initializing dictionary
  
-# printing original dictionary
-    print("The original dictionary : " + str(dicts))
+# # printing original dictionary
+#     print("The original dictionary : " + str(dicts))
   
-  # initializing K
-    K = 5
+#   # initializing K
+#     K = 5
   
-  # Filter and Double keys greater than K
-  # Using loop
-    res = dict()
-    for key, val in dicts.items():
-        if val > K and key == 'Percent_Completion_Before':
-            res[key] = val  
-    
-    # printing result
-    print("The filtered dictionary : " + str(res))
+#   # Filter and Double keys greater than K
+#   # Using loop
+#     dict_list =[dicts]
+
+# # Use list comprehension to filter the list based on roles
+#     res = [d for d in dict_list if d['Percent Completion Before'] > 10] 
+#     # printing result
+#     print("The filtered dictionary : " + str(res))
 
     # anvil.media.download(Y)
     # Any code you write here will run before the form opens.
@@ -57,7 +57,8 @@ class new_orders(new_ordersTemplate):
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
-    dicts , Xmedia = anvil.server.call('get_changes')
+    start = self.level_textbox.text
+    dicts , Xmedia = anvil.server.call('get_changes', start)
     download(Xmedia)
     pass
 
@@ -68,8 +69,16 @@ class new_orders(new_ordersTemplate):
 
   def check_box_2_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
-    dicts , Xmedia = anvil.server.call('get_changes')
+    start = self.level_textbox.text
+    dicts , Xmedia = anvil.server.call('get_changes', start)
 
+  def level_textbox_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    start = self.level_textbox.text
+    print('start=',start)
+    dicts , Xmedia = anvil.server.call('get_changes', start)
+ 
+     
 
       
 

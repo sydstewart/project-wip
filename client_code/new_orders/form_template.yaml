@@ -8,6 +8,12 @@ components:
     name: project_found_text
     properties: {}
     type: TextBox
+  - data_bindings: []
+    event_bindings: {change: level_textbox_change}
+    layout_properties: {grid_position: 'DJLHFC,YZARQW'}
+    name: level_textbox
+    properties: {text: '5', type: number}
+    type: TextBox
   - event_bindings: {change: check_box_1_change}
     layout_properties: {grid_position: 'DJLHFC,TKFTMI'}
     name: check_box_1

@@ -291,7 +291,7 @@ metadata: {logo_img: 'asset:4S logo small.png', title: Project WIP}
 name: Project WIP
 package_name: Project_WIP
 renamed: true
-runtime_options: {client_version: '3', server_spec: null, server_version: python3-full, version: 2}
+runtime_options: {client_version: '3', server_persist: true, server_spec: null, server_version: python3-full, version: 2}
 scheduled_tasks:
 - job_id: SWXYQIMB
   task_name: testprojects
