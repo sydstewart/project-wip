@@ -13,6 +13,7 @@ class Run_Chart(Run_ChartTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     line_plots_1 = anvil.server.call('work_to_do_chart')
+    
     layout_1 = {
       'title': 'Run_Chart of Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
       'yaxis': {'title': '£ Value'},

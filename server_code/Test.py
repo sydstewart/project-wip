@@ -327,8 +327,8 @@ def work_to_do_chart():
    df = pd.DataFrame.from_dict(dicts)
    df['Median'] = df['Total Work To Do Value'].median()
    print('df',df)
- 
- 
+   
+   
    fig = go.Figure([
 
     go.Scatter(
