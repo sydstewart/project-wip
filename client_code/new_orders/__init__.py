@@ -12,9 +12,8 @@ class new_orders(new_ordersTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    start = self.level_textbox.text
-    dicts, XMedia  = anvil.server.call('get_changes', start)
-   
+    dicts, XMedia  = anvil.server.call('get_changes')
+    print('Number of Record=', len(dicts))
     self.repeating_panel_1.items = dicts
 # initializing dictionary
  

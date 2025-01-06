@@ -790,7 +790,7 @@ def show_all_projects(num_displayed, user):
           return dicts, fig, count_found
 
 @anvil.server.callable  
-def get_changes(limit):
+def get_changes():
 
   conn = connect()
 #=============================================================================  
@@ -826,13 +826,14 @@ def get_changes(limit):
             # print(dicts)
   X = pd.DataFrame.from_dict(dicts)
   
-  X['Percent_Completion_Before'] = X['Percent_Completion_Before'].fillna(0)
-  print('before',X['Percent_Completion_Before'])
+  # X['Percent_Completion_Before'] = X['Percent_Completion_Before'].fillna(0)
+  # print('before',X['Percent_Completion_Before'])
   
-  X['Percent_Completion_Before']= X['Percent_Completion_Before'].astype(int)
-  X =  X[X['Percent_Completion_Before'] > limit]
-  X['Percent_Completion_Before'] = X['Percent_Completion_Before'].map(str)
-  dicts =X.to_dict()
+  # X['Percent_Completion_Before']= X['Percent_Completion_Before'].astype(int)
+  # X =  X[X['Percent_Completion_Before'] > limit]
+  # print('after filter',X['Percent_Completion_Before'])
+  # X['Percent_Completion_Before'] = X['Percent_Completion_Before'].map(str)
+  # dicts =X.to_dict(orient='records')
   X.to_csv('/tmp/X.csv') 
   X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
   
