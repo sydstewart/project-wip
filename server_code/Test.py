@@ -325,6 +325,7 @@ def work_to_do_chart():
    chart_data = app_tables.daily_wip.search(Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17)))
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
+   df['Median'] = df['Total Work To Do Value'].median()
    print('df',df)
  
  
@@ -339,6 +340,7 @@ def work_to_do_chart():
         line=dict(width=1),
         showlegend=True)
    ])
+   fig.add_scatter(x=df['Date_entered'], y=df['Median'], mode='lines', name= 'Median Total Work To Do Value')
    # fig = px.line(df, x= 'Date_entered', y='Total Order Value', markers=True)
    # fig['data'][0]['name']='Total Order Value'
    # # line_plots = go.Scatter(x=df['Date_entered'], y=df['Total Order Value'], name='Total Order Value', marker=dict(color='#e50000'))
@@ -353,7 +355,7 @@ def orders_chart():
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
    print('df',df)
- 
+   df['Median'] = df['Total Order Value'].median()
  
    fig = go.Figure([
 
