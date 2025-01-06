@@ -825,7 +825,13 @@ def get_changes(limit):
                      'Updated_by':r['Updated_by'],'Percent_Completion_Before':r['BeforePercent'],'Percent_Completion_After':r['AfterPercent']} for r in records]
             # print(dicts)
   X = pd.DataFrame.from_dict(dicts)
+  
+  X['Percent_Completion_Before'] = X['Percent_Completion_Before'].fillna(0)
+  print('before',X['Percent_Completion_Before'])
+  
+  X['Percent_Completion_Before']= X['Percent_Completion_Before'].astype(int)
   X =  X[X['Percent_Completion_Before'] > limit]
+  X['Percent_Completion_Before'] = X['Percent_Completion_Before'].map(str)
   dicts =X.to_dict()
   X.to_csv('/tmp/X.csv') 
   X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
