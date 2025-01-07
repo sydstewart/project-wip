@@ -5,7 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-
+import anvil.media
 
 class list_projects(list_projectsTemplate):
   def __init__(self, **properties):
@@ -17,6 +17,8 @@ class list_projects(list_projectsTemplate):
     dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
+    media_object = anvil.server.call('create_project_pdf')
+    anvil.media.download(media_object)
 
   def percent_complete_text_box_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
@@ -46,14 +48,15 @@ class list_projects(list_projectsTemplate):
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     pass
-
+    
+    
   def download_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     # start = self.level_textbox.text
-    dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
-    download(Xmedia)
+    # dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    # download(Xmedia)
+    media_object = anvil.server.call('create_project_pdf')
+    anvil.media.download(media_object)
     pass
     pass
 
-
-    
