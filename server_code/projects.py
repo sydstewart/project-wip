@@ -88,7 +88,7 @@ def get_orders(percent_complete,assigned_to, category):
     # print('after filter',X['percent_complete'])
     X['percent_complete'] = X['percent_complete'].map(str)
     dicts =X.to_dict(orient='records')
-    # X.to_csv('/tmp/X.csv') 
-    # X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
+    X.to_csv('/tmp/X.csv') 
+    X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
     
-    return dicts 
+    return dicts, X_media 
