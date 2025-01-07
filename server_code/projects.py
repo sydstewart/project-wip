@@ -16,7 +16,7 @@ import anvil.media
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
-import anvil.pdf
+# import anvil.pdf
 
 from anvil.tables import app_tables
 
