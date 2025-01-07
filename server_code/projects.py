@@ -91,12 +91,12 @@ def get_orders(percent_complete,assigned_to, category):
     dicts =X.to_dict(orient='records')
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
-    media_object = anvil.pdf.render_form('list_projects')
-    return dicts, X_media, media_object 
+    # media_object = anvil.pdf.render_form('list_projects')
+    return dicts, X_media 
 
 
 
-# @anvil.server.callable
-# def create_projects_pdf():
-#   media_object = anvil.pdf.render_form('list_projects')
-#   return media_object
+@anvil.server.callable
+def create_projects_pdf(dicts):
+  media_object = anvil.pdf.render_form('list_projects')
+  return media_object

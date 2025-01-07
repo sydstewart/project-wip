@@ -51,8 +51,9 @@ class list_projects(list_projectsTemplate):
     """This method is called when the button is clicked"""
     # start = self.level_textbox.text
     dicts, Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
-    download(Xmedia)
-    # media_object = anvil.server.call('create_projects_pdf')
+    # download(Xmedia)
+    pdfdata =anvil.server.call('create_projects_pdf', dicts)
+    download(pdfdata)
     # anvil.media.download(media_object)
     pass
     pass
