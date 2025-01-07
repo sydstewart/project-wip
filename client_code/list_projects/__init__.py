@@ -17,6 +17,8 @@ class list_projects(list_projectsTemplate):
     dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
+    # pdfdata =anvil.server.call('create_projects_pdf', dicts)
+    # download(pdfdata)
 
   def percent_complete_text_box_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
