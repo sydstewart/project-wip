@@ -16,6 +16,7 @@ import anvil.media
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
+import anvil.pdf
 
 from anvil.tables import app_tables
 
@@ -90,5 +91,12 @@ def get_orders(percent_complete,assigned_to, category):
     dicts =X.to_dict(orient='records')
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
-    
-    return dicts, X_media 
+    media_object = anvil.pdf.render_form('list_projects')
+    return dicts, X_media, media_object 
+
+
+
+# @anvil.server.callable
+# def create_projects_pdf():
+#   media_object = anvil.pdf.render_form('list_projects')
+#   return media_object
