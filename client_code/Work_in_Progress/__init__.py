@@ -79,4 +79,10 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     open_form('Run_Chart')
     pass
 
+  def projects_list_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    
+    open_form('list_projects')
+    pass
+
 

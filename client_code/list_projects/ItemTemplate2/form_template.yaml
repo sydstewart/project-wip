@@ -1,0 +1,5 @@
+components: []
+container:
+  properties: {wrap_on: tablet}
+  type: ColumnPanel
+is_package: true

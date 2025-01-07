@@ -62,6 +62,11 @@ components:
     name: run_chart_button
     properties: {bold: true, text: Run Chart}
     type: Button
+  - event_bindings: {click: projects_list_button_click}
+    layout_properties: {grid_position: 'WVONIX,KWDBMO'}
+    name: projects_list_button
+    properties: {text: Projects List}
+    type: Button
   layout_properties: {slot: left-nav}
   name: column_panel_1
   properties: {}
