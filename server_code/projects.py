@@ -85,7 +85,8 @@ def get_orders(percent_complete,assigned_to, category):
           filter = (X['assigned_to'] == assigned_to)
           X =  X[filter]
           X =  X[X['order_category'] == category]
-
+    elif percent_complete and not category and not assigned_to:
+          X =  X[X['percent_complete'] > int(percent_complete)]
     # print('after filter',X['percent_complete'])
     X['percent_complete'] = X['percent_complete'].map(str)
     dicts =X.to_dict(orient='records')
@@ -95,8 +96,8 @@ def get_orders(percent_complete,assigned_to, category):
     return dicts, X_media 
 
 @anvil.server.callable
-def create_pdf(dicts):
-  pdf = anvil.pdf.render_form("list_projects_pdf", dicts, landscape =True)
+def create_pdf(dicts, field_parameters):
+  pdf = anvil.pdf.render_form("list_projects_pdf", dicts, field_parameters, landscape =True)
   return pdf
 
 

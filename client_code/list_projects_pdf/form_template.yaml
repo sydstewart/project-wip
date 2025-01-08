@@ -1,52 +1,66 @@
 components:
 - components:
-  - layout_properties: {grid_position: 'NMMWTO,OTGJRV'}
+  - layout_properties: {grid_position: 'MNKBJR,HIMHJT'}
     name: label_1
     properties: {bold: true, text: No of Projects Found =}
     type: Label
   - data_bindings:
     - {code: 'self.item['''']', property: text, writeback: false}
-    layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,RALBPK'}
+    layout_properties: {grid_position: 'MNKBJR,BWHEAA'}
     name: text_box_1
     properties: {align: left, bold: true, type: number}
     type: TextBox
-  - layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,ETYDRY'}
+  - layout_properties: {grid_position: 'MNKBJR,WWOKUC'}
+    name: work_to_do_label
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'MNKBJR,QRCYWH'}
+    name: average_completion_label
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'MNKBJR,CUKNGZ'}
+    name: total_value_label
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'MNKBJR,DLSXGV'}
     name: label_3
     properties: {}
     type: Label
-  - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM WTBOOF,CJSAWI'}
-    name: percent_complete_label
-    properties: {bold: true, text: Above Percent Complete}
-    type: Label
+  - components:
+    - layout_properties: {}
+      name: percent_complete_label
+      properties: {align: right, bold: true, text: Above Percent Complete}
+      type: Label
+    layout_properties: {grid_position: 'PTCRVS,ZGMVWC'}
+    name: flow_panel_1
+    properties: {}
+    type: FlowPanel
   - event_bindings: {change: percent_complete_text_box_change}
-    layout_properties: {grid_position: 'NMMWTO,HHHBRM WTBOOF,LCHDYI'}
+    layout_properties: {grid_position: 'PTCRVS,RUFUHI'}
     name: percent_complete_text_box
     properties: {text: '0'}
     type: TextBox
-  - layout_properties: {grid_position: 'NMMWTO,HHHBRM WTBOOF,CSUBAS'}
+  - layout_properties: {grid_position: 'PTCRVS,PWLNEB'}
     name: label_5
-    properties: {bold: true, text: Category}
+    properties: {align: right, bold: true, text: Category}
     type: Label
-  - event_bindings: {change: Category_change}
-    layout_properties: {grid_position: 'NMMWTO,HHHBRM WTBOOF,DZREQZ'}
-    name: Category
-    properties:
-      include_placeholder: true
-      items: [Implementation, Interface(s), Configuration/Dev, Questionnaire(s), Server Mover with Interfaces, Server Mover with NO Interfaces]
-    type: DropDown
-  - layout_properties: {grid_position: 'NMMWTO,HHHBRM WTBOOF,HKHBYB'}
+  - layout_properties: {grid_position: 'PTCRVS,NETQYW'}
+    name: category_label
+    properties: {}
+    type: Label
+  - layout_properties: {grid_position: 'PTCRVS,YUJTHK'}
     name: label_2
     properties: {bold: true, text: Assigned to}
     type: Label
   - event_bindings: {change: drop_down_1_change}
-    layout_properties: {grid_position: 'NMMWTO,HHHBRM WTBOOF,OUOVUQ'}
+    layout_properties: {grid_position: 'PTCRVS,JBBXUQ'}
     name: drop_down_1
     properties:
       bold: false
       include_placeholder: true
       items: [Alistair, Brenda, George, Kate, Shelley, Steven]
     type: DropDown
-  - layout_properties: {grid_position: 'NMMWTO,HHHBRM WTBOOF,XQBUVR'}
+  - layout_properties: {grid_position: 'PTCRVS,EOUZPG'}
     name: label_4
     properties: {}
     type: Label
@@ -54,7 +68,7 @@ components:
     - name: repeating_panel_1
       properties: {item_template: list_projects.RowTemplate21}
       type: RepeatingPanel
-    layout_properties: {grid_position: 'KTTKXU,RPHZBO'}
+    layout_properties: {full_width_row: true, grid_position: 'KTTKXU,RPHZBO'}
     name: data_grid_1
     properties:
       columns:
@@ -69,7 +83,7 @@ components:
   layout_properties: {slot: default}
   name: content_panel
   properties:
-    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":10,"ETYDRY":50,"CJSAWI":15,"CSUBAS":7,"DZREQZ":13,"HKHBYB":9,"OUOVUQ":8,"XQBUVR":3,"LCHDYI":5}'
+    col_widths: '{"HIMHJT":7,"BWHEAA":4,"DLSXGV":15,"ZGMVWC":9,"RUFUHI":9,"PWLNEB":9,"NETQYW":13,"YUJTHK":4,"JBBXUQ":11,"EOUZPG":5,"WWOKUC":14,"QRCYWH":15,"CUKNGZ":15}'
     spacing:
       padding: [null, null, null, '5']
   type: ColumnPanel
