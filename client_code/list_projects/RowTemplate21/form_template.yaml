@@ -1,3 +1,8 @@
-components: []
+components:
+- components: []
+  layout_properties: {column: NDWYTE}
+  name: flow_panel_1
+  properties: {}
+  type: FlowPanel
 container: {type: DataRowPanel}
 is_package: true

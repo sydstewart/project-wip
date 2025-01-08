@@ -17,6 +17,15 @@ class list_projects(list_projectsTemplate):
     dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
+    # fract_to_do = dicts['percent_complete']/100
+    # print('Fract to do =', fract_to_do)
+    # average_completion = average([int(x['percent_complete'])] for x in dicts]))
+    average_completion = sum([int(x['percent_complete']) / len(dicts)  for x in dicts])
+    subtotal = sum([int(x['order_value'] ) for x in dicts])
+    work_to_do = (subtotal * (100 - average_completion))/ 100
+    self.total_value_label.text = f"TOTAL_VALUE_TO_DO : £{subtotal:,}"
+    self.average_completion_label.text = f"Average_COMPLETION : {average_completion:.1f}%"
+    self.work_to_do_label.text = f"Value_of_Work_TO_DO : £{work_to_do:,}"
 
   def percent_complete_text_box_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
@@ -26,6 +35,12 @@ class list_projects(list_projectsTemplate):
     dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
+    average_completion = sum([int(x['percent_complete']) / len(dicts)  for x in dicts])
+    subtotal = sum([int(x['order_value'] ) for x in dicts])
+    work_to_do = (subtotal * (100 - average_completion))/ 100
+    self.total_value_label.text = f"TOTAL_VALUE_TO_DO : £{subtotal:,}"
+    self.average_completion_label.text = f"Average_COMPLETION : {average_completion:.1f}%"
+    self.work_to_do_label.text = f"Value_of_Work_TO_DO : £{work_to_do:,}"
 
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
@@ -35,6 +50,12 @@ class list_projects(list_projectsTemplate):
     dicts ,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
+    average_completion = sum([int(x['percent_complete']) / len(dicts)  for x in dicts])
+    subtotal = sum([int(x['order_value'] ) for x in dicts])
+    work_to_do = (subtotal * (100 - average_completion))/ 100
+    self.total_value_label.text = f"TOTAL_VALUE_TO_DO : £{subtotal:,}"
+    self.average_completion_label.text = f"Average_COMPLETION : {average_completion:.1f}%"
+    self.work_to_do_label.text = f"Value_of_Work_TO_DO : £{work_to_do:,}"
     pass
 
   def Category_change(self, **event_args):
@@ -45,24 +66,18 @@ class list_projects(list_projectsTemplate):
     dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
+    average_completion = sum([int(x['percent_complete']) / len(dicts)  for x in dicts])
+    subtotal = sum([int(x['order_value'] ) for x in dicts])
+    work_to_do = (subtotal * (100 - average_completion))/ 100
+    self.total_value_label.text = f"TOTAL_VALUE_TO_DO : £{subtotal:,}"
+    self.average_completion_label.text = f"Average_COMPLETION : {average_completion:.1f}%"
+    self.work_to_do_label.text = f"Value_of_Work_TO_DO : £{work_to_do:,}"
     pass
 
   def download_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     # start = self.level_textbox.text
-    pdf_info = {
-        'percent_complete': self.percent_complete_text_box.text,
-        'assigned to': self.drop_down_1.selected_value,
-         'category' : self.Category.selected_value
-    }
-    anvil.server.call('generate_pdf', pdf_info)
-    # dicts, Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
-    # # download(Xmedia)
-    # pdfdata =anvil.server.call('create_projects_pdf', dicts)
-    # download(pdfdata)
-    # # anvil.media.download(media_object)
-    pass
-    pass
-
-
+    open_form('list_projects_pdf',self.repeating_panel_1.items )
+    pdf = anvil.server.call('create_pdf', self.repeating_panel_1.items)
+    download(pdf)
     

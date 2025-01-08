@@ -94,6 +94,11 @@ def get_orders(percent_complete,assigned_to, category):
     # media_object = anvil.pdf.render_form('list_projects')
     return dicts, X_media 
 
+@anvil.server.callable
+def create_pdf(dicts):
+  pdf = anvil.pdf.render_form("list_projects_pdf", dicts, landscape =True)
+  return pdf
+
 
 
 @anvil.server.callable

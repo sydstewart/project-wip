@@ -1,24 +1,32 @@
 components:
 - components:
-  - layout_properties: {grid_position: 'NMMWTO,OTGJRV'}
+  - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,OTGJRV'}
     name: label_1
-    properties: {bold: true, text: No of Projects Found =}
+    properties: {align: right, bold: true, text: No of Projects Found =}
     type: Label
   - data_bindings:
     - {code: 'self.item['''']', property: text, writeback: false}
-    layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,RALBPK'}
+    layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM OUAJQV,RALBPK'}
     name: text_box_1
     properties: {align: left, bold: true, type: number}
     type: TextBox
+  - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM OUAJQV,LHKFKX'}
+    name: total_value_label
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM OUAJQV,JEFQCG'}
+    name: average_completion_label
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,WVHOSD'}
+    name: work_to_do_label
+    properties: {bold: true}
+    type: Label
   - event_bindings: {click: download_button_click}
-    layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,FUGXKS'}
+    layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM OUAJQV,FUGXKS'}
     name: download_button
     properties: {text: Download}
     type: Button
-  - layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,ETYDRY'}
-    name: label_3
-    properties: {}
-    type: Label
   - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM WTBOOF,CJSAWI'}
     name: percent_complete_label
     properties: {bold: true, text: Above Percent Complete}
@@ -69,12 +77,12 @@ components:
       - {data_key: order_category, id: OJLQEN, title: Category}
       - {data_key: assigned_to, id: VPCGSW, title: Assigned_to}
       - {data_key: percent_complete, id: VTRJVM, title: Percent Complete}
-      - {data_key: order_value, id: NDWYTE, title: GB excl VAT, width: '132.8887939453125'}
+      - {data_key: order_value, id: EFHAEM, title: GB excl VAT}
     type: DataGrid
   layout_properties: {slot: default}
   name: content_panel
   properties:
-    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":10,"ETYDRY":50,"CJSAWI":15,"CSUBAS":7,"DZREQZ":13,"HKHBYB":9,"OUOVUQ":8,"XQBUVR":3,"LCHDYI":5}'
+    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":4,"CJSAWI":15,"CSUBAS":7,"DZREQZ":13,"HKHBYB":9,"OUOVUQ":8,"XQBUVR":3,"LCHDYI":5,"LHKFKX":16,"FUGXKS":12,"JEFQCG":18}'
     spacing:
       padding: [null, null, null, '5']
   type: ColumnPanel
