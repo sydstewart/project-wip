@@ -58,11 +58,14 @@ class list_projects(list_projectsTemplate):
     """This method is called when the button is clicked"""
     # start = self.level_textbox.text
     field_parameters =[]
-    field_parameters = [self.Category.selected_value, 
-                        self.average_completion_label.text,
-                        self.work_to_do_label.text,
-                        self.total_value_label.text,
-                        self.text_box_1.text]
+    field_parameters = [self.drop_down_1.selected_value,  #asigned to
+                        self.text_box_1.text, # no of records
+                        self.Category.selected_value,  # category
+                        self.percent_complete_text_box.text,  # above this percent complete
+                        self.average_completion_label.text, #above percent 
+                        self.work_to_do_label.text, # work to do
+                        self.total_value_label.text]
+                       
     
     open_form('list_projects_pdf',self.repeating_panel_1.items, field_parameters )
     pdf = anvil.server.call('create_pdf', self.repeating_panel_1.items,field_parameters)
