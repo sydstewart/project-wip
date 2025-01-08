@@ -12,7 +12,8 @@ def search_using_kwargs(self):
     # search2 = self.New_stage_dropdown.selected_value
     # search3 = self.exclude_archived_completed.checked
     if  search1:
-        kwargs['project_board']=q.any_of(*search1)
+        kwargs[0]=X['assigned_to']= search1
+    print('kwargs', kwargs)
     # if search2:
     #     old_stages = app_tables.stage_translate.search(new_column = search2)
     #     thislist =[]
