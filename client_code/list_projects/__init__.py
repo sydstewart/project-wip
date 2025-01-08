@@ -6,6 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.media
+from ..kwargs_for_projects import search_projects_using_kwargs
 
 class list_projects(list_projectsTemplate):
   def __init__(self, **properties):
@@ -30,33 +31,35 @@ class list_projects(list_projectsTemplate):
   def percent_complete_text_box_change(self, **event_args):
     
     """This method is called when the text in this text box is edited"""
-    print('Percent Complete=', self.percent_complete_text_box.text)
-    print('Assigned to =', self.drop_down_1.selected_value)
-    print('Catgeory =', self.Category.selected_value)
-    dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
-    self.text_box_1.text = len(dicts)
-    self.repeating_panel_1.items = dicts
-    average_completion = sum([int(x['percent_complete']) / len(dicts)  for x in dicts])
-    subtotal = sum([int(x['order_value'] ) for x in dicts])
-    work_to_do = (subtotal * (100 - average_completion))/ 100
-    self.total_value_label.text = f"TOTAL_VALUE_TO_DO : £{subtotal:,}"
-    self.average_completion_label.text = f"Average_COMPLETION : {average_completion:.1f}%"
-    self.work_to_do_label.text = f"Value_of_Work_TO_DO : £{work_to_do:,}"
+    search_projects_using_kwargs(self)
+    # print('Percent Complete=', self.percent_complete_text_box.text)
+    # print('Assigned to =', self.drop_down_1.selected_value)
+    # print('Catgeory =', self.Category.selected_value)
+    # dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    # self.text_box_1.text = len(dicts)
+    # self.repeating_panel_1.items = dicts
+    # average_completion = sum([int(x['percent_complete']) / len(dicts)  for x in dicts])
+    # subtotal = sum([int(x['order_value'] ) for x in dicts])
+    # work_to_do = (subtotal * (100 - average_completion))/ 100
+    # self.total_value_label.text = f"TOTAL_VALUE_TO_DO : £{subtotal:,}"
+    # self.average_completion_label.text = f"Average_COMPLETION : {average_completion:.1f}%"
+    # self.work_to_do_label.text = f"Value_of_Work_TO_DO : £{work_to_do:,}"
 
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
-    print('Percent Complete=', self.percent_complete_text_box.text)
-    print('Assigned to =', self.drop_down_1.selected_value)
-    print('Catgeory =', self.Category.selected_value)
-    dicts ,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
-    self.text_box_1.text = len(dicts)
-    self.repeating_panel_1.items = dicts
-    average_completion = sum([int(x['percent_complete']) / len(dicts)  for x in dicts])
-    subtotal = sum([int(x['order_value'] ) for x in dicts])
-    work_to_do = (subtotal * (100 - average_completion))/ 100
-    self.total_value_label.text = f"TOTAL_VALUE_TO_DO : £{subtotal:,}"
-    self.average_completion_label.text = f"Average_COMPLETION : {average_completion:.1f}%"
-    self.work_to_do_label.text = f"Value_of_Work_TO_DO : £{work_to_do:,}"
+    search_projects_using_kwargs(self)
+    # print('Percent Complete=', self.percent_complete_text_box.text)
+    # print('Assigned to =', self.drop_down_1.selected_value)
+    # print('Catgeory =', self.Category.selected_value)
+    # dicts ,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    # self.text_box_1.text = len(dicts)
+    # self.repeating_panel_1.items = dicts
+    # average_completion = sum([int(x['percent_complete']) / len(dicts)  for x in dicts])
+    # subtotal = sum([int(x['order_value'] ) for x in dicts])
+    # work_to_do = (subtotal * (100 - average_completion))/ 100
+    # self.total_value_label.text = f"TOTAL_VALUE_TO_DO : £{subtotal:,}"
+    # self.average_completion_label.text = f"Average_COMPLETION : {average_completion:.1f}%"
+    # self.work_to_do_label.text = f"Value_of_Work_TO_DO : £{work_to_do:,}"
     pass
 
   def Category_change(self, **event_args):

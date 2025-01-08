@@ -39,7 +39,7 @@ conn = connect()
     #=============================================================================  
       # Load Orders 
 @anvil.server.callable  
-def get_orders(percent_complete,assigned_to, category):
+def get_orders(kwargs):
     with conn.cursor() as cur:
                 cur.execute(
                       "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
@@ -69,22 +69,26 @@ def get_orders(percent_complete,assigned_to, category):
     X = pd.DataFrame.from_dict(dicts)
     
     X['percent_complete'] = X['percent_complete'].fillna(0)
-    # print('before',X['percent_complete'])
+    filter = (kwargs)
+    X =  X[filter]
+        
+  
+  # print('before',X['percent_complete'])
     
-    X['percent_complete']= X['percent_complete'].astype(int)
+    # X['percent_complete']= X['percent_complete'].astype(int)
    
-    if assigned_to and not category:
-       filter = (X['assigned_to'] == assigned_to)
-       X =  X[X['percent_complete'] > int(percent_complete) ]
-       X =  X[filter]
-    elif category and not assigned_to:
-          X =  X[X['percent_complete'] > int(percent_complete)]
-          X =  X[X['order_category'] == category]
-    elif assigned_to and category:
-          X =  X[X['percent_complete'] > int(percent_complete) ]
-          filter = (X['assigned_to'] == assigned_to)
-          X =  X[filter]
-          X =  X[X['order_category'] == category]
+    # if assigned_to and not category:
+    #    filter = (X['assigned_to'] == assigned_to)
+    #    X =  X[X['percent_complete'] > int(percent_complete) ]
+    #    X =  X[filter]
+    # elif category and not assigned_to:
+    #       X =  X[X['percent_complete'] > int(percent_complete)]
+    #       X =  X[X['order_category'] == category]
+    # elif assigned_to and category:
+    #       X =  X[X['percent_complete'] > int(percent_complete) ]
+    #       filter = (X['assigned_to'] == assigned_to)
+    #       X =  X[filter]
+    #       X =  X[X['order_category'] == category]
 
     # print('after filter',X['percent_complete'])
     X['percent_complete'] = X['percent_complete'].map(str)
