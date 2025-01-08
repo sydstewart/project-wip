@@ -28,6 +28,7 @@ class list_projects(list_projectsTemplate):
     self.work_to_do_label.text = f"Value_of_Work_TO_DO : £{work_to_do:,}"
 
   def percent_complete_text_box_change(self, **event_args):
+    
     """This method is called when the text in this text box is edited"""
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.drop_down_1.selected_value)
