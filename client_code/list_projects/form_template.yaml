@@ -27,6 +27,11 @@ components:
     name: download_button
     properties: {text: Download}
     type: Button
+  - event_bindings: {click: Pivots_click}
+    layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,IRADKL'}
+    name: Pivots
+    properties: {text: Pivots}
+    type: Button
   - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM WTBOOF,CJSAWI'}
     name: percent_complete_label
     properties: {bold: true, text: Above Percent Complete}

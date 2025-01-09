@@ -70,4 +70,9 @@ class list_projects(list_projectsTemplate):
     # open_form('listpdf',self.repeating_panel_1.items, field_parameters )
     pdf = anvil.server.call('create_pdf', self.repeating_panel_1.items,field_parameters)
     download(pdf)
+
+  def Pivots_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    dicts, Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    open_form('pivots', dicts)
     
