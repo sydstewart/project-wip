@@ -94,3 +94,7 @@ class list_projects_pdf(list_projects_pdfTemplate):
   #   # # # anvil.media.download(media_object)
   #   # pass
   #   # pass
+
+  def return_to_search_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('list_projects')

@@ -62,6 +62,16 @@ components:
   name: navbar_links
   properties: {}
   type: FlowPanel
+- components:
+  - event_bindings: {click: return_to_search_button_click}
+    layout_properties: {grid_position: 'RVOKDE,GSHWHC'}
+    name: return_to_search_button
+    properties: {text: Return to Search}
+    type: Button
+  layout_properties: {slot: left-nav}
+  name: column_panel_1
+  properties: {}
+  type: ColumnPanel
 container:
   properties: {html: '@theme:standard-page.html'}
   type: HtmlTemplate

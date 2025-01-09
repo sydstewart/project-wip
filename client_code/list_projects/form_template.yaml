@@ -1,6 +1,6 @@
 components:
 - components:
-  - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,OTGJRV'}
+  - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,OTGJRV HKSUFR,RDNLYA'}
     name: label_1
     properties: {align: right, bold: true, text: No of Projects Found =}
     type: Label
@@ -79,6 +79,8 @@ components:
       - {data_key: percent_complete, id: VTRJVM, title: Percent Complete}
       - {data_key: order_value_formated, expand: false, id: EFHAEM, title: GB excl VAT, width: 94.9091796875}
       - {data_key: days_elapsed, id: JEQUUE, title: Days Elapsed}
+      rows_per_page: 100
+      show_page_controls: false
     type: DataGrid
   layout_properties: {slot: default}
   name: content_panel
