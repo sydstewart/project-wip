@@ -1,0 +1,54 @@
+components:
+- components:
+  - layout_properties: {grid_position: 'LNZJLM,CNZUXF'}
+    name: assigned_to_label
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'LNZJLM,OHZICN'}
+    name: average_completion_label
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'OMLENN,IBLNLS'}
+    name: no_of_projects_label
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'OMLENN,JVZCQC'}
+    name: total_value_label
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'ZLAGXT,KQDQPN'}
+    name: category_label
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'ZLAGXT,EJAEGP'}
+    name: work_to_do_label
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'NVCXTJ,QEPDRO'}
+    name: above_percent_complete_label
+    properties: {bold: true}
+    type: Label
+  data_bindings: []
+  layout_properties: {grid_position: ''}
+  name: card_1
+  properties: {border: 4px, role: card}
+  type: ColumnPanel
+- components:
+  - name: repeating_panel_1
+    properties: {item_template: list_projects_pdf.RowTemplate22}
+    type: RepeatingPanel
+  layout_properties: {grid_position: 'MTVHYP,NOTWNV'}
+  name: data_grid_1
+  properties:
+    columns:
+    - {data_key: order_no, id: JKSDUP, title: Order No}
+    - {data_key: project_name, id: VJQQOR, title: Project}
+    - {data_key: order_date, id: OJLQEN, title: Order Date}
+    - {data_key: order_category, expand: false, id: WLOMVG, title: Category, width: 151.63641357421875}
+    - {data_key: assigned_to, id: PGAIZK, title: Assigned To}
+    - {data_key: percent_complete, id: SHKLNW, title: Percent Complete}
+    - {data_key: order_value_formated, id: EIBUKE, title: Order Value}
+    - {data_key: days_elapsed, id: WEUZXV, title: Days Elapsed}
+  type: DataGrid
+container: {type: ColumnPanel}
+is_package: true

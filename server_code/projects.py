@@ -16,6 +16,7 @@ import anvil.media
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
+from datetime import datetime, time, date, timedelta
 # import anvil.pdf
 
 from anvil.tables import app_tables
@@ -89,7 +90,10 @@ def get_orders(percent_complete,assigned_to, category):
           X =  X[X['percent_complete'] > int(percent_complete)]
     # print('after filter',X['percent_complete'])
     X['percent_complete'] = X['percent_complete'].map(str)
-    X['order_value_formated'] = X['order_value'].map("£{:,.0f}".format) 
+    X['order_value_formated'] = X['order_value'].map("£{:,.0f}".format)
+    today = datetime.today()
+    X['days_elapsed'] = (today - X['order_date']).dt.days
+    print(X['days_elapsed'])
     dicts =X.to_dict(orient='records')
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
@@ -98,7 +102,7 @@ def get_orders(percent_complete,assigned_to, category):
 
 @anvil.server.callable
 def create_pdf(dicts, field_parameters):
-  pdf = anvil.pdf.render_form("list_projects_pdf", dicts, field_parameters, landscape =True)
+  pdf = anvil.pdf.render_form("listpdf", dicts, field_parameters, landscape =True)
   return pdf
 
 

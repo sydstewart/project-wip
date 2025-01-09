@@ -67,7 +67,7 @@ class list_projects(list_projectsTemplate):
                         self.total_value_label.text]
                        
     
-    open_form('list_projects_pdf',self.repeating_panel_1.items, field_parameters )
+    open_form('listpdf',self.repeating_panel_1.items, field_parameters )
     pdf = anvil.server.call('create_pdf', self.repeating_panel_1.items,field_parameters)
     download(pdf)
     
