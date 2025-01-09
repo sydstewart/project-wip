@@ -77,7 +77,7 @@ components:
       - {data_key: order_category, id: OJLQEN, title: Category}
       - {data_key: assigned_to, id: VPCGSW, title: Assigned_to}
       - {data_key: percent_complete, id: VTRJVM, title: Percent Complete}
-      - {data_key: order_value, id: EFHAEM, title: GB excl VAT}
+      - {data_key: order_value_formated, id: EFHAEM, title: GB excl VAT}
     type: DataGrid
   layout_properties: {slot: default}
   name: content_panel

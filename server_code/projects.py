@@ -72,7 +72,7 @@ def get_orders(percent_complete,assigned_to, category):
     # print('before',X['percent_complete'])
     
     X['percent_complete']= X['percent_complete'].astype(int)
-   
+    
     if assigned_to and not category:
        filter = (X['assigned_to'] == assigned_to)
        X =  X[X['percent_complete'] > int(percent_complete) ]
@@ -89,6 +89,7 @@ def get_orders(percent_complete,assigned_to, category):
           X =  X[X['percent_complete'] > int(percent_complete)]
     # print('after filter',X['percent_complete'])
     X['percent_complete'] = X['percent_complete'].map(str)
+    X['order_value_formated'] = X['order_value'].map("£{:,.0f}".format) 
     dicts =X.to_dict(orient='records')
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
@@ -157,6 +158,8 @@ def generate_pdf(pdf_info):
   
     # print('after filter',X['percent_complete'])
    X['percent_complete'] = X['percent_complete'].map(str)
+   X['order_value_formated'] = X['order_value'].map("£{:,.0f}".format) 
    dicts =X.to_dict(orient='records')
+   print(dicts)
    media_object = anvil.pdf.render_form('list_projects_pdf',dicts)
    return media_object 

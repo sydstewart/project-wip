@@ -825,7 +825,7 @@ def get_changes():
                      'Updated_by':r['Updated_by'],'Percent_Completion_Before':r['BeforePercent'],'Percent_Completion_After':r['AfterPercent']} for r in records]
             # print(dicts)
   X = pd.DataFrame.from_dict(dicts)
-  
+  X['order_value_formated'] = X['order_value'].map("£{:,.0f}".format) 
   # X['Percent_Completion_Before'] = X['Percent_Completion_Before'].fillna(0)
   # print('before',X['Percent_Completion_Before'])
   
@@ -833,7 +833,8 @@ def get_changes():
   # X =  X[X['Percent_Completion_Before'] > limit]
   # print('after filter',X['Percent_Completion_Before'])
   # X['Percent_Completion_Before'] = X['Percent_Completion_Before'].map(str)
-  # dicts =X.to_dict(orient='records')
+  dicts =X.to_dict(orient='records')
+  print(dicts)
   X.to_csv('/tmp/X.csv') 
   X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
   
