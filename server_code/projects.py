@@ -94,6 +94,9 @@ def get_orders(percent_complete,assigned_to, category):
     today = datetime.today()
     X['days_elapsed'] = (today - X['order_date']).dt.days
     print(X['days_elapsed'])
+    X['order_value']= X['order_value'].map(float)
+    X['cumulative_orders'] =  X['order_value'].cusum()
+    print('Cusum =',X['cumulative_orders'])
     dicts =X.to_dict(orient='records')
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
