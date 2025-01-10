@@ -75,4 +75,8 @@ class list_projects(list_projectsTemplate):
     """This method is called when the button is clicked"""
     dicts, Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     open_form('pivots', dicts)
-    
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    download(Xmedia)    
