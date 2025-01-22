@@ -268,8 +268,23 @@ db_schema:
     - admin_ui: {order: 1, width: 200}
       name: Total_Order_Value
       type: number
+    - admin_ui: {width: 200}
+      name: Average_Percent_Work_Complete
+      type: number
+    - admin_ui: {width: 200}
+      name: No_of_projects
+      type: number
+    - admin_ui: {width: 200}
+      name: Order_Category
+      type: string
+    - admin_ui: {width: 200}
+      name: Total_Work_Completed
+      type: number
+    - admin_ui: {width: 200}
+      name: Total_Work_To_Do_Value
+      type: number
     server: full
-    title: Table 14
+    title: wip_category_by_day
   work:
     client: none
     columns:

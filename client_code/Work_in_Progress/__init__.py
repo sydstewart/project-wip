@@ -14,7 +14,7 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     print('Syd')
-    # records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
+    # records, Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records = anvil.server.call('testprojects')
 #=============================================================================    
     line_plots = anvil.server.call('wip_run_chart')
  
@@ -83,6 +83,10 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     """This method is called when the button is clicked"""
     
     open_form('list_projects')
+    pass
+
+  def plot_2_click(self, points, **event_args):
+    """This method is called when a data point is clicked."""
     pass
 
 

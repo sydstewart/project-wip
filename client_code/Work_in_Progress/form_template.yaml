@@ -8,7 +8,8 @@ components:
     name: plot_3
     properties: {height: 571.1818237304688}
     type: Plot
-  - layout_properties: {grid_position: 'SDIMQO,WYXABK'}
+  - event_bindings: {click: plot_2_click}
+    layout_properties: {grid_position: 'SDIMQO,WYXABK'}
     name: plot_2
     properties: {height: 629.3636474609375}
     type: Plot
