@@ -103,7 +103,7 @@ def testprojects():
                    "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
                    Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
                    Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100)) As Total_Completed_VaLUE \
-                   count(sales_orders.id) as No_of_projects
+                   count(sales_orders.id) as No_of_projects \
                    From sales_orders \
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                       Where sales_orders.date_entered > '2020-01-01' AND \
