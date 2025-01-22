@@ -322,7 +322,7 @@ def wip_run_chart():
 def work_to_do_chart():
    import plotly.graph_objects as go
    import plotly.express as px 
-   chart_data = app_tables.daily_wip.search(Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17)))
+   chart_data = app_tables.daily_wip.search(tables.order_by("Date_of_WIP", ascending=False) ,Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17)) )
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
    df['Median'] = df['Total Work To Do Value'].median()
