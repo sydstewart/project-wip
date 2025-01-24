@@ -6,7 +6,7 @@ components:
     type: Label
   - layout_properties: {grid_position: 'SWBCGV,BHXPCW'}
     name: date_picker_2
-    properties: {}
+    properties: {format: yyyy-mm-dd}
     type: DatePicker
   - layout_properties: {grid_position: 'SWBCGV,LSIYGB'}
     name: label_2
