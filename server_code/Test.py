@@ -340,22 +340,25 @@ def work_to_do_chart(start_date, fin_date):
    import plotly.graph_objects as go
    import plotly.express as px 
    print('start_date=', start_date)
+   print('fin_date=', fin_date)
+   fin_date= str(fin_date)
    start_date= str(start_date)
    start_year = int(start_date[0:4])
    print('start_year', start_year)
-   start_month = int(start_date[6:7])
+   start_month = int(start_date[5:7])
    print('start_month', start_month)
    start_day = int(start_date[8:10])
    print('start_day', start_day)
-   fin_year = fin_date.year
-   fin_month = fin_date.month
-   fin_day = fin_date.day
-   start_year = 2024
-   start_month = 7
-   start_day = 17
+   fin_year = int(start_date[0:4])
+   print('fin_year', fin_year)
+   fin_month = int(fin_date[5:7])
+   print('fin_month', fin_month)
+   fin_day = int(fin_date[8:10])
+   print('fin_day', fin_day)
    print('start_date=', start_date)
    print('fin_date=', fin_date)
-   chart_data = app_tables.daily_wip.search(tables.order_by("Date_of_WIP", ascending=False) , Date_of_WIP= q.between(date(year=start_year, month=start_month, day=start_day),date(year=fin_year, month=fin_month, day= fin_day))) 
+  # Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17) date(year=fin_year, month=fin_month, day= fin_day)
+   chart_data = app_tables.daily_wip.search(tables.order_by("Date_of_WIP", ascending=False) , Date_of_WIP= q.between(date(year=start_year, month=start_month, day=10),date(year=fin_year, month=fin_month, day=fin_day ))) 
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
    df['Median'] = df['Total Work To Do Value'].median()

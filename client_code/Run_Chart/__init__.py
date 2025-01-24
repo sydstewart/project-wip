@@ -37,7 +37,7 @@ class Run_Chart(Run_ChartTemplate):
   def date_picker_2_change(self, **event_args):
     """This method is called when the selected date changes"""
     today = datetime.today()
-    line_plots_1 = anvil.server.call('work_to_do_chart', self.date_picker_1.date, today)
+    line_plots_1 = anvil.server.call('work_to_do_chart', self.date_picker_2.date, today)
     
     layout_1 = {
       'title': 'Run_Chart of Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
