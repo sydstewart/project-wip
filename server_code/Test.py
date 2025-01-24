@@ -100,19 +100,36 @@ def testprojects():
         # calculate WIP by order category
           with conn.cursor() as cur2:
                 cur2.execute(
-                   "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
-                   Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
-                   Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100)) As Total_Completed_VaLUE \
-                   count(sales_orders.id) as No_of_projects \
-                   From sales_orders \
-                      INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
-                      Where sales_orders.date_entered > '2020-01-01' AND \
-                          sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
-                          sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Complete'), \
-                      Group By sales_orders_cstm.OrderCategory, \
-                      Having sales_orders_cstm.OrderCategory Not In ('Maintenance')"
-                )
-          pri
+          "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
+            Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
+            Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100)) As Total_Completed_VaLUE \
+            From sales_orders \
+              INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+              Where sales_orders.date_entered > '2020-01-01' AND \
+                  sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+                  sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Complete')"
+        )
+                # "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
+#                Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_WIP,\
+#               Sum((sales_orders.subtotal_usd *  Avg(sales_orders_cstm.workinprogresspercentcomplete_c) / 100) As Total_WIP_VaLUE \
+#               From sales_orders \
+#               INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+#               Where sales_orders.date_entered > '2015-09-30' AND \
+#                   sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+#                   sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Work In Progress - 4S')" )
+                   # "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
+                   # Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
+                   # Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100)) As Total_Completed_VaLUE \
+                   # count(sales_orders.id) as No_of_projects \
+                   # From sales_orders \
+                   #    INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+                   #    Where sales_orders.date_entered > '2020-01-01' AND \
+                   #        sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+                   #        sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Complete'), \
+                   #    Group By sales_orders_cstm.OrderCategory, \
+                   #    Having sales_orders_cstm.OrderCategory Not In ('Maintenance')"
+                
+          print('Syd SQL')
           for r in cur2.fetchall():
         
                 Total_Order_Value =r['Total_Order_Value']
@@ -839,3 +856,9 @@ def get_changes():
   X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
   
   return dicts, X_media
+
+@anvil.server.callable
+def stats():
+  """Launch a single stats background task."""
+  task = anvil.server.launch_background_task('testprojects')
+  return task

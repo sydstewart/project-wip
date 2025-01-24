@@ -91,7 +91,8 @@ class Work_in_Progress(Work_in_ProgressTemplate):
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call('testprojects')
+    self.task = anvil.server.call('stats')
+    # anvil.server.call('testprojects')
     
     pass
 
