@@ -110,7 +110,7 @@ def testprojects():
                           sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
                           sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Complete'), \
                       Group By sales_orders_cstm.OrderCategory, \
-                      Having sales_orders_cstm.OrderCategory Not In ('Maintenance')    "
+                      Having sales_orders_cstm.OrderCategory Not In ('Maintenance')"
                 )
         
           for r in cur2.fetchall():

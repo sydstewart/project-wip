@@ -89,4 +89,10 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     """This method is called when a data point is clicked."""
     pass
 
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.server.call('testprojects')
+    
+    pass
+
 
