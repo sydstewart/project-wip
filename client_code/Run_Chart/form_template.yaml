@@ -4,7 +4,8 @@ components:
     name: label_1
     properties: {bold: true, text: Start Date}
     type: Label
-  - layout_properties: {grid_position: 'SWBCGV,BHXPCW'}
+  - event_bindings: {change: date_picker_2_change}
+    layout_properties: {grid_position: 'SWBCGV,BHXPCW'}
     name: date_picker_2
     properties: {format: YYYY-MM-DD, min_date: '2024-07-17'}
     type: DatePicker

@@ -13,7 +13,8 @@ class Run_Chart(Run_ChartTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.date_picker_2.date = date(year= 2024, month = 7, day =17)
-    line_plots_1 = anvil.server.call('work_to_do_chart', self.date_picker_2.date, self.date_picker_1.date)
+    today = datetime.today()
+    line_plots_1 = anvil.server.call('work_to_do_chart', self.date_picker_2.date, today)
     
     layout_1 = {
       'title': 'Run_Chart of Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
@@ -31,4 +32,22 @@ class Run_Chart(Run_ChartTemplate):
   def Return_click(self, **event_args):
     """This method is called when the button is clicked"""
     open_form('Work_in_Progress')
+    pass
+
+  def date_picker_2_change(self, **event_args):
+    """This method is called when the selected date changes"""
+    today = datetime.today()
+    line_plots_1 = anvil.server.call('work_to_do_chart', self.date_picker_1.date, today)
+    
+    layout_1 = {
+      'title': 'Run_Chart of Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
+      'yaxis': {'title': '£ Value'},
+      'yaxis_range':[0,600,000],
+       'autosize' : False, 
+       'width': 700, 
+       'height': 2400,
+       'showlegend': True
+     }
+    self.run_chart_plot.figure = line_plots_1
+    self.run_chart_plot.layout = layout_1
     pass

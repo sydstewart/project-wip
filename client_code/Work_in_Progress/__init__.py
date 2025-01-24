@@ -38,7 +38,8 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     self.plot_1.layout = layout
 #============================================================================
     start_date = date(year= 2024, month= 7, day = 17)
-    line_plots_1 = anvil.server.call('work_to_do_chart', start_date)
+    today = datetime.today()
+    line_plots_1 = anvil.server.call('work_to_do_chart', start_date, today)
     layout_1 = {
       'title': 'Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
       'yaxis': {'title': '£ Value'},
