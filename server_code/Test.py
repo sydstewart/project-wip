@@ -340,9 +340,13 @@ def work_to_do_chart(start_date, fin_date):
    import plotly.graph_objects as go
    import plotly.express as px 
    print('start_date=', start_date)
-   start_year = start_date.year
-   start_month = date(start_date).month
-   start_day = date(start_date).day
+   start_date= str(start_date)
+   start_year = int(start_date[0:4])
+   print('start_year', start_year)
+   start_month = int(start_date[6:7])
+   print('start_month', start_month)
+   start_day = int(start_date[8:10])
+   print('start_day', start_day)
    fin_year = fin_date.year
    fin_month = fin_date.month
    fin_day = fin_date.day
