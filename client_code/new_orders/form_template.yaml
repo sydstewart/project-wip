@@ -4,25 +4,10 @@ components:
     name: label_1
     properties: {align: center, bold: true, font_size: 16, text: Updates to Projects created after January 1st  2020}
     type: Label
-  - layout_properties: {grid_position: 'DJLHFC,LEKOBZ'}
-    name: project_found_text
-    properties: {}
-    type: TextBox
-  - data_bindings: []
-    event_bindings: {change: level_textbox_change}
-    layout_properties: {grid_position: 'DJLHFC,YZARQW'}
-    name: level_textbox
-    properties: {text: '5', type: number}
-    type: TextBox
   - event_bindings: {change: check_box_1_change}
     layout_properties: {grid_position: 'DJLHFC,TKFTMI'}
     name: check_box_1
     properties: {text: Sort by Update Date}
-    type: CheckBox
-  - event_bindings: {change: check_box_2_change}
-    layout_properties: {grid_position: 'DJLHFC,JJSUMZ'}
-    name: check_box_2
-    properties: {text: Show  Projects >  5%}
     type: CheckBox
   - event_bindings: {click: button_1_click}
     layout_properties: {grid_position: 'DJLHFC,LOJMVW'}

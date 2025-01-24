@@ -18,7 +18,23 @@ components:
   name: populate_Burndown
   properties: {text: Populate Burndown}
   type: Button
-- layout_properties: {full_width_row: true, grid_position: 'RMMDJX,HMJPJQ'}
+- layout_properties: {grid_position: 'RMMDJX,HMJPJQ UYFIJK,VPMEFV'}
+  name: label_1
+  properties: {bold: true, text: Start Date}
+  type: Label
+- layout_properties: {grid_position: 'RMMDJX,HMJPJQ UYFIJK,MEGVVM'}
+  name: date_picker_1
+  properties: {}
+  type: DatePicker
+- layout_properties: {grid_position: 'RMMDJX,HMJPJQ UYFIJK,YTSHOI'}
+  name: label_2
+  properties: {bold: true, text: End Date}
+  type: Label
+- layout_properties: {grid_position: 'RMMDJX,HMJPJQ UYFIJK,ZMZKNJ'}
+  name: date_picker_2
+  properties: {}
+  type: DatePicker
+- layout_properties: {full_width_row: true, grid_position: 'RMMDJX,HMJPJQ MMGLVH,BFNFTP'}
   name: plot_1
   properties: {height: 644}
   type: Plot

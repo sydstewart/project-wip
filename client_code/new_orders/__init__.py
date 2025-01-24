@@ -12,6 +12,7 @@ class new_orders(new_ordersTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+   
     dicts, XMedia  = anvil.server.call('get_changes')
     print('Number of Record=', len(dicts))
     self.repeating_panel_1.items = dicts
@@ -46,7 +47,7 @@ class new_orders(new_ordersTemplate):
       )
 
     else:
-        dicts = anvil.server.call('get_changes')
+        dicts, XMedia = anvil.server.call('get_changes')
         self.repeating_panel_1.items = dicts
 
   # def button_1_click(self, **event_args):

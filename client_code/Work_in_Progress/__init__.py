@@ -96,4 +96,8 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     
     pass
 
+  def plot_3_click(self, points, **event_args):
+    """This method is called when a data point is clicked."""
+    pass
+
 

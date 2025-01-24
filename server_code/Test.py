@@ -97,18 +97,18 @@ def testprojects():
                 Total_Work_Left = float(Total_Order_Value) - float(Total_Work_Completed_VaLUE)
                 print('Total_Work_Left_VaLUE',Total_Work_Left)
 
-        # calculate WIP by order category
-          with conn.cursor() as cur2:
-                cur2.execute(
-          "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
-            Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
-            Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100)) As Total_Completed_VaLUE \
-            From sales_orders \
-              INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
-              Where sales_orders.date_entered > '2020-01-01' AND \
-                  sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
-                  sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Complete')"
-        )
+        # # calculate WIP by order category
+        #   with conn.cursor() as cur2:
+        #         cur2.execute(
+        #   "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
+        #     Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_Percent_Work_Complete,\
+        #     Sum((sales_orders.subtotal_usd *  (sales_orders_cstm.workinprogresspercentcomplete_c) / 100)) As Total_Completed_VaLUE \
+        #     From sales_orders \
+        #       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
+        #       Where sales_orders.date_entered > '2020-01-01' AND \
+        #           sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
+        #           sales_orders.so_stage NOT IN ('Closed', 'On Hold', 'Cancelled','Complete')"
+        # )
                 # "Select Sum(sales_orders.subtotal_usd) As Total_Order_Value,\
 #                Avg(sales_orders_cstm.workinprogresspercentcomplete_c) As Average_WIP,\
 #               Sum((sales_orders.subtotal_usd *  Avg(sales_orders_cstm.workinprogresspercentcomplete_c) / 100) As Total_WIP_VaLUE \
@@ -130,7 +130,7 @@ def testprojects():
                    #    Having sales_orders_cstm.OrderCategory Not In ('Maintenance')"
                 
           print('Syd SQL')
-          for r in cur2.fetchall():
+          for r in cur1.fetchall():
         
                 Total_Order_Value =r['Total_Order_Value']
                 Total_Order_Value = float(Total_Order_Value)
@@ -157,7 +157,7 @@ def testprojects():
           # print('last_reading=', last_reading)
           # delta = Total_WIP_VaLUE - float(last_reading)
           app_tables.daily_wip.add_row(Date_of_WIP = (today),  Total_Order_Value = round(float(Total_Order_Value),0) , Average_Percent_Work_Complete = int(Average_Percent_Work_Complete), Total_Work_Completed = int(Total_Work_Completed_VaLUE), Total_Work_To_Do_Value = int(Total_Work_Left), No_of_projects = number_of_records)
-          print('Produced from background')
+          print('Produced from background and Daily WIP updated at ', today)
   else:
           print('Not a week day - no update of Daily WIP table', datetime.today().weekday())
     
@@ -304,7 +304,7 @@ def get_run_chart():
 def wip_run_chart():
    import plotly.graph_objects as go
    import plotly.express as px 
-   chart_data = app_tables.daily_wip.search(Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17)))
+   chart_data = app_tables.daily_wip.search(tables.order_by("Date_of_WIP", ascending=False) ,Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17)))
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
    print('df',df)
@@ -339,7 +339,8 @@ def wip_run_chart():
 def work_to_do_chart():
    import plotly.graph_objects as go
    import plotly.express as px 
-   chart_data = app_tables.daily_wip.search(tables.order_by("Date_of_WIP", ascending=False) ,Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17)) )
+   start_date = date(year=2024, month=7, day=17)
+   chart_data = app_tables.daily_wip.search(tables.order_by("Date_of_WIP", ascending=False) ,Date_of_WIP= q.greater_than(start_date)) )
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
    df['Median'] = df['Total Work To Do Value'].median()
@@ -368,7 +369,7 @@ def work_to_do_chart():
 def orders_chart():
    import plotly.graph_objects as go
    import plotly.express as px 
-   chart_data = app_tables.daily_wip.search(Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17)))
+   chart_data = app_tables.daily_wip.search(tables.order_by("Date_of_WIP", ascending=False) ,Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17)))
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
    print('df',df)
