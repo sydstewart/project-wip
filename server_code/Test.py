@@ -112,7 +112,7 @@ def testprojects():
                       Group By sales_orders_cstm.OrderCategory, \
                       Having sales_orders_cstm.OrderCategory Not In ('Maintenance')"
                 )
-        
+          pri
           for r in cur2.fetchall():
         
                 Total_Order_Value =r['Total_Order_Value']
