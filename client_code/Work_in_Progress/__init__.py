@@ -19,7 +19,7 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     line_plots = anvil.server.call('wip_run_chart')
  
     layout = {
-      'title': 'Total Order Value and Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
+      'title': 'Total Order Value and Work Still to be Done Value' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
       'yaxis': {'title': '£ Value'},
       'yaxis_range':[0,1500000],
        'autosize' : False, 
@@ -38,8 +38,7 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     self.plot_1.layout = layout
 #============================================================================
     start_date = date(year= 2024, month= 7, day = 17)
-    today = datetime.today()
-    line_plots_1 = anvil.server.call('work_to_do_chart', start_date, today)
+    line_plots_1 = anvil.server.call('work_to_do_chart', start_date)
     layout_1 = {
       'title': 'Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
       'yaxis': {'title': '£ Value'},

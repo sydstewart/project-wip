@@ -4,18 +4,10 @@ components:
     name: label_1
     properties: {bold: true, text: Start Date}
     type: Label
-  - event_bindings: {change: date_picker_2_change}
+  - event_bindings: {change: start_date_picker_change}
     layout_properties: {grid_position: 'SWBCGV,BHXPCW'}
-    name: date_picker_2
+    name: start_date_picker
     properties: {format: YYYY-MM-DD, min_date: '2024-07-17'}
-    type: DatePicker
-  - layout_properties: {grid_position: 'SWBCGV,LSIYGB'}
-    name: label_2
-    properties: {bold: true, text: End Date}
-    type: Label
-  - layout_properties: {grid_position: 'SWBCGV,ERIRPV'}
-    name: date_picker_1
-    properties: {format: YYYY-MM-DD, min_date: ''}
     type: DatePicker
   - layout_properties: {grid_position: 'SWBCGV,XPDYAU'}
     name: label_3
@@ -27,9 +19,13 @@ components:
     type: Plot
   layout_properties: {slot: default}
   name: content_panel
-  properties: {col_widths: '{"CCWMKW":5,"BHXPCW":15,"LSIYGB":5,"ERIRPV":15,"XPDYAU":32}'}
+  properties: {col_widths: '{"CCWMKW":5,"BHXPCW":15,"LSIYGB":5,"XPDYAU":32}'}
   type: ColumnPanel
-- layout_properties: {slot: nav-right}
+- components:
+  - name: label_2
+    properties: {align: left, bold: true, font_size: 30, text: '4S Work in Progress Dashboard                                                                                                                     '}
+    type: Label
+  layout_properties: {slot: nav-right}
   name: navbar_links
   properties: {}
   type: FlowPanel
@@ -43,6 +39,10 @@ components:
   name: column_panel_1
   properties: {}
   type: ColumnPanel
+- layout_properties: {slot: title}
+  name: image_1
+  properties: {height: 51, source: _/theme/4S logo small.png}
+  type: Image
 container:
   properties: {html: '@theme:standard-page.html'}
   type: HtmlTemplate

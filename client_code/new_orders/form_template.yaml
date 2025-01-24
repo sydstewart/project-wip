@@ -37,7 +37,11 @@ components:
   name: content_panel
   properties: {}
   type: ColumnPanel
-- layout_properties: {slot: nav-right}
+- components:
+  - name: label_2
+    properties: {align: left, bold: true, font_size: 30, text: '4S Work in Progress Dashboard                                                                                                                     '}
+    type: Label
+  layout_properties: {slot: nav-right}
   name: navbar_links
   properties: {}
   type: FlowPanel
@@ -46,6 +50,10 @@ components:
   name: button_2
   properties: {text: 'WIP Charts '}
   type: Button
+- layout_properties: {slot: title}
+  name: image_1
+  properties: {height: 51, source: _/theme/4S logo small.png}
+  type: Image
 container:
   properties: {html: '@theme:standard-page.html'}
   type: HtmlTemplate

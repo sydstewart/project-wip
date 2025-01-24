@@ -80,3 +80,8 @@ class list_projects(list_projectsTemplate):
     """This method is called when the button is clicked"""
     dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     download(Xmedia)    
+
+  def button_2_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Work_in_Progress')
+    pass
