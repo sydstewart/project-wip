@@ -336,11 +336,16 @@ def wip_run_chart():
    return fig
 
 @anvil.server.callable
-def work_to_do_chart(start_date):
+def work_to_do_chart(start_date, fin_date):
    import plotly.graph_objects as go
    import plotly.express as px 
    start_year = start_date.year
-   start_year = 2024
+   start_month = start_date.month
+   start_day = start_date.day
+   fin_year = fin_date.year
+   fin_month = fin_date.month
+   fin_day = fin_date.day
+    start_year = 2024
    start_month = 7
    start_day = 17
    chart_data = app_tables.daily_wip.search(tables.order_by("Date_of_WIP", ascending=False) ,Date_of_WIP= q.greater_than(date(year=start_year, month=start_month, day=start_day)) )

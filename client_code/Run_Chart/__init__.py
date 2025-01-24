@@ -13,7 +13,7 @@ class Run_Chart(Run_ChartTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.date_picker_2.date = date(year= 2024, month = 7, day =17)
-    line_plots_1 = anvil.server.call('work_to_do_chart', self.date_picker_2.date)
+    line_plots_1 = anvil.server.call('work_to_do_chart', self.date_picker_2.date, self.date_picker_1.date)
     
     layout_1 = {
       'title': 'Run_Chart of Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
