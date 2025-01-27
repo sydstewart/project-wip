@@ -68,6 +68,8 @@ def get_orders(percent_complete,assigned_to, category):
                       for r in records]
     print(dicts)
     X = pd.DataFrame.from_dict(dicts)
+
+    
     # print(X)
     X['order_value']= X['order_value'].map(float)
     # X['cumulative_orders'] =  X['order_value'].cusum()
