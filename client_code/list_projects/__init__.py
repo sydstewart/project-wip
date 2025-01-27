@@ -14,10 +14,11 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.drop_down_1.selected_value)
     print('Catgeory =', self.Category.selected_value)
-    dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    dicts,Xmedia, pivotsyd = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
+    self.rich_text_1.content = pivotsyd
     
 
   def percent_complete_text_box_change(self, **event_args):
@@ -25,7 +26,7 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.drop_down_1.selected_value)
     print('Catgeory =', self.Category.selected_value)
-    dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    dicts,Xmedia  = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
