@@ -87,7 +87,7 @@ components:
     name: label_3
     properties: {bold: true, text: Pivots}
     type: Label
-  - layout_properties: {full_width_row: true, grid_position: 'DZMAJN,WSDXVV'}
+  - layout_properties: {full_width_row: false, grid_position: 'DZMAJN,WSDXVV'}
     name: rich_text_1
     properties: {}
     type: RichText
