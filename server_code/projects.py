@@ -21,7 +21,6 @@ from datetime import datetime, time, date, timedelta
 
 from anvil.tables import app_tables
 
-from datetime import datetime, time , date , timedelta
 
 
 
@@ -216,3 +215,9 @@ def get_all_orders(percent_complete,assigned_to, category):
                       'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'] } \
                       for r in records]
     print(dicts)
+
+
+@anvil.server.callable
+def create_pivot_pdf():
+      media_object = anvil.pdf.render_form('pivots')
+      return media_object

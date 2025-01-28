@@ -17,9 +17,19 @@ components:
   name: label_1
   properties: {bold: true, font_size: 20, text: Projects Pivot table}
   type: Label
-- layout_properties: {grid_position: 'HZEQIF,OYBZBL KXBNPY,ZEQLPL'}
+- event_bindings: {click: button_2_click}
+  layout_properties: {grid_position: 'HZEQIF,OYBZBL XTNWQK,OYCLEQ'}
+  name: button_2
+  properties: {bold: true, text: Download PDF}
+  type: Button
+- data_bindings: []
+  layout_properties: {grid_position: 'HZEQIF,OYBZBL KXBNPY,ZEQLPL'}
   name: pivot_1
-  properties: {}
+  properties:
+    aggregator: Average
+    columns: [assigned_to]
+    rows: [order_category]
+    values: [percent_complete]
   type: form:C6ZZPAPN4YYF5NVJ:Pivot
 container:
   properties: {col_widths: '{"IAXCUN":5,"OYBZBL":55}'}
