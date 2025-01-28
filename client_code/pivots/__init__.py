@@ -17,8 +17,9 @@ class pivots(pivotsTemplate):
     # pivots = anvil.server.call('pivots', dicts)
     print(pivots)
     
+    self.pivot_1.rendererOptions = 'Table Barchart'
     self.pivot_1.items = dicts
-    # self.pivot_1.pivot_options= 'Table Bar'
+
     # self.pivot_1.columns = ['order_category', 'project_name']
     # self
     # Any code you write here will run before the form opens.
