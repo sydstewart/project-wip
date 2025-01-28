@@ -1,11 +1,27 @@
 components:
-- layout_properties: {grid_position: 'LFYAXK,YOZDPT'}
-  name: column_panel_1
+- components:
+  - event_bindings: {click: button_1_click}
+    layout_properties: {grid_position: 'HMENUP,QUKALS'}
+    name: button_1
+    properties:
+      bold: true
+      text: |-
+        Return to main
+        Screen
+    type: Button
+  layout_properties: {full_width_row: true, grid_position: 'HZEQIF,IAXCUN'}
+  name: column_panel_2
   properties: {}
   type: ColumnPanel
-- layout_properties: {grid_position: 'KXBNPY,ZEQLPL'}
+- layout_properties: {grid_position: 'HZEQIF,OYBZBL XTNWQK,QRZTAI'}
+  name: label_1
+  properties: {bold: true, font_size: 20, text: Projects Pivot table}
+  type: Label
+- layout_properties: {grid_position: 'HZEQIF,OYBZBL KXBNPY,ZEQLPL'}
   name: pivot_1
   properties: {}
   type: form:C6ZZPAPN4YYF5NVJ:Pivot
-container: {type: ColumnPanel}
+container:
+  properties: {col_widths: '{"IAXCUN":5,"OYBZBL":55}'}
+  type: ColumnPanel
 is_package: true
