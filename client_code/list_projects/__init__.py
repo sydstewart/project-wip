@@ -19,8 +19,9 @@ class list_projects(list_projectsTemplate):
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
-    # self.rich_text_1.content = pivotsyd
-    self.plot_1.figure= pivotsyd
+    self.rich_text_1.content = pivotsyd
+    # self.pivot_1.items=dicts
+    # self.plot_1.figure= pivotsyd
 
   def percent_complete_text_box_change(self, **event_args):
     """This method is called when the text in this text box is edited"""

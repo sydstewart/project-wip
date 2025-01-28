@@ -104,7 +104,7 @@ def get_orders(percent_complete,assigned_to, category):
     pivotsyd  = pivotsyd.fillna(0)
     pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
     print(pivotsyd)
-    fig = px.bar(pivotsyd, x='order_category', y='order_value')
+    # fig = px.bar(pivotsyd, x='order_category', y='order_value')
     # pivotsyd['order_value']=pivotsyd['order_value'].apply('{:,}'.format)
     print("")
     pivotsyd_to_markdown = pivotsyd.to_markdown()
@@ -118,7 +118,7 @@ def get_orders(percent_complete,assigned_to, category):
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
     # media_object = anvil.pdf.render_form('list_projects')
-    return dicts, X_media,   fig
+    return dicts, X_media,  pivotsyd_to_markdown
 
 @anvil.server.callable
 def create_pdf(dicts, field_parameters):
