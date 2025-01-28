@@ -11,9 +11,12 @@ class pivots(pivotsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    dicts, Xmedia = anvil.server.call('get_orders', 0,None, None)
-    pivots = anvil.server.call('pivots', dicts)
+     # dicts,Xmedia  = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    dicts,Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders', 1,None, None)
+    # dicts, Xmedia = anvil.server.call('get_orders', 0,None, None)
+    # pivots = anvil.server.call('pivots', dicts)
     print(pivots)
-     
+    
+    self.pivot_1.items = dicts
+    self.pivot_1.rows = ('order_category', 'project_name')
     # Any code you write here will run before the form opens.
