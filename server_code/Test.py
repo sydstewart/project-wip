@@ -329,6 +329,13 @@ def wip_run_chart():
         line=dict(width=1),
         showlegend=True)
    ])
+   # fig.update_layout(legend=dict(
+   #    yanchor="bottom",
+   #    y=0.99,
+   #    xanchor="left",
+   #    x=0.01
+   # ))
+
    # fig = px.line(df, x= 'Date_entered', y='Total Order Value', markers=True)
    # fig['data'][0]['name']='Total Order Value'
    # # line_plots = go.Scatter(x=df['Date_entered'], y=df['Total Order Value'], name='Total Order Value', marker=dict(color='#e50000'))
