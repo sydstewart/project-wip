@@ -29,7 +29,7 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.drop_down_1.selected_value)
     print('Catgeory =', self.Category.selected_value)
-    dicts,Xmedia  = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    dicts,Xmedia , pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
@@ -41,7 +41,7 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.drop_down_1.selected_value)
     print('Catgeory =', self.Category.selected_value)
-    dicts ,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    dicts ,Xmedia, pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
@@ -52,7 +52,7 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.drop_down_1.selected_value)
     print('Category =', self.Category.selected_value)
-    dicts,Xmedia = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    dicts,Xmedia, pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)

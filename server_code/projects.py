@@ -100,17 +100,17 @@ def get_orders(percent_complete,assigned_to, category):
     X['days_elapsed'] = (today - X['order_date']).dt.days
     print(X['days_elapsed'])
   
-    # pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
-    # pivotsyd  = pivotsyd.fillna(0)
-    # pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
-    # print(pivotsyd)
+    pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
+    pivotsyd  = pivotsyd.fillna(0)
+    pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
+    print(pivotsyd)
     # fig = px.bar(pivotsyd, x='order_category', y='order_value')
-    # pivotsyd['order_value']=pivotsyd['order_value'].apply('{:,}'.format)
-    # print("")
-    # pivotsyd_to_markdown = pivotsyd.to_markdown()
-    # print(pivotsyd_to_markdown)
-    # pd.set_option('display.max_columns', None)
-    # print('pivotsyd',pivotsyd)
+    pivotsyd['order_value']=pivotsyd['order_value'].apply('{:,}'.format)
+    print("")
+    pivotsyd_to_markdown = pivotsyd.to_markdown()
+    print(pivotsyd_to_markdown)
+    pd.set_option('display.max_columns', None)
+    print('pivotsyd',pivotsyd)
   
     
  
