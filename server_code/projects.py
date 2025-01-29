@@ -40,6 +40,7 @@ conn = connect()
       # Load Orders 
 @anvil.server.callable  
 def get_orders(percent_complete,assigned_to, category):
+    print(' starting sql')
     with conn.cursor() as cur:
                 cur.execute(
                       "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
@@ -69,7 +70,7 @@ def get_orders(percent_complete,assigned_to, category):
     X = pd.DataFrame.from_dict(dicts)
 
     
-    # print(X)
+    print('Made dicts and dataframe')
     X['order_value']= X['order_value'].map(float)
     # X['cumulative_orders'] =  X['order_value'].cusum()
     print('Cusum =', X['order_value'])
@@ -99,17 +100,17 @@ def get_orders(percent_complete,assigned_to, category):
     X['days_elapsed'] = (today - X['order_date']).dt.days
     print(X['days_elapsed'])
   
-    pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
-    pivotsyd  = pivotsyd.fillna(0)
-    pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
-    print(pivotsyd)
+    # pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
+    # pivotsyd  = pivotsyd.fillna(0)
+    # pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
+    # print(pivotsyd)
     # fig = px.bar(pivotsyd, x='order_category', y='order_value')
     # pivotsyd['order_value']=pivotsyd['order_value'].apply('{:,}'.format)
-    print("")
-    pivotsyd_to_markdown = pivotsyd.to_markdown()
-    print(pivotsyd_to_markdown)
-    pd.set_option('display.max_columns', None)
-    print('pivotsyd',pivotsyd)
+    # print("")
+    # pivotsyd_to_markdown = pivotsyd.to_markdown()
+    # print(pivotsyd_to_markdown)
+    # pd.set_option('display.max_columns', None)
+    # print('pivotsyd',pivotsyd)
   
     
  

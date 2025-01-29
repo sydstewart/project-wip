@@ -302,9 +302,6 @@ db_schema:
 dependencies:
 - app_id: C6ZZPAPN4YYF5NVJ
   version: {dev: true}
-- dep_id: dep_gu3euceopt12e9
-  resolution_hints: {app_id: TGQCF3WT6FVL2EM2, name: Tabulator, package_name: tabulator}
-  version: {version_tag: v3.0.4}
 metadata: {logo_img: 'asset:4S logo small.png', title: Project WIP}
 name: Project WIP
 package_name: Project_WIP
