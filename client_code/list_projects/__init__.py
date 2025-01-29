@@ -20,6 +20,7 @@ class list_projects(list_projectsTemplate):
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
     self.rich_text_1.content = pivotsyd
+    self.tabulator_1.items = dicts
     # self.pivot_1.items=dicts
     # self.plot_1.figure= pivotsyd
 
@@ -32,6 +33,7 @@ class list_projects(list_projectsTemplate):
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
+    
     
 
   def drop_down_1_change(self, **event_args):
