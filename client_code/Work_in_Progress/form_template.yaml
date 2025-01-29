@@ -82,6 +82,7 @@ components:
       text: |-
         Manual Update
          from CRM
+      visible: false
     type: Button
   layout_properties: {slot: left-nav}
   name: column_panel_1
