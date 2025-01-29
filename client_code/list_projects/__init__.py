@@ -20,7 +20,7 @@ class list_projects(list_projectsTemplate):
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
     self.rich_text_1.content = pivotsyd
-    self.tabulator_1.items = dicts
+    
     # self.pivot_1.items=dicts
     # self.plot_1.figure= pivotsyd
 
