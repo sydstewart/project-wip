@@ -34,7 +34,7 @@ components:
   - event_bindings: {change: percent_complete_text_box_change}
     layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM WTBOOF,LCHDYI'}
     name: percent_complete_text_box
-    properties: {text: '1'}
+    properties: {text: '0'}
     type: TextBox
   - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM WTBOOF,CSUBAS'}
     name: label_5
