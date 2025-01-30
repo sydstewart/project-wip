@@ -8,6 +8,8 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.media
 from ..tallies import tallies
+from..sorting import set_sorting
+
 class list_projects(list_projectsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -89,4 +91,11 @@ class list_projects(list_projectsTemplate):
   def button_2_click(self, **event_args):
     """This method is called when the button is clicked"""
     open_form('Work_in_Progress')
+    pass
+
+  def link_1_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    object_name = self.link_1 #Link name
+    column_name = 'percent_complete'#real name in database
+    set_sorting(self,object_name, column_name)
     pass

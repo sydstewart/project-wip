@@ -65,16 +65,59 @@ components:
     properties: {align: left, text: Download CSV}
     type: Button
   - components:
+    - layout_properties: {column: 'null'}
+      name: label_6
+      properties: {bold: true, foreground: 'theme:Primary 700', text: Order No}
+      type: Label
+    layout_properties: {grid_position: 'MZTAKU,HNPWTP'}
+    name: data_row_panel_1
+    properties: {}
+    type: DataRowPanel
+  - layout_properties: {grid_position: 'MZTAKU,HYOGXM'}
+    name: label_7
+    properties: {bold: true, foreground: 'theme:Primary 700', text: Project Name}
+    type: Label
+  - layout_properties: {grid_position: 'MZTAKU,EFABMU'}
+    name: label_8
+    properties: {bold: true, foreground: 'theme:Primary 700', text: Order Date}
+    type: Label
+  - layout_properties: {grid_position: 'MZTAKU,GQLGCB'}
+    name: link_5
+    properties: {bold: true, text: Category}
+    type: Link
+  - layout_properties: {grid_position: 'MZTAKU,ULPXOR'}
+    name: label_9
+    properties: {bold: true, foreground: 'theme:Primary 700', text: Assigned to}
+    type: Label
+  - event_bindings: {click: link_1_click}
+    layout_properties: {grid_position: 'MZTAKU,NYQOMZ'}
+    name: link_1
+    properties: {bold: true, icon: 'fa:sort', text: Percent Complete}
+    type: Link
+  - layout_properties: {grid_position: 'MZTAKU,KTAHDU'}
+    name: link_2
+    properties: {bold: true, text: Order Value}
+    type: Link
+  - layout_properties: {grid_position: 'MZTAKU,FTSTNK'}
+    name: link_3
+    properties: {bold: true, text: GB excl. VAT}
+    type: Link
+  - layout_properties: {grid_position: 'MZTAKU,URKOSW'}
+    name: link_4
+    properties: {bold: true, text: Days Elapsed}
+    type: Link
+  - components:
     - name: repeating_panel_1
       properties: {item_template: list_projects.RowTemplate21}
       type: RepeatingPanel
     layout_properties: {grid_position: 'KTTKXU,RPHZBO'}
     name: data_grid_1
     properties:
+      auto_header: false
       columns:
       - {data_key: order_no, id: XPWQUV, title: Order No}
       - {data_key: project_name, id: JKSDUP, title: Project}
-      - {data_key: order_date, id: VJQQOR, title: ''}
+      - {data_key: order_date, id: VJQQOR, title: Order Date}
       - {data_key: order_category, id: OJLQEN, title: Category}
       - {data_key: assigned_to, id: VPCGSW, title: Assigned_to}
       - {data_key: percent_complete, id: VTRJVM, title: Percent Complete}
@@ -102,7 +145,7 @@ components:
   layout_properties: {slot: default}
   name: content_panel
   properties:
-    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":5,"CSUBAS":11,"DZREQZ":14,"HKHBYB":10,"OUOVUQ":10,"LCHDYI":5,"LHKFKX":16,"FUGXKS":10,"JEFQCG":17,"WVHOSD":12,"VHXLJL":10}'
+    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":5,"CSUBAS":11,"DZREQZ":14,"HKHBYB":10,"OUOVUQ":10,"LCHDYI":5,"LHKFKX":16,"FUGXKS":10,"JEFQCG":17,"WVHOSD":12,"VHXLJL":10,"HNPWTP":5,"HYOGXM":9,"EFABMU":7,"GQLGCB":7,"ULPXOR":7,"NYQOMZ":10,"KTAHDU":3,"FTSTNK":6,"URKOSW":6}'
     spacing:
       padding: [null, null, null, '5']
   type: ColumnPanel
