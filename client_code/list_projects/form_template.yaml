@@ -76,7 +76,7 @@ components:
     - event_bindings: {click: link_8_click}
       layout_properties: {grid_position: 'GAWMJZ,YFQPYE'}
       name: link_8
-      properties: {bold: true, icon: 'fa:sort', icon_align: right_edge, text: Order Date}
+      properties: {bold: true, icon: 'fa:sort', icon_align: right, text: Order Date}
       type: Link
     - layout_properties: {grid_position: 'GAWMJZ,SEEFAY'}
       name: link_9
@@ -90,11 +90,12 @@ components:
       layout_properties: {grid_position: 'GAWMJZ,WLRHVS'}
       name: link_1
       properties:
+        align: center
         bold: true
         border: '3'
         col_spacing: small
         icon: fa:sort
-        icon_align: right
+        icon_align: right_edge
         spacing:
           margin: [null, 0, null, null]
           padding: [null, '0', null, null]
@@ -103,16 +104,25 @@ components:
     - event_bindings: {click: link_3_click}
       layout_properties: {grid_position: 'GAWMJZ,ANIGVL'}
       name: link_3
-      properties: {bold: true, icon: 'fa:sort', icon_align: right, text: GB excl. VAT}
+      properties: {align: center, bold: true, icon: 'fa:sort', icon_align: right, text: GB excl. VAT}
       type: Link
-    - event_bindings: {click: link_4_click}
+    - data_bindings: []
+      event_bindings: {click: link_4_click}
       layout_properties: {grid_position: 'GAWMJZ,LKMDHZ'}
       name: link_4
-      properties: {bold: true, icon: 'fa:sort', icon_align: right_edge, text: Days Old}
+      properties:
+        align: center
+        bold: true
+        col_spacing: small
+        icon: fa:sort
+        icon_align: right
+        spacing:
+          padding: [null, 68, null, null]
+        text: Days Old
       type: Link
     layout_properties: {grid_position: 'YTNYQH,BCCVGI'}
     name: column_panel_1
-    properties: {col_widths: '{"NWWOUY":8,"EHIBMP":8,"YFQPYE":8,"SEEFAY":6,"HOQZDG":5,"WLRHVS":10,"ANIGVL":5,"LKMDHZ":10}'}
+    properties: {col_widths: '{"NWWOUY":8,"EHIBMP":7,"YFQPYE":9,"SEEFAY":6,"HOQZDG":5,"WLRHVS":5,"ANIGVL":10,"LKMDHZ":10}'}
     type: ColumnPanel
   - components:
     - name: repeating_panel_1
