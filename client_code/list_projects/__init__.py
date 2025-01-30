@@ -99,3 +99,25 @@ class list_projects(list_projectsTemplate):
     column_name = 'percent_complete'#real name in database
     set_sorting(self,object_name, column_name)
     pass
+
+  def link_3_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    object_name = self.link_3 #Link name
+    column_name = 'order_value'#real name in database
+    set_sorting(self,object_name, column_name)
+    pass
+
+  def link_8_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    object_name = self.link_8 #Link name
+    column_name = 'order_date'#real name in database
+    set_sorting(self,object_name, column_name)
+    pass
+    pass
+
+  def link_4_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    object_name = self.link_4 #Link name
+    column_name = 'days_elapsed'#real name in database
+    set_sorting(self,object_name, column_name)
+    pass

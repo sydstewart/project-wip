@@ -10,7 +10,7 @@ from anvil.tables import app_tables
 def set_sorting(self, object_name, column_name, **event_args):
     """This method is called when the link is clicked, sort after ACN column"""
     sorting_way = None#variable for sorting order
-    list_all_links = [self.link_1]
+    list_all_links = [self.link_1, self.link_3, self.link_8, self.link_4]
     #check if some other column were already sorted and set their icon back to the normal unsorted state
     for links in list_all_links:
       if object_name != links:
