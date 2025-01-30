@@ -74,7 +74,7 @@ components:
       columns:
       - {data_key: order_no, id: XPWQUV, title: Order No}
       - {data_key: project_name, id: JKSDUP, title: Project}
-      - {data_key: order_date, id: VJQQOR, title: Order Date}
+      - {data_key: order_date, id: VJQQOR, title: ''}
       - {data_key: order_category, id: OJLQEN, title: Category}
       - {data_key: assigned_to, id: VPCGSW, title: Assigned_to}
       - {data_key: percent_complete, id: VTRJVM, title: Percent Complete}
