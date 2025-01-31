@@ -45,7 +45,7 @@ components:
     name: Category
     properties:
       include_placeholder: true
-      items: [Implementation, Interface(s), Configuration/Dev, Questionnaire(s), Server Mover with Interfaces, Server Mover with NO Interfaces]
+      items: [Implementation, Merge, Interface(s), Configuration/Dev, Questionnaire(s), Server Mover with Interfaces, Server Mover with NO Interfaces]
     type: DropDown
   - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM WTBOOF,HKHBYB'}
     name: label_2

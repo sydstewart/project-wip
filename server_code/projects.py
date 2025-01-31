@@ -56,7 +56,7 @@ def get_orders(percent_complete,assigned_to, category):
                       LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
                       Where sales_orders.date_entered > '2020-01-01' AND \
                           sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
-                          sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Complete')")  
+                          sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Complete')")
     records = cur.fetchall()
     number_of_records =len(records)
     print('No of projects',number_of_records)
@@ -98,7 +98,10 @@ def get_orders(percent_complete,assigned_to, category):
     today = datetime.today()
     X['days_elapsed'] = (today - X['order_date']).dt.days
     print(X['days_elapsed'])
-  
+    X['Year'] = X['order_date'].dt.year
+    X['Month']= X['order_date'].dt.month
+    X['Work Completed'] =X['order_value'] * X['percent_complete']/100
+    X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
     pivotsyd  = pivotsyd.fillna(0)
     pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
