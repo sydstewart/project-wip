@@ -106,4 +106,8 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     open_form('pivots')
     pass
 
+  def plot_1_click(self, points, **event_args):
+    """This method is called when a data point is clicked."""
+    pass
+
 

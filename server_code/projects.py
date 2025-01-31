@@ -100,6 +100,7 @@ def get_orders(percent_complete,assigned_to, category):
     print(X['days_elapsed'])
     X['Year'] = X['order_date'].dt.year
     X['Month']= X['order_date'].dt.month
+    X['Day']= X['order_date'].dt.day
     X['Work Completed'] =X['order_value'] * X['percent_complete']/100
     X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
