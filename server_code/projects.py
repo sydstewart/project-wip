@@ -50,7 +50,8 @@ def get_orders(percent_complete,assigned_to, category):
                       sales_orders_cstm.OrderCategory AS OrderCategory,\
                       sales_orders.so_number AS so_number,\
                       users.user_name AS user_name, \
-                      sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c \
+                      sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c, \
+                      sales_orders_cstm.partialinvoicedtotal_c AS partially_invoiced_total \
                       From sales_orders\
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                       LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
@@ -63,7 +64,7 @@ def get_orders(percent_complete,assigned_to, category):
 
     if number_of_records:
               dicts = [{'order_no': r['so_number'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
-                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'] } \
+                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'] , 'partially_invoiced_total':r['partially_invoiced_total']} \
                       for r in records]
     print(dicts)
     X = pd.DataFrame.from_dict(dicts)
@@ -101,8 +102,17 @@ def get_orders(percent_complete,assigned_to, category):
     X['Year'] = X['order_date'].dt.year
     X['Month']= X['order_date'].dt.month
     X['Day']= X['order_date'].dt.day
+  
     X['Work Completed'] =X['order_value'] * X['percent_complete']/100
+    # X['Work Completed'] = X['Work Completed'].map("£{:,.0f}".format)
     X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
+    # X['Work To Do'] = X['Work To Do'].map(float)
+  
+    X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
+
+    X['Invoiced but NOT completed amount'] = X['partially_invoiced_total'] - X['Work Completed']
+    X['Invoiced but NOT completed amount'] = X['Invoiced but NOT completed amount'].map("£{:,.0f}".format)
+  
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
     pivotsyd  = pivotsyd.fillna(0)
     pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)

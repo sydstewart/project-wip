@@ -121,3 +121,14 @@ class list_projects(list_projectsTemplate):
     column_name = 'days_elapsed'#real name in database
     set_sorting(self,object_name, column_name)
     pass
+
+  def link_2_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    pass
+
+  def link_5_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    object_name = self.link_5 #Link name
+    column_name = 'partially_invoiced_total'#real name in database
+    set_sorting(self,object_name, column_name)
+    pass

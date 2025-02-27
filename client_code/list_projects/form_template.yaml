@@ -26,6 +26,10 @@ components:
     name: work_to_do_label
     properties: {bold: true}
     type: Label
+  - layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,CZSJJA'}
+    name: invoiced_total
+    properties: {bold: true, text: ''}
+    type: Label
   - event_bindings: {click: download_button_click}
     layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM OUAJQV,FUGXKS'}
     name: download_button
@@ -59,15 +63,20 @@ components:
       include_placeholder: true
       items: [Alistair, Brenda, George, Kate, Shelley, Steven]
     type: DropDown
+  - layout_properties: {grid_position: 'NMMWTO,HHHBRM WTBOOF,ZRCCLW'}
+    name: check_box_1
+    properties: {bold: true, font_size: 12, text: Invoiced Work Not Complete}
+    type: CheckBox
   - event_bindings: {click: button_1_click}
     layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM WTBOOF,VHXLJL'}
     name: button_1
     properties: {align: left, text: Download CSV}
     type: Button
   - components:
-    - layout_properties: {grid_position: 'GAWMJZ,NWWOUY'}
+    - event_bindings: {click: link_2_click}
+      layout_properties: {grid_position: 'GAWMJZ,NWWOUY'}
       name: link_2
-      properties: {align: center, bold: true, text: Order No}
+      properties: {align: left, bold: true, text: Order No}
       type: Link
     - layout_properties: {grid_position: 'GAWMJZ,EHIBMP'}
       name: link_6
@@ -110,27 +119,35 @@ components:
       name: link_4
       properties: {bold: true, icon: 'fa:sort', icon_align: right_edge, text: Days Old}
       type: Link
-    layout_properties: {grid_position: 'YTNYQH,BCCVGI'}
+    - event_bindings: {click: link_5_click}
+      layout_properties: {grid_position: 'GAWMJZ,XYCFYK'}
+      name: link_5
+      properties: {bold: true, text: Invoiced Amt}
+      type: Link
+    layout_properties: {full_width_row: true, grid_position: 'YTNYQH,BCCVGI'}
     name: column_panel_1
-    properties: {col_widths: '{"NWWOUY":8,"EHIBMP":8,"YFQPYE":8,"SEEFAY":6,"HOQZDG":5,"WLRHVS":10,"ANIGVL":5,"LKMDHZ":10}'}
+    properties: {col_widths: '{"NWWOUY":10,"EHIBMP":6,"YFQPYE":8,"SEEFAY":6,"HOQZDG":5,"WLRHVS":10,"ANIGVL":5,"LKMDHZ":10,"XYCFYK":6}'}
     type: ColumnPanel
   - components:
     - name: repeating_panel_1
       properties: {item_template: list_projects.RowTemplate21}
       type: RepeatingPanel
-    layout_properties: {grid_position: 'KTTKXU,RPHZBO'}
+    layout_properties: {full_width_row: true, grid_position: 'KTTKXU,RPHZBO'}
     name: data_grid_1
     properties:
-      auto_header: false
+      auto_header: true
       columns:
       - {data_key: order_no, id: XPWQUV, title: Order No}
       - {data_key: project_name, id: JKSDUP, title: Project}
       - {data_key: order_date, id: VJQQOR, title: Order Date}
-      - {data_key: order_category, id: OJLQEN, title: Category}
-      - {data_key: assigned_to, id: VPCGSW, title: Assigned_to}
+      - {data_key: order_category, expand: false, id: OJLQEN, title: Category, width: 101.90911865234375}
+      - {data_key: assigned_to, expand: false, id: VPCGSW, title: Assigned_to, width: 106.8182373046875}
       - {data_key: percent_complete, id: VTRJVM, title: Percent Complete}
       - {data_key: order_value_formated, expand: false, id: EFHAEM, title: GB excl VAT, width: 94.9091796875}
       - {data_key: days_elapsed, id: JEQUUE, title: Days Elapsed}
+      - {data_key: Work Completed, id: PSNVZS, title: GB Work Completed}
+      - {data_key: partially_invoiced_total, id: NROHQU, title: Invoiced Amount}
+      - {data_key: Invoiced but NOT completed amount, id: VUFQID, title: Invoiced but NOT completed amount}
       rows_per_page: 100
       show_page_controls: false
     type: DataGrid
