@@ -82,8 +82,10 @@ def get_orders(percent_complete,assigned_to, category,bool_value):
     X['Work Completed'] =X['order_value'] * X['percent_complete']/100
     X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
     X['Invoiced but NOT completed amount'] = X['partially_invoiced_total'] - X['Work Completed']
-    X['Invoiced but NOT completed amount'] = X['Invoiced but NOT completed amount'].map("£{:,.0f}".format)
-  
+    # X['Invoiced but NOT completed amount'] = X['Invoiced but NOT completed amount'].map("£{:,.0f}".format)
+    X['Invoiced but NOT completed amount']= X['Invoiced but NOT completed amount'].map(float)
+    if  bool_value =='Yes':
+           X =  X[X['Invoiced but NOT completed amount'] > 0]
     if assigned_to and not category:
        filter = (X['assigned_to'] == assigned_to)
        X =  X[X['percent_complete'] > int(percent_complete) ]
@@ -98,7 +100,7 @@ def get_orders(percent_complete,assigned_to, category,bool_value):
           X =  X[X['order_category'] == category]
     elif percent_complete and not category and not assigned_to:
           X =  X[X['percent_complete'] > int(percent_complete)]
-    elif  bool_value =='Yes':
+    if  bool_value =='Yes':
            X =  X[X['Invoiced but NOT completed amount'] > 0]
     # print('after filter',X['percent_complete'])
     X['percent_complete'] = X['percent_complete'].map(int)
