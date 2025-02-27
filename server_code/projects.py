@@ -39,7 +39,7 @@ conn = connect()
     #=============================================================================  
       # Load Orders 
 @anvil.server.callable  
-def get_orders(percent_complete,assigned_to, category):
+def get_orders(percent_complete,assigned_to, category,bool_value):
     print(' starting sql')
     with conn.cursor() as cur:
                 cur.execute(
@@ -78,7 +78,12 @@ def get_orders(percent_complete,assigned_to, category):
     # print('before',X['percent_complete'])
     
     X['percent_complete']= X['percent_complete'].astype(int)
-    
+    X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
+    X['Work Completed'] =X['order_value'] * X['percent_complete']/100
+    X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
+    X['Invoiced but NOT completed amount'] = X['partially_invoiced_total'] - X['Work Completed']
+    X['Invoiced but NOT completed amount'] = X['Invoiced but NOT completed amount'].map("£{:,.0f}".format)
+  
     if assigned_to and not category:
        filter = (X['assigned_to'] == assigned_to)
        X =  X[X['percent_complete'] > int(percent_complete) ]
@@ -93,6 +98,8 @@ def get_orders(percent_complete,assigned_to, category):
           X =  X[X['order_category'] == category]
     elif percent_complete and not category and not assigned_to:
           X =  X[X['percent_complete'] > int(percent_complete)]
+    elif  bool_value =='Yes':
+           X =  X[X['Invoiced but NOT completed amount'] > 0]
     # print('after filter',X['percent_complete'])
     X['percent_complete'] = X['percent_complete'].map(int)
     X['order_value_formated'] = X['order_value'].map("£{:,.0f}".format)
@@ -108,10 +115,7 @@ def get_orders(percent_complete,assigned_to, category):
     X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
     # X['Work To Do'] = X['Work To Do'].map(float)
   
-    X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
 
-    X['Invoiced but NOT completed amount'] = X['partially_invoiced_total'] - X['Work Completed']
-    X['Invoiced but NOT completed amount'] = X['Invoiced but NOT completed amount'].map("£{:,.0f}".format)
   
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
     pivotsyd  = pivotsyd.fillna(0)

@@ -17,7 +17,7 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.drop_down_1.selected_value)
     print('Catgeory =', self.Category.selected_value)
-    dicts, Xmedia ,pivotsyd = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    dicts, Xmedia ,pivotsyd = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value, self.filter.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
@@ -31,7 +31,7 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.drop_down_1.selected_value)
     print('Catgeory =', self.Category.selected_value)
-    dicts,Xmedia , pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    dicts,Xmedia , pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value, self.filter.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
@@ -43,7 +43,8 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.drop_down_1.selected_value)
     print('Catgeory =', self.Category.selected_value)
-    dicts ,Xmedia, pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    print('Invoiced not complete' ,self.filter.selected_value)
+    dicts ,Xmedia, pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value, self.filter.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
@@ -54,7 +55,10 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.drop_down_1.selected_value)
     print('Category =', self.Category.selected_value)
-    dicts,Xmedia, pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
+    print('Invoiced not complete' ,self.filter.selected_value)
+    if self.check_box_1.enabled:
+       bool_value = True
+    dicts,Xmedia, pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value, self.filter.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
@@ -131,4 +135,34 @@ class list_projects(list_projectsTemplate):
     object_name = self.link_5 #Link name
     column_name = 'partially_invoiced_total'#real name in database
     set_sorting(self,object_name, column_name)
+    pass
+
+  def percent_complete_text_box_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
+    pass
+
+  def check_box_1_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    """This method is called when an item is selected"""
+    print('Percent Complete=', self.percent_complete_text_box.text)
+    print('Assigned to =', self.drop_down_1.selected_value)
+    print('Category =', self.Category.selected_value)
+    print('Invoiced not complete' ,self.check_box_1.checked)
+    dicts,Xmedia, pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value, self.filter.selected_value)
+    self.text_box_1.text = len(dicts)
+    self.repeating_panel_1.items = dicts
+    tallies(self, dicts)
+    pass
+
+  def filter_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    """This method is called when an item is selected"""
+    print('Percent Complete=', self.percent_complete_text_box.text)
+    print('Assigned to =', self.drop_down_1.selected_value)
+    print('Category =', self.Category.selected_value)
+    print('Invoiced not complete' ,self.filter.selected_value)
+    dicts,Xmedia, pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value, self.filter.selected_value)
+    self.text_box_1.text = len(dicts)
+    self.repeating_panel_1.items = dicts
+    tallies(self, dicts)
     pass
