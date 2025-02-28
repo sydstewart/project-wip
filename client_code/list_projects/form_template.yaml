@@ -22,6 +22,10 @@ components:
     name: average_completion_label
     properties: {bold: true}
     type: Label
+  - layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,LTDGCU'}
+    name: work_completed_top
+    properties: {bold: true}
+    type: Label
   - layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,WVHOSD'}
     name: work_to_do_label
     properties: {bold: true}
@@ -30,11 +34,10 @@ components:
     name: invoiced_total
     properties: {bold: true, text: ''}
     type: Label
-  - event_bindings: {click: download_button_click}
-    layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM OUAJQV,FUGXKS'}
-    name: download_button
-    properties: {align: left, text: Download PDF}
-    type: Button
+  - layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,LAHKML'}
+    name: top_invoiced_but_not_completed
+    properties: {bold: true}
+    type: Label
   - event_bindings: {change: percent_complete_text_box_change, pressed_enter: percent_complete_text_box_pressed_enter}
     layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM WTBOOF,LCHDYI'}
     name: percent_complete_text_box
@@ -66,7 +69,7 @@ components:
   - event_bindings: {click: button_1_click}
     layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM WTBOOF,VHXLJL'}
     name: button_1
-    properties: {align: left, text: Download CSV}
+    properties: {align: center, text: Download CSV}
     type: Button
   - layout_properties: {grid_position: 'NMMWTO,HHHBRM MSRSZO,EMWXWL'}
     name: label_6
@@ -79,10 +82,15 @@ components:
       include_placeholder: true
       items: ['Yes', 'No']
     type: DropDown
-  - layout_properties: {grid_position: 'NMMWTO,HHHBRM MSRSZO,JCSMXX'}
+  - layout_properties: {grid_position: 'NMMWTO,HHHBRM MSRSZO,JCSMXX CXKKXM,XAGHGU'}
     name: label_7
     properties: {}
     type: Label
+  - event_bindings: {click: download_button_click}
+    layout_properties: {grid_position: 'NMMWTO,HHHBRM MSRSZO,JCSMXX CXKKXM,BUPPKW'}
+    name: download_button
+    properties: {align: left, text: Download PDF}
+    type: Button
   - components:
     - event_bindings: {click: link_2_click}
       layout_properties: {grid_position: 'GAWMJZ,NWWOUY'}
@@ -139,46 +147,10 @@ components:
     name: column_panel_1
     properties: {col_widths: '{"NWWOUY":10,"EHIBMP":6,"YFQPYE":8,"SEEFAY":6,"HOQZDG":5,"WLRHVS":10,"ANIGVL":5,"LKMDHZ":10,"XYCFYK":6}'}
     type: ColumnPanel
-  - layout_properties: {full_width_row: true, grid_position: 'ZUIPNI,DDVRKC'}
-    name: label_9
-    properties: {}
-    type: Label
-  - layout_properties: {grid_position: 'ZUIPNI,SUQAPH'}
-    name: work_completed
-    properties: {bold: true}
-    type: Label
-  - layout_properties: {grid_position: 'ZUIPNI,CAVESC'}
-    name: invoiced_total_copy
-    properties: {bold: true, text: ''}
-    type: Label
-  - components:
-    - layout_properties: {grid_position: 'CCVIGS,ZPKEYB'}
-      name: invoiced_but_not_completed
-      properties: {}
-      type: Label
-    layout_properties: {grid_position: 'ZUIPNI,ZUTJXP'}
-    name: card_1
-    properties:
-      role: card
-      spacing:
-        margin: [null, null, 0, null]
-    type: ColumnPanel
   - components:
     - name: repeating_panel_1
       properties: {item_template: list_projects.RowTemplate21}
       type: RepeatingPanel
-    - components: []
-      data_bindings:
-      - {code: 'self.item['''']', property: spacing, writeback: false}
-      layout_properties: {pinned: false, slot: footer}
-      name: column_panel_2
-      properties:
-        col_spacing: none
-        col_widths: '{}'
-        spacing:
-          padding: [null, 0, null, null]
-        wrap_on: mobile
-      type: ColumnPanel
     layout_properties: {full_width_row: true, grid_position: 'KTTKXU,RPHZBO'}
     name: data_grid_1
     properties:
@@ -190,22 +162,47 @@ components:
       - {data_key: order_category, expand: false, id: OJLQEN, title: Category, width: 101.90911865234375}
       - {data_key: assigned_to, expand: false, id: VPCGSW, title: Assigned_to, width: 106.8182373046875}
       - {data_key: percent_complete, id: VTRJVM, title: Percent Complete}
-      - {data_key: order_value_formated, expand: false, id: EFHAEM, title: GB excl VAT, width: 94.9091796875}
       - {data_key: days_elapsed, id: JEQUUE, title: Days Elapsed}
+      - {data_key: order_value_formated, expand: false, id: EFHAEM, title: GB excl VAT, width: 94.9091796875}
       - {data_key: Work Completed, id: PSNVZS, title: GB Work Completed   Excl VAT}
       - {data_key: partially_invoiced_total_formated, id: NROHQU, title: Invoiced Amount    incl VAT}
       - {data_key: Invoiced but NOT completed amount, id: VUFQID, title: Invoiced but NOT completed amount}
       rows_per_page: 100
       show_page_controls: false
     type: DataGrid
+  - layout_properties: {full_width_row: true, grid_position: 'IGLALC,KZWXOS'}
+    name: rich_text_1
+    properties: {}
+    type: RichText
+  - layout_properties: {grid_position: 'IGLALC,JHYAIW'}
+    name: label_9
+    properties: {align: right, bold: true, text: 'Totals         '}
+    type: Label
+  - layout_properties: {grid_position: 'IGLALC,ADFGUM'}
+    name: total_order_value
+    properties: {align: right, bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'IGLALC,OTWKBD'}
+    name: work_completed
+    properties:
+      align: left
+      bold: true
+      spacing:
+        margin: [null, null, null, 0]
+        padding: [null, '50', null, '20']
+    type: Label
+  - layout_properties: {grid_position: 'IGLALC,RGXPGV'}
+    name: invoiced_total_copy
+    properties: {align: left, bold: true, text: ''}
+    type: Label
+  - layout_properties: {grid_position: 'IGLALC,WVOAPC'}
+    name: invoiced_but_not_completed
+    properties: {align: right, bold: true}
+    type: Label
   - layout_properties: {full_width_row: true, grid_position: 'ZNEZEQ,FFKQZA'}
     name: label_3
     properties: {bold: true, text: Pivots}
     type: Label
-  - layout_properties: {full_width_row: true, grid_position: 'DZMAJN,WSDXVV'}
-    name: rich_text_1
-    properties: {}
-    type: RichText
   - layout_properties: {grid_position: 'EXFHVQ,DJVGMP'}
     name: label_4
     properties: {bold: true, text: Tabulator}
@@ -217,7 +214,7 @@ components:
   layout_properties: {slot: default}
   name: content_panel
   properties:
-    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":5,"CSUBAS":11,"DZREQZ":14,"HKHBYB":10,"OUOVUQ":10,"LCHDYI":5,"LHKFKX":16,"FUGXKS":10,"JEFQCG":17,"WVHOSD":12,"VHXLJL":10,"EMWXWL":20,"OPIUZI":5,"JCSMXX":35,"DDVRKC":40,"SUQAPH":7,"CAVESC":6,"ZUTJXP":6}'
+    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":5,"CSUBAS":11,"DZREQZ":14,"HKHBYB":10,"OUOVUQ":10,"LCHDYI":5,"LHKFKX":10,"JEFQCG":10,"WVHOSD":10,"VHXLJL":10,"EMWXWL":20,"OPIUZI":5,"JCSMXX":35,"KZWXOS":12,"JHYAIW":28,"OTWKBD":5,"RGXPGV":5,"WVOAPC":10,"ADFGUM":10,"CZSJJA":10,"LTDGCU":10,"XAGHGU":45,"BUPPKW":15,"LAHKML":13}'
     spacing:
       padding: [null, null, null, '5']
   type: ColumnPanel
