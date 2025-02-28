@@ -28,9 +28,7 @@ def tallies(self, dicts):
          self.invoiced_but_not_completed.text = f"-£{abs(invoiced_but_not_completed):,}"
          self.top_invoiced_but_not_completed.text = f"TOTAL_INVOICED_NOT_COMPLETE: -£{abs(invoiced_but_not_completed):,}"
 
-  list1 = [1, 2, 3, 4, 5]
-  list2 = [123, 234, 456]
-   d = {'a': [], 'b': []}
-d['a'].append(list1)
-d['a'].append(list2)
-print d['a']
+    dicttotals = [{'order_no': 'totals', 'project_name':' ' ,'order_date':' ', 'order_category':' ','assigned_to':' ', \
+                      'order_value':f"£{subtotal :,}", 'percent_complete':f"{average_completion:.1f}%", 'partially_invoiced_total':invoiced_total} ] 
+    print('dicttotals', dicttotals)
+                       

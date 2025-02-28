@@ -121,7 +121,16 @@ def get_orders(percent_complete,assigned_to, category,bool_value):
     X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
     X['Work To Do'] = X['Work To Do'].map(float)
     X['partially_invoiced_total_formated'] = X['partially_invoiced_total'].map("£{:,.0f}".format)
-  
+    print(X.columns.values)
+ #  ['order_no' 'project_name' 'order_date' 'order_category' 'assigned_to'
+ # 'order_value' 'percent_complete' 'partially_invoiced_total'
+ # 'Work Completed' 'Work To Do' 'Invoiced but NOT completed amount'
+ # 'order_value_formated' 'days_elapsed' 'Year' 'Month' 'Day'
+ # 'partially_invoiced_total_formated']
+ 
+    # subtotal = X['order_value'].sum()
+    # percent = X['percent_complete'].mean()
+    # X.loc[len(X)] =  [' ', ' ' ,' ', ' ' ,' ', subtotal , percent, 33333, 444444, 333333, 222222, 111111, ' ', ' ', ' ', ' ', 000000]
 
   
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')

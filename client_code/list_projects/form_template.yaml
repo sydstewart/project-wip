@@ -170,10 +170,6 @@ components:
       rows_per_page: 100
       show_page_controls: false
     type: DataGrid
-  - layout_properties: {full_width_row: true, grid_position: 'IGLALC,KZWXOS'}
-    name: rich_text_1
-    properties: {}
-    type: RichText
   - layout_properties: {grid_position: 'IGLALC,JHYAIW'}
     name: label_9
     properties: {align: right, bold: true, text: 'Totals         '}
@@ -214,7 +210,7 @@ components:
   layout_properties: {slot: default}
   name: content_panel
   properties:
-    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":5,"CSUBAS":11,"DZREQZ":14,"HKHBYB":10,"OUOVUQ":10,"LCHDYI":5,"LHKFKX":10,"JEFQCG":10,"WVHOSD":10,"VHXLJL":10,"EMWXWL":20,"OPIUZI":5,"JCSMXX":35,"KZWXOS":12,"JHYAIW":28,"OTWKBD":5,"RGXPGV":5,"WVOAPC":10,"ADFGUM":10,"CZSJJA":10,"LTDGCU":10,"XAGHGU":45,"BUPPKW":15,"LAHKML":13}'
+    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":5,"CSUBAS":11,"DZREQZ":14,"HKHBYB":10,"OUOVUQ":10,"LCHDYI":5,"LHKFKX":10,"JEFQCG":10,"WVHOSD":10,"VHXLJL":10,"EMWXWL":20,"OPIUZI":5,"JCSMXX":35,"JHYAIW":28,"OTWKBD":5,"RGXPGV":5,"WVOAPC":10,"ADFGUM":10,"CZSJJA":10,"LTDGCU":10,"XAGHGU":45,"BUPPKW":15,"LAHKML":13}'
     spacing:
       padding: [null, null, null, '5']
   type: ColumnPanel
