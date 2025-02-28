@@ -17,5 +17,6 @@ def tallies(self, dicts):
     self.invoiced_total.text =  f"TOTAL_INVOICED : £{invoiced_total:,}"
     self.invoiced_total_copy.text =  f"£{invoiced_total:,}"
     self.work_completed.text = f"£{work_completed :,}" 
+    self.invoiced_but_not_completed.text = invoiced_total - work_completed 
     
    
