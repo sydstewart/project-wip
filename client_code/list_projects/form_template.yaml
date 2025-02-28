@@ -143,6 +143,30 @@ components:
     - name: repeating_panel_1
       properties: {item_template: list_projects.RowTemplate21}
       type: RepeatingPanel
+    - components:
+      - layout_properties: {grid_position: 'FWYBYQ,QWPGFR'}
+        name: label_9
+        properties: {}
+        type: Label
+      - layout_properties: {grid_position: 'FWYBYQ,DCTGND'}
+        name: work_completed
+        properties: {bold: true}
+        type: Label
+      - layout_properties: {grid_position: 'FWYBYQ,LMHEPQ'}
+        name: invoiced_total_copy
+        properties: {bold: true, text: ''}
+        type: Label
+      data_bindings:
+      - {code: 'self.item['''']', property: spacing, writeback: false}
+      layout_properties: {pinned: false, slot: footer}
+      name: column_panel_2
+      properties:
+        col_spacing: none
+        col_widths: '{"LMHEPQ":2,"DCTGND":34}'
+        spacing:
+          padding: [null, 0, null, null]
+        wrap_on: mobile
+      type: ColumnPanel
     layout_properties: {full_width_row: true, grid_position: 'KTTKXU,RPHZBO'}
     name: data_grid_1
     properties:
@@ -156,17 +180,17 @@ components:
       - {data_key: percent_complete, id: VTRJVM, title: Percent Complete}
       - {data_key: order_value_formated, expand: false, id: EFHAEM, title: GB excl VAT, width: 94.9091796875}
       - {data_key: days_elapsed, id: JEQUUE, title: Days Elapsed}
-      - {data_key: Work Completed, id: PSNVZS, title: GB Work Completed}
-      - {data_key: partially_invoiced_total, id: NROHQU, title: Invoiced Amount}
+      - {data_key: Work Completed, id: PSNVZS, title: GB Work Completed   Excl VAT}
+      - {data_key: partially_invoiced_total_formated, id: NROHQU, title: Invoiced Amount    incl VAT}
       - {data_key: Invoiced but NOT completed amount, id: VUFQID, title: Invoiced but NOT completed amount}
       rows_per_page: 100
       show_page_controls: false
     type: DataGrid
-  - layout_properties: {grid_position: 'ZNEZEQ,FFKQZA'}
+  - layout_properties: {full_width_row: true, grid_position: 'ZNEZEQ,FFKQZA'}
     name: label_3
     properties: {bold: true, text: Pivots}
     type: Label
-  - layout_properties: {full_width_row: false, grid_position: 'DZMAJN,WSDXVV'}
+  - layout_properties: {full_width_row: true, grid_position: 'DZMAJN,WSDXVV'}
     name: rich_text_1
     properties: {}
     type: RichText

@@ -83,7 +83,7 @@ def get_orders(percent_complete,assigned_to, category,bool_value):
     X['Work Completed'] =X['order_value'] * X['percent_complete']/100
     X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
     X['Invoiced but NOT completed amount'] = X['partially_invoiced_total'] - X['Work Completed']
-    # X['Invoiced but NOT completed amount'] = X['Invoiced but NOT completed amount'].map("£{:,.0f}".format)
+    
     X['Invoiced but NOT completed amount']= X['Invoiced but NOT completed amount'].map(float)
     if  bool_value =='Yes':
            X =  X[X['Invoiced but NOT completed amount'] > 0]
@@ -105,6 +105,9 @@ def get_orders(percent_complete,assigned_to, category,bool_value):
            X =  X[X['Invoiced but NOT completed amount'] > 0]
     # print('after filter',X['percent_complete'])
     X['percent_complete'] = X['percent_complete'].map(int)
+    X['Invoiced but NOT completed amount'] = X['Invoiced but NOT completed amount'].map("£{:,.0f}".format)
+    # X['Work Completed'] = X['Work Completed'].map("£{:,.0f}".format)
+  
     X['order_value_formated'] = X['order_value'].map("£{:,.0f}".format)
     today = datetime.today()
     X['days_elapsed'] = (today - X['order_date']).dt.days
@@ -114,9 +117,10 @@ def get_orders(percent_complete,assigned_to, category,bool_value):
     X['Day']= X['order_date'].dt.day
   
     X['Work Completed'] =X['order_value'] * X['percent_complete']/100
-    # X['Work Completed'] = X['Work Completed'].map("£{:,.0f}".format)
+    X['Work Completed'] = X['Work Completed'].map("£{:,.0f}".format)
     X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
-    # X['Work To Do'] = X['Work To Do'].map(float)
+    X['Work To Do'] = X['Work To Do'].map(float)
+    X['partially_invoiced_total_formated'] = X['partially_invoiced_total'].map("£{:,.0f}".format)
   
 
   
