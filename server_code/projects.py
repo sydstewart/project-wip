@@ -98,6 +98,7 @@ def get_orders(percent_complete,assigned_to, category):
     today = datetime.today()
     X['days_elapsed'] = (today - X['order_date']).dt.days
     print(X['days_elapsed'])
+    X['Value_Add _per Elapsed_day'] =
    # X['Value Left to Do'] = (100 - X['percent_complete']) 
     X['Year'] = X['order_date'].dt.year
     X['Month']= X['order_date'].dt.month
