@@ -79,7 +79,7 @@ components:
     layout_properties: {grid_position: 'NMMWTO,HHHBRM MSRSZO,OPIUZI'}
     name: filter
     properties:
-      include_placeholder: true
+      include_placeholder: false
       items: ['Yes', 'No']
     type: DropDown
   - layout_properties: {grid_position: 'NMMWTO,HHHBRM MSRSZO,JCSMXX CXKKXM,XAGHGU'}

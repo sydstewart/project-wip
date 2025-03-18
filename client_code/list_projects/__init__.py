@@ -58,7 +58,7 @@ class list_projects(list_projectsTemplate):
     print('Invoiced not complete' ,self.filter.selected_value)
     if self.check_box_1.enabled:
        bool_value = True
-    dicts,Xmedia, pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value, self.filter.selected_value)
+    dicts,Xmedia, pivots = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value, self.filter.selected_value, bool_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
