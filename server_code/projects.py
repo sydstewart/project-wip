@@ -50,21 +50,23 @@ def get_orders(percent_complete,assigned_to, category):
                       sales_orders_cstm.OrderCategory AS OrderCategory,\
                       sales_orders_cstm.applicationarea_c AS AppArea, \
                       sales_orders.so_number AS so_number,\
+                      sales_orders.so_stage AS stage, \
                       users.user_name AS user_name, \
                       sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c \
                       From sales_orders\
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                       LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
                       Where sales_orders.date_entered > '2020-01-01' AND \
-                          sales_orders_cstm.OrderCategory NOT IN ('Maintenance') AND \
-                          sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled','Complete')")
+                          sales_orders_cstm.OrderCategory NOT IN ('Maintenance') ")
+                          # AND \
+                          # sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled')")  # ,'Complete'
     records = cur.fetchall()
     number_of_records =len(records)
     print('No of projects',number_of_records)
 
     if number_of_records:
               dicts = [{'order_no': r['so_number'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
-                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] } \
+                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage']} \
                       for r in records]
     print(dicts)
     X = pd.DataFrame.from_dict(dicts)
