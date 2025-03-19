@@ -110,7 +110,15 @@ def get_orders(percent_complete,assigned_to, category):
     X['Year'] = X['order_date'].dt.year
     X['Month']= X['order_date'].dt.month
     X['Day']= X['order_date'].dt.day
-
+    X['Year'] = X['Year'].map(int)
+    X['Month'] = X['Month'].map(int)
+    X['Year Num'] =  X['Year'].map(int)
+    X['Month Num'] = X['Month'].map(int)
+    # if  X['Month Num'] and  X['Month Num'] <  3:
+    #     X['Financial Year'] = (X['Year Num']) -1
+    # else:
+    #     X['Financial Year'] = (X['Year Num'] )
+      
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
     pivotsyd  = pivotsyd.fillna(0)
     pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
