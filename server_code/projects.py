@@ -17,6 +17,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 from datetime import datetime, time, date, timedelta
+import numpy as np
 # import anvil.pdf
 
 from anvil.tables import app_tables
@@ -114,10 +115,17 @@ def get_orders(percent_complete,assigned_to, category):
     X['Month'] = X['Month'].map(int)
     X['Year Num'] =  X['Year'].map(int)
     X['Month Num'] = X['Month'].map(int)
-    # if  X['Month Num'] and  X['Month Num'] <  3:
-    #     X['Financial Year'] = (X['Year Num']) -1
-    # else:
-    #     X['Financial Year'] = (X['Year Num'] )
+    def categorize_age(year):
+      if age < 30:
+          return 'Young'
+      elif age >= 30 and age <= 40:
+          return 'Middle-aged'
+      else:
+          return 'Elderly'
+
+# Apply the function to the Age column using the apply() function
+df['Category'] = df['Age'].apply(categorize_age)
+    X['Financial Year'] = np.where(X['Month Num'] <= 2, (X['Year Num']) -1)
       
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
     pivotsyd  = pivotsyd.fillna(0)
