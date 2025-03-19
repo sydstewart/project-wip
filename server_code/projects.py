@@ -48,6 +48,7 @@ def get_orders(percent_complete,assigned_to, category):
                         sales_orders.subtotal_usd AS Order_Value, \
                       sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
                       sales_orders_cstm.OrderCategory AS OrderCategory,\
+                      sales_orders_cstm.applicationarea_c AS AppArea, \
                       sales_orders.so_number AS so_number,\
                       users.user_name AS user_name, \
                       sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c \
@@ -63,7 +64,7 @@ def get_orders(percent_complete,assigned_to, category):
 
     if number_of_records:
               dicts = [{'order_no': r['so_number'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
-                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'] } \
+                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] } \
                       for r in records]
     print(dicts)
     X = pd.DataFrame.from_dict(dicts)
@@ -98,13 +99,16 @@ def get_orders(percent_complete,assigned_to, category):
     today = datetime.today()
     X['days_elapsed'] = (today - X['order_date']).dt.days
     # print(X['days_elapsed']) =  X['days_elapsed'])
-    X['Value_Add _per Elapsed_day'] = X['order_value']//X['days_elapsed']
+    X['Work Completed'] =X['order_value'] * X['percent_complete']/100
+    X['Work Completed_formated'] = X['Work Completed'].map("£{:,.0f}".format)
+    X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
+    X['Order_Value_Value_Add _per Elapsed_day'] = X['order_value']//X['days_elapsed']
+    X['Work_completed_Value_Add _per Elapsed_day'] = X['Work Completed']//X['days_elapsed']
    # X['Value Left to Do'] = (100 - X['percent_complete']) 
     X['Year'] = X['order_date'].dt.year
     X['Month']= X['order_date'].dt.month
     X['Day']= X['order_date'].dt.day
-    X['Work Completed'] =X['order_value'] * X['percent_complete']/100
-    X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
+
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
     pivotsyd  = pivotsyd.fillna(0)
     pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
