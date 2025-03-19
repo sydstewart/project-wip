@@ -115,18 +115,39 @@ def get_orders(percent_complete,assigned_to, category):
     X['Month'] = X['Month'].map(int)
     X['Year Num'] =  X['Year'].map(int)
     X['Month Num'] = X['Month'].map(int)
-    def categorize_age(year):
-      if age < 30:
-          return 'Young'
-      elif age >= 30 and age <= 40:
-          return 'Middle-aged'
-      else:
-          return 'Elderly'
+#     def categorize_year( year, month):
+#       if month <= 2 :
+#           return year - 1
+#       elif month > 2:
+#           return year
 
-# Apply the function to the Age column using the apply() function
-df['Category'] = df['Age'].apply(categorize_age)
-    X['Financial Year'] = np.where(X['Month Num'] <= 2, (X['Year Num']) -1)
-      
+# # Apply the function to the Age column using the apply() function
+#     X['Fin Year'] = X['Year  Num'].apply(categorize_year)
+    # Define the conditions and corresponding categories
+    conditions = [
+    X['Month Num'] <= 2 ,
+    (X['Month Num'] > 2) & (X['Month Num'] <= 12),
+  
+]
+
+    categories = [X['Year Num'] -1, X['Year Num']]
+
+# Use np.select() to create the new column
+    X['Fin Year'] = np.select(conditions, categories, default='Unknown') 
+
+    conditions = [
+    X['Month Num'] <= 2 ,
+    (X['Month Num'] > 2) & (X['Month Num'] <= 12),
+  
+]
+
+    categories = [X['Month Num'] + 10 , X['Month Num'] - 2 ]
+
+# Use np.select() to create the new column
+    X['Fin Month'] = np.select(conditions, categories, default='Unknown')
+
+
+  
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
     pivotsyd  = pivotsyd.fillna(0)
     pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
