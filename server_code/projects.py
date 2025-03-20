@@ -40,7 +40,7 @@ conn = connect()
     #=============================================================================  
       # Load Orders 
 @anvil.server.callable  
-def get_orders(percent_complete,assigned_to, category):
+def get_orders(percent_complete,assigned_to, category, bool_value):
     print(' starting sql')
     with conn.cursor() as cur:
                 cur.execute(
@@ -81,7 +81,10 @@ def get_orders(percent_complete,assigned_to, category):
     # print('before',X['percent_complete'])
     
     X['percent_complete']= X['percent_complete'].astype(int)
-    
+    X['Invoiced but NOT completed amount'] = X['partially_invoiced_total'] - X['Work Completed']
+    X['Invoiced but NOT completed amount']= X['Invoiced but NOT completed amount'].map(float)
+    if  bool_value =='Yes':
+           X =  X[X['Invoiced but NOT completed amount'] > 0]
     if assigned_to and not category:
        filter = (X['assigned_to'] == assigned_to)
        X =  X[X['percent_complete'] > int(percent_complete) ]
