@@ -73,7 +73,7 @@ components:
     properties:
       items: ['Yes', 'No']
     type: DropDown
-  - layout_properties: {grid_position: 'BLXSOR,SZPPAZ NMMWTO,HHHBRM PKIZZH,DQDUVU'}
+  - layout_properties: {grid_position: 'NMMWTO,HHHBRM PKIZZH,DQDUVU'}
     name: label_7
     properties: {}
     type: Label
