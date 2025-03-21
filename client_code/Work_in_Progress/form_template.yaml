@@ -85,6 +85,11 @@ components:
          from CRM
       visible: true
     type: Button
+  - event_bindings: {click: button_3_click}
+    layout_properties: {grid_position: 'LERTUQ,NNIOTL'}
+    name: button_3
+    properties: {text: button_3}
+    type: Button
   layout_properties: {slot: left-nav}
   name: column_panel_1
   properties: {}

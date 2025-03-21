@@ -1,0 +1,18 @@
+components:
+- components:
+  - layout_properties: {full_width_row: true, grid_position: 'XNACVG,LUUSME'}
+    name: list_projects_1
+    properties: {}
+    type: form:list_projects
+  layout_properties: {slot: default}
+  name: content_panel
+  properties: {}
+  type: ColumnPanel
+- layout_properties: {slot: nav-right}
+  name: navbar_links
+  properties: {}
+  type: FlowPanel
+container:
+  properties: {html: '@theme:standard-page.html'}
+  type: HtmlTemplate
+is_package: true
