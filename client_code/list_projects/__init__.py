@@ -14,10 +14,13 @@ class list_projects(list_projectsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.assigned_dropdown.selected_value)
     print('Catgeory =', self.Category.selected_value)
     dicts, Xmedia ,pivotsyd = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
+    stages = list({(r['stage']) for r in dicts})
+    self.multi_select_stages.items = stages
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
