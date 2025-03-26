@@ -99,69 +99,69 @@ components:
     name: label_7
     properties: {}
     type: Label
-  - components:
-    - data_bindings:
-      - {code: 'self.item['''']', property: spacing, writeback: false}
-      layout_properties: {grid_position: 'GAWMJZ,NWWOUY'}
-      name: link_2
-      properties:
-        align: left
-        bold: true
-        col_spacing: none
-        spacing:
-          margin: [null, null, null, 0]
-          padding: [null, null, null, 0]
-        text: Order No
-      type: Link
-    - layout_properties: {grid_position: 'GAWMJZ,EHIBMP'}
-      name: link_6
-      properties: {bold: true, text: 'Project '}
-      type: Link
-    - event_bindings: {click: link_8_click}
-      layout_properties: {grid_position: 'GAWMJZ,YFQPYE'}
-      name: link_8
-      properties: {bold: true, icon: 'fa:sort', icon_align: right_edge, text: Order Date}
-      type: Link
-    - layout_properties: {grid_position: 'GAWMJZ,SEEFAY'}
-      name: link_9
-      properties: {bold: true, text: Category}
-      type: Link
-    - layout_properties: {grid_position: 'GAWMJZ,HOQZDG'}
-      name: link_10
-      properties: {bold: true, text: Assigned to}
-      type: Link
-    - event_bindings: {click: link_1_click}
-      layout_properties: {grid_position: 'GAWMJZ,WLRHVS'}
-      name: link_1
-      properties:
-        bold: true
-        border: '3'
-        col_spacing: small
-        icon: fa:sort
-        icon_align: right
-        spacing:
-          margin: [null, 0, null, null]
-          padding: [null, '0', null, null]
-        text: '% Compld.'
-      type: Link
-    - event_bindings: {click: link_3_click}
-      layout_properties: {grid_position: 'GAWMJZ,ANIGVL'}
-      name: link_3
-      properties: {bold: true, icon: 'fa:sort', icon_align: right, text: GB excl. VAT}
-      type: Link
-    - event_bindings: {click: link_4_click}
-      layout_properties: {grid_position: 'GAWMJZ,LKMDHZ'}
-      name: link_4
-      properties: {bold: true, icon: 'fa:sort', icon_align: right_edge, text: Days Old}
-      type: Link
-    - layout_properties: {grid_position: 'GAWMJZ,PSMIPV'}
-      name: label_8
-      properties: {bold: true, text: Stage}
-      type: Label
-    layout_properties: {full_width_row: true, grid_position: 'YTNYQH,BCCVGI'}
-    name: column_panel_1
-    properties: {col_widths: '{"NWWOUY":10,"EHIBMP":6,"YFQPYE":8,"SEEFAY":6,"HOQZDG":5,"WLRHVS":10,"ANIGVL":5,"LKMDHZ":10,"PSMIPV":6}'}
-    type: ColumnPanel
+  - data_bindings:
+    - {code: 'self.item['''']', property: spacing, writeback: false}
+    layout_properties: {full_width_row: true, grid_position: 'HFTSEQ,GTLFQT'}
+    name: link_2
+    properties:
+      align: left
+      bold: true
+      col_spacing: none
+      spacing:
+        margin: [null, null, null, 0]
+        padding: [null, null, null, 0]
+      text: Order No
+    type: Link
+  - layout_properties: {grid_position: 'HFTSEQ,AWHKYN'}
+    name: link_6
+    properties: {bold: true, text: 'Project '}
+    type: Link
+  - event_bindings: {click: link_8_click}
+    layout_properties: {grid_position: 'HFTSEQ,ZBPCQC'}
+    name: link_8
+    properties: {bold: true, icon: 'fa:sort', icon_align: right_edge, text: Order Date}
+    type: Link
+  - components: []
+    layout_properties: {grid_position: 'HFTSEQ,ESGFVX'}
+    name: link_9
+    properties: {bold: true, text: Category}
+    type: Link
+  - layout_properties: {grid_position: 'HFTSEQ,NWRDAU'}
+    name: link_10
+    properties: {bold: true, text: Assigned to}
+    type: Link
+  - event_bindings: {click: link_1_click}
+    layout_properties: {grid_position: 'HFTSEQ,LMDGYE'}
+    name: link_1
+    properties:
+      bold: true
+      border: '3'
+      col_spacing: small
+      icon: fa:sort
+      icon_align: right
+      spacing:
+        margin: [null, 0, null, null]
+        padding: [null, '0', null, null]
+      text: '% Compld.'
+    type: Link
+  - event_bindings: {click: link_3_click}
+    layout_properties: {grid_position: 'HFTSEQ,SSESYY'}
+    name: link_3
+    properties: {align: right, bold: true, icon: 'fa:sort', icon_align: right, text: GB excl. VAT}
+    type: Link
+  - layout_properties: {grid_position: 'HFTSEQ,PCUTEC'}
+    name: label_9
+    properties: {}
+    type: Label
+  - event_bindings: {click: link_4_click}
+    layout_properties: {grid_position: 'HFTSEQ,YAJIGY'}
+    name: link_4
+    properties: {align: right, bold: true, icon: 'fa:sort', icon_align: right_edge, text: Days Old}
+    type: Link
+  - layout_properties: {grid_position: 'HFTSEQ,NQAHZL'}
+    name: label_10
+    properties: {}
+    type: Label
   - components:
     - layout_properties: {pinned: false}
       name: repeating_panel_1
@@ -170,7 +170,7 @@ components:
     layout_properties: {full_width_row: true, grid_position: 'KTTKXU,RPHZBO'}
     name: data_grid_1
     properties:
-      auto_header: true
+      auto_header: false
       columns:
       - {data_key: order_no, id: XPWQUV, title: Order No}
       - {data_key: project_name, id: JKSDUP, title: Project}
@@ -179,10 +179,9 @@ components:
       - {data_key: assigned_to, id: VPCGSW, title: Assigned_to}
       - {data_key: percent_complete, id: VTRJVM, title: Percent Complete}
       - {data_key: order_value_formated, expand: false, id: EFHAEM, title: GB excl VAT, width: 94.9091796875}
+      - {data_key: Work Completed_formated, id: RWXGEY, title: GB Value of Work Completed}
       - {data_key: days_elapsed, id: JEQUUE, title: Days Elapsed}
       - {data_key: stage, id: YDAEOY, title: Stage}
-      - {data_key: partially_invoiced_total, id: IRYCCB, title: Invoiced}
-      - {data_key: Work Completed_formated, id: RWXGEY, title: Value of Work Completed}
       rows_per_page: 100
       show_page_controls: false
     type: DataGrid
@@ -209,7 +208,7 @@ components:
   layout_properties: {slot: default}
   name: content_panel
   properties:
-    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":4,"CSUBAS":11,"DZREQZ":14,"HKHBYB":10,"OUOVUQ":10,"LCHDYI":5,"LHKFKX":6,"FUGXKS":12,"JEFQCG":5,"WVHOSD":10,"VHXLJL":10,"LPRCPC":5,"TWVTKP":15,"ZJYAPK":5,"OJFNMH":15,"XWKYCG":5,"FBTJFL":20,"WVFPPJ":5,"XYPAXB":15}'
+    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":4,"CSUBAS":11,"DZREQZ":14,"HKHBYB":10,"OUOVUQ":10,"LCHDYI":5,"LHKFKX":6,"FUGXKS":12,"JEFQCG":5,"WVHOSD":10,"VHXLJL":10,"LPRCPC":5,"TWVTKP":15,"ZJYAPK":5,"OJFNMH":15,"XWKYCG":5,"FBTJFL":20,"WVFPPJ":5,"XYPAXB":15,"GTLFQT":15,"AWHKYN":15,"ZBPCQC":10,"ESGFVX":15,"NWRDAU":15,"LMDGYE":10,"SSESYY":15,"YAJIGY":10,"PCUTEC":10,"NQAHZL":21}'
     spacing:
       padding: [null, null, null, '5']
   type: ColumnPanel
