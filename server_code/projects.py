@@ -50,6 +50,7 @@ def get_orders(percent_complete,assigned_to, category):
                       sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
                       sales_orders_cstm.OrderCategory AS OrderCategory,\
                       sales_orders_cstm.applicationarea_c AS AppArea, \
+                      If(sales_orders_cstm.applicationarea_c = 'Anticoagulation', 'Anticoagulation', 'Safety Monitoring and Misc') As AppGroup ,\
                       sales_orders.so_number AS so_number,\
                       sales_orders.so_stage AS stage, \
                       users.user_name AS user_name, \
@@ -67,7 +68,7 @@ def get_orders(percent_complete,assigned_to, category):
 
     if number_of_records:
               dicts = [{'order_no': r['so_number'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
-                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage']} \
+                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup']} \
                       for r in records]
     print(dicts)
     X = pd.DataFrame.from_dict(dicts)
