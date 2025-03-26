@@ -85,6 +85,12 @@ def get_orders(percent_complete,assigned_to, category):
     
     X['percent_complete']= X['percent_complete'].astype(int)
     
+    X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
+    X['Work Completed'] =X['order_value'] * X['percent_complete']/100
+    X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
+    X['Invoiced but NOT completed amount'] = X['partially_invoiced_total'] - X['Work Completed']
+    X['Invoiced but NOT completed amount']= X['Invoiced but NOT completed amount'].map(float)
+
     if assigned_to and not category:
        filter = (X['assigned_to'] == assigned_to)
        X =  X[X['percent_complete'] > int(percent_complete) ]
