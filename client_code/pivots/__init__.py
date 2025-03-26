@@ -12,7 +12,7 @@ class pivots(pivotsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
      # dicts,Xmedia  = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
-    dicts,Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders', 0,None, None)
+    dicts,Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders', 0,None, None, None)
     # dicts, Xmedia = anvil.server.call('get_orders', 0,None, None)
     # pivots = anvil.server.call('pivots', dicts)
     print(pivots)

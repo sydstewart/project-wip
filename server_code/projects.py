@@ -40,7 +40,7 @@ conn = connect()
     #=============================================================================  
       # Load Orders 
 @anvil.server.callable  
-def get_orders(percent_complete,assigned_to, category):
+def get_orders(percent_complete,assigned_to, category, not_completed):
     print(' starting sql')
     with conn.cursor() as cur:
                 cur.execute(
@@ -59,9 +59,8 @@ def get_orders(percent_complete,assigned_to, category):
                       From sales_orders\
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                       LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
-                      Where sales_orders.date_entered > '2020-01-01' AND \
-                            sales_orders_cstm.OrderCategory NOT IN ('Maintenance') ")
-                          # AND \
+                      Where sales_orders.date_entered > '2020-03-01' AND \
+                            sales_orders_cstm.OrderCategory NOT IN ('Maintenance') ")           # AND \
                           # sales_orders.so_stage  NOT IN ('Closed', 'On Hold','Cancelled')")  # ,'Complete'
     records = cur.fetchall()
     number_of_records =len(records)
@@ -75,7 +74,8 @@ def get_orders(percent_complete,assigned_to, category):
     print(dicts)
     X = pd.DataFrame.from_dict(dicts)
 
-    
+
+
     print('Made dicts and dataframe')
     X['order_value']= X['order_value'].map(float)
     # X['cumulative_orders'] =  X['order_value'].cusum()
@@ -90,7 +90,10 @@ def get_orders(percent_complete,assigned_to, category):
     X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
     X['Invoiced but NOT completed amount'] = X['partially_invoiced_total'] - X['Work Completed']
     X['Invoiced but NOT completed amount']= X['Invoiced but NOT completed amount'].map(float)
-
+    if  not_completed =='Yes':
+           X =  X[X['Invoiced but NOT completed amount'] > 0]
+    elif not_completed =='No':
+           X =  X[X['Invoiced but NOT completed amount'] <= 0]
     if assigned_to and not category:
        filter = (X['assigned_to'] == assigned_to)
        X =  X[X['percent_complete'] > int(percent_complete) ]
