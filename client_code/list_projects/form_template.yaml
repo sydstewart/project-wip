@@ -26,6 +26,10 @@ components:
     name: work_to_do_label
     properties: {bold: true}
     type: Label
+  - layout_properties: {grid_position: 'NMMWTO,HHHBRM OUAJQV,GOOQRY'}
+    name: label_6
+    properties: {}
+    type: Label
   - event_bindings: {click: download_button_click}
     layout_properties: {full_width_row: true, grid_position: 'NMMWTO,HHHBRM OUAJQV,FUGXKS'}
     name: download_button
@@ -153,7 +157,7 @@ components:
   layout_properties: {slot: default}
   name: content_panel
   properties:
-    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":5,"CSUBAS":11,"DZREQZ":14,"HKHBYB":10,"OUOVUQ":10,"LCHDYI":5,"LHKFKX":16,"FUGXKS":10,"JEFQCG":17,"WVHOSD":12,"VHXLJL":10,"ULPXOR":11}'
+    col_widths: '{"OTGJRV":10,"HHHBRM":50,"RALBPK":5,"CSUBAS":11,"DZREQZ":14,"HKHBYB":10,"OUOVUQ":10,"LCHDYI":5,"LHKFKX":16,"FUGXKS":10,"JEFQCG":17,"WVHOSD":12,"VHXLJL":10}'
     spacing:
       padding: [null, null, null, '5']
   type: ColumnPanel
