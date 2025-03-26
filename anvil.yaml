@@ -337,6 +337,6 @@ services:
 - client_config: {}
   server_config: {test_mode: false}
   source: /runtime/services/anvil/email.yml
-startup: {module: Work_in_Progress, type: form}
+startup: {module: list_projects, type: form}
 startup_form: null
 uplink_visible: true

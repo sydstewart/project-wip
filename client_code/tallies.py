@@ -16,10 +16,10 @@ def tallies(self, dicts):
     self.work_to_do_label.text = f"Value_of_Work_TO_DO : £{work_to_do:,}"
     self.invoiced_total.text =  f"TOTAL_INVOICED    : £{invoiced_total:,}"
     # self.invoiced_total_copy.text =  f"£{invoiced_total:,}"
-    self.work_completed.text = f"£{work_completed :,}" 
+    # self.work_completed.text = f"£{work_completed :,}" 
     invoiced_but_not_completed = invoiced_total - work_completed 
     self.invoiced_but_not_completed.text = f"£{invoiced_but_not_completed:,}"
-    self.total_order_value.text =  f"£{subtotal :,}" 
+    # self.total_order_value.text =  f"£{subtotal :,}" 
     self.work_completed_top.text =  f"WORK COMPLETED : £{work_completed:,}"
     if invoiced_but_not_completed >= 0:
          self.invoiced_but_not_completed.text = f"£{invoiced_but_not_completed:,}"
