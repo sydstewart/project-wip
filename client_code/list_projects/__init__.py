@@ -29,7 +29,7 @@ class list_projects(list_projectsTemplate):
     # self.pivot_1.items=dicts
     # self.plot_1.figure= pivotsyd
 
-  def percent_complete_text_box_change(self, **event_args):
+  def from_percent_complete_text_box_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.assigned_dropdown.selected_value)
@@ -131,6 +131,19 @@ class list_projects(list_projectsTemplate):
   def not_completed_change(self, **event_args):
     """This method is called when an item is selected"""
     dicts,Xmedia, pivots = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
+    self.text_box_1.text = len(dicts)
+    self.repeating_panel_1.items = dicts
+    tallies(self, dicts)
+    pass
+
+ 
+    
+  def percent_complete_text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    print('Percent Complete=', self.percent_complete_text_box.text)
+    print('Assigned to =', self.assigned_dropdown.selected_value)
+    print('Catgeory =', self.Category.selected_value)
+    dicts,Xmedia , pivots = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
