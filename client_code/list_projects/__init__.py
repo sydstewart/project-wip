@@ -24,7 +24,7 @@ class list_projects(list_projectsTemplate):
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
-    self.rich_text_1.content = pivotsyd
+    # self.rich_text_1.content = pivotsyd
     
     # self.pivot_1.items=dicts
     # self.plot_1.figure= pivotsyd
@@ -68,13 +68,16 @@ class list_projects(list_projectsTemplate):
     """This method is called when the button is clicked"""
     # start = self.level_textbox.text
     field_parameters =[]
-    field_parameters = [self.assigned_dropdown.selected_value,  #asigned to
+    field_parameters = [
+                        self.assigned_dropdown.selected_value,
                         self.text_box_1.text, # no of records
                         self.Category.selected_value,  # category
                         self.percent_complete_text_box.text,  # above this percent complete
                         self.average_completion_label.text, #above percent 
                         self.work_to_do_label.text, # work to do
-                        self.total_value_label.text]
+                        self.total_value_label.text,
+                        self.invoiced_total.text,
+                        self.top_invoiced_but_not_completed.text]
                        
     
     # open_form('listpdf',self.repeating_panel_1.items, field_parameters )

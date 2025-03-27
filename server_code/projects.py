@@ -110,7 +110,11 @@ def get_orders(percent_complete,assigned_to, category, not_completed):
           X =  X[X['percent_complete'] > int(percent_complete)]
     # print('after filter',X['percent_complete'])
     X['percent_complete'] = X['percent_complete'].map(int)
+  
     X['order_value_formated'] = X['order_value'].map("£{:,.0f}".format)
+    X['partially_invoiced_total_formated'] = X['partially_invoiced_total'].map("£{:,.0f}".format)
+    X['Invoiced but NOT completed amount_formated'] = X['Invoiced but NOT completed amount'].map("£{:,.0f}".format)
+  
     today = datetime.today()
     X['days_elapsed'] = (today - X['order_date']).dt.days
     # print(X['days_elapsed']) =  X['days_elapsed'])
@@ -220,6 +224,7 @@ def get_all_orders():
     # print('before',X['percent_complete'])
     
     X['percent_complete']= X['percent_complete'].astype(int)
+    # X['order_date'] = pd.to_datetime(X.order_date).dt.strftime('%d/%m/%Y')
     
     if assigned_to and not category:
        filter = (X['assigned_to'] == assigned_to)
@@ -267,7 +272,7 @@ def get_all_orders():
     return dicts, X_media,  pivotsyd_to_markdown
 @anvil.server.callable
 def create_pdf(dicts, field_parameters):
-  pdf = anvil.pdf.render_form("listpdf", dicts, field_parameters, landscape =True)
+  pdf = anvil.pdf.render_form("listpdf", dicts, field_parameters, landscape = True, page_size = 'A4')
   return pdf
 
 

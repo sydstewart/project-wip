@@ -21,7 +21,8 @@ class listpdf(listpdfTemplate):
     self.average_completion_label.text = field_parameters[4]
     self.total_value_label.text =field_parameters[5]
     self.work_to_do_label.text = field_parameters[6]
-    self.assigned_to_label.text =   f"Assign_To : {field_parameters[0]}"
+    self.invoiced_label_2.text = field_parameters[7]
+    self.invoiced_not_complete_label_2.text = field_parameters[8]
     today = datetime.today()
     self.headline_1.text = "Sales Order Progress Report at" + ' '  +  str(today)
 

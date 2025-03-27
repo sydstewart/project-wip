@@ -38,8 +38,16 @@ components:
       name: category_label
       properties: {bold: true}
       type: Label
-    - layout_properties: {grid_position: 'ZLAGXT,EJAEGP'}
+    - layout_properties: {grid_position: 'ZLAGXT,EJAEGP SIQJOC,MKLZXE'}
       name: work_to_do_label
+      properties: {bold: true}
+      type: Label
+    - layout_properties: {grid_position: 'ZLAGXT,EJAEGP FEQTIT,DLQBHZ'}
+      name: invoiced_label_2
+      properties: {bold: true}
+      type: Label
+    - layout_properties: {grid_position: 'ZLAGXT,EJAEGP ZVLUQO,HOJUYV'}
+      name: invoiced_not_complete_label_2
       properties: {bold: true}
       type: Label
     - layout_properties: {grid_position: 'NVCXTJ,QEPDRO'}
@@ -55,18 +63,21 @@ components:
     - name: repeating_panel_1
       properties: {item_template: list_projects_pdf.RowTemplate22}
       type: RepeatingPanel
-    layout_properties: {grid_position: 'AJLSLK,USQSSW'}
+    layout_properties: {full_width_row: true, grid_position: 'AJLSLK,USQSSW'}
     name: data_grid_1
     properties:
       columns:
       - {data_key: order_no, id: JKSDUP, title: Order No}
-      - {data_key: project_name, id: VJQQOR, title: Project}
-      - {data_key: order_date, id: OJLQEN, title: Order Date}
-      - {data_key: order_category, expand: false, id: WLOMVG, title: Category, width: 151.63641357421875}
+      - {data_key: project_name, expand: false, id: VJQQOR, title: Project, width: 109.0909423828125}
+      - {data_key: order_date, expand: false, id: OJLQEN, title: Order Date, width: 94.54547119140625}
+      - {data_key: order_category, expand: false, id: WLOMVG, title: Category, width: 136.3636474609375}
       - {data_key: assigned_to, id: PGAIZK, title: Assigned To}
-      - {data_key: percent_complete, id: SHKLNW, title: Percent Complete}
+      - {data_key: percent_complete, expand: false, id: SHKLNW, title: Percent Complete, width: 66.27276611328125}
       - {data_key: order_value_formated, id: EIBUKE, title: Order Value}
       - {data_key: days_elapsed, id: WEUZXV, title: Days Elapsed}
+      - {data_key: Work Completed_formated, id: RLMIHZ, title: Value of Work Complete}
+      - {data_key: partially_invoiced_total_formated, id: BHGMUJ, title: Invoiced Value}
+      - {data_key: Invoiced but NOT completed amount_formated, id: EFUKDT, title: Invoiced not Complete Value}
       rows_per_page: 100
       show_page_controls: false
     type: DataGrid
