@@ -19,7 +19,7 @@ import plotly.express as px
 from datetime import datetime, time, date, timedelta
 import numpy as np
 
-def prepare_pandas(dicts, percent_complete,assigned_to, category, not_completed):
+def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category, not_completed):
 
     X = pd.DataFrame.from_dict(dicts)
     print('Made dicts and dataframe')
@@ -42,18 +42,22 @@ def prepare_pandas(dicts, percent_complete,assigned_to, category, not_completed)
            X =  X[X['Invoiced but NOT completed amount'] <= 0]
     if assigned_to and not category:
        filter = (X['assigned_to'] == assigned_to)
-       X =  X[X['percent_complete'] > int(percent_complete) ]
+       X =  X[X['percent_complete'] >= int(percent_complete) ]
+       X =  X[X['percent_complete'] <= int(hi_percentage) ]
        X =  X[filter]
     elif category and not assigned_to:
-          X =  X[X['percent_complete'] > int(percent_complete)]
+          X =  X[X['percent_complete'] >= int(percent_complete)]
+          X =  X[X['percent_complete'] <= int(hi_percentage) ]
           X =  X[X['order_category'] == category]
     elif assigned_to and category:
-          X =  X[X['percent_complete'] > int(percent_complete) ]
+          X =  X[X['percent_complete'] >= int(percent_complete) ]
+          X =  X[X['percent_complete'] <= int(hi_percentage) ]
           filter = (X['assigned_to'] == assigned_to)
           X =  X[filter]
           X =  X[X['order_category'] == category]
     elif percent_complete and not category and not assigned_to:
-          X =  X[X['percent_complete'] > int(percent_complete)]
+          X =  X[X['percent_complete'] >= int(percent_complete)]
+          X =  X[X['percent_complete'] <= int(hi_percentage) ]
     # print('after filter',X['percent_complete'])
     X['percent_complete'] = X['percent_complete'].map(int)
   

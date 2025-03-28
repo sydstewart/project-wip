@@ -18,7 +18,7 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.assigned_dropdown.selected_value)
     print('Catgeory =', self.Category.selected_value)
-    dicts, Xmedia ,pivotsyd = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
+    dicts, Xmedia ,pivotsyd = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.hi_percentage.text, self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
     stages = list({(r['stage']) for r in dicts})
     self.multi_select_stages.items = stages
     self.text_box_1.text = len(dicts)
@@ -34,7 +34,7 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.assigned_dropdown.selected_value)
     print('Catgeory =', self.Category.selected_value)
-    dicts,Xmedia , pivots = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
+    dicts,Xmedia , pivots = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.hi_percentage.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
@@ -46,7 +46,7 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.assigned_dropdown.selected_value)
     print('Catgeory =', self.Category.selected_value)
-    dicts ,Xmedia, pivots = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
+    dicts ,Xmedia, pivots = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.hi_percentage.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
@@ -57,7 +57,7 @@ class list_projects(list_projectsTemplate):
     print('Percent Complete=', self.percent_complete_text_box.text)
     print('Assigned to =', self.assigned_dropdown.selected_value)
     print('Category =', self.Category.selected_value)
-    dicts,Xmedia, pivots = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
+    dicts,Xmedia, pivots = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.hi_percentage.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
@@ -86,12 +86,12 @@ class list_projects(list_projectsTemplate):
 
   def Pivots_click(self, **event_args):
     """This method is called when the button is clicked"""
-    dicts, Xmedia = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
+    dicts, Xmedia = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.hi_percentage.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
     open_form('pivots', dicts)
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
-    dicts,Xmedia = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
+    dicts,Xmedia = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.hi_percentage.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
     download(Xmedia)    
 
   def button_2_click(self, **event_args):
@@ -130,7 +130,7 @@ class list_projects(list_projectsTemplate):
 
   def not_completed_change(self, **event_args):
     """This method is called when an item is selected"""
-    dicts,Xmedia, pivots = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
+    dicts,Xmedia, pivots = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.hi_percentage.text, self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
@@ -147,4 +147,15 @@ class list_projects(list_projectsTemplate):
     self.text_box_1.text = len(dicts)
     self.repeating_panel_1.items = dicts
     tallies(self, dicts)
+    pass
+
+  def hi_percentage_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    print('Percent Complete=', self.percent_complete_text_box.text)
+    print('Assigned to =', self.assigned_dropdown.selected_value)
+    print('Catgeory =', self.Category.selected_value)
+    dicts,Xmedia , pivots = anvil.server.call('get_orders_for_project_list', self.percent_complete_text_box.text,self.hi_percentage.text,self.assigned_dropdown.selected_value, self.Category.selected_value,self.not_completed.selected_value)
+    self.text_box_1.text = len(dicts)
+    self.repeating_panel_1.items = dicts
+    tallies(self, dicts) 
     pass
