@@ -18,8 +18,10 @@ class pivots(pivotsTemplate):
     print(pivots)
     
     self.pivot_1.rendererOptions = 'Table Barchart'
+    
     self.pivot_1.items = dicts
-
+    # self.pivot_1.rows =['stage']
+    # self.pivot_1.rendererOptions.rows= ['stage']
     # self.pivot_1.columns = ['order_category', 'project_name']
     # self
     # Any code you write here will run before the form opens.

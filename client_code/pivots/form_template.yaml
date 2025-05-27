@@ -28,7 +28,7 @@ components:
   properties:
     aggregator: Count
     columns: []
-    rows: [stage]
+    rows: ['[''stage'']']
     values: []
   type: form:C6ZZPAPN4YYF5NVJ:Pivot
 container:
