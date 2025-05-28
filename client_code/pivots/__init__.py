@@ -20,7 +20,7 @@ class pivots(pivotsTemplate):
     self.pivot_1.rendererOptions = 'Table Barchart'
     
     self.pivot_1.items = dicts
-    self.pivot_1.rows = 'assigned_to'
+    # self.pivot_1.rows = 'assigned_to'
     # self.pivot_1.rows =['stage']
     # self.pivot_1.rendererOptions.rows= ['stage']
     # self.pivot_1.columns = ['order_category', 'project_name']
