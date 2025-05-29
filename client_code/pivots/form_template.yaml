@@ -28,7 +28,7 @@ components:
   properties:
     aggregator: Sum
     columns: []
-    rows: [assignee, order_no, project_name, stage]
+    rows: [assignee, order_no, project_name, stage, percent_complete]
     values: [order_value]
   type: form:C6ZZPAPN4YYF5NVJ:Pivot
 container:
