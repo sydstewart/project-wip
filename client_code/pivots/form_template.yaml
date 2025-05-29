@@ -23,7 +23,7 @@ components:
   properties: {bold: true, text: Download PDF}
   type: Button
 - data_bindings: []
-  layout_properties: {grid_position: 'HZEQIF,OYBZBL KXBNPY,ZEQLPL'}
+  layout_properties: {full_width_row: true, grid_position: 'HZEQIF,OYBZBL KXBNPY,ZEQLPL'}
   name: pivot_1
   properties:
     aggregator: Sum
