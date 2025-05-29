@@ -4,5 +4,7 @@ components:
   name: flow_panel_1
   properties: {}
   type: FlowPanel
-container: {type: DataRowPanel}
+container:
+  properties: {align: left, auto_display_data: true}
+  type: DataRowPanel
 is_package: true

@@ -128,6 +128,7 @@ components:
       align: left
       bold: true
       col_spacing: none
+      font_size: 12
       spacing:
         margin: [null, null, null, 0]
         padding: [null, null, null, 0]
@@ -140,7 +141,7 @@ components:
   - event_bindings: {click: link_8_click}
     layout_properties: {grid_position: 'HFTSEQ,ZBPCQC'}
     name: link_8
-    properties: {bold: true, icon: 'fa:sort', icon_align: right_edge, text: Order Date}
+    properties: {align: left, bold: true, icon: 'fa:sort', icon_align: right_edge, text: Order Date}
     type: Link
   - components: []
     layout_properties: {grid_position: 'HFTSEQ,ESGFVX'}
@@ -168,7 +169,7 @@ components:
   - event_bindings: {click: link_3_click}
     layout_properties: {grid_position: 'HFTSEQ,SSESYY'}
     name: link_3
-    properties: {align: right, bold: true, icon: 'fa:sort', icon_align: right, text: GB excl. VAT}
+    properties: {align: left, bold: true, icon: 'fa:sort', icon_align: right, text: GB excl. VAT}
     type: Link
   - layout_properties: {grid_position: 'HFTSEQ,EKZGAV'}
     name: link_5
@@ -176,7 +177,7 @@ components:
     type: Link
   - layout_properties: {grid_position: 'HFTSEQ,DYNXLE'}
     name: link_7
-    properties: {bold: true, text: Invoiced Value to date}
+    properties: {bold: true, text: Partially Invoiced Value to date}
     type: Link
   - layout_properties: {grid_position: 'HFTSEQ,MVKRRO'}
     name: link_11
@@ -199,17 +200,17 @@ components:
     layout_properties: {full_width_row: true, grid_position: 'KTTKXU,RPHZBO'}
     name: data_grid_1
     properties:
-      auto_header: false
+      auto_header: true
       columns:
       - {data_key: order_no, id: XPWQUV, title: Order No}
       - {data_key: project_name, id: JKSDUP, title: Project}
-      - {data_key: order_date, expand: false, id: VJQQOR, title: Order Date, width: 84.27276611328125}
+      - {data_key: date_formatted, expand: false, id: VJQQOR, title: Order Date, width: 108.45458984375}
       - {data_key: order_category, id: OJLQEN, title: Category}
       - {data_key: assigned_to, id: VPCGSW, title: Assigned_to}
-      - {data_key: percent_complete, id: VTRJVM, title: Percent Complete}
+      - {data_key: percent_complete, expand: false, id: VTRJVM, title: Percent Complete, width: 78.54547119140625}
       - {data_key: order_value_formated, expand: false, id: EFHAEM, title: GB excl VAT, width: 94.9091796875}
-      - {data_key: Work Completed_formated, id: RWXGEY, title: GB Value of Work Completed}
-      - {data_key: partially_invoiced_total_formated, id: IFBQEI, title: Invoiced Value to date}
+      - {data_key: Work Completed_formated, expand: false, id: RWXGEY, title: GB Value of Work Completed, width: 118.2728271484375}
+      - {data_key: partially_invoiced_total_formated, expand: false, id: IFBQEI, title: Invoiced Value to date, width: 125.8182373046875}
       - {data_key: Invoiced but NOT completed amount_formated, id: FSGSMC, title: Invoiced Not Complete}
       - {data_key: days_elapsed, id: JEQUUE, title: Days Elapsed}
       - {data_key: stage, id: YDAEOY, title: Stage}
@@ -227,7 +228,7 @@ components:
   layout_properties: {slot: default}
   name: content_panel
   properties:
-    col_widths: '{"OTGJRV":5,"HHHBRM":55,"RALBPK":6,"CSUBAS":5,"DZREQZ":10,"HKHBYB":7,"OUOVUQ":7,"LCHDYI":7,"LHKFKX":11,"FUGXKS":8,"JEFQCG":10,"WVHOSD":7,"VHXLJL":9,"LPRCPC":6,"OJFNMH":15,"XWKYCG":5,"FBTJFL":20,"WVFPPJ":5,"XYPAXB":15,"GTLFQT":10,"AWHKYN":15,"ZBPCQC":5,"ESGFVX":10,"NWRDAU":10,"LMDGYE":10,"SSESYY":10,"YAJIGY":5,"EKZGAV":10,"DYNXLE":11,"MVKRRO":9,"NJIMOG":7,"YSOXMV":9,"POJWQY":4,"ZXLCRG":4}'
+    col_widths: '{"OTGJRV":5,"HHHBRM":55,"RALBPK":6,"CSUBAS":5,"DZREQZ":10,"HKHBYB":7,"OUOVUQ":7,"LCHDYI":7,"LHKFKX":11,"FUGXKS":8,"JEFQCG":10,"WVHOSD":7,"VHXLJL":9,"LPRCPC":6,"OJFNMH":15,"XWKYCG":5,"FBTJFL":20,"WVFPPJ":5,"XYPAXB":15,"GTLFQT":10,"AWHKYN":10,"ZBPCQC":10,"ESGFVX":10,"NWRDAU":10,"LMDGYE":5,"SSESYY":10,"YAJIGY":5,"EKZGAV":5,"DYNXLE":15,"MVKRRO":10,"NJIMOG":7,"YSOXMV":14,"POJWQY":4,"ZXLCRG":4}'
     spacing:
       padding: [null, null, null, '5']
   type: ColumnPanel

@@ -28,7 +28,7 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     print('Cusum =', X['order_value'])
     X['percent_complete'] = X['percent_complete'].fillna(0)
     # print('before',X['percent_complete'])
-    
+    X['date_formatted'] = X['order_date'].dt.strftime('%d/%m/%Y')
     X['percent_complete']= X['percent_complete'].astype(int)
     
     X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
