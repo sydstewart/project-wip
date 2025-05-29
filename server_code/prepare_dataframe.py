@@ -129,6 +129,7 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     
  
     dicts =X.to_dict(orient='records')
+    print('dicts',dicts)
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
     # media_object = anvil.pdf.render_form('list_projects')

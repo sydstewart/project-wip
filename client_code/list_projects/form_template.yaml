@@ -1,6 +1,6 @@
 components:
 - components:
-  - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,OTGJRV GNSESB,WRTXOG'}
+  - layout_properties: {full_width_row: true, grid_position: 'NMMWTO,OTGJRV'}
     name: label_1
     properties:
       align: right
@@ -187,10 +187,10 @@ components:
     name: link_4
     properties: {align: right, bold: true, icon: 'fa:sort', icon_align: right_edge, text: Days Old}
     type: Link
-  - layout_properties: {grid_position: 'HFTSEQ,NQAHZL'}
-    name: label_10
-    properties: {}
-    type: Label
+  - layout_properties: {grid_position: 'HFTSEQ,YSOXMV'}
+    name: link_12
+    properties: {bold: true, text: Stage}
+    type: Link
   - components:
     - layout_properties: {pinned: false}
       name: repeating_panel_1
@@ -227,7 +227,7 @@ components:
   layout_properties: {slot: default}
   name: content_panel
   properties:
-    col_widths: '{"OTGJRV":5,"HHHBRM":55,"RALBPK":6,"CSUBAS":7,"DZREQZ":14,"HKHBYB":10,"OUOVUQ":10,"LCHDYI":10,"LHKFKX":11,"FUGXKS":8,"JEFQCG":10,"WVHOSD":7,"VHXLJL":10,"LPRCPC":6,"OJFNMH":15,"XWKYCG":5,"FBTJFL":20,"WVFPPJ":5,"XYPAXB":15,"GTLFQT":10,"AWHKYN":15,"ZBPCQC":5,"ESGFVX":10,"NWRDAU":10,"LMDGYE":10,"SSESYY":10,"YAJIGY":10,"NQAHZL":16,"EKZGAV":10,"DYNXLE":11,"MVKRRO":9,"NJIMOG":10}'
+    col_widths: '{"OTGJRV":5,"HHHBRM":55,"RALBPK":6,"CSUBAS":5,"DZREQZ":10,"HKHBYB":7,"OUOVUQ":7,"LCHDYI":7,"LHKFKX":11,"FUGXKS":8,"JEFQCG":10,"WVHOSD":7,"VHXLJL":9,"LPRCPC":6,"OJFNMH":15,"XWKYCG":5,"FBTJFL":20,"WVFPPJ":5,"XYPAXB":15,"GTLFQT":10,"AWHKYN":15,"ZBPCQC":5,"ESGFVX":10,"NWRDAU":10,"LMDGYE":10,"SSESYY":10,"YAJIGY":5,"EKZGAV":10,"DYNXLE":11,"MVKRRO":9,"NJIMOG":7,"YSOXMV":9,"POJWQY":4,"ZXLCRG":4}'
     spacing:
       padding: [null, null, null, '5']
   type: ColumnPanel
