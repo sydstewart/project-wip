@@ -36,6 +36,7 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
     X['Invoiced but NOT completed amount'] = X['partially_invoiced_total'] - X['Work Completed']
     X['Invoiced but NOT completed amount']= X['Invoiced but NOT completed amount'].map(float)
+
     if  not_completed =='Yes':
            X =  X[X['Invoiced but NOT completed amount'] > 0]
     elif not_completed =='No':
@@ -112,7 +113,15 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
 # Use np.select() to create the new column
     X['Fin Month'] = np.select(conditions, categories, default='Unknown')
 
-
+  # Group the stages into categories
+    conditions =[X['stage'] == 'On Hold',
+                 X['stage'] == 'Work In Progress - 4S'] or  X['stage'] == 'Pre-requisites in progress']  
+# Ready for GoLive 
+# Ready for UAT 
+# Ready to Start 
+# UAT WIP
+    categories = ['Projects on Hold','Project in Progress']
+    X['Stage Group'] = np.select(conditions, categories, default='Unknown')
   
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
     pivotsyd  = pivotsyd.fillna(0)
