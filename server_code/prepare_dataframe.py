@@ -115,12 +115,31 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
 
   # Group the stages into categories
     conditions =[X['stage'] == 'On Hold',
-                 X['stage'] == 'Work In Progress - 4S'] or  X['stage'] == 'Pre-requisites in progress']  
+                 
+                 X['stage'] == 'Work In Progress - 4S', 
+                 X['stage'] == 'Pre-requisites in progress' ,
+                 X['stage'] == 'Ready for GoLive', 
+                 X['stage'] == 'Ready for UAT',
+                 X['stage'] == 'Ready to Start',
+                 X['stage'] == 'UAT WIP',
+                   
+                 X['stage'] == 'Order Approved',
+                 X['stage'] == 'Order Submitted for Approval',
+                 X['stage'] == 'Ordered']
+
+#   Ready for UAT	42,050.00
+# UAT WIP              
 # Ready for GoLive 
 # Ready for UAT 
 # Ready to Start 
 # UAT WIP
-    categories = ['Projects on Hold','Project in Progress']
+# Order Approved 
+# Order Submitted for Approval 
+# Ordered
+    categories = ['Projects on Hold', \
+                  'Project in Progress', 'Project in Progress', 'Project in Progress','Project in Progress', 'Project in Progress','Project in Progress', \
+                  'Project waiting to Start', 'Project waiting to Start','Project waiting to Start']
+  
     X['Stage Group'] = np.select(conditions, categories, default='Unknown')
   
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
