@@ -154,6 +154,8 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     pd.set_option('display.max_columns', None)
     print('pivotsyd',pivotsyd)
   
+    stage_group_X = X[(X['Stage Group'] != 'Unknown')]   # & (df['stage'].isin(['Final', 'Initial']))]
+    stage_group_dicts = stage_group_X.to_dict(orient='records')
     
  
     dicts =X.to_dict(orient='records')
@@ -161,4 +163,4 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
     # media_object = anvil.pdf.render_form('list_projects')
-    return dicts, X_media,  pivotsyd_to_markdown
+    return dicts, stage_group_dicts, X_media,  pivotsyd_to_markdown
