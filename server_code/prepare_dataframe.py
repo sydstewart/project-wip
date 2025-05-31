@@ -136,9 +136,9 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
 # Order Approved 
 # Order Submitted for Approval 
 # Ordered
-    categories = ['Projects on Hold', \
-                  'Project in Progress', 'Project in Progress', 'Project in Progress','Project in Progress', 'Project in Progress','Project in Progress', \
-                  'Project waiting to Start', 'Project waiting to Start','Project waiting to Start']
+    categories = ['3. Projects on Hold', \
+                  '2. Projects in Progress', '2. Projects in Progress', '2. Projects in Progress','2. Projects in Progress', '2. Projects in Progress','2. Projects in Progress', \
+                  '1. Projects waiting to Start', '1. Projects waiting to Start','1. Projects waiting to Start']
   
     X['Stage Group'] = np.select(conditions, categories, default='Unknown')
   

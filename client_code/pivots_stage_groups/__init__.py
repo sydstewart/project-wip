@@ -1,13 +1,13 @@
-from ._anvil_designer import pivotsTemplate
+from ._anvil_designer import pivots_stage_groupsTemplate
 from anvil import *
 import anvil.server
 import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
- 
 
-class pivots(pivotsTemplate):
+
+class pivots_stage_groups(pivots_stage_groupsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -15,11 +15,11 @@ class pivots(pivotsTemplate):
     dicts,Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
     # dicts, Xmedia = anvil.server.call('get_orders', 0,None, None)
     # pivots = anvil.server.call('pivots', dicts)
-    print(pivots)
-    
-    self.pivot_1.rendererOptions = 'Table Barchart'
-    
-    self.pivot_1.items = dicts
+     
+
+    self.stage_group_pivot.rendererOptions = 'Table Barchart'
+
+    self.stage_group_pivot.items = dicts
     # self.pivot_1.rows = 'assigned_to'
     # self.pivot_1.rows =['stage']
     # self.pivot_1.rendererOptions.rows= ['stage']
@@ -37,4 +37,3 @@ class pivots(pivotsTemplate):
     pdf = anvil.server.call('create_pivot_pdf')
     anvil.media.download(pdf)
     pass
-
