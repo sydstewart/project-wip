@@ -16,9 +16,12 @@ class pivots(pivotsTemplate):
     # dicts, Xmedia = anvil.server.call('get_orders', 0,None, None)
     # pivots = anvil.server.call('pivots', dicts)
     print(pivots)
-    
-    self.pivot_1.rendererOptions = 'Table Barchart'
-    # dicts1 = {k:v for k, v in dicts.items() if k == 'Project in Progress'}
+    # print(dicts)
+    # self.pivot_1.rendererOptions = 'Table Barchart'
+    # original_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'a': 6}
+    # filtered_dict = {k: v for k, v in original_dict.items() if k == 'a'}
+    # print('filtereddict',filtered_dict)
+    # dicts1 = {k: v for k, v in dicts.items() if k == 'Stage Group'  and v == 'Project in progress'}
     # print (dicts1)
     self.pivot_1.items = dicts
     # self.pivot_1.rows = 'assigned_to'
