@@ -18,7 +18,8 @@ class pivots(pivotsTemplate):
     print(pivots)
     
     self.pivot_1.rendererOptions = 'Table Barchart'
-    
+    # dicts1 = {k:v for k, v in dicts.items() if k == 'Project in Progress'}
+    # print (dicts1)
     self.pivot_1.items = dicts
     # self.pivot_1.rows = 'assigned_to'
     # self.pivot_1.rows =['stage']
