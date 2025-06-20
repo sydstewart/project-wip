@@ -65,7 +65,8 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     X['order_value_formated'] = X['order_value'].map("£{:,.0f}".format)
     X['partially_invoiced_total_formated'] = X['partially_invoiced_total'].map("£{:,.0f}".format)
     X['Invoiced but NOT completed amount_formated'] = X['Invoiced but NOT completed amount'].map("£{:,.0f}".format)
-  
+    X['Value yet to be invoiced'] = X['order_value']-X['partially_invoiced_total']  
+    X['Value yet to be invoiced_formated'] = X['Value yet to be invoiced'].map("£{:,.0f}".format)
     today = datetime.today()
     X['days_elapsed'] = (today - X['order_date']).dt.days
     # print(X['days_elapsed']) =  X['days_elapsed'])
@@ -155,11 +156,13 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     print('pivotsyd',pivotsyd)
   
     X = X[(X['Stage Group'] =='Project in Progress')] 
-    X1 = X[['order_no','project_name', 'percent_complete', 'order_value_formated','partially_invoiced_total_formated']]
+    X1 = X[['order_no','project_name', 'percent_complete', 'order_value_formated','partially_invoiced_total_formated','Value yet to be invoiced_formated']]
     X1 = X1.sort_values(by='percent_complete',ascending=False)
-  
+    X2 = X1.sort_values(by='Value yet to be invoiced_formated',ascending=False)
     dicts =X.to_dict(orient='records')
     dictspip= X1.to_dict(orient='records')
+    # dictspipX = X2.to_dict(orient='records')
+  
     print('dicts',dicts)
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
