@@ -12,24 +12,11 @@ class pivots(pivotsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # dicts,Xmedia  = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
-    dicts,Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
-    # dicts, Xmedia = anvil.server.call('get_orders', 0,None, None)
-    # pivots = anvil.server.call('pivots', dicts)
-    print(pivots)
-    # print(dicts)
-    # self.pivot_1.rendererOptions = 'Table Barchart'
-    # original_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'a': 6}
-    # filtered_dict = {k: v for k, v in original_dict.items() if k == 'a'}
-    # print('filtereddict',filtered_dict)
-    # dicts1 = {k: v for k, v in dicts.items() if k == 'Stage Group'  and v == 'Project in progress'}
-    # print (dicts1)
+    dicts, dictspip, Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
+  
     self.pivot_1.items = dicts
-    # self.pivot_1.rows = 'assigned_to'
-    # self.pivot_1.rows =['stage']
-    # self.pivot_1.rendererOptions.rows= ['stage']
-    # self.pivot_1.columns = ['order_category', 'project_name']
-    # self
-    # Any code you write here will run before the form opens.
+    self.repeating_panel_1.items = dictspip
+    
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""

@@ -154,11 +154,14 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     pd.set_option('display.max_columns', None)
     print('pivotsyd',pivotsyd)
   
-    
- 
+    X = X[(X['Stage Group'] =='Project in Progress')] 
+    X1 = X[['order_no','project_name', 'percent_complete', 'order_value_formated','partially_invoiced_total_formated']]
+    X1 = X1.sort_values(by='percent_complete',ascending=False)
+  
     dicts =X.to_dict(orient='records')
+    dictspip= X1.to_dict(orient='records')
     print('dicts',dicts)
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
     # media_object = anvil.pdf.render_form('list_projects')
-    return dicts, X_media,  pivotsyd_to_markdown
+    return dicts, dictspip, X_media,  pivotsyd_to_markdown

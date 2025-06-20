@@ -74,9 +74,9 @@ def get_orders_for_pivots(percent_complete,hi_percentage, assigned_to, category,
                         'partially_invoiced_total':r['partially_invoiced_total']} \
                       for r in records]
     print(dicts)
-    dicts, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete,hi_percentage,assigned_to, category, not_completed)
+    dicts,dictspip, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete,hi_percentage,assigned_to, category, not_completed)
 #     X = pd.DataFrame.from_dict(dicts)
-    return dicts, X_media,  pivotsyd_to_markdown
+    return dicts,dictspip, X_media,  pivotsyd_to_markdown
 @anvil.server.callable  
 def get_orders_for_project_list(percent_complete, hi_percentage, assigned_to, category, not_completed):
     print(' starting sql')
