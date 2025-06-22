@@ -28,3 +28,13 @@ class pivots(pivotsTemplate):
     pdf = anvil.server.call('create_pivot_pdf')
     anvil.media.download(pdf)
     pass
+
+  def radio_button_1_clicked(self, **event_args):
+    """This method is called when this radio button is selected"""
+    key_func = lambda x: x[percent_complete]
+    # if column_name == 'DUMMY':  # replace 'user_column' with the actual name of the column, replace DUMMY to make an exception for user columns
+    # key_func = lambda x: x[column_name]['email']  # replace 'email' with the actual key for the user email
+    self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items],
+                                          key=key_func,
+                                          reverse=sorting_way)
+    pass
