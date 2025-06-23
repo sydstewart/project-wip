@@ -312,15 +312,15 @@ def wip_run_chart():
  
  
    fig = go.Figure([
-    go.Scatter(
-        name='Total Order Value',
-        x=df['Date_entered'],
-        y=df['Total Order Value'],
-        mode='lines+markers',
-        marker=dict(color='red', size=4),
-        line=dict(width=1),
-        showlegend=True)
-    ,
+    # go.Scatter(
+    #     name='Total Order Value',
+    #     x=df['Date_entered'],
+    #     y=df['Total Order Value'],
+    #     mode='lines+markers',
+    #     marker=dict(color='red', size=4),
+    #     line=dict(width=1),
+    #     showlegend=True)
+    # ,
     go.Scatter(
         name='Total Work To Do Value',
         x=df['Date_entered'],
@@ -360,7 +360,7 @@ def work_to_do_chart(start_date):
    chart_data = app_tables.daily_wip.search(tables.order_by("Date_of_WIP", ascending=False) , Date_of_WIP= q.greater_than(date(year=start_year, month=start_month, day=10) ))
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
-   # df['Median'] = df['Total Work To Do Value'].median()
+   df['Median'] = df['Total Work To Do Value'].median()
    print('df for daily WIP',df)
    
    
@@ -375,11 +375,26 @@ def work_to_do_chart(start_date):
         line=dict(width=1),
         showlegend=True)
    ])
-   # fig.add_scatter(x=df['Date_entered'], y=df['Median'], mode='lines', name= 'Median Total Work To Do Value')
+   fig.add_scatter(x=df['Date_entered'], y=df['Median'], mode='lines', name= 'Median Total Work To Do Value')
+  fig6.update_layout(
+    title=dict(
+      text='Run Chart of Sales Opportunity Count per Week' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
+    ),
+    yaxis=dict(
+      title=dict(
+        text="Opportunity Count"
+      )
+    ),
+    xaxis=dict(
+      title=dict(
+        text="Week Start Date"
+      )  
+    ))
    # fig = px.line(df, x= 'Date_entered', y='Total Order Value', markers=True)
    # fig['data'][0]['name']='Total Order Value'
    # # line_plots = go.Scatter(x=df['Date_entered'], y=df['Total Order Value'], name='Total Order Value', marker=dict(color='#e50000'))
-   # fig.add_scatter(x=df['Date_entered'], y=df['Total Work To Do Value'], mode='markers+lines', name= 'Total Work To Do Value')
+   # fig.add_scatter(x=df['Date_entered'], y=df['Total Work To Do Value'], mode='markers+lines', name= 'Total Work To Do Value'), fig
+   print('fig',fig)
    return fig
 
 @anvil.server.callable

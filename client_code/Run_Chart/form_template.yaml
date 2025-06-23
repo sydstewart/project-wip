@@ -18,6 +18,10 @@ components:
     name: run_chart_plot
     properties: {height: 692.4443969726562}
     type: Plot
+  - layout_properties: {full_width_row: true, grid_position: 'MBGIRE,EYSZPY'}
+    name: plot_1
+    properties: {height: 512}
+    type: Plot
   layout_properties: {slot: default}
   name: content_panel
   properties: {col_widths: '{"CCWMKW":5,"BHXPCW":15,"LSIYGB":5,"XPDYAU":32}'}
