@@ -360,7 +360,7 @@ def work_to_do_chart(start_date):
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
    df['Median'] = df['Total Work To Do Value'].median()
-   print('df',df)
+   print('df for daily WIP',df)
    
    
    fig = go.Figure([

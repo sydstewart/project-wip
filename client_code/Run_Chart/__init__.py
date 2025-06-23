@@ -13,7 +13,7 @@ class Run_Chart(Run_ChartTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.start_date_picker.date = date(year= 2024, month = 7, day =17)
-    line_plots_1 = anvil.server.call('work_to_do_chart', self.start_date_picker.date)
+    fig = anvil.server.call('work_to_do_chart', self.start_date_picker.date)
     
     layout_1 = {
       'title': 'Run_Chart of Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
@@ -24,7 +24,8 @@ class Run_Chart(Run_ChartTemplate):
        'height': 2400,
        'showlegend': True
      }
-    self.run_chart_plot.figure = line_plots_1
+    # print('Layout run chart!!!!!!', lfig1 )
+    self.run_chart_plot.figure = fig
     self.run_chart_plot.layout = layout_1
     # Any code you write here will run before the form opens.
 
@@ -49,3 +50,6 @@ class Run_Chart(Run_ChartTemplate):
     self.run_chart_plot.figure = line_plots_1
     self.run_chart_plot.layout = layout_1
     pass
+
+
+
