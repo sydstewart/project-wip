@@ -23,9 +23,9 @@ class Form9(Form9Template):
     line_plots = anvil.server.call('testform')
 
     layout = {
-      'title': 'Total Order Value and Work Still to be Done Value' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
+      'title': 'Total Order Value and Work Still to be Done Value', #+ '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
       'yaxis': {'title': '£ Value'},
-      'yaxis_range':[0,1500000],
+      'yaxis_range':[0,500000],
       'autosize' : False, 
       'width': 700, 
       'height': 4400,
