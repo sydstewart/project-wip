@@ -47,15 +47,25 @@ def testform():
       line=dict(width=1),
       showlegend=True)
   ])
+  fig.update_layout(
+    title=dict(
+      text='Run Chart of Sales Opportunity Count per Week' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
+    ),
+    yaxis=dict(
+      title=dict(
+        text="Opportunity Count"
+      )
+    ),
+    xaxis=dict(
+      title=dict(
+        text="Week Start Date"
+      )  
+    ))
   fig.update_layout(legend=dict(
-    yanchor="bottom",
+    yanchor="top",
     y=0.99,
-    xanchor="left",
-    x=0.01
+    xanchor="right",
+    x=0.90
   ))
-
-  # fig = px.line(df, x= 'Date_entered', y='Total Order Value', markers=True)
-  # fig['data'][0]['name']='Total Order Value'
-  # # line_plots = go.Scatter(x=df['Date_entered'], y=df['Total Order Value'], name='Total Order Value', marker=dict(color='#e50000'))
-  # fig.add_scatter(x=df['Date_entered'], y=df['Total Work To Do Value'], mode='markers+lines', name= 'Total Work To Do Value')
+  fig.update_traces(marker_size=10)
   return fig
