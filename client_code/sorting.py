@@ -36,9 +36,10 @@ def sorting_function(self, column_name, sorting_way):
     # else:
     #   self.lb_asc_dsc.text = 'asc'
     # if int(self.total.text) < 2000: #large data need to be sorted on server side by a new call
-    key_func = lambda x: x[column_name]
-    # if column_name == 'DUMMY':  # replace 'user_column' with the actual name of the column, replace DUMMY to make an exception for user columns
-    # key_func = lambda x: x[column_name]['email']  # replace 'email' with the actual key for the user email
-    self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items],
-                                                key=key_func,
-                                                reverse=sorting_way)
+    # key_func = lambda x: x[column_name]
+    # # if column_name == 'DUMMY':  # replace 'user_column' with the actual name of the column, replace DUMMY to make an exception for user columns
+    # # key_func = lambda x: x[column_name]['email']  # replace 'email' with the actual key for the user email
+    # self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items],
+    #                                             key=key_func,
+    #                                             reverse=sorting_way)
+    self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['percent_change']), reverse=True )

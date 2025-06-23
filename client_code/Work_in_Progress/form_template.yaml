@@ -76,6 +76,11 @@ components:
     name: pivots
     properties: {text: Pivots}
     type: Button
+  - event_bindings: {click: button_3_click}
+    layout_properties: {grid_position: 'MSFNJO,VPMVMH'}
+    name: button_3
+    properties: {text: projects in Progress}
+    type: Button
   - event_bindings: {click: button_1_click}
     layout_properties: {grid_position: 'HXIPIJ,BZFYNT'}
     name: button_1

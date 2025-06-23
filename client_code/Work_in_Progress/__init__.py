@@ -110,4 +110,9 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     """This method is called when a data point is clicked."""
     pass
 
+  def button_3_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('projects_in_progress')
+    pass
+
 

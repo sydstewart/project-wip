@@ -109,7 +109,7 @@ def get_orders_for_project_list(percent_complete, hi_percentage, assigned_to, ca
                         'partially_invoiced_total':r['partially_invoiced_total']} \
                       for r in records]
     print(dicts)
-    dicts, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete, hi_percentage, assigned_to, category, not_completed)
+    dicts,diuctspip, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete, hi_percentage, assigned_to, category, not_completed)
     return dicts, X_media,  pivotsyd_to_markdown
 #     print('Made dicts and dataframe')
 #     X['order_value']= X['order_value'].map(float)

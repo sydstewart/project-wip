@@ -15,22 +15,13 @@ components:
   type: ColumnPanel
 - layout_properties: {grid_position: 'HZEQIF,OYBZBL XTNWQK,QRZTAI'}
   name: label_1
-  properties: {bold: true, font_size: 20, text: Projects in Progress Pivot table}
+  properties: {bold: true, font_size: 20, text: 'Projects in Progress '}
   type: Label
 - event_bindings: {click: button_2_click}
   layout_properties: {grid_position: 'HZEQIF,OYBZBL XTNWQK,OYCLEQ'}
   name: button_2
   properties: {bold: true, text: Download PDF}
   type: Button
-- data_bindings: []
-  layout_properties: {full_width_row: true, grid_position: 'HZEQIF,OYBZBL KXBNPY,ZEQLPL'}
-  name: pivot_1
-  properties:
-    aggregator: Average
-    columns: []
-    rows: [order_no, project_name, percent_complete, order_value_formated, partially_invoiced_total_formated]
-    values: [percent_complete]
-  type: form:C6ZZPAPN4YYF5NVJ:Pivot
 - event_bindings: {change: check_box_1_change}
   layout_properties: {grid_position: 'GMASDY,IMXGOP'}
   name: check_box_1
@@ -46,6 +37,10 @@ components:
   name: check_box_3
   properties: {text: sort by Elapsed Days}
   type: CheckBox
+- layout_properties: {full_width_row: true, grid_position: 'VSHOIC,BBRIFB'}
+  name: column_panel_1
+  properties: {}
+  type: ColumnPanel
 - components:
   - name: repeating_panel_1
     properties: {item_template: pivots.RowTemplate23}
@@ -63,6 +58,6 @@ components:
     - {data_key: Value yet to be invoiced_formated, id: CBJMKV, title: Yet to be Invoiced Value}
   type: DataGrid
 container:
-  properties: {col_widths: '{"IAXCUN":5,"OYBZBL":55}'}
+  properties: {col_widths: '{"IAXCUN":5,"OYBZBL":55,"BBRIFB":5,"VLYZCV":55}'}
   type: ColumnPanel
 is_package: true
