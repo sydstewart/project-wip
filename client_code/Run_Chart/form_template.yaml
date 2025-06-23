@@ -13,18 +13,13 @@ components:
     name: label_3
     properties: {}
     type: Label
-  - event_bindings: {click: run_chart_plot_click}
-    layout_properties: {full_width_row: true, grid_position: 'YGADNJ,AXOUHV'}
-    name: run_chart_plot
-    properties: {height: 692.4443969726562}
-    type: Plot
   - layout_properties: {full_width_row: true, grid_position: 'MBGIRE,EYSZPY'}
     name: plot_1
-    properties: {height: 512}
+    properties: {height: 617.3636474609375}
     type: Plot
   layout_properties: {slot: default}
   name: content_panel
-  properties: {col_widths: '{"CCWMKW":5,"BHXPCW":15,"LSIYGB":5,"XPDYAU":32}'}
+  properties: {col_widths: '{"CCWMKW":5,"BHXPCW":15,"XPDYAU":32}'}
   type: ColumnPanel
 - components:
   - name: label_2

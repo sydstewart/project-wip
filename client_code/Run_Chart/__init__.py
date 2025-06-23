@@ -25,8 +25,8 @@ class Run_Chart(Run_ChartTemplate):
        'showlegend': True
      }
     # print('Layout run chart!!!!!!', lfig1 )
-    self.run_chart_plot.figure = fig
-    self.run_chart_plot.layout = layout_1
+    # self.run_chart_plot.figure = fig
+    # self.run_chart_plot.layout = layout_1
     self.plot_1.figure = fig
     # self.plot_1.layout = layout_1
     # Any code you write here will run before the form opens.
@@ -40,17 +40,18 @@ class Run_Chart(Run_ChartTemplate):
     """This method is called when the selected date changes"""
     line_plots_1 = anvil.server.call('work_to_do_chart', self.start_date_picker.date)
     
-    layout_1 = {
-      'title': 'Run_Chart of Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
-      'yaxis': {'title': '£ Value'},
-      'yaxis_range':[0,600,000],
-       'autosize' : False, 
-       'width': 700, 
-       'height': 2400,
-       'showlegend': True
-     }
-    self.run_chart_plot.figure = line_plots_1
-    self.run_chart_plot.layout = layout_1
+    # layout_1 = {
+    #   'title': 'Run_Chart of Work Still to be Done Value created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
+    #   'yaxis': {'title': '£ Value'},
+    #   'yaxis_range':[0,600,000],
+    #    'autosize' : False, 
+    #    'width': 700, 
+    #    'height': 2400,
+    #    'showlegend': True
+    #  }
+    # self.run_chart_plot.figure = line_plots_1
+    # self.run_chart_plot.layout = layout_1
+    self.plot_1.figure = line_plots_1
     pass
 
 

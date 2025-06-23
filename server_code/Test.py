@@ -312,15 +312,15 @@ def wip_run_chart():
  
  
    fig = go.Figure([
-    # go.Scatter(
-    #     name='Total Order Value',
-    #     x=df['Date_entered'],
-    #     y=df['Total Order Value'],
-    #     mode='lines+markers',
-    #     marker=dict(color='red', size=4),
-    #     line=dict(width=1),
-    #     showlegend=True)
-    # ,
+    go.Scatter(
+        name='Total Order Value',
+        x=df['Date_entered'],
+        y=df['Total Order Value'],
+        mode='lines+markers',
+        marker=dict(color='red', size=4),
+        line=dict(width=1),
+        showlegend=True)
+    ,
     go.Scatter(
         name='Total Work To Do Value',
         x=df['Date_entered'],
@@ -330,12 +330,20 @@ def wip_run_chart():
         line=dict(width=1),
         showlegend=True)
    ])
-   fig.update_layout(legend=dict(
-      yanchor="bottom",
-      y=0.99,
-      xanchor="left",
-      x=0.01
-   ))
+   fig.update_layout(
+    title=dict(
+      text='Run Chart of Value of Total Work to be Done' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
+    ),
+    yaxis=dict(
+      title=dict(
+        text="Value"
+      )
+    ),
+    xaxis=dict(
+      title=dict(
+        text="Date Entered"
+      )  
+    ))
 
    # fig = px.line(df, x= 'Date_entered', y='Total Order Value', markers=True)
    # fig['data'][0]['name']='Total Order Value'
@@ -376,18 +384,18 @@ def work_to_do_chart(start_date):
         showlegend=True)
    ])
    fig.add_scatter(x=df['Date_entered'], y=df['Median'], mode='lines', name= 'Median Total Work To Do Value')
-  fig6.update_layout(
+   fig.update_layout(
     title=dict(
-      text='Run Chart of Sales Opportunity Count per Week' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
+      text='Run Chart of Value of Total Work to be Done' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
     ),
     yaxis=dict(
       title=dict(
-        text="Opportunity Count"
+        text="Value"
       )
     ),
     xaxis=dict(
       title=dict(
-        text="Week Start Date"
+        text="Date Entered"
       )  
     ))
    # fig = px.line(df, x= 'Date_entered', y='Total Order Value', markers=True)
