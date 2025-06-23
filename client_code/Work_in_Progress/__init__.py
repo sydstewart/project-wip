@@ -115,4 +115,9 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     open_form('projects_in_progress')
     pass
 
+  def Test_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Form9')
+    pass
+
 
