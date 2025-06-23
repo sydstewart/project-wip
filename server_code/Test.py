@@ -330,12 +330,12 @@ def wip_run_chart():
         line=dict(width=1),
         showlegend=True)
    ])
-   # fig.update_layout(legend=dict(
-   #    yanchor="bottom",
-   #    y=0.99,
-   #    xanchor="left",
-   #    x=0.01
-   # ))
+   fig.update_layout(legend=dict(
+      yanchor="bottom",
+      y=0.99,
+      xanchor="left",
+      x=0.01
+   ))
 
    # fig = px.line(df, x= 'Date_entered', y='Total Order Value', markers=True)
    # fig['data'][0]['name']='Total Order Value'
@@ -360,7 +360,7 @@ def work_to_do_chart(start_date):
    chart_data = app_tables.daily_wip.search(tables.order_by("Date_of_WIP", ascending=False) , Date_of_WIP= q.greater_than(date(year=start_year, month=start_month, day=10) ))
    dicts = [{'Date_entered': r['Date_of_WIP'], 'Total Order Value': r['Total_Order_Value'], 'Total Work To Do Value': r['Total_Work_To_Do_Value']} for r in chart_data]
    df = pd.DataFrame.from_dict(dicts)
-   df['Median'] = df['Total Work To Do Value'].median()
+   # df['Median'] = df['Total Work To Do Value'].median()
    print('df for daily WIP',df)
    
    

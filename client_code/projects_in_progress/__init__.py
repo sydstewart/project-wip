@@ -5,12 +5,18 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from datetime import datetime
+import anvil.tz
 
 
 class projects_in_progress(projects_in_progressTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    a = "Projects in Progress at" 
+    b = (datetime.now().strftime("%Y-%m-%d"))
+    self.label_1.text = a + " " + b
+    
     # dicts,Xmedia  = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     dicts, dictspip, Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
 
