@@ -16,6 +16,7 @@ import anvil.media
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
+import statistics
 
 from anvil.tables import app_tables
 
@@ -374,7 +375,7 @@ def work_to_do_chart(start_date):
         line=dict(width=1),
         showlegend=True)
    ])
-   fig.add_scatter(x=df['Date_entered'], y=df['Median'], mode='lines', name= 'Median Total Work To Do Value')
+   # fig.add_scatter(x=df['Date_entered'], y=df['Median'], mode='lines', name= 'Median Total Work To Do Value')
    # fig = px.line(df, x= 'Date_entered', y='Total Order Value', markers=True)
    # fig['data'][0]['name']='Total Order Value'
    # # line_plots = go.Scatter(x=df['Date_entered'], y=df['Total Order Value'], name='Total Order Value', marker=dict(color='#e50000'))
