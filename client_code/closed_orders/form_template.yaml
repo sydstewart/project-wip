@@ -2,7 +2,7 @@ components:
 - components:
   - layout_properties: {grid_position: 'YSTQMU,NTAAIX'}
     name: label_1
-    properties: {align: center, bold: true, font_size: 16, text: Updates to Projects created after January 1st  2020}
+    properties: {align: center, bold: true, font_size: 16, text: Updates to Projects Stages after January 1st  2020}
     type: Label
   - event_bindings: {change: check_box_1_change}
     layout_properties: {grid_position: 'DJLHFC,TKFTMI'}
@@ -30,8 +30,8 @@ components:
       - {data_key: order_value, expand: false, id: LFPRNM, title: Order Value GBP Excl. VAT, width: 132.8887939453125}
       - {data_key: Update_Date, expand: false, id: RIPNUY, title: Update Date, width: 122.22216796875}
       - {data_key: Updated_by, expand: false, id: YOOVOM, title: Updated_by, width: 108.333251953125}
-      - {data_key: Percent_Completion_Before, expand: false, id: NDUMDE, title: Percent Completion Before, width: 108.4443359375}
-      - {data_key: Percent_Completion_After, expand: false, id: PRVQWE, title: Percent Completion After, width: 106.9998779296875}
+      - {data_key: Stage_Before, expand: false, id: NDUMDE, title: Stage Before, width: 108.4443359375}
+      - {data_key: Stage_After, expand: false, id: PRVQWE, title: Stage After, width: 106.9998779296875}
     type: DataGrid
   layout_properties: {slot: default}
   name: content_panel
