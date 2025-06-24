@@ -332,7 +332,7 @@ def wip_run_chart():
    ])
    fig.update_layout(
     title=dict(
-      text='Run Chart of Value of Total Work to be Done' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
+      text='Total Order Value and Value of Total Work to be Done' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
     ),
     yaxis=dict(
       title=dict(
@@ -345,10 +345,6 @@ def wip_run_chart():
       )  
     ))
 
-   # fig = px.line(df, x= 'Date_entered', y='Total Order Value', markers=True)
-   # fig['data'][0]['name']='Total Order Value'
-   # # line_plots = go.Scatter(x=df['Date_entered'], y=df['Total Order Value'], name='Total Order Value', marker=dict(color='#e50000'))
-   # fig.add_scatter(x=df['Date_entered'], y=df['Total Work To Do Value'], mode='markers+lines', name= 'Total Work To Do Value')
    return fig
 
 @anvil.server.callable

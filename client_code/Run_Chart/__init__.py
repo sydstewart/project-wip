@@ -24,12 +24,11 @@ class Run_Chart(Run_ChartTemplate):
        'height': 2400,
        'showlegend': True
      }
-    # print('Layout run chart!!!!!!', lfig1 )
-    # self.run_chart_plot.figure = fig
-    # self.run_chart_plot.layout = layout_1
+
     self.plot_1.figure = fig
-    # self.plot_1.layout = layout_1
-    # Any code you write here will run before the form opens.
+    
+ 
+
 
   def Return_click(self, **event_args):
     """This method is called when the button is clicked"""

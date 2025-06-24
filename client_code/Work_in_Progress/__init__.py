@@ -18,24 +18,9 @@ class Work_in_Progress(Work_in_ProgressTemplate):
 #=============================================================================    
     line_plots = anvil.server.call('wip_run_chart')
  
-    # layout = {
-    #   'title': 'Total Order Value and Work Still to be Done Value' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
-    #   'yaxis': {'title': '£ Value'},
-    #   'yaxis_range':[0,1500000],
-    #    'autosize' : False, 
-    #    'width': 700, 
-    #    'height': 2400,
-    #    'showlegend': False
-    #   # 'xaxis': {
-    #   #   'tickmode': 'array',
-    #   #   'tickvals': list(range(27)),
-    #   #   'ticktext': data['year'],
-    #   # },
-    # }
-
     # # Make the multi-bar plot
     self.plot_1.figure = line_plots
-    # self.plot_1.layout = layout
+ 
 #============================================================================
     start_date = date(year= 2024, month= 7, day = 17)
     line_plots_1 = anvil.server.call('work_to_do_chart', start_date)
@@ -78,6 +63,7 @@ class Work_in_Progress(Work_in_ProgressTemplate):
   def run_chart_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     open_form('Run_Chart')
+
     pass
 
   def projects_list_button_click(self, **event_args):
@@ -118,6 +104,14 @@ class Work_in_Progress(Work_in_ProgressTemplate):
   def Test_click(self, **event_args):
     """This method is called when the button is clicked"""
     open_form('Form9')
+    pass
+
+  def home_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Work_in_Progress')
+    line_plots = anvil.server.call('wip_run_chart')
+    # # Make the multi-bar plot
+    self.plot_1.figure = line_plots
     pass
 
 
