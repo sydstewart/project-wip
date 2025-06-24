@@ -21,37 +21,37 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     # # Make the multi-bar plot
     self.plot_1.figure = line_plots
  
-#============================================================================
-    start_date = date(year= 2024, month= 7, day = 17)
-    line_plots_1 = anvil.server.call('work_to_do_chart', start_date)
-    # layout_1 = {
-    #   'title': 'Work Still to be Done Value'  + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
-    #   'yaxis': {'title': '£ Value'},
-    #   'yaxis_range':[0,600,000],
-    #    'autosize' : False, 
-    #    'width': 700, 
-    #    'height': 2400,
-    #    'showlegend': False
-    #  }
-    self.plot_2.figure = line_plots_1
-    # self.plot_2.layout = layout_1
-#===================================================================    
-    line_plots_2 = anvil.server.call('orders_chart')
-    layout_2 = {
-      'title': 'Open Orders Value'  + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
-      'yaxis': {'title': '£ Value'},
-      # 'yaxis_range':[0,600,000],
-       'autosize' : False, 
-       'width': 700, 
-       'height': 2400,
-       'showlegend': False
-     }
-    self.plot_3.figure = line_plots_2
-    self.plot_3.layout = layout_2
-#=======================================================================
+# #============================================================================
+#     start_date = date(year= 2024, month= 7, day = 17)
+#     line_plots_1 = anvil.server.call('work_to_do_chart', start_date)
+#     # layout_1 = {
+#     #   'title': 'Work Still to be Done Value'  + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
+#     #   'yaxis': {'title': '£ Value'},
+#     #   'yaxis_range':[0,600,000],
+#     #    'autosize' : False, 
+#     #    'width': 700, 
+#     #    'height': 2400,
+#     #    'showlegend': False
+#     #  }
+#     self.plot_2.figure = line_plots_1
+#     # self.plot_2.layout = layout_1
+# #===================================================================    
+#     line_plots_2 = anvil.server.call('orders_chart')
+#     layout_2 = {
+#       'title': 'Open Orders Value'  + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M'),
+#       'yaxis': {'title': '£ Value'},
+#       # 'yaxis_range':[0,600,000],
+#        'autosize' : False, 
+#        'width': 700, 
+#        'height': 2400,
+#        'showlegend': False
+#      }
+#     self.plot_3.figure = line_plots_2
+#     self.plot_3.layout = layout_2
+# #=======================================================================
     
-    dataWIP = anvil.server.call('get_Daily_WIP')
-    self.repeating_panel_1.items = dataWIP 
+#     dataWIP = anvil.server.call('get_Daily_WIP')
+#     self.repeating_panel_1.items = dataWIP 
 
   def changes_list_button_click(self, **event_args):
       """This method is called when the button is clicked"""

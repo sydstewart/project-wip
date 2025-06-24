@@ -120,37 +120,14 @@ components:
     name: label_7
     properties: {}
     type: Label
-  - data_bindings:
-    - {code: 'self.item['''']', property: spacing, writeback: false}
-    layout_properties: {full_width_row: true, grid_position: 'HFTSEQ,GTLFQT'}
-    name: link_2
-    properties:
-      align: left
-      bold: true
-      col_spacing: none
-      font_size: 12
-      spacing:
-        margin: [null, null, null, 0]
-        padding: [null, null, null, 0]
-      text: Order No
-    type: Link
-  - layout_properties: {grid_position: 'HFTSEQ,AWHKYN'}
-    name: link_6
-    properties: {bold: true, text: 'Project '}
-    type: Link
+  - layout_properties: {grid_position: 'HFTSEQ,SBAJWH'}
+    name: label_10
+    properties: {align: right, bold: true, text: Sorts}
+    type: Label
   - event_bindings: {click: link_8_click}
     layout_properties: {grid_position: 'HFTSEQ,ZBPCQC'}
     name: link_8
     properties: {align: left, bold: true, icon: 'fa:sort', icon_align: right_edge, text: Order Date}
-    type: Link
-  - components: []
-    layout_properties: {grid_position: 'HFTSEQ,ESGFVX'}
-    name: link_9
-    properties: {bold: true, text: Category}
-    type: Link
-  - layout_properties: {grid_position: 'HFTSEQ,NWRDAU'}
-    name: link_10
-    properties: {bold: true, text: Assigned to}
     type: Link
   - event_bindings: {click: link_1_click}
     layout_properties: {grid_position: 'HFTSEQ,LMDGYE'}
@@ -171,27 +148,15 @@ components:
     name: link_3
     properties: {align: left, bold: true, icon: 'fa:sort', icon_align: right, text: GB excl. VAT}
     type: Link
-  - layout_properties: {grid_position: 'HFTSEQ,EKZGAV'}
-    name: link_5
-    properties: {bold: true, text: GB Value of Work Completed}
-    type: Link
-  - layout_properties: {grid_position: 'HFTSEQ,DYNXLE'}
-    name: link_7
-    properties: {bold: true, text: Partially Invoiced Value to date}
-    type: Link
-  - layout_properties: {grid_position: 'HFTSEQ,MVKRRO'}
-    name: link_11
-    properties: {bold: true, text: Invoiced Not Complete}
-    type: Link
   - event_bindings: {click: link_4_click}
     layout_properties: {grid_position: 'HFTSEQ,YAJIGY'}
     name: link_4
-    properties: {align: right, bold: true, icon: 'fa:sort', icon_align: right_edge, text: Days Old}
+    properties: {align: left, bold: true, icon: 'fa:sort', icon_align: right_edge, text: Days Old}
     type: Link
-  - layout_properties: {grid_position: 'HFTSEQ,YSOXMV'}
-    name: link_12
-    properties: {bold: true, text: Stage}
-    type: Link
+  - layout_properties: {grid_position: 'HFTSEQ,PHRVSJ'}
+    name: label_11
+    properties: {}
+    type: Label
   - components:
     - layout_properties: {pinned: false}
       name: repeating_panel_1
@@ -228,7 +193,7 @@ components:
   layout_properties: {slot: default}
   name: content_panel
   properties:
-    col_widths: '{"OTGJRV":5,"HHHBRM":55,"RALBPK":6,"CSUBAS":5,"DZREQZ":10,"HKHBYB":7,"OUOVUQ":7,"LCHDYI":7,"LHKFKX":11,"FUGXKS":8,"JEFQCG":10,"WVHOSD":7,"VHXLJL":9,"LPRCPC":6,"OJFNMH":15,"XWKYCG":5,"FBTJFL":20,"WVFPPJ":5,"XYPAXB":15,"GTLFQT":10,"AWHKYN":10,"ZBPCQC":10,"ESGFVX":10,"NWRDAU":10,"LMDGYE":5,"SSESYY":10,"YAJIGY":5,"EKZGAV":5,"DYNXLE":15,"MVKRRO":10,"NJIMOG":7,"YSOXMV":14,"POJWQY":4,"ZXLCRG":4}'
+    col_widths: '{"OTGJRV":5,"HHHBRM":55,"RALBPK":6,"CSUBAS":5,"DZREQZ":10,"HKHBYB":7,"OUOVUQ":7,"LCHDYI":7,"LHKFKX":11,"FUGXKS":8,"JEFQCG":10,"WVHOSD":7,"VHXLJL":9,"LPRCPC":6,"OJFNMH":15,"XWKYCG":5,"FBTJFL":20,"WVFPPJ":5,"XYPAXB":15,"ZBPCQC":10,"LMDGYE":7,"SSESYY":12,"YAJIGY":10,"NJIMOG":7,"POJWQY":4,"ZXLCRG":4,"SBAJWH":11,"PHRVSJ":9}'
     spacing:
       padding: [null, null, null, '5']
   type: ColumnPanel
