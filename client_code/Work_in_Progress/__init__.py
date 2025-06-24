@@ -114,4 +114,9 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     self.plot_1.figure = line_plots
     pass
 
+  def button_5_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('closed_orders')
+    pass
+
 
