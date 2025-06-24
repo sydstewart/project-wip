@@ -5,6 +5,10 @@ components:
     name: plot_1
     properties: {height: 603.9091186523438}
     type: Plot
+  - layout_properties: {grid_position: 'FTPJDP,MBKZGQ'}
+    name: label_3
+    properties: {text: 'Order Value excludes ''Closed'', ''On Hold'',''Cancelled'',''Complete Projects'}
+    type: Label
   - event_bindings: {click: plot_3_click}
     layout_properties: {grid_position: 'LGWKGC,IZNYWJ'}
     name: plot_3
