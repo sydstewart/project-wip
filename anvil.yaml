@@ -167,6 +167,26 @@ db_schema:
       type: string
     server: full
     title: projects_stages
+  stage_summary:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: Date_of_WIP
+      type: datetime
+    - admin_ui: {order: 1, width: 200}
+      name: Sum_on_hold
+      type: number
+    - admin_ui: {order: 2, width: 200}
+      name: Sum_in_Progress
+      type: number
+    - admin_ui: {order: 3, width: 200}
+      name: Sum_in_Waiting_to_Start
+      type: number
+    - admin_ui: {order: 4, width: 200}
+      name: Total_Value_of_Projects
+      type: number
+    server: full
+    title: stage_summary
   stage_translate:
     client: full
     columns:

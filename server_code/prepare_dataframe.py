@@ -146,7 +146,7 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
     pivotsyd  = pivotsyd.fillna(0)
     pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
-    print(pivotsyd)
+    print('pivotsyd',pivotsyd)
     # fig = px.bar(pivotsyd, x='order_category', y='order_value')
     pivotsyd['order_value']=pivotsyd['order_value'].apply('{:,}'.format)
     print("")

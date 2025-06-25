@@ -103,7 +103,7 @@ class Work_in_Progress(Work_in_ProgressTemplate):
 
   def Test_click(self, **event_args):
     """This method is called when the button is clicked"""
-    open_form('Form9')
+    self.task = anvil.server.call('daily_stats')
     pass
 
   def home_click(self, **event_args):

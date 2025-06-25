@@ -900,6 +900,11 @@ def stats():
   task = anvil.server.launch_background_task('testprojects')
   return task
   
+@anvil.server.callable
+def daily_stats():
+  """Launch a single stats background task."""
+  task = anvil.server.launch_background_task('daily_by_stats')
+  return task  
   
 # @anvil.server.callable
 # def test_chart():
