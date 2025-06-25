@@ -15,7 +15,7 @@ components:
     type: ColumnPanel
   layout_properties: {slot: default}
   name: content_panel
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"RSGPBB":58}'}
   type: ColumnPanel
 - components:
   - event_bindings: {click: button_1_click}
@@ -27,6 +27,11 @@ components:
   name: navbar_links
   properties: {}
   type: FlowPanel
+- event_bindings: {click: button_2_click}
+  layout_properties: {slot: left-nav}
+  name: button_2
+  properties: {text: Return Home}
+  type: Button
 container:
   properties: {html: '@theme:standard-page.html'}
   type: HtmlTemplate

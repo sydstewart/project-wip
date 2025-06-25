@@ -185,6 +185,15 @@ db_schema:
     - admin_ui: {order: 4, width: 200}
       name: Total_Value_of_Projects
       type: number
+    - admin_ui: {order: 5, width: 200}
+      name: Count_on_hold
+      type: number
+    - admin_ui: {order: 6, width: 200}
+      name: Count_in_Progress
+      type: number
+    - admin_ui: {order: 7, width: 200}
+      name: Count_of_waiting_to_start
+      type: number
     server: full
     title: stage_summary
   stage_translate:
@@ -338,6 +347,12 @@ scheduled_tasks:
   task_name: burndown
   time_spec:
     at: {hour: 12, minute: 32}
+    every: day
+    n: 1
+- job_id: ZURUGPYO
+  task_name: daily_by_stats
+  time_spec:
+    at: {hour: 8, minute: 0}
     every: day
     n: 1
 secrets:

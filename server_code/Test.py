@@ -344,7 +344,12 @@ def wip_run_chart():
         text="Date Entered"
       )  
     ))
-
+   fig.update_layout(legend=dict(
+      yanchor="top",
+      y=0.99,
+      xanchor="left",
+      x=0.10
+    ))
    return fig
 
 @anvil.server.callable
@@ -1077,3 +1082,74 @@ def daily_stats():
 
 # dicts =X.to_dict(orient='records')
 # dictspip= X1.to_dict(orient='records')
+
+@anvil.server.callable
+def stage_groups_chart():
+  import plotly.graph_objects as go
+  import plotly.express as px 
+  chart_data = app_tables.stage_summary.search(tables.order_by("Date_of_WIP", ascending=False) ,Date_of_WIP= q.greater_than(date(year=2024, month=7, day=17)))
+  dicts = [{'Date_entered': r['Date_of_WIP'], 
+            'Sum_on_hold': r['Sum_on_hold'],
+            'Sum_in_Progress': r['Sum_in_Progress'],
+            'Sum_in_Waiting_to_Start': r['Sum_in_Waiting_to_Start']
+             } 
+           for r in chart_data]
+  df = pd.DataFrame.from_dict(dicts)
+  print('df',df)
+
+
+  fig = go.Figure([
+    go.Scatter(
+      name='Total Order Value on Hold',
+      x=df['Date_entered'],
+      y=df['Sum_on_hold'],
+      stackgroup='one',
+      mode='lines+markers',
+      marker=dict(color='red', size=6),
+      line=dict(width=1),
+      showlegend=True)
+    ,
+    go.Scatter(
+      name='Total Order Value in Progress',
+      x=df['Date_entered'],
+      y=df['Sum_in_Progress'],
+      stackgroup='one',
+      mode='lines+markers',
+      marker=dict(color='blue', size=6),
+      line=dict(width=1),
+      showlegend=True)
+    ,
+    go.Scatter(
+      name='Total Order Value in Waiting to Start',
+      x=df['Date_entered'],
+      y=df['Sum_in_Waiting_to_Start'],
+      stackgroup='one',
+      mode='lines+markers',
+      marker=dict(color='green', size=6),
+      line=dict(width=1),
+      showlegend=True)
+  ])
+  fig.update_layout(
+    title=dict(
+      text='Total Order Value of Stage Groups' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
+    ),
+    yaxis=dict(
+      title=dict(
+        text="Value"
+      )
+    ),
+    xaxis=dict(
+      title=dict(
+        text="Date Entered"
+      )  
+    ))
+  fig.update_layout(legend=dict(
+    yanchor="top",
+    y=0.99,
+    xanchor="right",
+    x=0.90
+  ))
+  fig.update_layout(yaxis_range=[0,1000000])
+  return fig
+
+ 

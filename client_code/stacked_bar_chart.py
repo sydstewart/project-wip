@@ -43,4 +43,9 @@ class stacked_bar_chart(stacked_bar_chartTemplate):
     open_form('home')
     pass
 
+  def button_2_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('home')
+    pass
+
  

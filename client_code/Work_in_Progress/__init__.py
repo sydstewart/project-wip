@@ -119,4 +119,13 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     open_form('closed_orders')
     pass
 
+  def button_6_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('stage_groups_chart')
+    line_plots = anvil.server.call('stage_groups_chart')
+    # # Make the multi-bar plot
+    self.plot_1.figure = line_plots
+    pass
+    pass
+
 

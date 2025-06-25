@@ -79,26 +79,21 @@ def daily_by_stats():
   X = pd.DataFrame.from_dict(dicts)
   #=============================================================
   filtered_df = X[X['Stage Group'] == 'Projects on Hold']
-  sum_of_onhold = filtered_df['order_value'].sum() 
-  # sum_of_onhold  = sum_of_onhold .map("£{:,.0f}".format)
-  def format_currency(amount):
-    return '£{:,.2f}'.format(amount)
-# Format a number as a currency string using defined function
-  GFG = format_currency(sum_of_onhold)
-  print(GFG)
-  print('£ Sum of On Hold=', GFG)
+  sum_of_onhold = filtered_df['order_value'].sum()
+  count_of_onhold = filtered_df['order_value'].count() 
+
   print('Projects on Hold', filtered_df[['project_name','order_no']])
   #==============================================================
   filtered_df = X[X['Stage Group'] == 'Project in Progress']
   sum_of_in_progress = filtered_df['order_value'].sum() 
- 
+  count_of_in_progress = filtered_df['order_value'].count() 
   print('Projects on Hold', filtered_df[['project_name','order_no']]) 
   print('X',X)
 
   #==============================================================
   filtered_df = X[X['Stage Group'] == 'Project waiting to Start']
   sum_of_waiting_to_start = filtered_df['order_value'].sum() 
-
+  count_of_waiting_to_start = filtered_df['order_value'].count() 
   print('Projects Waiting to Start', filtered_df[['project_name','order_no']]) 
   print('X',X)
   #====================================================================
@@ -106,4 +101,7 @@ def daily_by_stats():
   today = datetime.today()
 
   app_tables.stage_summary.add_row(Date_of_WIP = (today),  Sum_on_hold = round(float(sum_of_onhold),0), Sum_in_Progress = round(float(sum_of_in_progress ),0), Sum_in_Waiting_to_Start = round(float(sum_of_waiting_to_start),0),
-                                  Total_Value_of_Projects = round(float(total_value_of_projects),0))
+                                  Total_Value_of_Projects = round(float(total_value_of_projects),0),
+                                  Count_on_hold = count_of_onhold, Count_in_Progress = count_of_in_progress,
+                                  Count_of_waiting_to_start= count_of_waiting_to_start)
+  
