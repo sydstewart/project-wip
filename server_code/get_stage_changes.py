@@ -32,9 +32,10 @@ def get_stage_changes():
               users On sales_orders_audit.created_by = users.id Inner Join \
               users users1 On sales_orders.created_by = users1.id \
     Where sales_orders_audit.date_created > '2025-05-01' And \
-    sales_orders_audit.after_value_string In ('Closed', 'On Hold') And \
-    sales_orders_audit.field_name = 'so_stage' "  
+               sales_orders_audit.after_value_string In ('Closed', 'On Hold') And \
+               sales_orders_audit.field_name = 'so_stage' "  
     )
+   
   records = curaudit.fetchall()
   number_of_records =len(records)
   print('No of changes',number_of_records)
