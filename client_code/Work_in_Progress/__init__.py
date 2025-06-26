@@ -23,6 +23,11 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     last_row = app_tables.daily_wip.search(tables.order_by('Date_of_WIP', ascending=False))[0]
     dicts_wip = dict(last_row)
     self.text_box_1.text = dicts_wip['Total_Order_Value']
+    self.text_box_2.text = dicts_wip['Average_Percent_Work_Complete']
+    self.text_box_3.text = dicts_wip['Total_Work_To_Do_Value']
+    last_row_1 = app_tables.stage_summary.search(tables.order_by('Date_of_WIP', ascending=False))[0]
+    dicts_wip = dict(last_row_1)
+    self.text_box_4.text = dicts_wip['Sum_on_hold'] 
     
 # #============================================================================
 #     start_date = date(year= 2024, month= 7, day = 17)
