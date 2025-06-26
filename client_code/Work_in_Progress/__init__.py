@@ -128,4 +128,8 @@ class Work_in_Progress(Work_in_ProgressTemplate):
     pass
     pass
 
+  def button_7_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('pie_chart')
+
 

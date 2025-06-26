@@ -16,6 +16,11 @@ class closed_orders(closed_ordersTemplate):
     dicts = anvil.server.call('get_stage_changes')
     print('Number of Record=', len(dicts))
     self.repeating_panel_1.items = dicts
+    self.repeating_panel_1.items = sorted(
+      self.repeating_panel_1.items,
+      key=lambda row: row["Update_Date"],
+      reverse=True,
+    )
 # initializing dictionary
 
 # # printing original dictionary
