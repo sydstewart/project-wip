@@ -15,8 +15,9 @@ class pie_chart(pie_chartTemplate):
     print('piedata', piedata)
     self.plot_1.figure =fig
     # Any code you write here will run before the form opens.
-
+    self.text_box_1.text = piedata['Sum_on_hold'] + piedata['Sum_in_Progress']+ piedata['Sum_in_Waiting_to_Start']
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
     open_form('Work_in_Progress')
     pass
+ 

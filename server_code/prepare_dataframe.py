@@ -154,12 +154,12 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     print(pivotsyd_to_markdown)
     pd.set_option('display.max_columns', None)
     print('pivotsyd',pivotsyd)
-  
-    # X = X[(X['Stage Group'] =='Project in Progress')] 
+    dicts =X.to_dict(orient='records')
+  # For projects in progress
+    X = X[(X['Stage Group'] =='Project in Progress')] 
     X1 = X[['order_no','project_name', 'percent_complete', 'order_value_formated','partially_invoiced_total_formated','Value yet to be invoiced_formated','days_elapsed','Value yet to be invoiced', 'assigned_to']]
     X1 = X1.sort_values(by='percent_complete',ascending=False)
-    X2 = X1.sort_values(by='Value yet to be invoiced_formated',ascending=False)
-    dicts =X.to_dict(orient='records')
+    # X2 = X1.sort_values(by='Value yet to be invoiced_formated',ascending=False)
     dictspip= X1.to_dict(orient='records')
     
   

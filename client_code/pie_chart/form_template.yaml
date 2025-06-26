@@ -4,9 +4,21 @@ components:
     name: plot_1
     properties: {}
     type: Plot
+  - layout_properties: {grid_position: 'VEMDLH,RXPLDT'}
+    name: label_1
+    properties: {align: right, bold: true, text: Total Work =}
+    type: Label
+  - layout_properties: {grid_position: 'VEMDLH,MLVOMN'}
+    name: text_box_1
+    properties: {bold: true}
+    type: TextBox
+  - layout_properties: {grid_position: 'VEMDLH,PYFOFH'}
+    name: label_2
+    properties: {}
+    type: Label
   layout_properties: {slot: default}
   name: content_panel
-  properties: {}
+  properties: {col_widths: '{"RXPLDT":30,"MLVOMN":10,"PYFOFH":40}'}
   type: ColumnPanel
 - layout_properties: {slot: nav-right}
   name: navbar_links

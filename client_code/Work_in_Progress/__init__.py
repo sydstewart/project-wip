@@ -20,7 +20,10 @@ class Work_in_Progress(Work_in_ProgressTemplate):
  
     # # Make the multi-bar plot
     self.plot_1.figure = line_plots
- 
+    last_row = app_tables.daily_wip.search(tables.order_by('Date_of_WIP', ascending=False))[0]
+    dicts_wip = dict(last_row)
+    self.text_box_1.text = dicts_wip['Total_Order_Value']
+    
 # #============================================================================
 #     start_date = date(year= 2024, month= 7, day = 17)
 #     line_plots_1 = anvil.server.call('work_to_do_chart', start_date)
