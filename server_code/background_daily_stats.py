@@ -124,7 +124,7 @@ def daily_by_stats():
   print('total_value_of_projects adding three Stage Groups',total_value_of_projects )
   print('total_value_of_projects work to do',total_work_to_do )
   today = datetime.today()
-
+ 
   app_tables.stage_summary.add_row(Date_of_WIP = (today),  Sum_on_hold = round(float(sum_of_onhold),0), 
                                                            Sum_in_Progress = round(float(sum_of_in_progress ),0),
                                                            Sum_in_Waiting_to_Start = round(float(sum_of_waiting_to_start),0),
@@ -134,7 +134,7 @@ def daily_by_stats():
                                                            Percent_Completion_to_start = round(float(percentage_complete_to_start),1),
                                                            Work_to_do_on_hold  = round(float(work_to_do_on_hold),0),
                                                            Work_to_do_in_Progress= round(float(work_to_do_in_progress),0),
-                                                           Work_to_do_to_Start = round(float(work_completed_to_start),0), 
+                                                           Work_to_do_to_Start = round(float(work_to_do_to_start),0), 
                                                            Total_Work_To_Do =  round(float(total_work_to_do),0), 
                                                            Count_on_hold = count_of_onhold, 
                                                            Count_in_Progress = count_of_in_progress,

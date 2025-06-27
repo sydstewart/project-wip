@@ -12,6 +12,7 @@ def piechart():
 
   last_row = app_tables.stage_summary.search(tables.order_by('Date_of_WIP', ascending=False))[0]
   dicts_pie = dict(last_row)
+  
   import plotly.graph_objects as go
   colors = ['gold', 'mediumturquoise', 'lightgreen' ]
   labels = ['On Hold','In_Progress','Waiting_to_Start']
@@ -20,11 +21,23 @@ def piechart():
   fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
   fig.update_layout(
     title=dict(
-      text='Pie Chart of Stage Groups GBP Excl VAT' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
+      text='Pie Chart of Stage Groups Order GBP Excl VAT' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
     ))
   fig.update_traces(hoverinfo='label+percent', textinfo='value +percent', textfont_size=20,
                     marker=dict(colors=colors, line=dict(color='#000000', width=2)))
+
+
+  colors1 = ['gold', 'mediumturquoise', 'lightgreen' ]
+  labels1 = ['On Hold','In_Progress','Waiting_to_Start']
+  values1 = [ dicts_pie['Work_to_do_on_hold'], dicts_pie['Work_to_do_in_Progress'], dicts_pie['Work_to_do_to_Start']]
   
-  return dicts_pie, fig
+  fig1 = go.Figure(data=[go.Pie(labels=labels1, values=values1)])
+  fig1.update_layout(
+  title=dict(
+    text='Pie Chart of Stage Groups Work to do Value GBP Excl VAT' + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
+  ))
+  fig1.update_traces(hoverinfo='label+percent', textinfo='value +percent', textfont_size=20,
+                  marker=dict(colors=colors1, line=dict(color='#000000', width=2)))
+  return dicts_pie, fig,fig1
  
   
