@@ -74,34 +74,69 @@ def daily_by_stats():
               'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
               'partially_invoiced_total':r['partially_invoiced_total']} \
              for r in records]
-  print(dicts)
-  dicts,dictspip, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts, 0, 100, None, None, None)
+  # print(dicts)
+  dicts,dictspip, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts, 0, None, None, None, None)
   X = pd.DataFrame.from_dict(dicts)
+  #============================================================
+  total_order_value = X['order_value'].sum()
+  print( 'Total value Order', total_order_value )
+  print("========================================================")
   #=============================================================
   filtered_df = X[X['Stage Group'] == 'Projects on Hold']
   sum_of_onhold = filtered_df['order_value'].sum()
   count_of_onhold = filtered_df['order_value'].count() 
-
-  print('Projects on Hold', filtered_df[['project_name','order_no']])
+  on_hold_percentage_complete_on_hold  = filtered_df['percent_complete'].mean()
+  work_completed_on_hold = sum_of_onhold * on_hold_percentage_complete_on_hold/100
+  work_to_do_on_hold = sum_of_onhold - work_completed_on_hold 
+  print('Total Projects on Hold', sum_of_onhold )
+  print('on_hold_percentage_complete', on_hold_percentage_complete_on_hold)
+  print('on_hold_work_to_do', work_to_do_on_hold )
+  # print('Projects on Hold', filtered_df[['project_name','order_no']])
+  print("========================================================")
   #==============================================================
   filtered_df = X[X['Stage Group'] == 'Project in Progress']
   sum_of_in_progress = filtered_df['order_value'].sum() 
   count_of_in_progress = filtered_df['order_value'].count() 
-  print('Projects on Hold', filtered_df[['project_name','order_no']]) 
-  print('X',X)
-
+  percentage_complete_in_progress  = filtered_df['percent_complete'].mean()
+  work_completed_in_progress= sum_of_in_progress * percentage_complete_in_progress/100
+  work_to_do_in_progress = sum_of_in_progress  - work_completed_in_progress
+  # print('Projects on Hold', filtered_df[['project_name','order_no']]) 
+  # print('X',X)
+  print( 'Total Projects in Progress', sum_of_in_progress  )
+  print('in_progress_percentage_complete', percentage_complete_in_progress)
+  print('in_progress_work_to_do', work_to_do_in_progress )
+  print("========================================================")
   #==============================================================
   filtered_df = X[X['Stage Group'] == 'Project waiting to Start']
   sum_of_waiting_to_start = filtered_df['order_value'].sum() 
   count_of_waiting_to_start = filtered_df['order_value'].count() 
-  print('Projects Waiting to Start', filtered_df[['project_name','order_no']]) 
-  print('X',X)
+  percentage_complete_to_start  = filtered_df['percent_complete'].mean()
+  work_completed_to_start= sum_of_waiting_to_start* percentage_complete_to_start/100
+  work_to_do_to_start = sum_of_waiting_to_start  - work_completed_to_start
+  print('Total Projects Waiting to Start', sum_of_waiting_to_start) 
+  print('iwaiting_to_start_percentage_complete', percentage_complete_to_start )
+  print('to_start_work_to_do',  work_to_do_to_start )
+  # print('X',X)
+  print("========================================================")
   #====================================================================
   total_value_of_projects = sum_of_waiting_to_start + sum_of_in_progress  + sum_of_onhold
+  total_work_to_do = work_to_do_to_start + work_to_do_in_progress + work_to_do_on_hold
+  print('total_value_of_projects adding three Stage Groups',total_value_of_projects )
+  print('total_value_of_projects work to do',total_work_to_do )
   today = datetime.today()
 
-  app_tables.stage_summary.add_row(Date_of_WIP = (today),  Sum_on_hold = round(float(sum_of_onhold),0), Sum_in_Progress = round(float(sum_of_in_progress ),0), Sum_in_Waiting_to_Start = round(float(sum_of_waiting_to_start),0),
-                                  Total_Value_of_Projects = round(float(total_value_of_projects),0),
-                                  Count_on_hold = count_of_onhold, Count_in_Progress = count_of_in_progress,
-                                  Count_of_waiting_to_start= count_of_waiting_to_start)
+  app_tables.stage_summary.add_row(Date_of_WIP = (today),  Sum_on_hold = round(float(sum_of_onhold),0), 
+                                                           Sum_in_Progress = round(float(sum_of_in_progress ),0),
+                                                           Sum_in_Waiting_to_Start = round(float(sum_of_waiting_to_start),0),
+                                                           Total_Value_of_Projects = round(float(total_value_of_projects),0),
+                                                           Percent_Completion_On_Hold = round(float(on_hold_percentage_complete_on_hold),1),
+                                                           Percent_Completion_in_Progress = round(float(percentage_complete_in_progress),1),
+                                                           Percent_Completion_to_start = round(float(percentage_complete_to_start),1),
+                                                           Work_to_do_on_hold  = round(float(work_to_do_on_hold),0),
+                                                           Work_to_do_in_Progress= round(float(work_to_do_in_progress),0),
+                                                           Work_to_do_to_Start = round(float(work_completed_to_start),0), 
+                                                           Total_Work_To_Do =  round(float(total_work_to_do),0), 
+                                                           Count_on_hold = count_of_onhold, 
+                                                           Count_in_Progress = count_of_in_progress,
+                                                           Count_of_waiting_to_start= count_of_waiting_to_start)
   

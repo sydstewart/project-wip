@@ -24,8 +24,9 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     X = pd.DataFrame.from_dict(dicts)
     print('Made dicts and dataframe')
     X['order_value']= X['order_value'].map(float)
+    X['Total Order Value'] =X['order_value'].sum()
     # X['cumulative_orders'] =  X['order_value'].cusum()
-    print('Cusum =', X['order_value'])
+    print('Total Order Value from prepare pandas', X['Total Order Value'])
     X['percent_complete'] = X['percent_complete'].fillna(0)
     # print('before',X['percent_complete'])
     X['date_formatted'] = X['order_date'].dt.strftime('%d/%m/%Y')
@@ -117,6 +118,7 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
   # Group the stages into categories
     conditions =[X['stage'] == 'On Hold',
                  
+                 X['stage'] == 'Awaiting Sign-Off',
                  X['stage'] == 'Work In Progress - 4S', 
                  X['stage'] == 'Pre-requisites in progress' ,
                  X['stage'] == 'Ready for GoLive', 
@@ -137,7 +139,7 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
 # Order Approved 
 # Order Submitted for Approval 
 # Ordered
-    categories = ['Projects on Hold', \
+    categories = ['Projects on Hold', 'Project in Progress',\
                   'Project in Progress', 'Project in Progress', 'Project in Progress','Project in Progress', 'Project in Progress','Project in Progress', \
                   'Project waiting to Start', 'Project waiting to Start','Project waiting to Start']
   
@@ -146,14 +148,14 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
     pivotsyd  = pivotsyd.fillna(0)
     pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
-    print('pivotsyd',pivotsyd)
+    # print('pivotsyd',pivotsyd)
     # fig = px.bar(pivotsyd, x='order_category', y='order_value')
     pivotsyd['order_value']=pivotsyd['order_value'].apply('{:,}'.format)
-    print("")
+    # print("")
     pivotsyd_to_markdown = pivotsyd.to_markdown()
-    print(pivotsyd_to_markdown)
+    # print(pivotsyd_to_markdown)
     pd.set_option('display.max_columns', None)
-    print('pivotsyd',pivotsyd)
+    # print('pivotsyd',pivotsyd)
     dicts =X.to_dict(orient='records')
   # For projects in progress
     X = X[(X['Stage Group'] =='Project in Progress')] 
@@ -163,7 +165,7 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     dictspip= X1.to_dict(orient='records')
     
   
-    print('dictspip!!',dictspip)
+    # print('dictspip!!',dictspip)
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
     # media_object = anvil.pdf.render_form('list_projects')
