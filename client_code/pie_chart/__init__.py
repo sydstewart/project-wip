@@ -48,4 +48,8 @@ class pie_chart(pie_chartTemplate):
     """This method is called when the button is clicked"""
     open_form('Work_in_Progress')
     pass
+
+  def plot_1_click(self, points, **event_args):
+    """This method is called when a data point is clicked."""
+    pass
  
