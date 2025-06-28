@@ -39,10 +39,7 @@ class pie_chart(pie_chartTemplate):
     self.label_12.text = 'Total No. of projects = ' + str(total_no_projects)  
 
     #===================================================
-  def button_1_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    open_form('Work_in_Progress')
-    pass
+
 
 
  
