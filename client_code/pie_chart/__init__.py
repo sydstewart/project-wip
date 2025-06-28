@@ -49,11 +49,6 @@ class pie_chart(pie_chartTemplate):
     open_form('Work_in_Progress')
     pass
 
-  def tabs_1_tab_click(self, tab_index, tab_title, **event_args):
-    """This method is called when a tab is clicked"""
-    self.column_panel_1.visible =True
-    self.column_panel_2.visible =False
-    pass
 
 
 

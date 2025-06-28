@@ -17,7 +17,7 @@ def piechart():
   import plotly.graph_objects as go
   colors = ['gold', 'mediumturquoise', 'lightgreen' ]
   labels = ['On Hold','In_Progress','Waiting_to_Start']
-  values = [ dicts_pie['Sum_on_hold'], dicts_pie['Sum_in_Progress'], dicts_pie['Sum_in_Waiting_to_Start']]
+  values = [dicts_pie['Sum_on_hold'], dicts_pie['Sum_in_Progress'], dicts_pie['Sum_in_Waiting_to_Start']]
                                       
   fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
   fig.update_layout(
