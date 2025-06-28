@@ -41,7 +41,7 @@ def daily_by_stats():
   dayofweek = datetime.today().weekday()
   print('Day of Week', datetime.today().weekday())
   # dayofweek = 5
-  if dayofweek < 5:
+  if dayofweek < 6:
 
      conn = connect()
   print(' starting sql')
@@ -77,47 +77,57 @@ def daily_by_stats():
   # print(dicts)
   dicts,dictspip, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts, 0, None, None, None, None)
   X = pd.DataFrame.from_dict(dicts)
-  #============================================================
+  #======================Overall Totals======================================
   total_order_value = X['order_value'].sum()
   print( 'Total value Order', total_order_value )
   overall_percentage_completion =  X['percent_complete'].mean()
   print( 'Overall Percent Complete', overall_percentage_completion )
+  total_partially_invoiced = X['partially_invoiced_total'].sum()
+  print( 'Total Partially Invoiced', total_partially_invoiced )
+  total_project_count = X['order_value'].count()
+  print( 'Total Project_Count', total_project_count )
+  
   print("========================================================")
-  #=============================================================
+  #=======================Projects on Hold ======================================
   filtered_df = X[X['Stage Group'] == 'Projects on Hold']
   sum_of_onhold = filtered_df['order_value'].sum()
   count_of_onhold = filtered_df['order_value'].count() 
   on_hold_percentage_complete_on_hold  = filtered_df['percent_complete'].mean()
   work_completed_on_hold = sum_of_onhold * on_hold_percentage_complete_on_hold/100
   work_to_do_on_hold = sum_of_onhold - work_completed_on_hold 
+  on_hold_total_partially_invoiced = filtered_df['partially_invoiced_total'].sum()
   print('Total Projects on Hold', sum_of_onhold )
   print('on_hold_percentage_complete', on_hold_percentage_complete_on_hold)
   print('on_hold_work_to_do', work_to_do_on_hold )
-  # print('Projects on Hold', filtered_df[['project_name','order_no']])
+  print('on hold Total  Partialy Invoiced', on_hold_total_partially_invoiced )
   print("========================================================")
-  #==============================================================
+  #========================Projects in Progress======================================
   filtered_df = X[X['Stage Group'] == 'Project in Progress']
   sum_of_in_progress = filtered_df['order_value'].sum() 
   count_of_in_progress = filtered_df['order_value'].count() 
   percentage_complete_in_progress  = filtered_df['percent_complete'].mean()
   work_completed_in_progress= sum_of_in_progress * percentage_complete_in_progress/100
   work_to_do_in_progress = sum_of_in_progress  - work_completed_in_progress
+  in_progress_total_partially_invoiced = filtered_df['partially_invoiced_total'].sum()
   # print('Projects on Hold', filtered_df[['project_name','order_no']]) 
   # print('X',X)
   print( 'Total Projects in Progress', sum_of_in_progress  )
   print('in_progress_percentage_complete', percentage_complete_in_progress)
   print('in_progress_work_to_do', work_to_do_in_progress )
+  print('in progress Total  Partialy Invoiced', in_progress_total_partially_invoiced  )
   print("========================================================")
-  #==============================================================
+  #=============================Projects Waiting to Start=================================
   filtered_df = X[X['Stage Group'] == 'Project waiting to Start']
   sum_of_waiting_to_start = filtered_df['order_value'].sum() 
   count_of_waiting_to_start = filtered_df['order_value'].count() 
   percentage_complete_to_start  = filtered_df['percent_complete'].mean()
   work_completed_to_start= sum_of_waiting_to_start* percentage_complete_to_start/100
   work_to_do_to_start = sum_of_waiting_to_start  - work_completed_to_start
+  to_start_total_partially_invoiced = filtered_df['partially_invoiced_total'].sum()
   print('Total Projects Waiting to Start', sum_of_waiting_to_start) 
   print('iwaiting_to_start_percentage_complete', percentage_complete_to_start )
   print('to_start_work_to_do',  work_to_do_to_start )
+  print('to start in progress Total  Partialy Invoiced', to_start_total_partially_invoiced)
   # print('X',X)
   print("========================================================")
   #====================================================================
@@ -131,15 +141,24 @@ def daily_by_stats():
                                                            Sum_in_Progress = round(float(sum_of_in_progress ),0),
                                                            Sum_in_Waiting_to_Start = round(float(sum_of_waiting_to_start),0),
                                                            Total_Value_of_Projects = round(float(total_value_of_projects),0),
+                                   
                                                            Percent_Completion_On_Hold = round(float(on_hold_percentage_complete_on_hold),1),
                                                            Percent_Completion_in_Progress = round(float(percentage_complete_in_progress),1),
                                                            Percent_Completion_to_start = round(float(percentage_complete_to_start),1),
+                                                           Overall_Percent_Completion =  round(float(overall_percentage_completion),1),
+                                   
                                                            Work_to_do_on_hold  = round(float(work_to_do_on_hold),0),
                                                            Work_to_do_in_Progress= round(float(work_to_do_in_progress),0),
                                                            Work_to_do_to_Start = round(float(work_to_do_to_start),0), 
-                                                           Total_Work_To_Do =  round(float(total_work_to_do),0), 
-                                                           Overall_Percent_Completion =  round(float(overall_percentage_completion),1),
+                                                           Total_Work_To_Do =  round(float(total_work_to_do),0),
+                                   
+                                                           On_hold_Partially_Invoiced =  round(float(on_hold_total_partially_invoiced),0),
+                                                           To_Start_Partially_Invoiced = round(float(to_start_total_partially_invoiced),0), 
+                                                           In_Progress_Partially_Invoiced =  round(float(in_progress_total_partially_invoiced ),0),
+                                                           Total_Partially_Invoiced = round(float(total_partially_invoiced),0),
+                                                                                              
                                                            Count_on_hold = count_of_onhold, 
                                                            Count_in_Progress = count_of_in_progress,
-                                                           Count_of_waiting_to_start= count_of_waiting_to_start)
+                                                           Count_of_waiting_to_start= count_of_waiting_to_start,
+                                                           Total_Project_Count = total_project_count)
   

@@ -209,14 +209,29 @@ db_schema:
     - admin_ui: {order: 12, width: 200}
       name: Work_to_do_in_Progress
       type: number
-    - admin_ui: {order: 14, width: 200}
+    - admin_ui: {order: 16, width: 200}
       name: Total_Work_To_Do
       type: number
     - admin_ui: {order: 15, width: 200}
       name: Work_to_do_to_Start
       type: number
-    - admin_ui: {order: 16, width: 200}
+    - admin_ui: {order: 10.5, width: 200}
       name: Overall_Percent_Completion
+      type: number
+    - admin_ui: {order: 17, width: 200}
+      name: On_hold_Partially_Invoiced
+      type: number
+    - admin_ui: {order: 19, width: 200}
+      name: In_Progress_Partially_Invoiced
+      type: number
+    - admin_ui: {order: 20, width: 200}
+      name: Total_Partially_Invoiced
+      type: number
+    - admin_ui: {order: 7.5, width: 200}
+      name: Total_Project_Count
+      type: number
+    - admin_ui: {order: 21, width: 200}
+      name: To_Start_Partially_Invoiced
       type: number
     server: full
     title: stage_summary

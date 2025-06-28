@@ -22,7 +22,7 @@ def piechart():
   fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
   fig.update_layout(
     title=dict(
-      text='Stage Groups Order Value GBP Excl VAT'  # + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
+      text='Stage Groups Order Value' + '<br>' + 'GBP Excl VAT'  # + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
     ))
   fig.update_traces(hoverinfo='label+percent', textinfo='value +percent', textfont_size=20,
                     marker=dict(colors=colors, line=dict(color='#000000', width=2)))
@@ -35,7 +35,7 @@ def piechart():
   fig1 = go.Figure(data=[go.Pie(labels=labels1, values=values1)])
   fig1.update_layout(
   title=dict(
-    text='Stage Groups Work Yet To Do Value GBP Excl VAT')) # + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
+    text='Stage Groups Work Yet To Do Value' + '<br>' + 'GBP Excl VAT')) # + '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M')
   
   fig1.update_traces(hoverinfo='label+percent', textinfo='value +percent', textfont_size=20,
                   marker=dict(colors=colors1, line=dict(color='#000000', width=2)))
@@ -66,7 +66,22 @@ def piechart():
       
   fig3.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,
                      marker=dict(colors=colors3, line=dict(color='#000000', width=2)))
-  
-  return dicts_pie, fig,fig1,fig2, fig3
+
+  #======================Partially Invoiced =======================================================
+  colors4 = ['gold', 'mediumturquoise', 'lightgreen' ]
+  labels4 = ['On Hold','In_Progress','Waiting_to_Start']
+  values4 = [ dicts_pie['On_hold_Partially_Invoiced'], dicts_pie['In_Progress_Partially_Invoiced'], dicts_pie['To_Start_Partially_Invoiced']]
+
+  fig4 = go.Figure(data=[go.Pie(labels=labels4, values=values4)])
+
+  fig4.update_layout(
+    title=dict(
+      text='Stage Group Partially Invoiced' + '<br>' + 'GBP Excl VAT' )) #+ '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M') )) # + '<br>'  + '<b> Total No. of projects =' 
+  #  + str(total_no_projects) + '<b>'   ))
+
+  fig4.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,
+                     marker=dict(colors=colors4, line=dict(color='#000000', width=2)))
+
+  return dicts_pie, fig,fig1,fig2, fig3, fig4
  
   

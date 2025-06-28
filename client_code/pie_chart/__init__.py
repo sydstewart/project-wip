@@ -13,19 +13,19 @@ class pie_chart(pie_chartTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #=============================================================
-    piedata, fig, fig1, fig2, fig3 = anvil.server.call('piechart')
+    piedata, fig, fig1, fig2, fig3, fig4 = anvil.server.call('piechart')
     print('piedata', piedata)
     self.label_1.text = 'Created at ' + datetime.now().strftime('%d %B %Y %H:%M')
     #====================Order Value Pie ============================== 
     self.plot_1.figure =fig
         # Any code you write here will run before the form opens. 
     total_value_of_projects  = piedata['Total_Value_of_Projects']
-    self.label_9.text = 'Total Value of projects = ' + '£'+ str(total_value_of_projects )
+    self.label_9.text = 'Total Value of projects = ' + '£'+ str('{:,.2f}'.format(total_value_of_projects ))
 
     #====================Work to do Pie ============================== 
     self.plot_3.figure =fig2
     total_work_to_do = piedata['Work_to_do_on_hold'] + piedata['Work_to_do_in_Progress'] + piedata['Work_to_do_to_Start']
-    self.label_10.text = 'Total Work Yet To Do = ' + '£'+ str(total_work_to_do  ) 
+    self.label_10.text = 'Total Work Yet To Do = ' + '£'+ str('{:,.2f}'.format(total_work_to_do  ) )
     
    #====================Percentage Pie ==============================  
     self.plot_2.figure =fig1
@@ -38,7 +38,22 @@ class pie_chart(pie_chartTemplate):
     total_no_projects = piedata['Count_on_hold'] +piedata['Count_in_Progress'] + piedata['Count_of_waiting_to_start']
     self.label_12.text = 'Total No. of projects = ' + str(total_no_projects)  
 
-    #===================================================
+   
+    #====================Partially Invoiced ============================== 
+    self.plot_5.figure =fig4
+    total_partially_invoiced = piedata['Total_Partially_Invoiced']  
+    self.label_2.text = 'Total Partially Invoiced = ' + '£' + str('{:,.2f}'.format(total_partially_invoiced ) ) 
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Work_in_Progress')
+    pass
+
+  def tabs_1_tab_click(self, tab_index, tab_title, **event_args):
+    """This method is called when a tab is clicked"""
+    self.column_panel_1.visible =True
+    self.column_panel_2.visible =False
+    pass
 
 
 
