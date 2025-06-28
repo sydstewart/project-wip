@@ -6,13 +6,16 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from datetime import datetime, time , date , timedelta
 
 class pie_chart(pie_chartTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    #=============================================================
     piedata, fig, fig1, fig2, fig3 = anvil.server.call('piechart')
     print('piedata', piedata)
+    self.label_1.text = 'Created at ' + datetime.now().strftime('%d %B %Y %H:%M')
     #====================Order Value Pie ============================== 
     self.plot_1.figure =fig
         # Any code you write here will run before the form opens. 

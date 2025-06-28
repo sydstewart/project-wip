@@ -1105,7 +1105,7 @@ def stage_groups_chart():
       y=df['Sum_on_hold'],
       stackgroup='one',
       mode='lines+markers',
-      marker=dict(color='red', size=6),
+      marker=dict(color='gold', size=6),
       line=dict(width=1),
       showlegend=True)
     ,
@@ -1115,7 +1115,7 @@ def stage_groups_chart():
       y=df['Sum_in_Progress'],
       stackgroup='one',
       mode='lines+markers',
-      marker=dict(color='blue', size=6),
+      marker=dict(color='mediumturquoise', size=6),
       line=dict(width=1),
       showlegend=True)
     ,
@@ -1125,7 +1125,7 @@ def stage_groups_chart():
       y=df['Sum_in_Waiting_to_Start'],
       stackgroup='one',
       mode='lines+markers',
-      marker=dict(color='green', size=6),
+      marker=dict(color='lightgreen', size=6),
       line=dict(width=1),
       showlegend=True)
   ])

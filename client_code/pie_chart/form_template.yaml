@@ -4,7 +4,7 @@ components:
     - event_bindings: {click: plot_1_click}
       layout_properties: {grid_position: 'JRHATL,IXDJBG'}
       name: plot_1
-      properties: {height: 472.90911865234375}
+      properties: {height: 399.45458984375}
       type: Plot
     - layout_properties: {grid_position: 'PGUDFR,EKWNHE'}
       name: label_9
@@ -17,7 +17,7 @@ components:
   - components:
     - layout_properties: {full_width_row: true, grid_position: 'WTZABM,JYOTHH WKLMOS,UNPDBN'}
       name: plot_2
-      properties: {height: 474.727294921875}
+      properties: {height: 398.727294921875}
       type: Plot
     - layout_properties: {grid_position: 'WTZABM,JYOTHH DXQNUQ,UNRRQG'}
       name: label_10
@@ -25,7 +25,7 @@ components:
       type: Label
     - layout_properties: {grid_position: 'WTZABM,VVYINO ZJTHPI,XLSGMD'}
       name: plot_3
-      properties: {height: 470.90911865234375}
+      properties: {height: 394.3636474609375}
       type: Plot
     - layout_properties: {grid_position: 'WTZABM,VVYINO IJSYXL,PLUMVO'}
       name: label_11
@@ -34,7 +34,7 @@ components:
     - components:
       - layout_properties: {grid_position: 'XWRZPV,KFDPZM'}
         name: plot_4
-        properties: {height: 461.90911865234375}
+        properties: {height: 385.45458984375}
         type: Plot
       layout_properties: {grid_position: 'WTZABM,VVIIQV XHAORZ,IUXDWV'}
       name: column_panel_3
@@ -47,6 +47,15 @@ components:
     layout_properties: {full_width_row: true, grid_position: 'RHCLRR,AYRZSG'}
     name: column_panel_2
     properties: {col_widths: '{"JYOTHH":20,"VVYINO":20,"VVIIQV":20,"VWCGFT":20,"UNRRQG":15,"PLUMVO":10}'}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'GAMROE,LAWOTW'}
+      name: label_1
+      properties: {align: center, bold: true}
+      type: Label
+    layout_properties: {full_width_row: true, grid_position: 'AUWKSY,NHQPAF'}
+    name: column_panel_5
+    properties: {}
     type: ColumnPanel
   layout_properties: {slot: default}
   name: content_panel

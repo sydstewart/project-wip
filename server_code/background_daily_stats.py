@@ -41,7 +41,7 @@ def daily_by_stats():
   dayofweek = datetime.today().weekday()
   print('Day of Week', datetime.today().weekday())
   # dayofweek = 5
-  if dayofweek < 6:
+  if dayofweek < 5:
 
      conn = connect()
   print(' starting sql')
