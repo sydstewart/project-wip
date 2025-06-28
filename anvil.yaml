@@ -215,6 +215,9 @@ db_schema:
     - admin_ui: {order: 15, width: 200}
       name: Work_to_do_to_Start
       type: number
+    - admin_ui: {order: 16, width: 200}
+      name: Overall_Percent_Completion
+      type: number
     server: full
     title: stage_summary
   stage_translate:
@@ -393,6 +396,6 @@ services:
 - client_config: {}
   server_config: {test_mode: false}
   source: /runtime/services/anvil/email.yml
-startup: {module: Work_in_Progress, type: form}
+startup: {module: pie_chart, type: form}
 startup_form: null
 uplink_visible: true

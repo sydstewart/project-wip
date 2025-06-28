@@ -41,7 +41,7 @@ def daily_by_stats():
   dayofweek = datetime.today().weekday()
   print('Day of Week', datetime.today().weekday())
   # dayofweek = 5
-  if dayofweek < 5:
+  if dayofweek < 6:
 
      conn = connect()
   print(' starting sql')
@@ -80,6 +80,8 @@ def daily_by_stats():
   #============================================================
   total_order_value = X['order_value'].sum()
   print( 'Total value Order', total_order_value )
+  overall_percentage_completion =  X['percent_complete'].mean()
+  print( 'Overall Percent Complete', overall_percentage_completion )
   print("========================================================")
   #=============================================================
   filtered_df = X[X['Stage Group'] == 'Projects on Hold']
@@ -136,6 +138,7 @@ def daily_by_stats():
                                                            Work_to_do_in_Progress= round(float(work_to_do_in_progress),0),
                                                            Work_to_do_to_Start = round(float(work_to_do_to_start),0), 
                                                            Total_Work_To_Do =  round(float(total_work_to_do),0), 
+                                                           Overall_Percent_Completion =  round(float(overall_percentage_completion),1),
                                                            Count_on_hold = count_of_onhold, 
                                                            Count_in_Progress = count_of_in_progress,
                                                            Count_of_waiting_to_start= count_of_waiting_to_start)

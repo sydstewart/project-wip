@@ -4,135 +4,53 @@ components:
     - event_bindings: {click: plot_1_click}
       layout_properties: {grid_position: 'JRHATL,IXDJBG'}
       name: plot_1
-      properties: {height: 475.0909423828125}
+      properties: {height: 472.90911865234375}
       type: Plot
-    - layout_properties: {grid_position: 'PGUDFR,YGJMYL'}
-      name: label_1
-      properties: {align: right, bold: true, font_size: 14, text: Total Orders =}
-      type: Label
-    - layout_properties: {grid_position: 'PGUDFR,PDJLGZ'}
-      name: text_box_1
-      properties: {}
-      type: TextBox
     - layout_properties: {grid_position: 'PGUDFR,EKWNHE'}
       name: label_9
-      properties: {}
+      properties: {align: center, bold: true}
       type: Label
     layout_properties: {full_width_row: true, grid_position: 'RHCLRR,SMXQWC'}
     name: column_panel_1
-    properties: {col_widths: '{"YGJMYL":20,"PDJLGZ":15,"EKWNHE":25}'}
+    properties: {col_widths: '{"PDJLGZ":15,"EKWNHE":25}'}
     type: ColumnPanel
   - components:
-    - layout_properties: {grid_position: 'WTZABM,JYOTHH'}
+    - layout_properties: {full_width_row: true, grid_position: 'WTZABM,JYOTHH WKLMOS,UNPDBN'}
       name: plot_2
       properties: {height: 474.727294921875}
       type: Plot
-    - layout_properties: {grid_position: 'XOFDDY,PWZCXQ'}
-      name: label_3
-      properties: {align: right, bold: true, text: Total Work To Do=}
-      type: Label
-    - layout_properties: {grid_position: 'XOFDDY,LAVGPJ'}
-      name: text_box_2
-      properties: {bold: true}
-      type: TextBox
-    - layout_properties: {grid_position: 'XOFDDY,AWWSUJ'}
+    - layout_properties: {grid_position: 'WTZABM,JYOTHH DXQNUQ,UNRRQG'}
       name: label_10
-      properties: {}
+      properties: {align: center, bold: true}
       type: Label
-    layout_properties: {grid_position: 'RHCLRR,AYRZSG'}
-    name: column_panel_2
-    properties: {col_widths: '{"PWZCXQ":30,"LAVGPJ":15,"AWWSUJ":35}'}
-    type: ColumnPanel
-  - layout_properties: {full_width_row: true, grid_position: 'QTWBDK,PMRKED'}
-    name: label_12
-    properties: {}
-    type: Label
-  - components:
-    - layout_properties: {grid_position: 'MIWWBW,NZYJLT'}
-      name: label_2
-      properties: {align: right, bold: true, text: Percentage of Orders Completed =}
-      type: Label
-    - layout_properties: {grid_position: 'MIWWBW,PBGFWS'}
-      name: text_box_3
-      properties: {align: left, bold: true}
-      type: TextBox
-    layout_properties: {full_width_row: true, grid_position: 'QTWBDK,NYYKUR'}
-    name: column_panel_3
-    properties: {col_widths: '{"NZYJLT":40,"PBGFWS":20}'}
-    type: ColumnPanel
-  - layout_properties: {grid_position: 'QTWBDK,TNMORK'}
-    name: label_11
-    properties: {}
-    type: Label
-  - components:
-    - layout_properties: {full_width_row: true, grid_position: 'LUODZA,SMIZCK'}
-      name: label_7
-      properties: {}
-      type: Label
-    - layout_properties: {full_width_row: true, grid_position: 'LUODZA,HOXFRE'}
-      name: label_4
-      properties: {align: right, bold: true, text: Percentage of On Hold Completed =}
-      type: Label
-    - layout_properties: {grid_position: 'LUODZA,BVLFJI'}
-      name: text_box_4
-      properties: {align: left, bold: true}
-      type: TextBox
-    - layout_properties: {grid_position: 'LUODZA,XVWCET'}
-      name: label_5
-      properties: {align: right, bold: true, text: Precentage of In Progress Completed =}
-      type: Label
-    - layout_properties: {grid_position: 'LUODZA,HBSXNR'}
-      name: text_box_5
-      properties: {bold: true}
-      type: TextBox
-    - layout_properties: {grid_position: 'LUODZA,WDWFDC'}
-      name: label_6
-      properties: {align: right, bold: true, text: Percenatge of To Start Completed =}
-      type: Label
-    - layout_properties: {grid_position: 'LUODZA,TJGWVK'}
-      name: text_box_6
-      properties: {bold: true}
-      type: TextBox
-    - layout_properties: {grid_position: 'LUODZA,MZZRPC'}
-      name: label_8
-      properties: {}
+    - layout_properties: {grid_position: 'WTZABM,VVYINO ZJTHPI,XLSGMD'}
+      name: plot_3
+      properties: {height: 470.90911865234375}
+      type: Plot
+    - layout_properties: {grid_position: 'WTZABM,VVYINO IJSYXL,PLUMVO'}
+      name: label_11
+      properties: {align: center, bold: true}
       type: Label
     - components:
-      - layout_properties: {grid_position: 'KSTWYN,EKTPSQ'}
-        name: label_13
-        properties: {align: right, bold: true, text: No. of Projects On Hold =}
-        type: Label
-      - layout_properties: {grid_position: 'KSTWYN,GZTOFJ'}
-        name: text_box_7
-        properties: {bold: true}
-        type: TextBox
-      - layout_properties: {grid_position: 'KSTWYN,CFNXZS'}
-        name: label_14
-        properties: {align: right, bold: true, text: No of Projects In Progress =}
-        type: Label
-      - layout_properties: {grid_position: 'KSTWYN,PXJAXY'}
-        name: text_box_8
-        properties: {bold: true}
-        type: TextBox
-      - layout_properties: {grid_position: 'KSTWYN,UADSKU'}
-        name: label_15
-        properties: {align: right, bold: true, text: No. of Projects to Start =}
-        type: Label
-      - layout_properties: {grid_position: 'KSTWYN,YPZKBL'}
-        name: text_box_9
-        properties: {bold: true}
-        type: TextBox
-      layout_properties: {full_width_row: true, grid_position: 'UTBTRA,HDABHY'}
-      name: column_panel_5
-      properties: {col_widths: '{"EKTPSQ":10,"GZTOFJ":5,"CFNXZS":20,"PXJAXY":5,"UADSKU":15,"YPZKBL":5}'}
+      - layout_properties: {grid_position: 'XWRZPV,KFDPZM'}
+        name: plot_4
+        properties: {height: 461.90911865234375}
+        type: Plot
+      layout_properties: {grid_position: 'WTZABM,VVIIQV XHAORZ,IUXDWV'}
+      name: column_panel_3
+      properties: {}
       type: ColumnPanel
-    layout_properties: {full_width_row: true, grid_position: 'JLMXBA,OPTQJJ'}
-    name: column_panel_4
-    properties: {col_widths: '{"HOXFRE":13,"BVLFJI":5,"XVWCET":15,"HBSXNR":5,"WDWFDC":17,"TJGWVK":5,"SMIZCK":5,"MZZRPC":10}'}
+    - layout_properties: {grid_position: 'WTZABM,VVIIQV ZNFVQV,WKONAY'}
+      name: label_12
+      properties: {align: center, bold: true}
+      type: Label
+    layout_properties: {full_width_row: true, grid_position: 'RHCLRR,AYRZSG'}
+    name: column_panel_2
+    properties: {col_widths: '{"JYOTHH":20,"VVYINO":20,"VVIIQV":20,"VWCGFT":20,"UNRRQG":15,"PLUMVO":10}'}
     type: ColumnPanel
   layout_properties: {slot: default}
   name: content_panel
-  properties: {col_widths: '{"NYYKUR":25,"TNMORK":30,"PMRKED":25}'}
+  properties: {col_widths: '{"SMXQWC":15,"AYRZSG":45}'}
   type: ColumnPanel
 - layout_properties: {slot: nav-right}
   name: navbar_links
