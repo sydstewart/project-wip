@@ -31,7 +31,7 @@ class pie_chart(pie_chartTemplate):
     self.plot_2.figure =fig1
     # Any code you write here will run before the form opens.
     overall_percent_complete = piedata['Overall_Percent_Completion'] 
-    self.label_11.text = 'Overall project Complation = ' + str(overall_percent_complete ) + '%'
+    self.label_11.text = 'Overall project'+'<br>' + 'Complation = ' + str(overall_percent_complete ) + '%'
    
     #====================No of projects ============================== 
     self.plot_4.figure =fig3
