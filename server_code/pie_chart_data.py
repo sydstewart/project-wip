@@ -99,9 +99,9 @@ def piechart():
                      marker=dict(colors=colors5, line=dict(color='#000000', width=2)))
   
   #======================In Progress Waiting by Order Valuet=======================================================
-  colors6= ['pink', 'mediumturquoise' ]
-  labels6 = ['Customer','4S']
-  values6 = [ dicts_pie['In_Progress_Waiting_on_Customer_sum'], dicts_pie['In_Progress_Waiting_on_4S_sum']]
+  colors6= ['pink', 'mediumturquoise','yellow' ]
+  labels6 = ['Customer','4S','None']
+  values6 = [ dicts_pie['In_Progress_Waiting_on_Customer_sum'], dicts_pie['In_Progress_Waiting_on_4S_sum'],dicts_pie['In_Progress_Waiting_no_state_sum']]
 
   fig6 = go.Figure(data=[go.Pie(labels=labels6, values=values6)])
 

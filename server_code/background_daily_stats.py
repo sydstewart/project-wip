@@ -122,10 +122,16 @@ def daily_by_stats():
   print("========================================================")
   #=======================In Progress Waiting On Customer ================================
   filtered_df_wait = filtered_df[filtered_df['waiting_on'] == 'Customer']
+  sum_of_waiting_in_progress_waiting_on_customer = filtered_df['order_value'].sum() 
+  count_of_waiting_in_progress_waiting_on_customer = filtered_df['order_value'].count() 
+  percentage_complete_in_progress_waiting_on_customer   = filtered_df['percent_complete'].mean()
+  work_completed_in_progress_in_progress_waiting_on_customer= sum_of_in_progress * percentage_complete_in_progress_waiting_on_customer/100
+  work_to_do_in_progress_in_progress_waiting_on_customer = sum_of_waiting_in_progress_waiting_on_customer  - work_completed_in_progress_in_progress_waiting_on_customer
   print('Waiting Status',filtered_df_wait['waiting_on'])  
   count_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_no'].count()
   sum_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].sum()
   print('Total Order  Value of Projects In Progress waiting on customer', sum_of_waiting_in_progress_waiting_on_customer )
+  print('Total Work to do Value of Projects In Progress waiting on customer', work_to_do_in_progress_in_progress_waiting_on_customer  )
   print('Count of Projects In Progress waiting on customer', count_of_waiting_in_progress_waiting_on_customer)
   print("======================================")
   #=======================In Progress Waiting None ================================
@@ -139,11 +145,17 @@ def daily_by_stats():
 #============================In Progress Waiting on 4S =====================================
  
   filtered_df_wait = filtered_df[filtered_df['waiting_on'].str.contains("4S")]
+  sum_of_waiting_in_progress_waiting_on_4S = filtered_df['order_value'].sum() 
+  count_of_waiting_in_progress_waiting_on_4S = filtered_df['order_value'].count() 
+  percentage_complete_in_progress_waiting_on_4S  = filtered_df['percent_complete'].mean()
+  work_completed_in_progress_in_progress_waiting_on_4S= sum_of_waiting_in_progress_waiting_on_4S  * percentage_complete_in_progress_waiting_on_4S/100
+  work_to_do_in_progress_in_progress_waiting_on_4S = sum_of_waiting_in_progress_waiting_on_4S  - work_completed_in_progress_in_progress_waiting_on_4S
   print('Waiting Status',filtered_df_wait['waiting_on'])  
   count_of_waiting_in_progress_waiting_on_4S = filtered_df_wait['order_no'].count()
   sum_of_waiting_in_progress_waiting_on_4S = filtered_df_wait['order_value'].sum()
   print('Count of Projects In Progresss waiting on 4S', count_of_waiting_in_progress_waiting_on_4S )
   print('Total Order  Value of Projects In Progress waiting on 4S', sum_of_waiting_in_progress_waiting_on_4S )
+  print('Total Work to do Value of Projects In Progress waiting on customer', work_to_do_in_progress_in_progress_waiting_on_4S  )
   print("========================================================")
   
   #=============================Projects Waiting to Start=================================
@@ -175,8 +187,12 @@ def daily_by_stats():
                                    
                                                            In_Progress_Waiting_on_Customer_count = round(float(count_of_waiting_in_progress_waiting_on_customer),0),
                                                            In_Progress_Waiting_on_Customer_sum = round(float(sum_of_waiting_in_progress_waiting_on_customer),0),
+                                                           In_Progress_Waiting_on_Customer_sum_work_to_do = round(float(work_to_do_in_progress_in_progress_waiting_on_customer ),0),
+                                   
                                                            In_Progress_Waiting_on_4S_count = round(float(count_of_waiting_in_progress_waiting_on_4S),0),
                                                            In_Progress_Waiting_on_4S_sum = round(float(sum_of_waiting_in_progress_waiting_on_4S),0),
+                                                           In_Progress_Waiting_on_4S_sum_work_to_do = round(float(work_to_do_in_progress_in_progress_waiting_on_4S ),0),
+                                   
                                                            In_Progress_Waiting_no_state_count = round(float(count_of_waiting_in_progress_waiting_no_state),0),
                                                            In_Progress_Waiting_no_state_sum   = round(float(sum_of_waiting_in_progress_waiting_no_state),0),
                                    

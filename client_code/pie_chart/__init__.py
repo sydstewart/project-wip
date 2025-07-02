@@ -47,7 +47,7 @@ class pie_chart(pie_chartTemplate):
     #====================Waiting In Progress Status by Count============================== 
     self.plot_6.figure =fig5
     total_projects_In_Progress = piedata['In_Progress_Waiting_on_Customer_count'] + piedata['In_Progress_Waiting_on_4S_count']
-    self.label_4.text = 'Project Count In Progress= ' + str('{:,.2f}'.format(total_projects_In_Progress ) ) 
+    self.label_4.text = 'Project Count In Progress= ' + str('{:,.0f}'.format(total_projects_In_Progress ) ) 
     
     #====================Waiting In Progress Status by Order Value============================== 
     self.plot_7.figure =fig6

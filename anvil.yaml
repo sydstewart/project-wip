@@ -249,7 +249,13 @@ db_schema:
       name: In_Progress_Waiting_no_state_count
       type: number
     - admin_ui: {order: 27, width: 200}
-      name: 'In_Progress_Waiting_no_state_sum '
+      name: In_Progress_Waiting_no_state_sum
+      type: number
+    - admin_ui: {order: 28, width: 200}
+      name: In_Progress_Waiting_on_Customer_sum_work_to_do
+      type: number
+    - admin_ui: {order: 29, width: 200}
+      name: In_Progress_Waiting_on_4S_sum_work_to_do
       type: number
     server: full
     title: stage_summary
