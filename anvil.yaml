@@ -233,6 +233,18 @@ db_schema:
     - admin_ui: {order: 21, width: 200}
       name: To_Start_Partially_Invoiced
       type: number
+    - admin_ui: {order: 22, width: 318}
+      name: In_Progress_Waiting_on_Customer_count
+      type: number
+    - admin_ui: {order: 23, width: 200}
+      name: In_Progress_Waiting_on_Customer_sum
+      type: number
+    - admin_ui: {order: 24, width: 200}
+      name: In_Progress_Waiting_on_4S_count
+      type: number
+    - admin_ui: {order: 25, width: 200}
+      name: In_Progress_Waiting_on_4S_sum
+      type: number
     server: full
     title: stage_summary
   stage_translate:

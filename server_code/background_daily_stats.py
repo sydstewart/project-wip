@@ -54,6 +54,8 @@ def daily_by_stats():
                       sales_orders_cstm.OrderCategory AS OrderCategory,\
                       sales_orders_cstm.applicationarea_c AS AppArea, \
                       sales_orders_cstm.partialinvoicedtotal_c AS partially_invoiced_total, \
+                      sales_orders_cstm.Waiing_On AS waiting_on ,\
+                      sales_orders_cstm.waitingNote AS waiting_note , \
                       If(sales_orders_cstm.applicationarea_c = 'Anticoagulation', 'Anticoagulation', 'Safety Monitoring and Misc') As AppGroup ,\
                       sales_orders.so_number AS so_number,\
                       sales_orders.so_stage AS stage, \
@@ -72,7 +74,7 @@ def daily_by_stats():
   if number_of_records:
     dicts = [{'order_no': r['so_number'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
               'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
-              'partially_invoiced_total':r['partially_invoiced_total']} \
+              'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note']} \
              for r in records]
   # print(dicts)
   dicts,dictspip, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts, 0, None, None, None, None)
@@ -86,21 +88,24 @@ def daily_by_stats():
   print( 'Total Partially Invoiced', total_partially_invoiced )
   total_project_count = X['order_value'].count()
   print( 'Total Project_Count', total_project_count )
-  
+  print('Waiting On',X['waiting_on'])
   print("========================================================")
   #=======================Projects on Hold ======================================
   filtered_df = X[X['Stage Group'] == 'Projects on Hold']
   sum_of_onhold = filtered_df['order_value'].sum()
-  count_of_onhold = filtered_df['order_value'].count() 
+  count_of_onhold = filtered_df['order_value'].count()
   on_hold_percentage_complete_on_hold  = filtered_df['percent_complete'].mean()
   work_completed_on_hold = sum_of_onhold * on_hold_percentage_complete_on_hold/100
   work_to_do_on_hold = sum_of_onhold - work_completed_on_hold 
   on_hold_total_partially_invoiced = filtered_df['partially_invoiced_total'].sum()
+ 
+ 
   print('Total Projects on Hold', sum_of_onhold )
   print('on_hold_percentage_complete', on_hold_percentage_complete_on_hold)
   print('on_hold_work_to_do', work_to_do_on_hold )
   print('on hold Total  Partialy Invoiced', on_hold_total_partially_invoiced )
   print("========================================================")
+  
   #========================Projects in Progress======================================
   filtered_df = X[X['Stage Group'] == 'Project in Progress']
   sum_of_in_progress = filtered_df['order_value'].sum() 
@@ -109,12 +114,28 @@ def daily_by_stats():
   work_completed_in_progress= sum_of_in_progress * percentage_complete_in_progress/100
   work_to_do_in_progress = sum_of_in_progress  - work_completed_in_progress
   in_progress_total_partially_invoiced = filtered_df['partially_invoiced_total'].sum()
-  # print('Projects on Hold', filtered_df[['project_name','order_no']]) 
-  # print('X',X)
+
   print( 'Total Projects in Progress', sum_of_in_progress  )
   print('in_progress_percentage_complete', percentage_complete_in_progress)
   print('in_progress_work_to_do', work_to_do_in_progress )
   print('in progress Total  Partialy Invoiced', in_progress_total_partially_invoiced  )
+  print("========================================================")
+  #=======================In Progress Waiting On Customer ================================
+  filtered_df_wait = filtered_df[filtered_df['waiting_on'] == 'Customer']
+  print('Waiting Status',filtered_df_wait['waiting_on'])  
+  count_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_no'].count()
+  sum_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].sum()
+  print('Total Order  Value of Projects In Progress waiting on customer', sum_of_waiting_in_progress_waiting_on_customer )
+  print('Count of Projects In Progress waiting on customer', count_of_waiting_in_progress_waiting_on_customer)
+  print("======================================")
+#============================In Progress Waiting on 4S =====================================
+ 
+  filtered_df_wait = filtered_df[filtered_df['waiting_on'].str.contains("4S")]
+  print('Waiting Status',filtered_df_wait['waiting_on'])  
+  count_of_waiting_in_progress_waiting_on_4S = filtered_df_wait['order_no'].count()
+  sum_of_waiting_in_progress_waiting_on_4S = filtered_df_wait['order_value'].sum()
+  print('Count of Projects In Progresss waiting on 4S', count_of_waiting_in_progress_waiting_on_4S )
+  print('Total Order  Value of Projects In Progress waiting on 4S', sum_of_waiting_in_progress_waiting_on_4S )
   print("========================================================")
   #=============================Projects Waiting to Start=================================
   filtered_df = X[X['Stage Group'] == 'Project waiting to Start']
@@ -130,6 +151,7 @@ def daily_by_stats():
   print('to start in progress Total  Partialy Invoiced', to_start_total_partially_invoiced)
   # print('X',X)
   print("========================================================")
+  
   #====================================================================
   total_value_of_projects = sum_of_waiting_to_start + sum_of_in_progress  + sum_of_onhold
   total_work_to_do = work_to_do_to_start + work_to_do_in_progress + work_to_do_on_hold
@@ -142,6 +164,11 @@ def daily_by_stats():
                                                            Sum_in_Waiting_to_Start = round(float(sum_of_waiting_to_start),0),
                                                            Total_Value_of_Projects = round(float(total_value_of_projects),0),
                                    
+                                                           In_Progress_Waiting_on_Customer_count = round(float(count_of_waiting_in_progress_waiting_on_customer),0),
+                                                           In_Progress_Waiting_on_Customer_sum = round(float(sum_of_waiting_in_progress_waiting_on_customer),0),
+                                                           In_Progress_Waiting_on_4S_count = round(float(count_of_waiting_in_progress_waiting_on_4S),0),
+                                                           In_Progress_Waiting_on_4S_sum = round(float(sum_of_waiting_in_progress_waiting_on_4S),0),
+  
                                                            Percent_Completion_On_Hold = round(float(on_hold_percentage_complete_on_hold),1),
                                                            Percent_Completion_in_Progress = round(float(percentage_complete_in_progress),1),
                                                            Percent_Completion_to_start = round(float(percentage_complete_to_start),1),

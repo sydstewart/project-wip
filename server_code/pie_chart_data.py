@@ -82,6 +82,21 @@ def piechart():
   fig4.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,
                      marker=dict(colors=colors4, line=dict(color='#000000', width=2)))
 
-  return dicts_pie, fig,fig1,fig2, fig3, fig4
+  #======================In Progress Waiting On Count=======================================================
+  colors5= ['pink', 'mediumturquoise' ]
+  labels5 = ['Customer','4S']
+  values5 = [ dicts_pie['In_Progress_Waiting_on_Customer_count'], dicts_pie['In_Progress_Waiting_on_4S_count']]
+
+  fig5 = go.Figure(data=[go.Pie(labels=labels5, values=values5)])
+
+  fig5.update_layout(
+    title=dict(
+      text='In Progress Project Waiting Status by Count' )) #+ '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M') )) # + '<br>'  + '<b> Total No. of projects =' 
+  #  + str(total_no_projects) + '<b>'   ))
+
+  fig5.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,
+                     marker=dict(colors=colors5, line=dict(color='#000000', width=2)))
+
+  return dicts_pie, fig,fig1,fig2, fig3, fig4, fig5
  
   

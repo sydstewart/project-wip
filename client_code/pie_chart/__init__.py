@@ -13,7 +13,7 @@ class pie_chart(pie_chartTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #=============================================================
-    piedata, fig, fig1, fig2, fig3, fig4 = anvil.server.call('piechart')
+    piedata, fig, fig1, fig2, fig3, fig4, fig5 = anvil.server.call('piechart')
     print('piedata', piedata)
     self.label_1.text = 'Created at ' + datetime.now().strftime('%d %B %Y %H:%M')
     #====================Order Value Pie ============================== 
@@ -43,6 +43,10 @@ class pie_chart(pie_chartTemplate):
     self.plot_5.figure =fig4
     total_partially_invoiced = piedata['Total_Partially_Invoiced']  
     self.label_2.text = 'Total Partially Invoiced = ' + '£' + str('{:,.2f}'.format(total_partially_invoiced ) ) 
+    #====================Waiting In Progress Status============================== 
+    self.plot_6.figure =fig5
+    # total_ = piedata['Total_Partially_Invoiced']  
+    # self.label_2.text = 'Total Partially Invoiced = ' + '£' + str('{:,.2f}'.format(total_partially_invoiced ) ) 
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""

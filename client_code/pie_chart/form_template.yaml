@@ -65,7 +65,12 @@ components:
     name: column_panel_5
     properties: {}
     type: ColumnPanel
-  - layout_properties: {grid_position: 'AUWKSY,FCMBPN'}
+  - components:
+    - layout_properties: {grid_position: 'BSPFOA,SKSWTP'}
+      name: plot_6
+      properties: {}
+      type: Plot
+    layout_properties: {grid_position: 'AUWKSY,FCMBPN'}
     name: column_panel_4
     properties: {}
     type: ColumnPanel
