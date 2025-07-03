@@ -81,7 +81,7 @@ def daily_by_stats():
   X = pd.DataFrame.from_dict(dicts)
   #======================Overall Totals======================================
   total_order_value = X['order_value'].sum()
-  print( 'Total value Order', total_order_value )
+  # print( 'Total value Order', total_order_value )
   overall_percentage_completion =  X['percent_complete'].mean()
   print( 'Overall Percent Complete', overall_percentage_completion )
   total_partially_invoiced = X['partially_invoiced_total'].sum()
@@ -116,19 +116,34 @@ def daily_by_stats():
   sum_of_in_progress = filtered_df['order_value'].sum() 
   count_of_in_progress = filtered_df['order_value'].count() 
   percentage_complete_in_progress  = filtered_df['percent_complete'].mean()
-  work_completed_in_progress= sum_of_in_progress * percentage_complete_in_progress/100
+  work_completed_in_progress= sum_of_in_progress * (percentage_complete_in_progress/100)
   work_to_do_in_progress = sum_of_in_progress  - work_completed_in_progress
   in_progress_total_partially_invoiced = filtered_df['partially_invoiced_total'].sum()
   
+ #====wait of Customer 
   filtered_df_wait = filtered_df[filtered_df['waiting_on'] == 'Customer']
   sum_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].sum()
-
+  count_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_no'].count()
+  percentage_complete_in_progress_waiting_on_customer   = filtered_df_wait['percent_complete'].mean()
+  work_completed_in_progress_waiting_on_customer = sum_of_waiting_in_progress_waiting_on_customer * (percentage_complete_in_progress_waiting_on_customer/100)
+  work_to_do_in_progress_in_progress_waiting_on_customer = sum_of_waiting_in_progress_waiting_on_customer  - work_completed_in_progress_waiting_on_customer
+  
+ #======Wait on 4S
   filtered_df_wait_4S = filtered_df[filtered_df['waiting_on'] == '4S']
   sum_of_waiting_in_progress_waiting_on_4S = filtered_df_wait_4S['order_value'].sum()  
- 
+  count_of_waiting_in_progress_waiting_on_4S = filtered_df_wait_4S['order_no'].count() 
+  percentage_complete_in_progress_waiting_on_4S  = filtered_df_wait['percent_complete'].mean()
+  work_completed_in_progress_waiting_on_4S= sum_of_waiting_in_progress_waiting_on_4S  * (percentage_complete_in_progress_waiting_on_4S/100)
+  work_to_do_in_progress_in_progress_waiting_on_4S = sum_of_waiting_in_progress_waiting_on_4S  - work_completed_in_progress_waiting_on_4S
+  
+   #======Wait on no status
   filtered_df_wait_none = filtered_df[filtered_df['waiting_on'] =='None']
   sum_of_waiting_in_progress_waiting_no_state = filtered_df_wait_none['order_value'].sum()
-  print('None Waiting State', filtered_df_wait_none[['order_no','project_name','stage']])
+  count_of_waiting_in_progress_waiting_no_state = filtered_df_wait_none['order_no'].count()
+  percentage_complete_in_progress_waiting_no_state  = filtered_df_wait_none['percent_complete'].mean() 
+  work_completed_in_progress_waiting_no_state= sum_of_waiting_in_progress_waiting_no_state  * (percentage_complete_in_progress_waiting_no_state/100)
+  work_to_do_in_progress_in_progress_waiting_no_state = sum_of_waiting_in_progress_waiting_no_state  - work_completed_in_progress_waiting_no_state
+
   print('================== Projects in progress Totals===================')
   print( 'Total Projects in Progress', sum_of_in_progress  )
   print('Total waiting on Customer',sum_of_waiting_in_progress_waiting_on_customer  )
@@ -136,6 +151,39 @@ def daily_by_stats():
   print('Total waiting no status ',sum_of_waiting_in_progress_waiting_no_state  ) 
   print('=============================================================') 
   
+  print('================== Projects in progress Counts===================')
+  print( 'Total count of Projects in Progress', count_of_in_progress   )
+  print('Total count waiting on Customer',count_of_waiting_in_progress_waiting_on_customer  )
+  print('Total count waiting on 4S',count_of_waiting_in_progress_waiting_on_4S ) 
+  print('Total count waiting no status ',count_of_waiting_in_progress_waiting_no_state  ) 
+  print('=============================================================') 
+
+  print('================== Projects in progress percent complete===================')
+  print( 'Average percent complete of Projects in Progress', percentage_complete_in_progress   )
+  print('Average percent complete waiting on Customer',percentage_complete_in_progress_waiting_on_customer  )
+  print('Average percent complete waiting on 4S',percentage_complete_in_progress_waiting_on_4S ) 
+  print('Average percent complete waiting no status ',percentage_complete_in_progress_waiting_no_state  ) 
+  print('=============================================================') 
+
+  print('================== Projects in progress work Completed===================')
+  print( 'Work complete of Projects in Progress', work_completed_in_progress   )
+  print('Work complete waiting on Customer',work_completed_in_progress_waiting_on_customer  )
+  print('Work Complete complete waiting on 4S',work_completed_in_progress_waiting_on_4S ) 
+  print('Work complete waiting no status ', work_completed_in_progress_waiting_no_state ) 
+  print('=============================================================') 
+
+  print('================== Projects in progress work To Do===================')
+  print( 'Work to do of Projects in Progress', work_to_do_in_progress )
+  print('Work to do waiting on Customer',work_to_do_in_progress_in_progress_waiting_on_customer   )
+  print('Work to do complete waiting on 4S',work_to_do_in_progress_in_progress_waiting_on_4S ) 
+  print('Work to do waiting no status ', work_to_do_in_progress_in_progress_waiting_no_state ) 
+  print('=============================================================')
+
+
+  
+ #=============================================================================
+  #===============================================================================
+  print('None Waiting State', filtered_df_wait_none[['order_no','project_name','stage']])
   print('in_progress_percentage_complete', percentage_complete_in_progress)
   print('in_progress_work_to_do', work_to_do_in_progress )
   print('in progress Total  Partialy Invoiced', in_progress_total_partially_invoiced  )
