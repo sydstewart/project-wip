@@ -105,6 +105,11 @@ def daily_by_stats():
   print('on_hold_work_to_do', work_to_do_on_hold )
   print('on hold Total  Partialy Invoiced', on_hold_total_partially_invoiced )
   print("========================================================")
+  #=======================Projects Waiting to Start ======================================
+  filtered_df = X[X['Stage Group'] == 'Project waiting to Start']
+  sum_of_onhold = filtered_df['order_value'].sum()
+  print('Total Projects Waiting to Start', sum_of_onhold )
+
   
   print('#========================Projects in Progress======================================')
   filtered_df = X[X['Stage Group'] == 'Project in Progress']
@@ -114,8 +119,23 @@ def daily_by_stats():
   work_completed_in_progress= sum_of_in_progress * percentage_complete_in_progress/100
   work_to_do_in_progress = sum_of_in_progress  - work_completed_in_progress
   in_progress_total_partially_invoiced = filtered_df['partially_invoiced_total'].sum()
+  
+  filtered_df_wait = filtered_df[filtered_df['waiting_on'] == 'Customer']
+  sum_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].sum()
 
+  filtered_df_wait_4S = filtered_df[filtered_df['waiting_on'] == '4S']
+  sum_of_waiting_in_progress_waiting_on_4S = filtered_df_wait_4S['order_value'].sum()  
+ 
+  filtered_df_wait_none = filtered_df[filtered_df['waiting_on'] =='None']
+  sum_of_waiting_in_progress_waiting_no_state = filtered_df_wait_none['order_value'].sum()
+  print('None Waiting State', filtered_df_wait_none[['order_no','project_name','stage']])
+  print('================== Projects in progress Totals===================')
   print( 'Total Projects in Progress', sum_of_in_progress  )
+  print('Total waiting on Customer',sum_of_waiting_in_progress_waiting_on_customer  )
+  print('Total waiting on 4S',sum_of_waiting_in_progress_waiting_on_4S  ) 
+  print('Total waiting no status ',sum_of_waiting_in_progress_waiting_no_state  ) 
+  print('=============================================================') 
+  
   print('in_progress_percentage_complete', percentage_complete_in_progress)
   print('in_progress_work_to_do', work_to_do_in_progress )
   print('in progress Total  Partialy Invoiced', in_progress_total_partially_invoiced  )
