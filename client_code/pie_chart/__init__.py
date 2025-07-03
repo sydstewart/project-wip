@@ -13,7 +13,7 @@ class pie_chart(pie_chartTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #=============================================================
-    piedata, fig, fig1, fig2, fig3, fig4, fig5, fig6 = anvil.server.call('piechart')
+    piedata, fig, fig1, fig2, fig3, fig4, fig5, fig6, fig7 = anvil.server.call('piechart')
     print('piedata', piedata)
     self.label_1.text = 'Created at ' + datetime.now().strftime('%d %B %Y %H:%M')
     #====================Order Value Pie ============================== 
@@ -46,12 +46,17 @@ class pie_chart(pie_chartTemplate):
     
     #====================Waiting In Progress Status by Count============================== 
     self.plot_6.figure =fig5
-    total_projects_In_Progress = piedata['In_Progress_Waiting_on_Customer_count'] + piedata['In_Progress_Waiting_on_4S_count']
+    total_projects_In_Progress = piedata['In_Progress_Waiting_on_Customer_count'] + piedata['In_Progress_Waiting_on_4S_count'] + piedata['In_Progress_Waiting_no_state_count']
     self.label_4.text = 'Project Count In Progress= ' + str('{:,.0f}'.format(total_projects_In_Progress ) ) 
     
     #====================Waiting In Progress Status by Order Value============================== 
     self.plot_7.figure =fig6
-    total_value_projects_In_Progress = piedata['In_Progress_Waiting_on_Customer_sum'] + piedata['In_Progress_Waiting_on_4S_sum']
+    total_value_projects_In_Progress = piedata['In_Progress_Waiting_on_Customer_sum'] + piedata['In_Progress_Waiting_on_4S_sum'] + piedata['In_Progress_Waiting_no_state_sum']
+    self.label_5.text = 'Project Order Value In Progress= ' + '£' + str('{:,.2f}'.format(total_value_projects_In_Progress))
+
+    #====================Waiting In Progress Status by To Do Value============================== 
+    self.plot_8.figure =fig7
+    total_value_projects_In_Progress = piedata['In_Progress_Waiting_on_Customer_sum'] + piedata['In_Progress_Waiting_on_4S_sum'] + piedata['In_Progress_Waiting_no_state_sum']
     self.label_5.text = 'Project Order Value In Progress= ' + '£' + str('{:,.2f}'.format(total_value_projects_In_Progress))
     
   def button_1_click(self, **event_args):

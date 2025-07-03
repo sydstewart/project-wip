@@ -211,10 +211,10 @@ def daily_by_stats():
   #=======================In Progress Waiting None ================================
   filtered_df_wait = filtered_df[filtered_df['waiting_on'].isnull()]
   print('Waiting Status',filtered_df_wait['waiting_on'])  
-  count_of_waiting_in_progress_waiting_no_state = filtered_df_wait['order_no'].count()
-  sum_of_waiting_in_progress_waiting_no_state = filtered_df_wait['order_value'].sum()
-  print('Total Order  Value of Projects In Progress waiting No State', sum_of_waiting_in_progress_waiting_no_state)
-  print('Count of Projects In Progress waiting No State', count_of_waiting_in_progress_waiting_no_state)
+  # count_of_waiting_in_progress_waiting_no_state = filtered_df_wait['order_no'].count()
+  # sum_of_waiting_in_progress_waiting_no_state = filtered_df_wait['order_value'].sum()
+  # print('Total Order  Value of Projects In Progress waiting No State', sum_of_waiting_in_progress_waiting_no_state)
+  # print('Count of Projects In Progress waiting No State', count_of_waiting_in_progress_waiting_no_state)
   print("======================================")
 #============================In Progress Waiting on 4S =====================================
  
@@ -258,7 +258,7 @@ def daily_by_stats():
   app_tables.stage_summary.add_row(Date_of_WIP = (today),  Sum_on_hold = round(float(sum_of_onhold),0), 
                                                            Sum_in_Progress = round(float(sum_of_in_progress ),0),
                                                            Sum_in_Waiting_to_Start = round(float(sum_of_waiting_to_start),0),
-                                                           Total_Value_of_Projects = round(float(total_value_of_projects),0),
+                                                           Total_Value_of_Projects = round(float(total_order_value),0),
                                    
                                                            In_Progress_Waiting_on_Customer_count = round(float(count_of_waiting_in_progress_waiting_on_customer),0),
                                                            In_Progress_Waiting_on_Customer_sum = round(float(sum_of_waiting_in_progress_waiting_on_customer),0),
@@ -270,6 +270,7 @@ def daily_by_stats():
                                    
                                                            In_Progress_Waiting_no_state_count = round(float(count_of_waiting_in_progress_waiting_no_state),0),
                                                            In_Progress_Waiting_no_state_sum   = round(float(sum_of_waiting_in_progress_waiting_no_state),0),
+                                                           In_Progress_Waiting_no_state_sum_work_to_do = round(float(work_to_do_in_progress_in_progress_waiting_no_state ),0),
                                    
                                                            Percent_Completion_On_Hold = round(float(on_hold_percentage_complete_on_hold),1),
                                                            Percent_Completion_in_Progress = round(float(percentage_complete_in_progress),1),

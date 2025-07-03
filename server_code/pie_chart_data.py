@@ -113,6 +113,20 @@ def piechart():
   fig6.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,
                      marker=dict(colors=colors6, line=dict(color='#000000', width=2)))
 
-  return dicts_pie, fig,fig1,fig2, fig3, fig4, fig5, fig6
+  #======================In Progress Waiting by To Do Valuet=======================================================
+  colors7= ['pink', 'mediumturquoise','yellow' ]
+  labels7 = ['Customer','4S','None']
+  values7 = [ dicts_pie['In_Progress_Waiting_on_Customer_sum_work_to_do'], dicts_pie['In_Progress_Waiting_on_4S_sum_work_to_do'],dicts_pie['In_Progress_Waiting_no_state_sum_work_to_do']]
+
+  fig7 = go.Figure(data=[go.Pie(labels=labels7, values=values7)])
+
+  fig7.update_layout(
+    title=dict(
+      text='In Progress Project To Do Status' + '<br>' + 'by Value' )) #+ '<br>' + 'created at ' + datetime.now().strftime('%d %B %Y %H:%M') )) # + '<br>'  + '<b> Total No. of projects =' 
+  #  + str(total_no_projects) + '<b>'   ))
+
+  fig7.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,
+                     marker=dict(colors=colors6, line=dict(color='#000000', width=2)))
+  return dicts_pie, fig,fig1,fig2, fig3, fig4, fig5, fig6, fig7
  
   
