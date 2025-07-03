@@ -56,8 +56,8 @@ class pie_chart(pie_chartTemplate):
 
     #====================Waiting In Progress Status by To Do Value============================== 
     self.plot_8.figure =fig7
-    total_value_projects_In_Progress = piedata['In_Progress_Waiting_on_Customer_sum'] + piedata['In_Progress_Waiting_on_4S_sum'] + piedata['In_Progress_Waiting_no_state_sum']
-    self.label_5.text = 'Project Order Value In Progress= ' + '£' + str('{:,.2f}'.format(total_value_projects_In_Progress))
+    total_to_do_In_Progress =  piedata['In_Progress_Waiting_on_Customer_sum_work_to_do'] + piedata['In_Progress_Waiting_on_4S_sum_work_to_do'] + piedata['In_Progress_Waiting_no_state_sum_work_to_do']
+    self.label_3.text = 'Total To do In Progress= ' + '£' + str('{:,.0f}'.format(total_to_do_In_Progress ))
     
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
