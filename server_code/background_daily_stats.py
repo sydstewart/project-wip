@@ -106,7 +106,7 @@ def daily_by_stats():
   print('on hold Total  Partialy Invoiced', on_hold_total_partially_invoiced )
   print("========================================================")
   
-  #========================Projects in Progress======================================
+  print('#========================Projects in Progress======================================')
   filtered_df = X[X['Stage Group'] == 'Project in Progress']
   sum_of_in_progress = filtered_df['order_value'].sum() 
   count_of_in_progress = filtered_df['order_value'].count() 
@@ -119,20 +119,25 @@ def daily_by_stats():
   print('in_progress_percentage_complete', percentage_complete_in_progress)
   print('in_progress_work_to_do', work_to_do_in_progress )
   print('in progress Total  Partialy Invoiced', in_progress_total_partially_invoiced  )
+  
   print("========================================================")
+  
   #=======================In Progress Waiting On Customer ================================
   filtered_df_wait = filtered_df[filtered_df['waiting_on'] == 'Customer']
-  sum_of_waiting_in_progress_waiting_on_customer = filtered_df['order_value'].sum() 
-  count_of_waiting_in_progress_waiting_on_customer = filtered_df['order_value'].count() 
-  percentage_complete_in_progress_waiting_on_customer   = filtered_df['percent_complete'].mean()
-  work_completed_in_progress_waiting_on_customer= (sum_of_waiting_in_progress_waiting_on_customer * percentage_complete_in_progress_waiting_on_customer)/100
+  sum_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].sum() 
+  count_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].count() 
+  percentage_complete_in_progress_waiting_on_customer   = filtered_df_wait['percent_complete'].mean()
+  work_completed_in_progress_waiting_on_customer = sum_of_waiting_in_progress_waiting_on_customer * (percentage_complete_in_progress_waiting_on_customer/100)
   work_to_do_in_progress_in_progress_waiting_on_customer = sum_of_waiting_in_progress_waiting_on_customer  - work_completed_in_progress_waiting_on_customer
   print('Waiting Status',filtered_df_wait['waiting_on'])  
   count_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_no'].count()
   sum_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].sum()
+  print('============Waiting on Customer=====================')
   print('Total Order  Value of Projects In Progress waiting on customer', sum_of_waiting_in_progress_waiting_on_customer )
-  print('Total Work to do Value of Projects In Progress waiting on customer', work_to_do_in_progress_in_progress_waiting_on_customer  )
+  print('Percent Completion of waiting on Customer', percentage_complete_in_progress_waiting_on_customer  )
   print('Total Work completed Value of Projects In Progress waiting on customer', work_completed_in_progress_waiting_on_customer  )
+  print('Total Work to do Value of Projects In Progress waiting on customer', work_to_do_in_progress_in_progress_waiting_on_customer  )
+  print("======================================")
   print('Count of Projects In Progress waiting on customer', count_of_waiting_in_progress_waiting_on_customer)
   print("======================================")
   #=======================In Progress Waiting None ================================
@@ -146,9 +151,9 @@ def daily_by_stats():
 #============================In Progress Waiting on 4S =====================================
  
   filtered_df_wait = filtered_df[filtered_df['waiting_on'].str.contains("4S")]
-  sum_of_waiting_in_progress_waiting_on_4S = filtered_df['order_value'].sum() 
-  count_of_waiting_in_progress_waiting_on_4S = filtered_df['order_no'].count() 
-  percentage_complete_in_progress_waiting_on_4S  = filtered_df['percent_complete'].mean()
+  sum_of_waiting_in_progress_waiting_on_4S = filtered_df_wait['order_value'].sum() 
+  count_of_waiting_in_progress_waiting_on_4S = filtered_df_wait['order_no'].count() 
+  percentage_complete_in_progress_waiting_on_4S  = filtered_df_wait['percent_complete'].mean()
   work_completed_in_progress_waiting_on_4S= (sum_of_waiting_in_progress_waiting_on_4S  * percentage_complete_in_progress_waiting_on_4S)/100
   work_to_do_in_progress_in_progress_waiting_on_4S = sum_of_waiting_in_progress_waiting_on_4S  - work_completed_in_progress_waiting_on_4S
   # print('Waiting Status',filtered_df_wait['waiting_on'])  
