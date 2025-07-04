@@ -6,7 +6,7 @@ components:
     type: Label
   - components:
     - event_bindings: {click: plot_1_click}
-      layout_properties: {grid_position: 'JRHATL,IXDJBG'}
+      layout_properties: {full_width_row: true, grid_position: 'JRHATL,IXDJBG'}
       name: plot_1
       properties: {height: 423.33331298828125}
       type: Plot
@@ -16,7 +16,7 @@ components:
       type: Label
     layout_properties: {full_width_row: true, grid_position: 'RHCLRR,SMXQWC MUQSQF,OKXDQQ'}
     name: column_panel_1
-    properties: {col_widths: '{}'}
+    properties: {col_widths: '{"IXDJBG":60}'}
     type: ColumnPanel
   - layout_properties: {grid_position: 'RHCLRR,SMXQWC FMELBH,JZSMYK'}
     name: plot_7
@@ -51,7 +51,7 @@ components:
       name: label_4
       properties: {align: center, bold: true}
       type: Label
-    - layout_properties: {grid_position: 'WTZABM,JYOTHH CWVWPC,BXPEWC'}
+    - layout_properties: {grid_position: 'WTZABM,JYOTHH UARPGE,TWNJEH'}
       name: plot_10
       properties: {}
       type: Plot
@@ -77,18 +77,18 @@ components:
       properties: {align: center, bold: true}
       type: Label
     - components:
-      - layout_properties: {grid_position: 'XWRZPV,KFDPZM'}
+      - layout_properties: {grid_position: 'XWRZPV,KFDPZM JSMTRQ,FPQNAG'}
         name: plot_4
         properties: {height: 416.6666564941406}
         type: Plot
+      - layout_properties: {grid_position: 'XWRZPV,KFDPZM NXAXVW,LVBJPH'}
+        name: label_12
+        properties: {align: center, bold: true}
+        type: Label
       layout_properties: {grid_position: 'WTZABM,VVIIQV XHAORZ,IUXDWV'}
       name: column_panel_3
-      properties: {}
+      properties: {col_widths: '{"KFDPZM":30,"OZGMOS":30,"FPQNAG":60}'}
       type: ColumnPanel
-    - layout_properties: {grid_position: 'WTZABM,VVIIQV ZNFVQV,WKONAY'}
-      name: label_12
-      properties: {align: center, bold: true}
-      type: Label
     - layout_properties: {grid_position: 'WTZABM,VVIIQV HAWXNJ,EMUCKW'}
       name: plot_8
       properties: {height: 398}
@@ -97,13 +97,13 @@ components:
       name: label_3
       properties: {align: center, bold: true}
       type: Label
-    layout_properties: {full_width_row: true, grid_position: 'RHCLRR,AYRZSG'}
+    layout_properties: {grid_position: 'RHCLRR,QCCDQX'}
     name: column_panel_2
     properties: {col_widths: '{"JYOTHH":20,"VVYINO":20,"VVIIQV":20,"UNRRQG":15,"PLUMVO":10}'}
     type: ColumnPanel
   layout_properties: {slot: default}
   name: content_panel
-  properties: {col_widths: '{"SMXQWC":15,"AYRZSG":45}'}
+  properties: {col_widths: '{"SMXQWC":5}'}
   type: ColumnPanel
 - layout_properties: {slot: nav-right}
   name: navbar_links
