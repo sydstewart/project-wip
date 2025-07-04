@@ -13,7 +13,7 @@ class pie_chart(pie_chartTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #=============================================================
-    piedata, fig, fig1, fig2, fig3, fig4, fig5, fig6, fig7 = anvil.server.call('piechart')
+    piedata, fig, fig1, fig2, fig3, fig4, fig5, fig6, fig7, fig8 = anvil.server.call('piechart')
     print('piedata', piedata)
     self.label_1.text = 'Created at ' + datetime.now().strftime('%d %B %Y %H:%M')
     #====================Order Value Pie ============================== 
@@ -58,6 +58,11 @@ class pie_chart(pie_chartTemplate):
     self.plot_8.figure =fig7
     total_to_do_In_Progress =  piedata['In_Progress_Waiting_on_Customer_sum_work_to_do'] + piedata['In_Progress_Waiting_on_4S_sum_work_to_do'] + piedata['In_Progress_Waiting_no_state_sum_work_to_do']
     self.label_3.text = 'Total To do In Progress= ' + '£' + str('{:,.0f}'.format(total_to_do_In_Progress ))
+
+    #====================Waiting In Progress Percent Complete============================= 
+    self.plot_9.figure =fig8
+    total_waiting_percent_complete =  piedata['Percent_Completion_in_Progress']  
+    self.label_6.text = 'Overall Waiting Percent Completion= ' + str('{:,.01f}'.format(total_waiting_percent_complete ) +'%')
     
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
