@@ -1,6 +1,6 @@
 components:
 - components:
-  - layout_properties: {full_width_row: true, grid_position: 'IGWMAO,QNRPFH WFMLZQ,LXZPVB'}
+  - layout_properties: {full_width_row: true, grid_position: 'WFMLZQ,LXZPVB'}
     name: label_1
     properties: {align: center, bold: true}
     type: Label
@@ -10,14 +10,30 @@ components:
       name: plot_1
       properties: {height: 423.33331298828125}
       type: Plot
-    - layout_properties: {grid_position: 'PGUDFR,EKWNHE'}
+    - layout_properties: {grid_position: 'CKDKTL,YUMQCR'}
       name: label_9
       properties: {align: center, bold: true}
       type: Label
-    layout_properties: {full_width_row: true, grid_position: 'IGWMAO,QNRPFH RHCLRR,SMXQWC'}
+    layout_properties: {full_width_row: true, grid_position: 'RHCLRR,SMXQWC MUQSQF,OKXDQQ'}
     name: column_panel_1
-    properties: {col_widths: '{"PDJLGZ":15,"EKWNHE":25}'}
+    properties: {col_widths: '{}'}
     type: ColumnPanel
+  - layout_properties: {grid_position: 'RHCLRR,SMXQWC ATISPE,CRHVKK'}
+    name: plot_9
+    properties: {height: 404.90911865234375}
+    type: Plot
+  - layout_properties: {grid_position: 'RHCLRR,SMXQWC FEQUJZ,DYZRVP'}
+    name: label_6
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'RHCLRR,SMXQWC IFRQUS,MBIPTL'}
+    name: plot_5
+    properties: {height: '399.45458984375'}
+    type: Plot
+  - layout_properties: {grid_position: 'RHCLRR,SMXQWC ETWGOW,ZSESZR'}
+    name: label_2
+    properties: {align: center, bold: true}
+    type: Label
   - components:
     - layout_properties: {full_width_row: true, grid_position: 'WTZABM,JYOTHH WKLMOS,UNPDBN'}
       name: plot_2
@@ -27,6 +43,14 @@ components:
       name: label_10
       properties: {align: center, bold: true}
       type: Label
+    - layout_properties: {grid_position: 'WTZABM,JYOTHH FXXDYO,ADGIQT'}
+      name: plot_6
+      properties: {height: 399.39996337890625}
+      type: Plot
+    - layout_properties: {grid_position: 'WTZABM,JYOTHH INNOIU,WLRGQV'}
+      name: label_4
+      properties: {align: center, bold: true}
+      type: Label
     - event_bindings: {click: plot_3_click}
       layout_properties: {grid_position: 'WTZABM,VVYINO ZJTHPI,XLSGMD'}
       name: plot_3
@@ -34,6 +58,14 @@ components:
       type: Plot
     - layout_properties: {grid_position: 'WTZABM,VVYINO IJSYXL,PLUMVO'}
       name: label_11
+      properties: {align: center, bold: true}
+      type: Label
+    - layout_properties: {grid_position: 'WTZABM,VVYINO ADLXNG,MOBINA'}
+      name: plot_7
+      properties: {height: 398.39996337890625}
+      type: Plot
+    - layout_properties: {grid_position: 'WTZABM,VVYINO RQQFAH,XJCRVI'}
+      name: label_5
       properties: {align: center, bold: true}
       type: Label
     - components:
@@ -49,61 +81,17 @@ components:
       name: label_12
       properties: {align: center, bold: true}
       type: Label
-    layout_properties: {full_width_row: true, grid_position: 'IGWMAO,QNRPFH RHCLRR,AYRZSG'}
-    name: column_panel_2
-    properties: {col_widths: '{"JYOTHH":20,"VVYINO":20,"VVIIQV":20,"VWCGFT":20,"UNRRQG":15,"PLUMVO":10}'}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {grid_position: 'SQVEXO,GOVBAK'}
-      name: plot_5
-      properties: {height: '399.45458984375'}
-      type: Plot
-    - layout_properties: {full_width_row: true, grid_position: 'JRZZHG,XZEOIX'}
-      name: label_2
-      properties: {align: center, bold: true}
-      type: Label
-    layout_properties: {full_width_row: true, grid_position: 'IGWMAO,QNRPFH AUWKSY,NHQPAF'}
-    name: column_panel_5
-    properties: {}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {full_width_row: true, grid_position: 'QHJSKJ,ZJPOOA'}
-      name: plot_6
-      properties: {height: 399.39996337890625}
-      type: Plot
-    - layout_properties: {grid_position: 'SBZZHF,BGQPXV'}
-      name: label_4
-      properties: {align: center, bold: true}
-      type: Label
-    layout_properties: {grid_position: 'IGWMAO,QNRPFH AUWKSY,FCMBPN'}
-    name: column_panel_4
-    properties: {}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {full_width_row: true, grid_position: 'ZDPOTS,XPXGFU'}
-      name: plot_7
-      properties: {height: 398.39996337890625}
-      type: Plot
-    - layout_properties: {full_width_row: true, grid_position: 'RJHZQQ,SCUQWG'}
-      name: label_5
-      properties: {align: center, bold: true}
-      type: Label
-    layout_properties: {grid_position: 'IGWMAO,QNRPFH AUWKSY,QMYQKD'}
-    name: column_panel_6
-    properties: {}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {full_width_row: true, grid_position: 'RBKJDB,EXCIJY'}
+    - layout_properties: {grid_position: 'WTZABM,VVIIQV HAWXNJ,EMUCKW'}
       name: plot_8
       properties: {height: 398}
       type: Plot
-    - layout_properties: {full_width_row: true, grid_position: 'YKXALP,NGDMXV'}
+    - layout_properties: {grid_position: 'WTZABM,VVIIQV LVOXBI,IWAEPT'}
       name: label_3
       properties: {align: center, bold: true}
       type: Label
-    layout_properties: {grid_position: 'IGWMAO,QNRPFH AUWKSY,ZQUQTZ'}
-    name: column_panel_8
-    properties: {}
+    layout_properties: {full_width_row: true, grid_position: 'RHCLRR,AYRZSG'}
+    name: column_panel_2
+    properties: {col_widths: '{"JYOTHH":20,"VVYINO":20,"VVIIQV":20,"UNRRQG":15,"PLUMVO":10}'}
     type: ColumnPanel
   layout_properties: {slot: default}
   name: content_panel
