@@ -270,7 +270,7 @@ db_schema:
       name: In_Progress_Waiting_on_state_percent_complete
       type: number
     - admin_ui: {order: 34, width: 200}
-      name: 'In_Progress_Waiting_no_state_work_complete '
+      name: In_Progress_Waiting_no_state_work_complete
       type: number
     - admin_ui: {order: 35, width: 200}
       name: In_Progress_Waiting_on_4S_work_complete

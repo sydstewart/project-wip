@@ -141,12 +141,12 @@ def piechart():
   #  + str(total_no_projects) + '<b>'   ))
 
   fig8.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,
-                     marker=dict(colors=colors6, line=dict(color='#000000', width=2)))
+                     marker=dict(colors=colors8, line=dict(color='#000000', width=2)))
 
   #======================In Progress Waiting Work Complete=======================================================
   colors9= ['pink', 'mediumturquoise','yellow' ]
   labels9 = ['Customer','4S','None']
-  values9 = [ dicts_pie['In_Progress_Waiting_on_Customer_work_complete'], dicts_pie['In_Progress_Waiting_on_4S_work_complete'],dicts_pie['In_Progress_Waiting_no_state_work_complete ']]
+  values9 = [ dicts_pie['In_Progress_Waiting_on_Customer_work_complete'], dicts_pie['In_Progress_Waiting_on_4S_work_complete'],dicts_pie['In_Progress_Waiting_no_state_work_complete']]
 
   fig9 = go.Figure(data=[go.Pie(labels=labels9, values=values9)])
 
@@ -156,7 +156,7 @@ def piechart():
   #  + str(total_no_projects) + '<b>'   ))
 
   fig9.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,
-                     marker=dict(colors=colors6, line=dict(color='#000000', width=2)))
+                     marker=dict(colors=colors9, line=dict(color='#000000', width=2)))
   
   return dicts_pie, fig,fig1,fig2, fig3, fig4, fig5, fig6, fig7,fig8, fig9
  
