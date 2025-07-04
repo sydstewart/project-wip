@@ -266,16 +266,19 @@ def daily_by_stats():
                                                            In_Progress_Waiting_on_Customer_sum = round(float(sum_of_waiting_in_progress_waiting_on_customer),0),
                                                            In_Progress_Waiting_on_Customer_sum_work_to_do = round(float(work_to_do_in_progress_in_progress_waiting_on_customer ),0),
                                                            In_Progress_Waiting_on_Customer_percent_complete = round(float(percentage_complete_in_progress_waiting_on_customer),1),
-                                    
+                                                           In_Progress_Waiting_on_Customer_work_complete = round(float(work_completed_in_progress_waiting_on_customer),1),
+                                   
                                                            In_Progress_Waiting_on_4S_count = round(float(count_of_waiting_in_progress_waiting_on_4S),0),
                                                            In_Progress_Waiting_on_4S_sum = round(float(sum_of_waiting_in_progress_waiting_on_4S),0),
                                                            In_Progress_Waiting_on_4S_sum_work_to_do = round(float(work_to_do_in_progress_in_progress_waiting_on_4S ),0),
                                                            In_Progress_Waiting_on_4S_percent_complete = round(float(percentage_complete_in_progress_waiting_on_4S),1),
+                                                           In_Progress_Waiting_on_4S_work_complete = round(float(work_completed_in_progress_waiting_on_4S),1), 
                                    
                                                            In_Progress_Waiting_no_state_count = round(float(count_of_waiting_in_progress_waiting_no_state),0),
                                                            In_Progress_Waiting_no_state_sum   = round(float(sum_of_waiting_in_progress_waiting_no_state),0),
                                                            In_Progress_Waiting_no_state_sum_work_to_do = round(float(work_to_do_in_progress_in_progress_waiting_no_state),0),
                                                            In_Progress_Waiting_on_state_percent_complete = round(float( percentage_complete_in_progress_waiting_no_state),1),
+                                                           In_Progress_Waiting_no_state_work_complete  = round(float(work_completed_in_progress_waiting_no_state),1), 
                                    
                                                            Percent_Completion_On_Hold = round(float(on_hold_percentage_complete_on_hold),1),
                                                            Percent_Completion_in_Progress = round(float(percentage_complete_in_progress),1),
@@ -296,4 +299,3 @@ def daily_by_stats():
                                                            Count_in_Progress = count_of_in_progress,
                                                            Count_of_waiting_to_start= count_of_waiting_to_start,
                                                            Total_Project_Count = total_project_count)
-  

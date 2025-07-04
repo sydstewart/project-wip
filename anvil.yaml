@@ -269,6 +269,15 @@ db_schema:
     - admin_ui: {order: 33, width: 200}
       name: In_Progress_Waiting_on_state_percent_complete
       type: number
+    - admin_ui: {order: 34, width: 200}
+      name: 'In_Progress_Waiting_no_state_work_complete '
+      type: number
+    - admin_ui: {order: 35, width: 200}
+      name: In_Progress_Waiting_on_4S_work_complete
+      type: number
+    - admin_ui: {order: 36, width: 200}
+      name: In_Progress_Waiting_on_Customer_work_complete
+      type: number
     server: full
     title: stage_summary
   stage_translate:
