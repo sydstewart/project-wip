@@ -7,7 +7,16 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime, time , date , timedelta
+from anvil_extras import navigation
+# SPDX-License-Identifier: MIT
+#
+# Copyright (c) 2021 The Anvil Extras project team members listed at
+# https://github.com/anvilistas/anvil-extras/graphs/contributors
+#
+# Derived from the Anvil Extras Demo published at https://github.com/anvilistas/anvil-extras
 
+
+@navigation.register(name="Run_Chart", title="Run Charts")
 class Run_Chart(Run_ChartTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
