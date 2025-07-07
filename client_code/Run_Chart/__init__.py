@@ -16,7 +16,7 @@ from anvil_extras import navigation
 # Derived from the Anvil Extras Demo published at https://github.com/anvilistas/anvil-extras
 
 
-@navigation.register(name="Run_Chart", title="Run Charts")
+@navigation.register(name="Run_Chart", title="Run Chart")
 class Run_Chart(Run_ChartTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.

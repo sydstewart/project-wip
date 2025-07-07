@@ -1,0 +1,11 @@
+components:
+- layout_properties: {grid_position: 'CRBQKY,HBDGVG'}
+  name: switch_1
+  properties: {}
+  type: form:C6ZZPAPN4YYF5NVJ:Switch
+- layout_properties: {grid_position: 'ZFIYHA,DIXOND'}
+  name: slider_1
+  properties: {}
+  type: form:C6ZZPAPN4YYF5NVJ:Slider
+container: {type: ColumnPanel}
+is_package: true

@@ -1,0 +1,12 @@
+components:
+- components:
+  - layout_properties: {grid_position: 'IJVPDW,WNYWXL'}
+    name: switch_1
+    properties: {}
+    type: form:C6ZZPAPN4YYF5NVJ:Switch
+  layout_properties: {grid_position: 'JKFORZ,VNBWQG'}
+  name: content_panel
+  properties: {}
+  type: ColumnPanel
+container: {type: ColumnPanel}
+is_package: true
