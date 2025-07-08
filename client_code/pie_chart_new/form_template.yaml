@@ -1,0 +1,48 @@
+components:
+- components:
+  - layout_properties: {grid_position: 'ZGLPCA,JPQTLY'}
+    name: label_1
+    properties: {align: center, bold: true}
+    type: Label
+  - components:
+    - event_bindings: {click: plot_1_click}
+      layout_properties: {full_width_row: true, grid_position: 'JRHATL,IXDJBG'}
+      name: plot_1
+      properties: {height: 416.33331298828125}
+      type: Plot
+    - layout_properties: {grid_position: 'CKDKTL,YUMQCR'}
+      name: label_9
+      properties: {align: center, bold: true}
+      type: Label
+    - layout_properties: {grid_position: 'GBOQRL,YCRYLX'}
+      name: plot_2
+      properties: {}
+      type: Plot
+    - layout_properties: {grid_position: 'KWABBZ,DNPXSJ'}
+      name: label_11
+      properties: {align: center, bold: true}
+      type: Label
+    layout_properties: {full_width_row: true, grid_position: 'RHCLRR,SMXQWC MUQSQF,OKXDQQ'}
+    name: column_panel_1
+    properties: {col_widths: '{"IXDJBG":60}'}
+    type: ColumnPanel
+  - layout_properties: {grid_position: 'RHCLRR,SMXQWC FMELBH,JZSMYK'}
+    name: plot_7
+    properties: {height: 365.111083984375}
+    type: Plot
+  - layout_properties: {grid_position: 'RHCLRR,SMXQWC OXEVQN,PFMEBH'}
+    name: label_5
+    properties: {align: center, bold: true}
+    type: Label
+  layout_properties: {slot: default}
+  name: content_panel
+  properties: {col_widths: '{"SMXQWC":23,"QCCDQX":24,"SDNUBK":46}'}
+  type: ColumnPanel
+- layout_properties: {slot: nav-right}
+  name: navbar_links
+  properties: {}
+  type: FlowPanel
+container:
+  properties: {html: '@theme:standard-page.html'}
+  type: HtmlTemplate
+is_package: true

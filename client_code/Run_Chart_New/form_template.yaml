@@ -1,0 +1,20 @@
+components:
+- layout_properties: {full_width_row: true, grid_position: 'WEJGAF,VIRIWI'}
+  name: label_1
+  properties: {align: right, bold: true, text: Start Date}
+  type: Label
+- event_bindings: {change: start_date_picker_change}
+  layout_properties: {full_width_row: true, grid_position: 'WEJGAF,IEULZA'}
+  name: start_date_picker
+  properties: {format: YYYY-MM-DD, min_date: '2024-07-17'}
+  type: DatePicker
+- layout_properties: {full_width_row: true, grid_position: 'WEJGAF,ONDGTX'}
+  name: label_3
+  properties: {}
+  type: Label
+- layout_properties: {full_width_row: true, grid_position: ''}
+  name: plot_1
+  properties: {height: 597.111083984375}
+  type: Plot
+container: {type: ColumnPanel}
+is_package: true
