@@ -14,7 +14,7 @@ from .. import Sydney
 from .. import Sheena
 # navigation.set_mode("classic")
 menu = [
-  dict(text="Pie Charts Main Parameters", target="pie_charts_new", icon="fa:wrench"),
+  dict(text="Pie Charts", target="pie_charts_new", icon="fa:wrench"),
   dict(text="Run Chart", target="Run_Chart_New", icon="fa:link"), 
   # dict(text="Sydney", target="Sydney", icon="fa:comments-o"),
   # dict(text="Sheena", target="Sheena", icon="fa:comments-o"),
@@ -30,4 +30,4 @@ class New_Home_Menu(New_Home_MenuTemplate):
 
   def form_show(self, **event_args):
       """This method is called when the HTML panel is shown on the screen"""
-      navigation.go_to('Run_Chart_New')
+      navigation.go_to('pie_charts_new')

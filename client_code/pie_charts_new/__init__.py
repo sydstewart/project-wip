@@ -24,7 +24,7 @@ class pie_charts_new(pie_charts_newTemplate):
     #=============================================================
     piedata, fig, fig1, fig2, fig3, fig4, fig5, fig6, fig7, fig8, fig9= anvil.server.call('piechart')
     print('piedata', piedata)
-    self.label_1.text = 'Created at ' + datetime.now().strftime('%d %B %Y %H:%M')
+    self.label_1.text = 'Ten Pie Charts indicating Implementation Project Status Created at ' + datetime.now().strftime('%d %B %Y %H:%M')
     #====================Order Value Pie ============================== 
     self.plot_1.figure =fig
     # Any code you write here will run before the form opens. 
@@ -48,35 +48,35 @@ class pie_charts_new(pie_charts_newTemplate):
     self.label_12.text = 'Total No. of projects = ' + str(total_no_projects)  
 
 
-    # #====================Partially Invoiced ============================== 
-    # self.plot_5.figure =fig4
-    # total_partially_invoiced = piedata['Total_Partially_Invoiced']  
-    # self.label_2.text = 'Total Partially Invoiced = ' + '£' + str('{:,.2f}'.format(total_partially_invoiced ) ) 
+    #====================Partially Invoiced ============================== 
+    self.plot_10.figure =fig4
+    total_partially_invoiced = piedata['Total_Partially_Invoiced']  
+    self.label_7.text = 'Total Partially Invoiced = ' + '£' + str('{:,.2f}'.format(total_partially_invoiced ) ) 
 
-    # #====================Waiting In Progress Status by Count============================== 
-    # self.plot_6.figure =fig5
-    # total_projects_In_Progress = piedata['In_Progress_Waiting_on_Customer_count'] + piedata['In_Progress_Waiting_on_4S_count'] + piedata['In_Progress_Waiting_no_state_count']
-    # self.label_4.text = 'Project Count In Progress= ' + str('{:,.0f}'.format(total_projects_In_Progress ) ) 
+    #====================Waiting In Progress Status by Count============================== 
+    self.plot_5.figure =fig5
+    total_projects_In_Progress = piedata['In_Progress_Waiting_on_Customer_count'] + piedata['In_Progress_Waiting_on_4S_count'] + piedata['In_Progress_Waiting_no_state_count']
+    self.label_5.text = 'Project Count In Progress= ' + str('{:,.0f}'.format(total_projects_In_Progress ) ) 
 
-    # #====================Waiting In Progress Status by Order Value============================== 
-    # self.plot_7.figure =fig6
-    # total_value_projects_In_Progress = piedata['In_Progress_Waiting_on_Customer_sum'] + piedata['In_Progress_Waiting_on_4S_sum'] + piedata['In_Progress_Waiting_no_state_sum']
-    # self.label_5.text = 'Project Order Value In Progress= ' + '£' + str('{:,.2f}'.format(total_value_projects_In_Progress))
+    #====================Waiting In Progress Status by Order Value============================== 
+    self.plot_6.figure =fig6
+    total_value_projects_In_Progress = piedata['In_Progress_Waiting_on_Customer_sum'] + piedata['In_Progress_Waiting_on_4S_sum'] + piedata['In_Progress_Waiting_no_state_sum']
+    self.label_4.text = 'Project Order Value In Progress= ' + '£' + str('{:,.2f}'.format(total_value_projects_In_Progress))
 
-    # #====================Waiting In Progress Status by To Do Value============================== 
-    # self.plot_8.figure =fig7
-    # total_to_do_In_Progress =  piedata['In_Progress_Waiting_on_Customer_sum_work_to_do'] + piedata['In_Progress_Waiting_on_4S_sum_work_to_do'] + piedata['In_Progress_Waiting_no_state_sum_work_to_do']
-    # self.label_3.text = 'Total To do In Progress= ' + '£' + str('{:,.0f}'.format(total_to_do_In_Progress ))
+    #====================Waiting In Progress Status by To Do Value============================== 
+    self.plot_7.figure =fig7
+    total_to_do_In_Progress =  piedata['In_Progress_Waiting_on_Customer_sum_work_to_do'] + piedata['In_Progress_Waiting_on_4S_sum_work_to_do'] + piedata['In_Progress_Waiting_no_state_sum_work_to_do']
+    self.label_2.text = 'Total To do In Progress= ' + '£' + str('{:,.0f}'.format(total_to_do_In_Progress ))
 
-    # #====================Waiting In Progress Percent Complete============================= 
-    # self.plot_9.figure =fig8
-    # total_waiting_percent_complete =  piedata['Percent_Completion_in_Progress']  
-    # self.label_6.text = 'Overall Waiting Percent Completion= ' + str('{:,.01f}'.format(total_waiting_percent_complete ) +'%')
+    #====================Waiting In Progress Percent Complete============================= 
+    self.plot_9.figure =fig8
+    total_waiting_percent_complete =  piedata['Percent_Completion_in_Progress']  
+    self.label_6.text = 'Overall Waiting Percent Completion= ' + str('{:,.01f}'.format(total_waiting_percent_complete ) +'%')
 
-    # #====================Waiting In Progress Work Complete============================= 
-    # self.plot_10.figure =fig9
-    # total_waiting_complete = piedata['In_Progress_Waiting_on_Customer_work_complete'] + piedata['In_Progress_Waiting_on_4S_work_complete'] + piedata['In_Progress_Waiting_no_state_work_complete']  
-    # self.label_7.text = 'Overall Waiting Work Complete= ' + '£' + str('{:,.01f}'.format(total_waiting_complete))
+    #====================Waiting In Progress Work Complete============================= 
+    self.plot_8.figure =fig9
+    total_waiting_complete = piedata['In_Progress_Waiting_on_Customer_work_complete'] + piedata['In_Progress_Waiting_on_4S_work_complete'] + piedata['In_Progress_Waiting_no_state_work_complete']  
+    self.label_3.text = 'Overall Waiting Work Complete= ' + '£' + str('{:,.01f}'.format(total_waiting_complete))
 
   # def button_1_click(self, **event_args):
   #   """This method is called when the button is clicked"""
