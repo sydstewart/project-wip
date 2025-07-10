@@ -1,15 +1,19 @@
 components:
-- layout_properties: {slot: default}
+- data_bindings:
+  - {code: 'self.item['''']', property: spacing, writeback: false}
+  layout_properties: {slot: default}
   name: content_panel
-  properties: {}
+  properties: {col_spacing: none}
   type: ColumnPanel
 - layout_properties: {slot: nav-right}
   name: navbar_links
   properties: {}
   type: FlowPanel
-- layout_properties: {slot: left-nav}
+- data_bindings:
+  - {code: 'self.item['''']', property: spacing, writeback: false}
+  layout_properties: {slot: left-nav}
   name: menu_panel
-  properties: {}
+  properties: {col_spacing: none}
   type: ColumnPanel
 container:
   event_bindings: {show: form_show}

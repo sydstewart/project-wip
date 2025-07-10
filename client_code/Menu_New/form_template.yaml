@@ -9,6 +9,10 @@ components:
   type: ColumnPanel
 container:
   event_bindings: {show: form_show}
-  properties: {col_widths: '{"UBHTWE":10,"CFQKSD":50}'}
+  properties:
+    col_spacing: none
+    col_widths: '{"UBHTWE":5,"CFQKSD":55}'
+    spacing:
+      padding: [null, null, null, '20']
   type: ColumnPanel
 is_package: true
