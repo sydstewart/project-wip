@@ -1,7 +1,7 @@
 components:
 - layout_properties: {full_width_row: true, grid_position: 'WEJGAF,VIRIWI'}
   name: label_1
-  properties: {align: right, bold: true, text: Start Date}
+  properties: {align: center, bold: true, text: Start Date}
   type: Label
 - event_bindings: {change: start_date_picker_change}
   layout_properties: {full_width_row: true, grid_position: 'WEJGAF,IEULZA'}
