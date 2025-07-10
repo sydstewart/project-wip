@@ -28,7 +28,8 @@ class New_Home_Menu(New_Home_MenuTemplate):
     # Set Form properties and Data Bindings.
     navigation.build_menu(self.menu_panel, menu)
     self.init_components(**properties)
-
+    
+    
   def form_show(self, **event_args):
       """This method is called when the HTML panel is shown on the screen"""
       navigation.go_to('pie_charts_new')

@@ -21,6 +21,7 @@ class Run_Chart_New(Run_Chart_NewTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+
     self.start_date_picker.date = date(year= 2024, month = 7, day =17)
     fig = anvil.server.call('work_to_do_chart', self.start_date_picker.date)
 
