@@ -3,7 +3,7 @@ components:
   - {code: 'self.item['''']', property: spacing, writeback: false}
   layout_properties: {slot: default}
   name: content_panel
-  properties: {col_spacing: none}
+  properties: {background: 'theme:Gray 300', col_spacing: none}
   type: ColumnPanel
 - layout_properties: {slot: nav-right}
   name: navbar_links
