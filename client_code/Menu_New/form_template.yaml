@@ -1,0 +1,14 @@
+components:
+- layout_properties: {full_width_row: true, grid_position: 'DALZJW,UBHTWE'}
+  name: menu_panel
+  properties: {}
+  type: ColumnPanel
+- layout_properties: {grid_position: 'DALZJW,CFQKSD'}
+  name: content_panel
+  properties: {}
+  type: ColumnPanel
+container:
+  event_bindings: {show: form_show}
+  properties: {col_widths: '{"UBHTWE":10,"CFQKSD":50}'}
+  type: ColumnPanel
+is_package: true

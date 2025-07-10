@@ -16,5 +16,7 @@ components:
   name: plot_1
   properties: {height: 597.111083984375}
   type: Plot
-container: {type: ColumnPanel}
+container:
+  properties: {col_spacing: none}
+  type: ColumnPanel
 is_package: true

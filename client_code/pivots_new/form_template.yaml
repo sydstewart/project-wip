@@ -1,0 +1,22 @@
+components:
+- layout_properties: {full_width_row: true, grid_position: 'ENEVLQ,FWERVL'}
+  name: label_1
+  properties: {bold: true, font_size: 20, text: Projects in Progress Pivot table}
+  type: Label
+- data_bindings: []
+  layout_properties: {full_width_row: true, grid_position: 'TQGGSD,INJRBT'}
+  name: pivot_1
+  properties:
+    aggregator: Average
+    columns: []
+    rows: [order_no, project_name, percent_complete, order_value_formated, partially_invoiced_total_formated]
+    values: [percent_complete]
+  type: form:C6ZZPAPN4YYF5NVJ:Pivot
+container:
+  properties:
+    col_spacing: none
+    spacing:
+      margin: [null, null, null, null]
+      padding: [null, null, null, 0]
+  type: ColumnPanel
+is_package: true

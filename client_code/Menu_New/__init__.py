@@ -1,4 +1,4 @@
-from ._anvil_designer import New_Home_MenuTemplate
+from ._anvil_designer import Menu_NewTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -23,12 +23,12 @@ menu = [
   # # dict(text="Local Storage", target="storage", icon="fa:floppy-o"),
 ]
 
-class New_Home_Menu(New_Home_MenuTemplate):
+class Menu_New(Menu_NewTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     navigation.build_menu(self.menu_panel, menu)
     self.init_components(**properties)
 
   def form_show(self, **event_args):
-      """This method is called when the HTML panel is shown on the screen"""
-      navigation.go_to('pie_charts_new')
+    """This method is called when the HTML panel is shown on the screen"""
+    navigation.go_to('pie_charts_new')
