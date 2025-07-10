@@ -20,7 +20,16 @@ class projects_in_progress_new(projects_in_progress_newTemplate):
     dicts, dictspip, Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
     
     self.repeating_panel_1.items = dictspip
-    self.repeating_panel_1.items.append({'foo':'baz','message':'Error!'})
+    order_total = (sum(item['order_value'] 
+                               for item in self.repeating_panel_1.items))
+    order_total= str('£' + str(round(order_total,0)))
+
+    days_elapsed_sum = (sum(item['days_elapsed'] 
+                       for item in self.repeating_panel_1.items))
+    days_elapsed_average= (round(days_elapsed_sum))/len(self.repeating_panel_1.items)
+    days_elapsed_average= str(round(days_elapsed_average)) 
+    
+    self.repeating_panel_1.items.append({'order_value_formated': order_total, 'days_elapsed':'<b>' +days_elapsed_average + '</b>' })
     self.repeating_panel_1.items = self.repeating_panel_1.items
     # Any code you write here will run before the form opens.
 
