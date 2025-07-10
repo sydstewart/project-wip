@@ -88,8 +88,10 @@ unique_ids:
     projects_by_stage: '1681398775438812803620683.222'
     projects_by_stage.RowTemplate7: '1681398789866551708907383.282'
     projects_in_progress: '1750668843899146237435775.9606'
+    projects_in_progress_new: '1752163171919637372352983.0619'
     run_chart: '1711543145058954856738896.5812'
     stacked_bar_chart: AW34LYFQS7DI6XMVBWCEZHIE73JPFPFM
+    stage_group_new_chart: '1752161424040236410579869.33844'
     stage_groups_chart: '1750687070250214411053793.4305'
   modules:
     Module1: WGOFPVYNCFB672ZDH7UAY4EM5RYPMH5G

@@ -1,0 +1,7 @@
+components:
+- layout_properties: {grid_position: 'EYJDEQ,LYFPIP'}
+  name: plot_1
+  properties: {height: 573.727294921875}
+  type: Plot
+container: {type: ColumnPanel}
+is_package: true

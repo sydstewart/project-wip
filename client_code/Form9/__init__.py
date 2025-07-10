@@ -8,6 +8,8 @@ from anvil.tables import app_tables
 from ..pie_charts_new import pie_charts_new
 from ..pivots_new import pivots_new
 from ..Run_Chart_New import Run_Chart_New
+from ..stage_group_new_chart import stage_group_new_chart
+from ..projects_in_progress_new import projects_in_progress_new
 
 class Form9(Form9Template):
   def __init__(self, **properties):
@@ -37,5 +39,17 @@ class Form9(Form9Template):
     self.content_panel.clear()
     self.content_panel.add_component(Run_Chart_New(), full_width_row=True)
     # self.reset_links()
+    pass
+
+  def link_4_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.content_panel.clear()
+    self.content_panel.add_component(stage_group_new_chart(), full_width_row=True)
+    pass
+
+  def link_5_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.content_panel.clear()
+    self.content_panel.add_component(projects_in_progress_new(), full_width_row=True)
     pass
  
