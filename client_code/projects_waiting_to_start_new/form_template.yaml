@@ -1,7 +1,7 @@
 components:
 - layout_properties: {grid_position: 'HLUZJX,REHYRW'}
   name: label_1
-  properties: {bold: true, font_size: 18}
+  properties: {bold: true, font_size: 18, text: Projects Waiting To Start}
   type: Label
 - event_bindings: {click: button_2_click}
   layout_properties: {grid_position: 'HLUZJX,BNRHBD'}

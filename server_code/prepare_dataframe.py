@@ -74,6 +74,7 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     X['Work Completed'] =X['order_value'] * X['percent_complete']/100
     X['Work Completed_formated'] = X['Work Completed'].map("£{:,.0f}".format)
     X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
+    X['Work To Do_formated'] = X['Work To Do'].map("£{:,.0f}".format)
     X['Order_Value_Value_Add _per Elapsed_day'] = X['order_value']//X['days_elapsed']
     X['Work_completed_Value_Add _per Elapsed_day'] = X['Work Completed']//X['days_elapsed']
    # X['Value Left to Do'] = (100 - X['percent_complete']) 
@@ -158,15 +159,31 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     # print('pivotsyd',pivotsyd)
     dicts =X.to_dict(orient='records')
   # For projects in progress
-    X = X[(X['Stage Group'] =='Project in Progress')] 
-    X1 = X[['order_no','project_name','order_value', 'percent_complete', 'order_value_formated','partially_invoiced_total_formated','Value yet to be invoiced_formated','days_elapsed','Value yet to be invoiced', 'assigned_to']]
+    X1 = X[(X['Stage Group'] =='Project in Progress')] 
+    X1 = X1[['order_no','project_name','order_value', 'percent_complete', 'stage', 'waiting_on','Work To Do','Work To Do_formated','order_value_formated','partially_invoiced_total_formated','Value yet to be invoiced_formated','days_elapsed','Value yet to be invoiced', 'assigned_to']]
     X1 = X1.sort_values(by='percent_complete',ascending=False)
     # X2 = X1.sort_values(by='Value yet to be invoiced_formated',ascending=False)
     dictspip= X1.to_dict(orient='records')
-    
+    print('No of projects in progress', len(dictspip))
   
+  # For projects waiting to start
+    X2 = X[(X['Stage Group'] =='Project waiting to Start')] 
+    
+    X2 = X2[['order_no','project_name','order_value', 'percent_complete', 'stage', 'waiting_on','Work To Do','Work To Do_formated','order_value_formated','partially_invoiced_total_formated','Value yet to be invoiced_formated','days_elapsed','Value yet to be invoiced', 'assigned_to']]
+    X2= X2.sort_values(by='percent_complete',ascending=False)
+    # X2 = X1.sort_values(by='Value yet to be invoiced_formated',ascending=False)
+    dictswts= X2.to_dict(orient='records') 
+    print('No of projects waiting to start', len(dictswts))
+
+    X3 = X[(X['Stage Group'] =='Projects on Hold')] 
+    X3 = X3[['order_no','project_name','order_value', 'percent_complete', 'stage', 'waiting_on','Work To Do','Work To Do_formated','order_value_formated','partially_invoiced_total_formated','Value yet to be invoiced_formated','days_elapsed','Value yet to be invoiced', 'assigned_to']]
+    X3= X3.sort_values(by='percent_complete',ascending=False)
+    # X2 = X1.sort_values(by='Value yet to be invoiced_formated',ascending=False)
+    dictsoh= X3.to_dict(orient='records') 
+    print('No of projects on Hold', len(dictsoh))
+    
     # print('dictspip!!',dictspip)
     X.to_csv('/tmp/X.csv') 
     X_media = anvil.media.from_file('/tmp/X.csv', 'text/csv', 'X')
     # media_object = anvil.pdf.render_form('list_projects')
-    return dicts, dictspip, X_media,  pivotsyd_to_markdown
+    return dicts, dictspip, dictswts, dictsoh, X_media,  pivotsyd_to_markdown

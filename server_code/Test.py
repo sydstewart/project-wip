@@ -499,11 +499,12 @@ def testprojects():
   # return records,Total_Order_Value , Total_WIP_VaLUE , Average_WIP, number_of_records
   print('Produced from Stand alone version')
 
-import anvil.pdf
+
 
 @anvil.server.callable
-def create_zaphod_pdf():
-  media_object = anvil.pdf.render_form('chart_form')
+def create_zaphod_pdf(formname):
+  import anvil.pdf
+  media_object = anvil.pdf.render_form(formname, 42, name=formname)
   return media_object
 
 @anvil.server.callable

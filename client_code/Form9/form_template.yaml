@@ -38,6 +38,16 @@ components:
     name: link_5
     properties: {bold: true, text: Projects in Progress}
     type: Link
+  - event_bindings: {click: link_6_click}
+    layout_properties: {grid_position: 'AWSRRS,ZXWBCH'}
+    name: link_6
+    properties: {bold: true, text: Projects Waiting To Start}
+    type: Link
+  - event_bindings: {click: link_7_click}
+    layout_properties: {grid_position: 'OJPRZO,OIOMSU'}
+    name: link_7
+    properties: {bold: true, text: Projects on Hold}
+    type: Link
   layout_properties: {slot: left-nav}
   name: column_panel_1
   properties: {}

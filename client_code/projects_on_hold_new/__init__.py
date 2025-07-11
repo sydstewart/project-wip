@@ -1,4 +1,4 @@
-from ._anvil_designer import projects_in_progress_newTemplate
+from ._anvil_designer import projects_on_hold_newTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -8,45 +8,44 @@ from anvil.tables import app_tables
 from datetime import datetime
 import anvil.tz
 
-class projects_in_progress_new(projects_in_progress_newTemplate):
+class projects_on_hold_new(projects_on_hold_newTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    
+ 
     # dicts,Xmedia  = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     dicts, dictspip, dictswts, dictsoh, Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
-   
-    a1 = str(len(dictspip))
-    a = "Projects in Progress at" 
+
+    a1 = str(len(dictsoh))
+    a = "Projects on Hold at" 
     b = (datetime.now().strftime("%Y-%m-%d"))
     self.label_1.text = a1 + " " + a + " " + b
     
-    self.repeating_panel_1.items = dictspip
-    order_total = (sum(item['order_value'] 
+    self.repeating_panel_1.items = dictsoh
+    order_total = (sum(item['order_value']
                                for item in self.repeating_panel_1.items))
     order_total= str('£' + str(round(order_total)))
     self.label_5.text = order_total
-    
-    days_elapsed_sum = (sum(item['days_elapsed'] 
+
+    days_elapsed_sum = (sum(item['days_elapsed']
                        for item in self.repeating_panel_1.items))
     days_elapsed_average= (round(days_elapsed_sum))/len(self.repeating_panel_1.items)
-    days_elapsed_average= str(round(days_elapsed_average)) 
+    days_elapsed_average= str(round(days_elapsed_average))
     self.label_4.text = days_elapsed_average
 
-    work_to_do_sum = (sum(item['Work To Do'] 
+    work_to_do_sum = (sum(item['Work To Do']
                             for item in self.repeating_panel_1.items))
     work_to_do_sum= str('£' + str(round(work_to_do_sum)))
     self.label_8.text = work_to_do_sum
 
-    percent_complete_sum = (sum(item['percent_complete'] 
+    percent_complete_sum = (sum(item['percent_complete']
                             for item in self.repeating_panel_1.items))
     percent_complete_average= (round(percent_complete_sum ))/len(self.repeating_panel_1.items)
-    percent_complete_average= str(round(percent_complete_average)) 
+    percent_complete_average= str(round(percent_complete_average))
     self.label_10.text = percent_complete_average
 
-    
-    
+
+
     # self.repeating_panel_1.items.append({'order_value_formated': order_total, 'days_elapsed': days_elapsed_average })
     # self.repeating_panel_1.items = self.repeating_panel_1.items
     # Any code you write here will run before the form opens.
@@ -72,7 +71,7 @@ class projects_in_progress_new(projects_in_progress_newTemplate):
 
     pass
 
-  
+
   def check_box_3_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     self.check_box_1.checked = False
@@ -107,4 +106,3 @@ class projects_in_progress_new(projects_in_progress_newTemplate):
     self.check_box_4.checked = False
     self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_value']), reverse=True )
     pass
-    

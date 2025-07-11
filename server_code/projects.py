@@ -57,6 +57,8 @@ def get_orders_for_pivots(percent_complete,hi_percentage, assigned_to, category,
                       sales_orders.so_number AS so_number,\
                       sales_orders.so_stage AS stage, \
                       users.user_name AS user_name, \
+                      sales_orders_cstm.Waiing_On AS waiting_on ,\
+                      sales_orders_cstm.waitingNote AS waiting_note , \
                       sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c \
                       From sales_orders\
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
@@ -71,12 +73,13 @@ def get_orders_for_pivots(percent_complete,hi_percentage, assigned_to, category,
     if number_of_records:
               dicts = [{'order_no': r['so_number'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
                       'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
-                        'partially_invoiced_total':r['partially_invoiced_total']} \
+                        'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on']} \
                       for r in records]
     print(dicts)
-    dicts,dictspip, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete,hi_percentage,assigned_to, category, not_completed)
+    dicts,dictspip,dictswts,dictsoh, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete,hi_percentage,assigned_to, category, not_completed)
 #     X = pd.DataFrame.from_dict(dicts)
-    return dicts,dictspip, X_media,  pivotsyd_to_markdown
+    return dicts,dictspip, dictswts,dictsoh, X_media,  pivotsyd_to_markdown
+  
 @anvil.server.callable  
 def get_orders_for_project_list(percent_complete, hi_percentage, assigned_to, category, not_completed):
     print(' starting sql')
@@ -109,7 +112,7 @@ def get_orders_for_project_list(percent_complete, hi_percentage, assigned_to, ca
                         'partially_invoiced_total':r['partially_invoiced_total']} \
                       for r in records]
     print(dicts)
-    dicts,diuctspip, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete, hi_percentage, assigned_to, category, not_completed)
+    dicts,dictspip,dictswts, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete, hi_percentage, assigned_to, category, not_completed)
     return dicts, X_media,  pivotsyd_to_markdown
 #     print('Made dicts and dataframe')
 #     X['order_value']= X['order_value'].map(float)
