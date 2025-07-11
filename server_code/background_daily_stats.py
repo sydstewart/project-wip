@@ -21,7 +21,7 @@ from prepare_dataframe import prepare_pandas
 from anvil.tables import app_tables
 import numpy as np
 from datetime import datetime, time , date , timedelta
-
+from anvil_extras.serialisation import datatable_schema
 
 
 def connect():
@@ -49,7 +49,7 @@ def daily_by_stats():
     cur.execute(
       "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
                           sales_orders.prefix as prefix,\
-                        sales_orders.so_number as so_number,\
+                        sales_orders.so_number as so_no,\
                         CONCAT(sales_orders.prefix,sales_orders.so_number) As so_number, sales_orders.so_stage As so_stage, \
                         sales_orders.subtotal_usd AS Order_Value, \
                       sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
@@ -66,26 +66,30 @@ def daily_by_stats():
                       From sales_orders\
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                       LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
-                      Where sales_orders.date_entered > '2020-01-01' AND \
+                      WHERE sales_orders.so_number > 3451 AND \
                       sales_orders_cstm.OrderCategory NOT IN ('Maintenance')         AND \
-                      sales_orders.so_stage  NOT IN ('Closed', 'Cancelled', 'Complete')")  # ,'Complete' 2020-01-01
+                       sales_orders.so_stage  NOT IN ('Closed', 'Cancelled', 'Complete')")  # ,'Complete' 2020-01-01 # Where sales_orders.date_entered > '2020-01-01' AND \
   records = cur.fetchall()
   number_of_records =len(records)
   print('No of projects',number_of_records)
 
   if number_of_records:
-    dicts = [{'order_no': r['so_number'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
+    dicts = [{'order_no': r['so_number'],'prefix':r['prefix'], 'so_no':r['so_no'],'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
               'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
-              'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note']} \
+              'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note'],'so_no':r['so_no']} \
              for r in records]
-
-    anvil.table.sales_orders.add_row(**dicts)
-    last_row = app_tables.sales_orders.search(tables.order_by('so_number', ascending=False))[0]
-    controls = app_tables.controls.search()
-    controls['so_number'] = last_row['so_number']
-    controls['prefix_number'] = last_row['prefix']
+    for row in dicts:
+       app_tables.sales_orders.add_row(**row)
+    orders = app_tables.sales_orders .search()
+    schema = datatable_schema("sales_orders")
+    dicts = schema.dump(orders, many=True)
+    # last_row = app_tables.sales_orders.search(tables.order_by('so_number', ascending=False))[0]
+    # controls = app_tables.controls.search()
+    # controls['so_number'] = last_row['so_number']
+    # controls['prefix_number'] = last_row['prefix']
   # print(dicts)
-  dicts,dictspip, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts, 0, None, None, None, None)
+  
+  dicts,dictspip, dictswts, dictsoh, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts, 0, None, None, None, None)
   X = pd.DataFrame.from_dict(dicts)
   #======================Overall Totals======================================
   total_order_value = X['order_value'].sum()

@@ -21,7 +21,7 @@ class pivots_new(pivots_newTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    dicts, dictspip, Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
+    dicts, dictspip,  dictswts, dictsoh, Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
 
     self.pivot_1.items = dicts
     # Any code you write here will run before the form opens.

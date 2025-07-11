@@ -25,20 +25,10 @@ from ..projects_on_hold_new import projects_on_hold_new
   
 class Form9(Form9Template):
   def __init__(self, **properties):
-    # def reset_links(self, **event_args):
-    #   self.link_3.role = ''
-    #   self.link_2.role = ''
-    #   self.link_1.role = ''
-    #   self.link_2.role = ''
-    #   self.link_3.role = ''
-    #   self.link_4.role = ''
-    #   self.link_5.role = ''
-    #   self.link_6.role = ''
-    #   self.link_7.role =''
-    #   pass
+ 
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.link_5_click()
+    self.link_1_click()
 
   def link_1_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -46,6 +36,7 @@ class Form9(Form9Template):
     # self.link_1.role = 'selected'
     self.content_panel.clear()
     self.content_panel.add_component(pie_charts_new(), full_width_row=True)
+    # self.link_3.role = ''
     # self.reset_links()
     pass
 
@@ -85,11 +76,16 @@ class Form9(Form9Template):
   def link_7_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
-    self.reset_links()
+    # self.reset_links()
     self.link_7.role ='Selected'
 
     
     self.content_panel.add_component(projects_on_hold_new(), full_width_row=True)
     pass
+
+  def link_8_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.task = anvil.server.call('daily_stats')
+    
 
 

@@ -16,7 +16,7 @@ import anvil.media
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
-from datetime import datetime, time, date, timedelta
+from datetime import datetime, time, date, timedelta, timezone
 import numpy as np
 
 def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category, not_completed):
@@ -29,6 +29,7 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     print('Total Order Value from prepare pandas', X['Total Order Value'])
     X['percent_complete'] = X['percent_complete'].fillna(0)
     # print('before',X['percent_complete'])
+    X['order_date'] = pd.to_datetime(X['order_date'], infer_datetime_format=True,  utc=True  )
     X['date_formatted'] = X['order_date'].dt.strftime('%d/%m/%Y')
     X['percent_complete']= X['percent_complete'].astype(int)
     
@@ -68,8 +69,9 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     X['Invoiced but NOT completed amount_formated'] = X['Invoiced but NOT completed amount'].map("£{:,.0f}".format)
     X['Value yet to be invoiced'] = X['order_value']-X['partially_invoiced_total']  
     X['Value yet to be invoiced_formated'] = X['Value yet to be invoiced'].map("£{:,.0f}".format)
-    today = datetime.today()
-    X['days_elapsed'] = (today - X['order_date']).dt.days
+    utc_now = datetime.datetime.utcnow
+    # today = datetime.today()
+    X['days_elapsed'] = (utc_now - X['order_date']).dt.days
     # print(X['days_elapsed']) =  X['days_elapsed'])
     X['Work Completed'] =X['order_value'] * X['percent_complete']/100
     X['Work Completed_formated'] = X['Work Completed'].map("£{:,.0f}".format)
