@@ -7,7 +7,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime, time , date , timedelta
-from anvil_extras import navigation
+from anvil_extras import navigatio
 # SPDX-License-Identifier: MIT
 #
 # Copyright (c) 2021 The Anvil Extras project team members listed at
