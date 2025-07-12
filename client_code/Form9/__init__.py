@@ -28,7 +28,7 @@ class Form9(Form9Template):
  
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.link_1_click()
+    # self.link_1_click()
 
   def link_1_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -86,6 +86,11 @@ class Form9(Form9Template):
   def link_8_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.task = anvil.server.call('daily_stats')
+
+  def link_9_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    anvil.server.call('test_from_table')
+    pass
     
 
 

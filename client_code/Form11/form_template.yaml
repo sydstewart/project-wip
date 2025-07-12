@@ -1,0 +1,12 @@
+components:
+- event_bindings: {click: button_1_click}
+  layout_properties: {grid_position: 'THOBEB,TQPOKW'}
+  name: button_1
+  properties: {text: run from Sales Order Table}
+  type: Button
+- layout_properties: {grid_position: 'SRFPXY,TQBEHP'}
+  name: label_1
+  properties: {text: This is a test}
+  type: Label
+container: {type: ColumnPanel}
+is_package: true

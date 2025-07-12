@@ -32,7 +32,7 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     X['percent_complete'] = X['percent_complete'].fillna(0)
     # print('before',X['percent_complete'])
     X['order_date'] = pd.to_datetime(X['order_date'], utc= True)  #, infer_datetime_format=True,  utc=True
-    X['date_formatted'] = X['order_date'].dt.strftime('%d/%m/%Y')
+    X['date_formatted'] = X['order_date'].dt.strftime('%Y-%m-%d')
     X['percent_complete']= X['percent_complete'].astype(int)
     
     X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
@@ -75,16 +75,16 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
   # naive_utc = datetime.utcnow()
     # today = datetime.utcnow() 
     # today = datetime.now(anvil.tz.tzutc())
-    today = datetime.today().strftime('%d/%m/%Y')
-    monthtoday = date(today).dt.month
+    today = datetime.today().strftime('%Y-%m-%d')
+    # monthtoday = date(today).dt.month
     print('monthtoday', monthtoday)
-    X['order_date'] = pd.to_datetime(X.order_date).dt.strftime('%d/%m/%Y')
+    # X['order_date'] = pd.to_datetime(X.order_date).dt.strftime('%d/%m/%Y')
     print('Today',today)
     print('Order Date',X['order_date'])
     X['days_elapsed'] = (today - X['order_date']).dt.days
-    d0 = date(2008, monthtoday, 18)
-    d1 = date(2008, 9, 26)
-    delta = d1 - d0
+    # d0 = date(2008, monthtoday, 18)
+    # d1 = date(2008, 9, 26)
+    # delta = d1 - d0
     # print(X['days_elapsed']) =  X['days_elapsed'])
     X['Work Completed'] =X['order_value'] * X['percent_complete']/100
     X['Work Completed_formated'] = X['Work Completed'].map("£{:,.0f}".format)
