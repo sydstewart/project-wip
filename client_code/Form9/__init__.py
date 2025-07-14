@@ -35,7 +35,7 @@ class Form9(Form9Template):
     # self.reset_links()
     # self.link_1.role = 'selected'
     self.content_panel.clear()
-    self.content_panel.add_component(pie_charts_new(), full_width_row=True)
+    # self.content_panel.add_component(pie_charts_new(), full_width_row=True)
     # self.link_3.role = ''
     # self.reset_links()
     pass
@@ -90,6 +90,11 @@ class Form9(Form9Template):
   def link_9_click(self, **event_args):
     """This method is called when the link is clicked"""
     anvil.server.call('test_from_table')
+    pass
+
+  def link_10_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.task = anvil.server.call('extract_orders')
     pass
     
 

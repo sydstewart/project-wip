@@ -67,8 +67,9 @@ def daily_by_stats():
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                       LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
                       WHERE sales_orders.so_number > 3451 AND \
-                      sales_orders_cstm.OrderCategory NOT IN ('Maintenance')         AND \
-                       sales_orders.so_stage  NOT IN ('Closed', 'Cancelled', 'Complete')")  # ,'Complete' 2020-01-01 # Where sales_orders.date_entered > '2020-01-01' AND \
+                      sales_orders_cstm.OrderCategory NOT IN ('Maintenance')   ")
+                      # AND \
+                       # sales_orders.so_stage  NOT IN ('Closed', 'Cancelled', 'Complete')")  # ,'Complete' 2020-01-01 # Where sales_orders.date_entered > '2020-01-01' AND \
   records = cur.fetchall()
   number_of_records =len(records)
   print('No of projects',number_of_records)
@@ -79,7 +80,7 @@ def daily_by_stats():
               'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note'],'so_no':r['so_no']} \
              for r in records]
     for row in dicts:
-       app_tables.sales_orders.add_row(**row)
+       app_tables.sales_orders_all.add_row(**row)
     orders = app_tables.sales_orders .search()
     schema = datatable_schema("sales_orders")
     dicts = schema.dump(orders, many=True)
