@@ -46,7 +46,7 @@ components:
   type: Label
 - layout_properties: {full_width_row: true, grid_position: 'XSAODZ,STRSUC'}
   name: label_11
-  properties: {bold: true, text: Select Waiting on}
+  properties: {align: right, bold: true, text: Select Waiting on}
   type: Label
 - event_bindings: {change: waiting_on_dropdown_change}
   layout_properties: {grid_position: 'XSAODZ,JDQDNP'}

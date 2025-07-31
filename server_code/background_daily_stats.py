@@ -50,7 +50,8 @@ def daily_by_stats():
       "Select sales_orders.name As name, sales_orders.date_entered As date_entered, \
                           sales_orders.prefix as prefix,\
                         sales_orders.so_number as so_no,\
-                        CONCAT(sales_orders.prefix,sales_orders.so_number) As so_number, sales_orders.so_stage As so_stage, \
+                        CONCAT(sales_orders.prefix,sales_orders.so_number) As so_number, \
+                        sales_orders.so_stage As so_stage, \
                         sales_orders.subtotal_usd AS Order_Value, \
                       sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
                       sales_orders_cstm.OrderCategory AS OrderCategory,\
@@ -66,21 +67,29 @@ def daily_by_stats():
                       From sales_orders\
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                       LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
-                      WHERE sales_orders.so_number > 3451 AND \
+                      WHERE sales_orders.so_number > 2823 AND \
                       sales_orders_cstm.OrderCategory NOT IN ('Maintenance')   ")
                       # AND \
                        # sales_orders.so_stage  NOT IN ('Closed', 'Cancelled', 'Complete')")  # ,'Complete' 2020-01-01 # Where sales_orders.date_entered > '2020-01-01' AND \
   records = cur.fetchall()
   number_of_records =len(records)
   print('No of projects',number_of_records)
-
+   
   if number_of_records:
     dicts = [{'order_no': r['so_number'],'prefix':r['prefix'], 'so_no':r['so_no'],'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
               'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
-              'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note'],'so_no':r['so_no']} \
+              'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note'],'so_number':r['so_number']} \
              for r in records]
-    for row in dicts:
-       app_tables.sales_orders_all.add_row(**row)
+    for r in dicts:
+      # app_tables.sales_orders.add_row(**r)
+      
+      if  app_tables.sales_orders_all.get(so_number=r['so_number']):
+            r['updated'] = datetime.now()
+            app_tables.sales_orders_all.update(**r)
+      else: 
+           r['updated'] = datetime.now()
+           app_tables.sales_orders_all.add_row(**r)
+        
     orders = app_tables.sales_orders .search()
     schema = datatable_schema("sales_orders")
     dicts = schema.dump(orders, many=True)
