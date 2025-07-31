@@ -85,7 +85,7 @@ def daily_by_stats():
       
       if  app_tables.sales_orders_all.get(so_number=r['so_number']):
             r['updated'] = datetime.now()
-            app_tables.sales_orders_all.update(**r)
+            r.update(**r)
       else: 
            r['updated'] = datetime.now()
            app_tables.sales_orders_all.add_row(**r)
