@@ -15,16 +15,18 @@ class projects_on_hold_new(projects_on_hold_newTemplate):
  
     # dicts,Xmedia  = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     dicts, dictspip, dictswts, dictsoh, Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
-
+    
     a1 = str(len(dictsoh))
     a = "Projects on Hold at" 
     b = (datetime.now().strftime("%Y-%m-%d"))
     self.label_1.text = a1 + " " + a + " " + b
-    
+    def format_currency(amount):
+      return '£{:,.2f}'.format(amount)
+      
     self.repeating_panel_1.items = dictsoh
     order_total = (sum(item['order_value']
                                for item in self.repeating_panel_1.items))
-    order_total= str('£' + str(round(order_total)))
+    order_total= format_currency(order_total)
     self.label_5.text = order_total
 
     days_elapsed_sum = (sum(item['days_elapsed']
@@ -35,7 +37,7 @@ class projects_on_hold_new(projects_on_hold_newTemplate):
 
     work_to_do_sum = (sum(item['Work To Do']
                             for item in self.repeating_panel_1.items))
-    work_to_do_sum= str('£' + str(round(work_to_do_sum)))
+    work_to_do_sum= format_currency(work_to_do_sum)
     self.label_8.text = work_to_do_sum
 
     percent_complete_sum = (sum(item['percent_complete']

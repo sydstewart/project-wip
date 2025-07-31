@@ -7,16 +7,17 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime
 import anvil.tz
-
+from .. repeating_panel_calcs import repeating_panel_calcs
 class projects_waiting_to_start_new(projects_waiting_to_start_newTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-
+    def format_currency(amount):
+      return '£{:,.2f}'.format(amount)
+    
     # dicts,Xmedia  = anvil.server.call('get_orders', self.percent_complete_text_box.text,self.drop_down_1.selected_value, self.Category.selected_value)
     dicts, dictspip, dictswts, dictsoh, Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
-    
+     
     a1 = str(len(dictswts))
     a = "Projects Waiting To Start at" 
     b = (datetime.now().strftime("%Y-%m-%d"))
@@ -25,7 +26,7 @@ class projects_waiting_to_start_new(projects_waiting_to_start_newTemplate):
     self.repeating_panel_1.items = dictswts
     order_total = (sum(item['order_value']
                                for item in self.repeating_panel_1.items))
-    order_total= str('£' + str(round(order_total)))
+    order_total= format_currency(order_total)
     self.label_5.text = order_total
 
     days_elapsed_sum = (sum(item['days_elapsed']
@@ -36,7 +37,7 @@ class projects_waiting_to_start_new(projects_waiting_to_start_newTemplate):
 
     work_to_do_sum = (sum(item['Work To Do']
                             for item in self.repeating_panel_1.items))
-    work_to_do_sum= str('£' + str(round(work_to_do_sum)))
+    work_to_do_sum = format_currency(work_to_do_sum )
     self.label_8.text = work_to_do_sum
 
     percent_complete_sum = (sum(item['percent_complete']
@@ -47,8 +48,8 @@ class projects_waiting_to_start_new(projects_waiting_to_start_newTemplate):
 
 
 
-    # self.repeating_panel_1.items.append({'order_value_formated': order_total, 'days_elapsed': days_elapsed_average })
-    # self.repeating_panel_1.items = self.repeating_panel_1.items
+    self.repeating_panel_1.items.append({'order_value_formated': order_total, 'days_elapsed': days_elapsed_average })
+    self.repeating_panel_1.items = self.repeating_panel_1.items
     # Any code you write here will run before the form opens.
 
 

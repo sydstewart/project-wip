@@ -96,6 +96,7 @@ def get_orders_for_project_list(percent_complete, hi_percentage, assigned_to, ca
                       sales_orders.so_number AS so_number,\
                       sales_orders.so_stage AS stage, \
                       users.user_name AS user_name, \
+                      sales_orders_cstm.Waiing_On AS waiting_on ,\
                       sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c \
                       From sales_orders\
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
@@ -109,10 +110,10 @@ def get_orders_for_project_list(percent_complete, hi_percentage, assigned_to, ca
     if number_of_records:
               dicts = [{'order_no': r['so_number'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
                       'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
-                        'partially_invoiced_total':r['partially_invoiced_total']} \
+                        'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on']} \
                       for r in records]
     print(dicts)
-    dicts,dictspip,dictswts, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete, hi_percentage, assigned_to, category, not_completed)
+    dicts, dictspip, dictswts, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete, hi_percentage, assigned_to, category, not_completed)
     return dicts, X_media,  pivotsyd_to_markdown
 #     print('Made dicts and dataframe')
 #     X['order_value']= X['order_value'].map(float)
@@ -235,6 +236,7 @@ def get_all_orders():
                       sales_orders.so_number AS so_number,\
                       users.user_name AS user_name, \
                       sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c \
+                      sales_orders_cstm.Waiing_On AS waiting_on ,\
                       From sales_orders\
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                       LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
@@ -248,7 +250,7 @@ def get_all_orders():
 
     if number_of_records:
               dicts = [{'order_no': r['so_number'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
-                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'] } \
+                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'waiting_on':r['waiting_on'] } \
                       for r in records]
     print(dicts)
     X = pd.DataFrame.from_dict(dicts)
@@ -332,6 +334,7 @@ def generate_pdf(pdf_info):
                       sales_orders.so_number AS so_number,\
                       users.user_name AS user_name, \
                       sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c \
+                      ales_orders_cstm.Waiing_On AS waiting_on ,\
                       From sales_orders\
                       INNER JOIN `sales_orders_cstm` ON (`sales_orders`.`id` = `sales_orders_cstm`.`id_c`)\
                       LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
@@ -345,7 +348,7 @@ def generate_pdf(pdf_info):
   
    if number_of_records:
               dicts = [{'order_no': r['so_number'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
-                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'] } \
+                      'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'], 'waiting_on':r['waiting_on'] } \
                       for r in records]
    print(dicts)
    X = pd.DataFrame.from_dict(dicts)

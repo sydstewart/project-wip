@@ -44,6 +44,13 @@ components:
   name: label_6
   properties: {}
   type: Label
+- event_bindings: {change: waiting_on_dropdown_change}
+  layout_properties: {grid_position: 'XSAODZ,JDQDNP'}
+  name: waiting_on_dropdown
+  properties:
+    include_placeholder: true
+    items: [Customer, 4S, None]
+  type: DropDown
 - event_bindings: {change: check_box_5_change}
   layout_properties: {grid_position: 'XSAODZ,KGCYEE'}
   name: check_box_5
@@ -90,6 +97,6 @@ components:
     - {data_key: assigned_to, id: IBTNRQ, title: Assigned To}
   type: DataGrid
 container:
-  properties: {col_widths: '{"AISAPS":15,"KQTAQU":3,"OTYEQC":20,"MAYIBA":10,"YFDHNH":5,"VDLNVH":16,"OCTVHX":5,"ZJHHCU":15,"QBYSNY":5,"FKLMES":29,"NRDZUC":18,"KILVLQ":17,"KGCYEE":11,"OBBVRD":24,"OILHNA":36}'}
+  properties: {col_widths: '{"AISAPS":15,"KQTAQU":5,"OTYEQC":20,"MAYIBA":8,"YFDHNH":7,"VDLNVH":14,"OCTVHX":5,"ZJHHCU":15,"QBYSNY":5,"FKLMES":29,"NRDZUC":18,"KILVLQ":17,"KGCYEE":11,"OBBVRD":24,"OILHNA":36}'}
   type: ColumnPanel
 is_package: true

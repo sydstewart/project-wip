@@ -75,17 +75,28 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
   # naive_utc = datetime.utcnow()
     # today = datetime.utcnow() 
     # today = datetime.now(anvil.tz.tzutc())
-    today = datetime.today().strftime('%Y-%m-%d')
-    # monthtoday = date(today).dt.month
-    print('monthtoday', monthtoday)
-    # X['order_date'] = pd.to_datetime(X.order_date).dt.strftime('%d/%m/%Y')
-    print('Today',today)
-    print('Order Date',X['order_date'])
-    X['days_elapsed'] = (today - X['order_date']).dt.days
-    # d0 = date(2008, monthtoday, 18)
-    # d1 = date(2008, 9, 26)
-    # delta = d1 - d0
-    # print(X['days_elapsed']) =  X['days_elapsed'])
+    today = datetime.today() #.strftime('%Y-%m-%d')
+
+    print('today', today)
+    X['today']= today
+    X['today']= pd.to_datetime(X.today,utc =True)
+    print(X['today'])
+    X['order_date'] = pd.to_datetime(X.order_date,utc =True)
+    print('order date',X['order_date'] )
+    X['days_elapsed'] = (X['today'] - X['order_date']).dt.days
+    print('elapsed',X['days_elapsed']  )
+
+    # today = datetime.today().strftime('%Y-%m-%d')
+    # # monthtoday = date(today).dt.month
+    # # print('monthtoday', monthtoday)
+    # # X['order_date'] = pd.to_datetime(X.order_date).dt.strftime('%d/%m/%Y')
+    # print('Today',today)
+    # print('Order Date',X['order_date'])
+    # X['days_elapsed'] = (today - X['order_date']).dt.days
+    # # d0 = date(2008, monthtoday, 18)
+    # # d1 = date(2008, 9, 26)
+    # # delta = d1 - d0
+    # # print(X['days_elapsed']) =  X['days_elapsed'])
     X['Work Completed'] =X['order_value'] * X['percent_complete']/100
     X['Work Completed_formated'] = X['Work Completed'].map("£{:,.0f}".format)
     X['Work To Do'] =X['order_value'] * (100 - X['percent_complete'])/100
