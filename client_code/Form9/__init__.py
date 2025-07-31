@@ -29,6 +29,25 @@ class Form9(Form9Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # self.link_1_click()
+    self.add_component(Label(text= '     Project WIP'), slot='title')
+    anvil.users.login_with_form()
+    loggedin_user = anvil.users.get_user()
+    username = loggedin_user['email']
+    usertype = anvil.server.call('get_user_type',loggedin_user)
+    print(usertype)
+    self.label_1.text = 'User is ' + username + ' ' + usertype
+    
+    # self.text_box_2.text = loggedin_user['user_type']
+    # self.text_box_1.text = username 
+    # organisation = loggedin_user['Organisation']
+    # Globals.loggedin_user = loggedin_user
+    # Globals.organisation = organisation
+    if usertype != 'admin': 
+      self.link_8.visible = False
+      self.link_9.visible = False
+      self.link_10.visible = False
+      
+    
 
   def link_1_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -82,7 +101,7 @@ class Form9(Form9Template):
     
     self.content_panel.add_component(projects_on_hold_new(), full_width_row=True)
     pass
-
+   
   def link_8_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.task = anvil.server.call('daily_stats')
@@ -95,6 +114,17 @@ class Form9(Form9Template):
   def link_10_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.task = anvil.server.call('extract_orders')
+    pass
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.content_panel.clear()
+    self.column_panel_1.clear()
+
+    anvil.users.logout()
+
+    anvil.users.login_with_form()
+    open_form('Form9')
     pass
     
 
