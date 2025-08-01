@@ -35,7 +35,7 @@ def connect():
     alert(' Connection down')
   return connection
   
-@anvil.server.callable
+@anvil.server.background_task
 @anvil.tables.in_transaction
 def daily_by_stats_trial():
 
@@ -55,7 +55,6 @@ def daily_by_stats_trial():
                       sales_orders_cstm.partialinvoicedtotal_c AS partially_invoiced_total, \
                       sales_orders_cstm.Waiing_On AS waiting_on ,\
                       sales_orders_cstm.waitingNote AS waiting_note , \
-                      If(sales_orders_cstm.applicationarea_c = 'Anticoagulation', 'Anticoagulation', 'Safety Monitoring and Misc') As AppGroup ,\
                       sales_orders.so_number AS so_number,\
                       sales_orders.so_stage AS stage, \
                       users.user_name AS user_name, \
@@ -65,29 +64,39 @@ def daily_by_stats_trial():
                       LEFT JOIN `users` ON (`sales_orders`.`assigned_user_id` = `users`.`id`) \
                       WHERE sales_orders.so_number > 2823 AND \
                       sales_orders_cstm.OrderCategory NOT IN ('Maintenance')   ")
-    # AND \
-    # sales_orders.so_stage  NOT IN ('Closed', 'Cancelled', 'Complete')")  # ,'Complete' 2020-01-01 # Where sales_orders.date_entered > '2020-01-01' AND \
+  #   # AND \
+  #   # sales_orders.so_stage  NOT IN ('Closed', 'Cancelled', 'Complete')")  # ,'Complete' 2020-01-01 # Where sales_orders.date_entered > '2020-01-01' AND \
   records = cur.fetchall()
   number_of_records =len(records)
   print('No of projects',number_of_records)
   
   if number_of_records:
     dicts = [{'order_no': r['so_number'],'prefix':r['prefix'], 'so_no':r['so_no'],'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
-              'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
+              'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'],  \
               'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note'],'so_number':r['so_number']} \
             for r in records]
   
   
   
   # delete all rows in the order table
-  results = app_tables.sales_orders_all.search()
-  for row in results:
-    row.delete()
-  
+  app_tables.sales_orders_all.delete_all_rows()
+  # results = app_tables.sales_orders_all.search()
+  # for row in results:
+  #   row.delete()
+  print('table deleted')
   # Receate the Order table
   
-  for r in dicts:
+  for row in dicts:
     # print (row['A'], row['B'], row['C'])
-    app_tables.sales_orders_all.add_row(**{'order_no': r['so_number'],'prefix':r['prefix'], 'so_no':r['so_no'],'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
-                                          'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
-                                          'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note'],'so_number':r['so_number']})
+    app_tables.sales_orders_all.add_row(**{'order_no':row['so_number'],'prefix':row['prefix'], 'so_no':row['so_no'],'project_name':row['project_name'], 'order_date':row['order_date'], \
+                                           'order_category':row['order_category'],'assigned_to':row['assigned_to'] , \
+                                           'order_value':row['order_value'], 'percent_complete':row['percent_complete'],'app_area':row['app_area'], \
+                                           'stage':row['stage'], \
+                                           'partially_invoiced_total':row['partially_invoiced_total'],'waiting_on':row['waiting_on'],\
+                                           'waiting_note':row['waiting_note'],'so_number':row['so_number']})
+    #   ,'B': row['B'], 'C': row['C'
+    #   'order_no': r['so_number'],'prefix':r['prefix'], 'so_no':r['so_no'],'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
+    #                                       'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
+    #                                       'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note'],'so_number':r['so_number']})
+    # print(r['so_number'])
+  print('table loaded')
