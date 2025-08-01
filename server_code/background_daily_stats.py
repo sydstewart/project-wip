@@ -90,6 +90,7 @@ def daily_by_stats():
     row.delete()
 
   # Receate the Order table
+  
   for r in dicts:
     # print (row['A'], row['B'], row['C'])
     app_tables.sales_orders_all.add_row(**{'order_no': r['so_number'],'prefix':r['prefix'], 'so_no':r['so_no'],'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
