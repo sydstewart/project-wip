@@ -49,7 +49,7 @@ def daily_by_stats_trial():
                         CONCAT(sales_orders.prefix,sales_orders.so_number) As so_number, \
                         sales_orders.so_stage As so_stage, \
                         sales_orders.subtotal_usd AS Order_Value, \
-                      sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
+                       sales_orders_cstm.workinprogresspercentcomplete_c AS workinprogresspercentcomplete_c,\
                       sales_orders_cstm.OrderCategory AS OrderCategory,\
                       sales_orders_cstm.applicationarea_c AS AppArea, \
                       sales_orders_cstm.partialinvoicedtotal_c AS partially_invoiced_total, \
@@ -88,15 +88,14 @@ def daily_by_stats_trial():
   
   for row in dicts:
     # print (row['A'], row['B'], row['C'])
+    updated =  datetime.now()
     app_tables.sales_orders_all.add_row(**{'order_no':row['so_number'],'prefix':row['prefix'], 'so_no':row['so_no'],'project_name':row['project_name'], 'order_date':row['order_date'], \
                                            'order_category':row['order_category'],'assigned_to':row['assigned_to'] , \
                                            'order_value':row['order_value'], 'percent_complete':row['percent_complete'],'app_area':row['app_area'], \
                                            'stage':row['stage'], \
                                            'partially_invoiced_total':row['partially_invoiced_total'],'waiting_on':row['waiting_on'],\
                                            'waiting_note':row['waiting_note'],'so_number':row['so_number']})
-    #   ,'B': row['B'], 'C': row['C'
-    #   'order_no': r['so_number'],'prefix':r['prefix'], 'so_no':r['so_no'],'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
-    #                                       'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
-    #                                       'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note'],'so_number':r['so_number']})
-    # print(r['so_number'])
+  for row in app_tables.sales_orders_all.search():
+        row['updated'] = updated
+
   print('table loaded')
