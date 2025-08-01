@@ -338,3 +338,6 @@ def daily_by_stats():
                                                            Count_in_Progress = count_of_in_progress,
                                                            Count_of_waiting_to_start= count_of_waiting_to_start,
                                                            Total_Project_Count = total_project_count)
+
+
+

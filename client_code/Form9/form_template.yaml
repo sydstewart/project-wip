@@ -80,6 +80,11 @@ components:
     name: link_7
     properties: {bold: true, text: Projects on Hold}
     type: Link
+  - event_bindings: {click: link_11_click}
+    layout_properties: {grid_position: 'ILECGJ,VAJVMC'}
+    name: link_11
+    properties: {bold: true, text: Trial}
+    type: Link
   layout_properties: {slot: left-nav}
   name: column_panel_1
   properties: {}
