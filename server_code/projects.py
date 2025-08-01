@@ -19,6 +19,7 @@ import plotly.express as px
 from datetime import datetime, time, date, timedelta
 import numpy as np
 from anvil.pdf import PDFRenderer
+from anvil_extras.serialisation import datatable_schema
 # import anvil.pdf
 
 from anvil.tables import app_tables
@@ -75,8 +76,10 @@ def get_orders_for_pivots(percent_complete,hi_percentage, assigned_to, category,
     #                   'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
     #                     'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on']} \
     #                   for r in records]
-    dicts = app_tables.sales_orders_all.search()
-    print(dicts)
+    orders = app_tables.sales_orders_all.search()
+    schema = datatable_schema("sales_orders_all")
+    dicts = schema.dump(orders, many=True)
+    print('dicts made')
     dicts,dictspip,dictswts,dictsoh, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete,hi_percentage,assigned_to, category, not_completed)
 #     X = pd.DataFrame.from_dict(dicts)
     return dicts,dictspip, dictswts,dictsoh, X_media,  pivotsyd_to_markdown
