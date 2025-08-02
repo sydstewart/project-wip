@@ -1,0 +1,38 @@
+import anvil.server
+import anvil.users
+import anvil.tables as tables
+import anvil.tables.query as q
+
+def new_searches(self):
+
+      partname = self.text_box_1.text
+      stagegroup = self.drop_down_1.selected_value
+
+
+      
+      # Setup search dictionary
+      kwargs ={}
+      
+      
+      #Project Name
+      if partname:
+        kwargs['project_name'] =  q.ilike('%' + partname +'%')
+      
+      #stage
+        if not  stagegroup:
+          stages = ['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP', 'On Hold','Order Approved', 'Order Submitted for Approval','Ordered']
+        if stagegroup == 'Work in Progress':
+          stages = ['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP']
+        elif stagegroup == 'On Hold':
+          stages = ['On Hold']
+        elif stagegroup == 'Waiting to Start':
+          stages = [ 'Order Approved', 'Order Submitted for Approval','Ordered']
+        elif stagegroup == 'Closed':
+          stages = ['Closed']
+          
+        kwargs['stage'] =  q.any_of(*stages) 
+
+        print('kwargs=', kwargs)          
+        orders = anvil.server.call('orders',**kwargs)
+        self.repeating_panel_1.items = orders
+        self.label_1.text ='No. of projects found = ' + str(len(self.repeating_panel_1.items ))

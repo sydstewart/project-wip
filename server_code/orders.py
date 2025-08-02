@@ -19,13 +19,26 @@ def orders(partname, stagegroup):
   elif stagegroup == 'Closed':
      stages = ['Closed']
 
-  
+# Setup search dictionary
+  kwargs ={}
+
+
+#Project Name
   if partname:
-        orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"), project_name= q.ilike('%' + partname +'%'))
-  elif partname and stagegroup :
-      orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"), stage=q.any_of(*stages), project_name= q.ilike('%' + partname +'%'))
-  elif stagegroup :
-     orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"), stage=q.any_of(*stages))
-  elif not partname and not stagegroup:
-     orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"))
-  return orders
+     kwargs['project_name'] =  q.ilike('%' + partname +'%')
+
+#stage
+  if stagegroup:
+    kwargs['stage'] =  q.any_of(*stages)  
+
+  orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"), **kwargs)
+  
+  # if partname:
+  #       orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"), project_name= q.ilike('%' + partname +'%'))
+  # elif partname and stagegroup :
+  #     orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"), q.all_of(stage=q.any_of(*stages), project_name= q.ilike('%' + partname +'%')))
+  # elif stagegroup :
+  #    orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"), stage=q.any_of(*stages))
+  # elif not partname and not stagegroup:
+  #    orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"))
+  # return orders
