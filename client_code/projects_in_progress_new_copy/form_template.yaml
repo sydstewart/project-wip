@@ -1,0 +1,106 @@
+components:
+- layout_properties: {grid_position: 'HLUZJX,REHYRW'}
+  name: label_1
+  properties: {bold: true, font_size: 18}
+  type: Label
+- event_bindings: {click: button_2_click}
+  layout_properties: {grid_position: 'HLUZJX,BNRHBD'}
+  name: button_2
+  properties: {bold: true, text: Download PDF}
+  type: Button
+- layout_properties: {full_width_row: true, grid_position: 'UQPEOW,AISAPS'}
+  name: label_2
+  properties: {align: center, bold: false, text: Total Order Value}
+  type: Label
+- layout_properties: {grid_position: 'UQPEOW,KQTAQU'}
+  name: label_5
+  properties: {align: left, bold: true}
+  type: Label
+- layout_properties: {grid_position: 'UQPEOW,MAYIBA'}
+  name: label_7
+  properties: {align: right, bold: true, text: Total Work To Do}
+  type: Label
+- layout_properties: {grid_position: 'UQPEOW,YFDHNH'}
+  name: label_8
+  properties: {align: left, bold: true}
+  type: Label
+- layout_properties: {grid_position: 'UQPEOW,VDLNVH'}
+  name: label_9
+  properties: {align: right, bold: true, text: Average Percent Completion}
+  type: Label
+- layout_properties: {grid_position: 'UQPEOW,OCTVHX'}
+  name: label_10
+  properties: {align: left, bold: true}
+  type: Label
+- layout_properties: {grid_position: 'UQPEOW,ZJHHCU'}
+  name: label_3
+  properties: {align: right, bold: true, text: Average Elapsed Time Days}
+  type: Label
+- layout_properties: {grid_position: 'UQPEOW,QBYSNY'}
+  name: label_4
+  properties: {align: left, bold: true}
+  type: Label
+- layout_properties: {grid_position: 'UQPEOW,OTYEQC'}
+  name: label_6
+  properties: {}
+  type: Label
+- layout_properties: {full_width_row: true, grid_position: 'XSAODZ,STRSUC'}
+  name: label_11
+  properties: {align: right, bold: true, text: Select Waiting on}
+  type: Label
+- event_bindings: {change: waiting_on_dropdown_change}
+  layout_properties: {grid_position: 'XSAODZ,JDQDNP'}
+  name: waiting_on_dropdown
+  properties:
+    include_placeholder: true
+    items: [Customer, 4S, None]
+  type: DropDown
+- event_bindings: {change: check_box_5_change}
+  layout_properties: {grid_position: 'XSAODZ,KGCYEE'}
+  name: check_box_5
+  properties: {text: Order Value sort}
+  type: CheckBox
+- event_bindings: {change: check_box_4_change}
+  layout_properties: {grid_position: 'XSAODZ,FKLMES TORJNO,OBBVRD'}
+  name: check_box_4
+  properties: {text: Work To Do sort}
+  type: CheckBox
+- event_bindings: {change: check_box_1_change}
+  layout_properties: {grid_position: 'XSAODZ,FKLMES TORJNO,OILHNA'}
+  name: check_box_1
+  properties: {text: sort by Percent Complete}
+  type: CheckBox
+- event_bindings: {change: check_box_2_change}
+  layout_properties: {grid_position: 'XSAODZ,NRDZUC'}
+  name: check_box_2
+  properties: {text: sort by Yet to be Invoiced}
+  type: CheckBox
+- event_bindings: {change: check_box_3_change}
+  layout_properties: {grid_position: 'XSAODZ,KILVLQ'}
+  name: check_box_3
+  properties: {text: sort by Elapsed Days}
+  type: CheckBox
+- components:
+  - name: repeating_panel_1
+    properties: {item_template: pivots.RowTemplate23}
+    type: RepeatingPanel
+  layout_properties: {full_width_row: true, grid_position: 'XRYIWC,TCNYMN'}
+  name: data_grid_1
+  properties:
+    columns:
+    - {data_key: order_no, expand: false, id: JKSDUP, title: Order No, width: 124}
+    - {data_key: project_name, expand: false, id: VJQQOR, title: Project name, width: 353.0909423828125}
+    - {data_key: stage, id: LFTJKB, title: Stage}
+    - {data_key: percent_complete, expand: false, id: OJLQEN, title: Percent Complete, width: 114.27276611328125}
+    - {data_key: waiting_on, id: VQRWAL, title: Waiting On}
+    - {data_key: order_value_formated, expand: false, id: SPNXJG, title: Order Value, width: 117.0909423828125}
+    - {data_key: Work To Do_formated, id: QSQOWR, title: Work To Do}
+    - {data_key: partially_invoiced_total_formated, expand: false, id: SSUZKL, title: Partially Invoiced Value, width: 136.6363525390625}
+    - {data_key: days_elapsed, expand: false, id: YMTZIR, title: Elapsed Days, width: 88}
+    - {data_key: Value yet to be invoiced_formated, id: CBJMKV, title: Yet to be Invoiced Value}
+    - {data_key: assigned_to, id: IBTNRQ, title: Assigned To}
+  type: DataGrid
+container:
+  properties: {col_widths: '{"AISAPS":15,"KQTAQU":5,"OTYEQC":20,"MAYIBA":8,"YFDHNH":7,"VDLNVH":14,"OCTVHX":5,"ZJHHCU":15,"QBYSNY":5,"FKLMES":29,"NRDZUC":18,"KILVLQ":17,"KGCYEE":11,"OBBVRD":24,"OILHNA":36}'}
+  type: ColumnPanel
+is_package: true

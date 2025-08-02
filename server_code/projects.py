@@ -28,22 +28,22 @@ from prepare_dataframe import prepare_pandas
 
 
 
-def connect():
-  connection = pymysql.connect(host='51.141.236.29',
-                               port=3306,
-                               user='CRMReadOnly',
-                               password=anvil.secrets.get_secret('Teamwork Pass'),
-                               database = 'infoathand',
-                               cursorclass=pymysql.cursors.DictCursor)
-  if not connection:
-     alert(' Connection down')
-  return connection
+# def connect():
+#   connection = pymysql.connect(host='51.141.236.29',
+#                                port=3306,
+#                                user='CRMReadOnly',
+#                                password=anvil.secrets.get_secret('Teamwork Pass'),
+#                                database = 'infoathand',
+#                                cursorclass=pymysql.cursors.DictCursor)
+#   if not connection:
+#      alert(' Connection down')
+#   return connection
 
-conn = connect()
+# conn = connect()
     #=============================================================================  
       # Load Orders 
 @anvil.server.callable  
-def get_orders_for_pivots(percent_complete,hi_percentage, assigned_to, category, not_completed):
+def get_orders_for_pivots(): # percent_complete,hi_percentage, assigned_to, category, not_completed
     # print(' starting sql')
     # with conn.cursor() as cur:
     #             cur.execute(
@@ -79,10 +79,11 @@ def get_orders_for_pivots(percent_complete,hi_percentage, assigned_to, category,
     orders = app_tables.sales_orders_all.search()
     schema = datatable_schema("sales_orders_all")
     dicts = schema.dump(orders, many=True)
-    print('dicts made')
-    dicts,dictspip,dictswts,dictsoh, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete,hi_percentage,assigned_to, category, not_completed)
+    # print('dicts made',dicts)
+    return dicts
+    # dicts,dictspip,dictswts,dictsoh, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete,hi_percentage,assigned_to, category, not_completed)
 #     X = pd.DataFrame.from_dict(dicts)
-    return dicts,dictspip, dictswts,dictsoh, X_media,  pivotsyd_to_markdown
+    # return dicts,dictspip, dictswts,dictsoh, X_media,  pivotsyd_to_markdown
   
 @anvil.server.callable  
 def get_orders_for_project_list(percent_complete, hi_percentage, assigned_to, category, not_completed):
@@ -117,7 +118,7 @@ def get_orders_for_project_list(percent_complete, hi_percentage, assigned_to, ca
                         'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on']} \
                       for r in records]
     print(dicts)
-    dicts, dictspip, dictswts, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts,percent_complete, hi_percentage, assigned_to, category, not_completed)
+    dicts, dictspip, dictswts, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts)   #,percent_complete, hi_percentage, assigned_to, category, not_completed)
     return dicts, X_media,  pivotsyd_to_markdown
 #     print('Made dicts and dataframe')
 #     X['order_value']= X['order_value'].map(float)

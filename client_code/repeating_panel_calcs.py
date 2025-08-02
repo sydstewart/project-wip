@@ -4,9 +4,26 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime, time , date , timedelta
-
+from . import Globals
 def repeating_panel_calcs(self):
-      dicts, dictspip, dictswts, dictsoh, Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
+      
+      # global my_global
+      # dicts, dictspip, dictswts, dictsoh, Xmedia,pivotsyd_to_markdown  = anvil.server.call('get_orders_for_pivots', 0, 100, None, None, None)
+     # Getting the current date and time
+      dt = datetime.now()
+      print('Start of get order',dt)
+  
+      dicts = anvil.server.call('get_orders_for_pivots')
+  
+      dt = datetime.now()
+      print('Start of pandasr',dt)
+  
+      dicts,dictspip,dictswts,dictsoh, X_media,  pivotsyd_to_markdown = anvil.server.call('prepare_pandas',dicts)
+
+      # Globals.dictspip = dictspip
+      dt = datetime.now()
+      print('end of pandasr',dt)
+      # print('dictspip',dictspip)
       def format_currency(amount):
          return '£{:,.2f}'.format(amount)
       a1 = str(len(dictspip))

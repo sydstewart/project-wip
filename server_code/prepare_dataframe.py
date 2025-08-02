@@ -20,15 +20,16 @@ from datetime import datetime, time, date, timedelta, timezone
 import numpy as np
 import anvil.tz
 
-
-def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category, not_completed):
+@anvil.server.callable
+def prepare_pandas(dicts):
+#, percent_complete,hi_percentage, assigned_to, category, not_completed):
 
     X = pd.DataFrame.from_dict(dicts)
-    print('Made dicts and dataframe')
+    # print('Made dicts and dataframe')
     X['order_value']= X['order_value'].map(float)
     X['Total Order Value'] =X['order_value'].sum()
     # X['cumulative_orders'] =  X['order_value'].cusum()
-    print('Total Order Value from prepare pandas', X['Total Order Value'])
+    # print('Total Order Value from prepare pandas', X['Total Order Value'])
     X['percent_complete'] = X['percent_complete'].fillna(0)
     # print('before',X['percent_complete'])
     X['order_date'] = pd.to_datetime(X['order_date'], utc= True)  #, infer_datetime_format=True,  utc=True
@@ -41,29 +42,29 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     X['Invoiced but NOT completed amount'] = X['partially_invoiced_total'] - X['Work Completed']
     X['Invoiced but NOT completed amount']= X['Invoiced but NOT completed amount'].map(float)
 
-    if  not_completed =='Yes':
-           X =  X[X['Invoiced but NOT completed amount'] > 0]
-    elif not_completed =='No':
-           X =  X[X['Invoiced but NOT completed amount'] <= 0]
-    if assigned_to and not category:
-       filter = (X['assigned_to'] == assigned_to)
-       X =  X[X['percent_complete'] >= int(percent_complete) ]
-       X =  X[X['percent_complete'] <= int(hi_percentage) ]
-       X =  X[filter]
-    elif category and not assigned_to:
-          X =  X[X['percent_complete'] >= int(percent_complete)]
-          X =  X[X['percent_complete'] <= int(hi_percentage) ]
-          X =  X[X['order_category'] == category]
-    elif assigned_to and category:
-          X =  X[X['percent_complete'] >= int(percent_complete) ]
-          X =  X[X['percent_complete'] <= int(hi_percentage) ]
-          filter = (X['assigned_to'] == assigned_to)
-          X =  X[filter]
-          X =  X[X['order_category'] == category]
-    elif percent_complete and not category and not assigned_to:
-          X =  X[X['percent_complete'] >= int(percent_complete)]
-          X =  X[X['percent_complete'] <= int(hi_percentage) ]
-    # print('after filter',X['percent_complete'])
+    # if  not_completed =='Yes':
+    #        X =  X[X['Invoiced but NOT completed amount'] > 0]
+    # elif not_completed =='No':
+    #        X =  X[X['Invoiced but NOT completed amount'] <= 0]
+    # if assigned_to and not category:
+    #    filter = (X['assigned_to'] == assigned_to)
+    #    X =  X[X['percent_complete'] >= int(percent_complete) ]
+    #    X =  X[X['percent_complete'] <= int(hi_percentage) ]
+    #    X =  X[filter]
+    # elif category and not assigned_to:
+    #       X =  X[X['percent_complete'] >= int(percent_complete)]
+    #       X =  X[X['percent_complete'] <= int(hi_percentage) ]
+    #       X =  X[X['order_category'] == category]
+    # elif assigned_to and category:
+    #       X =  X[X['percent_complete'] >= int(percent_complete) ]
+    #       X =  X[X['percent_complete'] <= int(hi_percentage) ]
+    #       filter = (X['assigned_to'] == assigned_to)
+    #       X =  X[filter]
+    #       X =  X[X['order_category'] == category]
+    # elif percent_complete and not category and not assigned_to:
+    #       X =  X[X['percent_complete'] >= int(percent_complete)]
+    #       X =  X[X['percent_complete'] <= int(hi_percentage) ]
+    # # print('after filter',X['percent_complete'])
     X['percent_complete'] = X['percent_complete'].map(int)
   
     X['order_value_formated'] = X['order_value'].map("£{:,.0f}".format)
@@ -77,14 +78,14 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     # today = datetime.now(anvil.tz.tzutc())
     today = datetime.today() #.strftime('%Y-%m-%d')
 
-    print('today', today)
+    # print('today', today)
     X['today']= today
     X['today']= pd.to_datetime(X.today,utc =True)
-    print(X['today'])
+    # print(X['today'])
     X['order_date'] = pd.to_datetime(X.order_date,utc =True)
-    print('order date',X['order_date'] )
+    # print('order date',X['order_date'] )
     X['days_elapsed'] = (X['today'] - X['order_date']).dt.days
-    print('elapsed',X['days_elapsed']  )
+    # print('elapsed',X['days_elapsed']  )
 
     # today = datetime.today().strftime('%Y-%m-%d')
     # # monthtoday = date(today).dt.month
@@ -125,7 +126,8 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     (X['Month Num'] > 2) & (X['Month Num'] <= 12),
   
 ]
-
+    dt = datetime.now()
+    print('start of categories',dt)
     categories = [X['Year Num'] -1, X['Year Num']]
 
 # Use np.select() to create the new column
@@ -171,7 +173,8 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
                   'Project waiting to Start', 'Project waiting to Start','Project waiting to Start']
   
     X['Stage Group'] = np.select(conditions, categories, default='Unknown')
-  
+    dt = datetime.now()
+    print('end of categories',dt)
     pivotsyd = pd.pivot_table(X, values = "order_value", index=['order_category'], aggfunc=('sum'), margins=True, margins_name='Total')
     pivotsyd  = pivotsyd.fillna(0)
     pivotsyd = pivotsyd.sort_values(by=['order_value'], ascending=False)
@@ -190,7 +193,7 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     X1 = X1.sort_values(by='percent_complete',ascending=False)
     # X2 = X1.sort_values(by='Value yet to be invoiced_formated',ascending=False)
     dictspip= X1.to_dict(orient='records')
-    print('No of projects in progress', len(dictspip))
+    # print('No of projects in progress', len(dictspip))
   
   # For projects waiting to start
     X2 = X[(X['Stage Group'] =='Project waiting to Start')] 
@@ -199,14 +202,14 @@ def prepare_pandas(dicts, percent_complete,hi_percentage, assigned_to, category,
     X2= X2.sort_values(by='percent_complete',ascending=False)
     # X2 = X1.sort_values(by='Value yet to be invoiced_formated',ascending=False)
     dictswts= X2.to_dict(orient='records') 
-    print('No of projects waiting to start', len(dictswts))
+    # print('No of projects waiting to start', len(dictswts))
 
     X3 = X[(X['Stage Group'] =='Projects on Hold')] 
     X3 = X3[['order_no','project_name','order_value', 'percent_complete', 'stage', 'waiting_on','Work To Do','Work To Do_formated','order_value_formated','partially_invoiced_total_formated','Value yet to be invoiced_formated','days_elapsed','Value yet to be invoiced', 'assigned_to']]
     X3= X3.sort_values(by='percent_complete',ascending=False)
     # X2 = X1.sort_values(by='Value yet to be invoiced_formated',ascending=False)
     dictsoh= X3.to_dict(orient='records') 
-    print('No of projects on Hold', len(dictsoh))
+    # print('No of projects on Hold', len(dictsoh))
     
     # print('dictspip!!',dictspip)
     X.to_csv('/tmp/X.csv') 
