@@ -61,4 +61,13 @@ class Testquery(TestqueryTemplate):
       print('end', datetime.now())
     pass
 
+  def drop_down_3_change(self, **event_args):
+    """This method is called when an item is selected"""
+    new_searches(self)
+    # orders = anvil.server.call('orders',self.text_box_1.text,self.drop_down_1.selected_value)
+    # self.repeating_panel_1.items = orders
+    print('end', datetime.now())
+    pass
+    pass
+
   

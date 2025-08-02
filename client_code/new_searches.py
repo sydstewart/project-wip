@@ -8,6 +8,7 @@ def new_searches(self):
       partname = self.text_box_1.text
       stagegroup = self.drop_down_1.selected_value
       waitingon = self.drop_down_2.selected_value
+      assignedto = self.drop_down_3.selected_value
 
       print('syd here')
       
@@ -35,6 +36,9 @@ def new_searches(self):
     
       if waitingon:
         kwargs['waiting_on'] =  waitingon 
+
+      if assignedto:
+        kwargs['assigned_to'] = assignedto
         
       print('kwargs=', kwargs)
      

@@ -16,6 +16,14 @@ components:
       items: [Customer, 4S, '']
       placeholder: Waiting On
     type: DropDown
+  - event_bindings: {change: drop_down_3_change}
+    layout_properties: {grid_position: 'DEMOLK,LSQFJA'}
+    name: drop_down_3
+    properties:
+      include_placeholder: true
+      items: [Kate, Steven, Alistair, '']
+      placeholder: Assigned To
+    type: DropDown
   - layout_properties: {grid_position: 'DEMOLK,KCWEBL'}
     name: label_2
     properties: {align: right, bold: true, text: Project Name Search}
@@ -40,10 +48,10 @@ components:
       - {data_key: order_no, id: JKSDUP, title: Order No}
       - {data_key: project_name, id: VJQQOR, title: Project}
       - {data_key: stage, id: OJLQEN, title: Stage}
-      - {data_key: percent_complete, id: CAGESB, title: Percent_Complete}
       - {data_key: waiting_on, id: GVGOUJ, title: Waiting On}
+      - {data_key: percent_complete, id: CAGESB, title: Percent_Complete}
       - {data_key: order_value, id: PGKEKQ, title: Order Value}
-      - {data_key: column_1, id: GIJMQZ, title: Work To Do Value}
+      - {data_key: assigned_to, id: GIJMQZ, title: Assigned To}
     type: DataGrid
   layout_properties: {slot: default}
   name: content_panel
