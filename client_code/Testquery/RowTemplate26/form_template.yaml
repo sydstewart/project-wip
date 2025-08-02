@@ -1,3 +1,7 @@
-components: []
+components:
+- layout_properties: {column: GIJMQZ}
+  name: text_box_1
+  properties: {text: order_value * percent_complete/ 100}
+  type: TextBox
 container: {type: DataRowPanel}
 is_package: true
