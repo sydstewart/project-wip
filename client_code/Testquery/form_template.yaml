@@ -50,16 +50,17 @@ components:
     properties: {align: left, bold: true}
     type: Label
   - components:
-    - event_bindings: {click: link_1_click}
+    - event_bindings: {click: link_11_click}
       layout_properties: {}
-      name: link_1
-      properties: {bold: true, icon: 'fa:sort-alpha-desc', text: Order No}
+      name: link_11
+      properties: {bold: true, icon: '', text: Order No}
       type: Link
     layout_properties: {full_width_row: true, grid_position: 'BYBALE,GBFULU'}
     name: data_row_panel_1
     properties: {}
     type: DataRowPanel
-  - layout_properties: {grid_position: 'BYBALE,LKLHQB'}
+  - event_bindings: {click: link_10_click}
+    layout_properties: {grid_position: 'BYBALE,LKLHQB'}
     name: link_10
     properties: {bold: true, text: Order Date}
     type: Link
@@ -109,21 +110,22 @@ components:
     properties:
       auto_header: false
       columns:
-      - {data_key: order_no, id: JKSDUP, title: Order No}
-      - {data_key: column_1, id: DVUGBU, title: Column 1}
+      - {data_key: order_no, expand: false, id: JKSDUP, title: Order No, width: 89}
+      - {data_key: order_date, id: DVUGBU, title: Order Date}
       - {data_key: project_name, id: VJQQOR, title: Project}
-      - {data_key: stage, id: OJLQEN, title: Stage}
-      - {data_key: waiting_on, id: GVGOUJ, title: Waiting On}
+      - {data_key: stage, expand: false, id: OJLQEN, title: Stage, width: 86}
+      - {data_key: waiting_on, expand: false, id: GVGOUJ, title: Waiting On, width: 109}
       - {data_key: percent_complete, expand: false, id: CAGESB, title: Percent Complete, width: 78}
-      - {data_key: order_value, id: PGKEKQ, title: Order Value}
+      - {data_key: order_value_formated, id: PGKEKQ, title: Order Value}
       - {data_key: assigned_to, id: GIJMQZ, title: Assigned To}
       - {data_key: work_to_do, expand: false, id: YMOAEN, title: Work to Do}
       - {data_key: days_elapsed, id: IDHGAW, title: Elapsed Time Days}
       rows_per_page: 50
+      show_page_controls: false
     type: DataGrid
   layout_properties: {slot: default}
   name: content_panel
-  properties: {col_widths: '{"JEWUFC":8,"UDPOYE":8,"UCBMLV":8,"JFACPH":8,"ZJGFNI":7,"LSQFJA":7,"KCWEBL":7,"NWHSJZ":7}'}
+  properties: {col_widths: '{"JEWUFC":8,"UDPOYE":8,"UCBMLV":8,"JFACPH":8,"ZJGFNI":7,"LSQFJA":7,"KCWEBL":7,"NWHSJZ":7,"GBFULU":5,"LKLHQB":7,"ZCYBRY":6,"QXNSEJ":5,"PSBRLZ":6,"MACFNS":5,"KOALQU":6,"ABFATE":7,"WMOVUM":6,"JELWWZ":7}'}
   type: ColumnPanel
 - layout_properties: {slot: nav-right}
   name: navbar_links
