@@ -13,6 +13,18 @@ class Testquery(TestqueryTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.data_row_panel_1.item = {'order_no': 'Order No'}
+    self.link_map = {'order_no':self.link_1,
+                     'order_date': self.link_2,
+                     'project_name':self.link_3,
+                     'stage':self.link_4,
+                     'waiting_on':self.link_5,
+                     'percent_complete':self.link_6,
+                     'order_value':self.link_7,
+                      'assigned_to' :self.link_8,
+                     'work_to_do':self.link_9,
+                     'days_elapsed':self.link_10}
+    
     print('Start', datetime.now())
  
     
@@ -79,7 +91,73 @@ class Testquery(TestqueryTemplate):
     for l in self.data_row_panel_1.get_components():
       if event_args['sender'] is not l:
         l.icon=None
-    self.data = sorted(self.data, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
-    self.repeating_panel_1.items=self.data
+    self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
+    self.repeating_panel_1.items=self.repeating_panel_1.items
+
+  def link_5_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
+    for a,b in self.link_map.items():
+      if b ==event_args['sender']:
+        v=a
+    for l in self.data_row_panel_1.get_components():
+      if event_args['sender'] is not l:
+        l.icon=None
+    self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['percent_complete']), reverse=True )
+    pass
+
+  def link_2_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
+    for a,b in self.link_map.items():
+      if b ==event_args['sender']:
+        v=a
+    for l in self.data_row_panel_1.get_components():
+      if event_args['sender'] is not l:
+        l.icon=None
+    self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
+    self.repeating_panel_1.items=self.repeating_panel_1.items
+    pass
+
+  def link_3_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
+    for a,b in self.link_map.items():
+      if b ==event_args['sender']:
+        v=a
+    for l in self.data_row_panel_1.get_components():
+      if event_args['sender'] is not l:
+        l.icon=None
+    self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
+    self.repeating_panel_1.items=self.repeating_panel_1.items
+    pass
+
+  def link_4_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
+    for a,b in self.link_map.items():
+      if b ==event_args['sender']:
+        v=a
+    for l in self.data_row_panel_1.get_components():
+      if event_args['sender'] is not l:
+        l.icon=None
+    self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
+    self.repeating_panel_1.items=self.repeating_panel_1.items
+    pass
+
+  def link_6_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
+    for a,b in self.link_map.items():
+      if b ==event_args['sender']:
+        v=a
+    for l in self.data_row_panel_1.get_components():
+      if event_args['sender'] is not l:
+        l.icon=None
+    self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_value']), reverse=event_args['sender'].icon=='fa:caret-up' )
+
+    # self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
+    self.repeating_panel_1.items=self.repeating_panel_1.items
+    pass
 
   

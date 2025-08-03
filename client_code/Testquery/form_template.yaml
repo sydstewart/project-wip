@@ -53,12 +53,53 @@ components:
     - event_bindings: {click: link_1_click}
       layout_properties: {}
       name: link_1
-      properties: {bold: true, text: order_no}
+      properties: {bold: true, icon: 'fa:sort-alpha-desc', text: Order No}
       type: Link
-    layout_properties: {full_width_row: true, grid_position: 'FWSZLG,XCAONO'}
+    layout_properties: {full_width_row: true, grid_position: 'BYBALE,GBFULU'}
     name: data_row_panel_1
     properties: {}
     type: DataRowPanel
+  - layout_properties: {grid_position: 'BYBALE,LKLHQB'}
+    name: link_10
+    properties: {bold: true, text: Order Date}
+    type: Link
+  - event_bindings: {click: link_2_click}
+    layout_properties: {grid_position: 'BYBALE,ZCYBRY'}
+    name: link_2
+    properties: {bold: true, text: Project Name}
+    type: Link
+  - event_bindings: {click: link_3_click}
+    layout_properties: {grid_position: 'BYBALE,QXNSEJ'}
+    name: link_3
+    properties: {bold: true, text: Stage}
+    type: Link
+  - event_bindings: {click: link_4_click}
+    layout_properties: {grid_position: 'BYBALE,PSBRLZ'}
+    name: link_4
+    properties: {bold: true, text: Waiting On}
+    type: Link
+  - event_bindings: {click: link_5_click}
+    layout_properties: {grid_position: 'BYBALE,MACFNS'}
+    name: link_5
+    properties: {bold: true, text: Percent Complete}
+    type: Link
+  - event_bindings: {click: link_6_click}
+    layout_properties: {grid_position: 'BYBALE,KOALQU'}
+    name: link_6
+    properties: {bold: true, text: Order Value}
+    type: Link
+  - layout_properties: {grid_position: 'BYBALE,ABFATE'}
+    name: link_7
+    properties: {bold: true, text: Assigned to}
+    type: Link
+  - layout_properties: {grid_position: 'BYBALE,WMOVUM'}
+    name: link_8
+    properties: {bold: true, text: Work to do}
+    type: Link
+  - layout_properties: {grid_position: 'BYBALE,JELWWZ'}
+    name: link_9
+    properties: {bold: true, text: Days Elapsed}
+    type: Link
   - components:
     - name: repeating_panel_1
       properties: {item_template: Testquery.RowTemplate26}
@@ -69,6 +110,7 @@ components:
       auto_header: false
       columns:
       - {data_key: order_no, id: JKSDUP, title: Order No}
+      - {data_key: column_1, id: DVUGBU, title: Column 1}
       - {data_key: project_name, id: VJQQOR, title: Project}
       - {data_key: stage, id: OJLQEN, title: Stage}
       - {data_key: waiting_on, id: GVGOUJ, title: Waiting On}
@@ -77,6 +119,7 @@ components:
       - {data_key: assigned_to, id: GIJMQZ, title: Assigned To}
       - {data_key: work_to_do, expand: false, id: YMOAEN, title: Work to Do}
       - {data_key: days_elapsed, id: IDHGAW, title: Elapsed Time Days}
+      rows_per_page: 50
     type: DataGrid
   layout_properties: {slot: default}
   name: content_panel
