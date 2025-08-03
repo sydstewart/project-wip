@@ -43,6 +43,11 @@ def new_searches(self):
       print('kwargs=', kwargs)
      
       orders = anvil.server.call('orders',kwargs)
-       
+      self.link_5.icon = ''
+      self.link_6.icon = ''  
+      self.link_7.icon = ''  
+      self.link_10.icon = ''  
+      self.link_11.icon = ''  
+
       self.repeating_panel_1.items = orders
       self.label_1.text ='No. of projects found = ' + str(len(self.repeating_panel_1.items ))

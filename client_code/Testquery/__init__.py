@@ -100,6 +100,7 @@ class Testquery(TestqueryTemplate):
       self.link_5.icon ='fa:sort-alpha-desc'
       self.link_11.icon=''
       self.link_10.icon=''
+      self.link_6.icon=''
       direction = True
     elif self.link_5.icon =='fa:sort-alpha-desc':
       self.link_5.icon ='fa:sort-alpha-asc'
@@ -150,19 +151,23 @@ class Testquery(TestqueryTemplate):
     pass
 
   def link_6_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
-    for a,b in self.link_map.items():
-      if b ==event_args['sender']:
-        v=a
-    for l in self.data_row_panel_1.get_components():
-      if event_args['sender'] is not l:
-        l.icon=None
-    self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_value']), reverse=event_args['sender'].icon=='fa:caret-up' )
-
-    # self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
-    self.repeating_panel_1.items=self.repeating_panel_1.items
-    pass
+    if self.link_6.icon =='':
+      self.link_6.icon ='fa:sort-alpha-desc'
+      self.link_5.icon = ''
+      self.link_10.icon = ''
+      self.link_11.icon = ''
+      direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_value']), reverse=direction ) 
+    elif self.link_6.icon =='fa:sort-alpha-desc':
+        self.link_6.icon ='fa:sort-alpha-asc'
+        direction = False
+        self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_value']), reverse=direction ) 
+    elif self.link_6.icon =='fa:sort-alpha-asc':
+      self.link_6.icon ='fa:sort-alpha-desc'
+      direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_value']), reverse=direction ) 
+     
+      pass
 
   def link_10_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -171,10 +176,13 @@ class Testquery(TestqueryTemplate):
       self.link_10.icon ='fa:sort-alpha-desc'
       self.link_5.icon = ''
       self.link_11.icon = ''
+      self.link_6.icon = ''
       direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_date']), reverse=direction ) 
     elif self.link_10.icon =='fa:sort-alpha-desc':
       self.link_10.icon ='fa:sort-alpha-asc'
       direction = False
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_date']), reverse=direction ) 
     elif self.link_10.icon =='fa:sort-alpha-asc':
       self.link_10.icon ='fa:sort-alpha-desc'
       direction = True
@@ -186,6 +194,7 @@ class Testquery(TestqueryTemplate):
     if self.link_11.icon =='':
       self.link_11.icon ='fa:sort-alpha-desc'
       self.link_5.icon = ''
+      self.link_6.icon = ''
       self.link_10.icon = ''
       direction = True
     elif self.link_11.icon =='fa:sort-alpha-desc':

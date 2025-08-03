@@ -16,6 +16,7 @@ def orders(kwargs):
   else:
     orders = app_tables.sales_orders_all.search()
   # q.fetch_only("order_no","project_name","stage"
+  
   # convert to datframe to calc new columns
   X = pd.DataFrame.from_dict(orders)
   X['work_to_do'] = (X['order_value'] * ((100 - (X['percent_complete']))/100))
