@@ -4,7 +4,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 
 def new_searches(self):
-      self.drop_down_1.selected_value = 'Work in Progress'
+      # self.drop_down_1.selected_value = 'Work in Progress'
       partname = self.text_box_1.text
       stagegroup = self.drop_down_1.selected_value
       waitingon = self.drop_down_2.selected_value

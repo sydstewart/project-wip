@@ -70,4 +70,16 @@ class Testquery(TestqueryTemplate):
     pass
     pass
 
+  def link_1_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
+    for a,b in self.link_map.items():
+      if b ==event_args['sender']:
+        v=a
+    for l in self.data_row_panel_1.get_components():
+      if event_args['sender'] is not l:
+        l.icon=None
+    self.data = sorted(self.data, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
+    self.repeating_panel_1.items=self.data
+
   
