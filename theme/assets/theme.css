@@ -1,6 +1,9 @@
 /**
  This CSS implements the Material Design look and feel for Anvil apps.
  **/
+.anvil-role-underline {
+  border-top:4px solid blue;
+}
 
 /* Stop panel-cols cutting off drop shadows */
 .anvil-panel-col {

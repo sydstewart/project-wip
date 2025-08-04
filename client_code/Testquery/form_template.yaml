@@ -60,7 +60,7 @@ components:
       bold: true
       font_size: 12
       include_placeholder: true
-      items: [Kate, Steven, Alistair, '']
+      items: [Kate, Steven, Alistair, Brenda, Shelley, Andrew, '']
       placeholder: ''
     type: DropDown
   - layout_properties: {grid_position: 'DEMOLK,IYKIUQ'}
@@ -179,6 +179,7 @@ components:
       - {data_key: days_elapsed, id: IDHGAW, title: Elapsed Time Days}
       - {data_key: order_category, id: ZNRMWN, title: Category}
       - {data_key: app_area, id: SAFNDF, title: App Area}
+      role: underline
       rows_per_page: 50
       show_page_controls: true
     type: DataGrid
