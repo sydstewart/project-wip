@@ -20,7 +20,7 @@ def orders(kwargs):
   # convert to datframe to calc new columns
   X = pd.DataFrame.from_dict(orders)
   X['work_to_do'] = (X['order_value'] * ((100 - (X['percent_complete']))/100))
-  X['work_to_do']= X['work_to_do'].map("£{:,.0f}".format)
+  X['work_to_do_formated']= X['work_to_do'].map("£{:,.0f}".format)
   X['order_value_formated']= X['order_value'].map("£{:,.0f}".format)
   
   today = datetime.today() #.strftime('%Y-%m-%d')

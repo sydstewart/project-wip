@@ -58,4 +58,28 @@ def new_searches(self):
       self.link_11.icon = ''  
 
       self.repeating_panel_1.items = orders
+
+      def format_currency(amount):
+        return '£{:,.2f}'.format(amount)
       self.label_1.text ='No. of projects found = ' + str(len(self.repeating_panel_1.items ))
+      order_total = (sum(item['order_value'] 
+                     for item in self.repeating_panel_1.items))
+      order_total = format_currency(order_total)
+      self.label_8.text = 'Order Total = ' + str(order_total) 
+      
+      days_elapsed_sum = (sum(item['days_elapsed'] 
+                          for item in self.repeating_panel_1.items))
+      days_elapsed_average= (round(days_elapsed_sum))/len(self.repeating_panel_1.items)
+      days_elapsed_average= str(round(days_elapsed_average)) 
+      self.label_9.text = 'Average days Elapsed= ' + str(days_elapsed_average)
+
+      work_to_do_sum = (sum(item['work_to_do'] 
+                            for item in self.repeating_panel_1.items))
+      work_to_do_sum= format_currency(work_to_do_sum)
+      self.label_10.text = 'Work To Do Value = ' + str(work_to_do_sum)
+    
+      percent_complete_sum = (sum(item['percent_complete'] 
+                                for item in self.repeating_panel_1.items))
+      percent_complete_average= (round(percent_complete_sum ))/len(self.repeating_panel_1.items)
+      percent_complete_average= str(round(percent_complete_average)) 
+      self.label_11.text = 'Average Percent Complete = ' + str(percent_complete_average)
