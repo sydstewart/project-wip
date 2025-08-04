@@ -9,6 +9,8 @@ def new_searches(self):
       stagegroup = self.drop_down_1.selected_value
       waitingon = self.drop_down_2.selected_value
       assignedto = self.drop_down_3.selected_value
+      apparea = self.app_area_drop_down.selected_value
+      category = self.category_drop_down.selected_value
 
       print('syd here')
       
@@ -39,6 +41,12 @@ def new_searches(self):
 
       if assignedto:
         kwargs['assigned_to'] = assignedto
+
+      if apparea:
+        kwargs['app_area'] = apparea
+
+      if category:
+          kwargs['order_category'] = category
         
       print('kwargs=', kwargs)
      

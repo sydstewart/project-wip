@@ -31,10 +31,8 @@ class Testquery(TestqueryTemplate):
     
     with Notification("Please wait... data loading "):
         new_searches(self)
-        # orders = anvil.server.call('orders',**kwargs)
-        # self.repeating_panel_1.items = orders
         print('end', datetime.now())
-        # self.repeating_panel_1.items = orders
+        pass
         
      
     print('end display', datetime.now())
@@ -44,10 +42,8 @@ class Testquery(TestqueryTemplate):
     """This method is called when the user presses Enter in this text box"""
     with Notification("Please wait... data loading "):
       new_searches(self)
-      # orders = anvil.server.call('orders',**kwargs)
-      # self.repeating_panel_1.items = orders
       print('end', datetime.now())
-      # self.repeating_panel_1.items = orders
+      pass
       
     
     
@@ -205,6 +201,18 @@ class Testquery(TestqueryTemplate):
       direction = True
     self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_no']), reverse=direction ) 
     pass
+    pass
+
+  def category_drop_down_change(self, **event_args):
+    """This method is called when an item is selected"""
+    new_searches(self)
+    print('end', datetime.now())
+    pass
+
+  def app_area_drop_down_change(self, **event_args):
+    """This method is called when an item is selected"""
+    new_searches(self)
+    print('end', datetime.now())
     pass
 
   
