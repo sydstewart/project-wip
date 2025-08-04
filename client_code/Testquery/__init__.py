@@ -32,7 +32,7 @@ class Testquery(TestqueryTemplate):
     with Notification("Please wait... data loading "):
         new_searches(self)
         print('end', datetime.now())
-        pass
+        
         
      
     print('end display', datetime.now())

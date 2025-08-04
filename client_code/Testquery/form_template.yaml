@@ -50,19 +50,21 @@ components:
     layout_properties: {grid_position: 'DEMOLK,FJBRDD'}
     name: category_drop_down
     properties:
+      bold: true
+      font_size: 14
       include_placeholder: true
       items: [Implementation, Interface(s), Server Mover with Interfaces, Server Mover with NO Interfaces, Configuration/Dev, Merge, Re-installation, Questionnaire(s), Training, Miscellaneous]
     type: DropDown
   - layout_properties: {grid_position: 'DEMOLK,QTJCJH'}
     name: label_6
-    properties: {align: right, bold: true, text: App Areaa}
+    properties: {align: right, bold: true, text: App Area}
     type: Label
   - event_bindings: {change: app_area_drop_down_change}
     layout_properties: {grid_position: 'DEMOLK,SDZQGA'}
     name: app_area_drop_down
     properties:
       bold: true
-      font_size: 12
+      font_size: 14
       include_placeholder: true
       items: [Anticoagulation, Rheumatology, Dermatology, Clinical Haematology, Multiple Sclerosis, Neurology]
     type: DropDown
@@ -97,22 +99,22 @@ components:
   - event_bindings: {click: link_2_click}
     layout_properties: {grid_position: 'KZUXCN,ZCLCHP'}
     name: link_2
-    properties: {bold: true, text: Project Name}
+    properties: {bold: true, col_spacing: none, text: Project Name}
     type: Link
   - event_bindings: {click: link_3_click}
     layout_properties: {grid_position: 'KZUXCN,AUSGJQ'}
     name: link_3
-    properties: {bold: true, text: Stage}
+    properties: {align: left, bold: true, text: Stage}
     type: Link
   - event_bindings: {click: link_4_click}
     layout_properties: {grid_position: 'KZUXCN,PEOKFI'}
     name: link_4
-    properties: {bold: true, text: Waiting On}
+    properties: {align: left, bold: true, text: Waiting On}
     type: Link
   - event_bindings: {click: link_5_click}
     layout_properties: {grid_position: 'KZUXCN,DOKPJE'}
     name: link_5
-    properties: {bold: true, text: Percent Complete}
+    properties: {align: left, bold: true, text: Percent Complete}
     type: Link
   - event_bindings: {click: link_6_click}
     layout_properties: {full_width_row: true, grid_position: 'KZUXCN,COUUEL'}
@@ -129,7 +131,7 @@ components:
     type: Link
   - layout_properties: {grid_position: 'KZUXCN,IEJDDE'}
     name: link_9
-    properties: {bold: true, text: Days Elapsed}
+    properties: {bold: true, text: Elapsed Time Days}
     type: Link
   - layout_properties: {grid_position: 'KZUXCN,JXOETT'}
     name: link_1
@@ -148,28 +150,24 @@ components:
     properties:
       auto_header: false
       columns:
-      - {data_key: order_no, expand: false, id: JKSDUP, title: Order No, width: 165}
-      - {data_key: order_date, expand: false, id: DVUGBU, title: Order Date, width: 133}
-      - {data_key: project_name, expand: false, id: VJQQOR, title: Project, width: 293}
-      - {data_key: stage, expand: false, id: OJLQEN, title: Stage, width: 166}
-      - {data_key: waiting_on, expand: false, id: GVGOUJ, title: Waiting On, width: 138}
-      - {data_key: percent_complete, expand: false, id: CAGESB, title: Percent Complete, width: 158}
-      - {data_key: order_value_formated, expand: false, id: PGKEKQ, title: Order Value, width: 148}
-      - {data_key: assigned_to, expand: false, id: GIJMQZ, title: Assigned To, width: 121}
-      - {data_key: work_to_do, expand: false, id: YMOAEN, title: Work to Do, width: 107}
+      - {data_key: order_no, expand: false, id: JKSDUP, title: Order No, width: 112.181884765625}
+      - {data_key: order_date, expand: false, id: DVUGBU, title: Order Date, width: 165.3636474609375}
+      - {data_key: project_name, expand: false, id: VJQQOR, title: Project, width: 236}
+      - {data_key: stage, expand: false, id: OJLQEN, title: Stage, width: 105.3636474609375}
+      - {data_key: waiting_on, expand: false, id: GVGOUJ, title: Waiting On, width: 110.8182373046875}
+      - {data_key: percent_complete, expand: false, id: CAGESB, title: Percent Complete, width: 136.90911865234375}
+      - {data_key: order_value_formated, expand: false, id: PGKEKQ, title: Order Value, width: 129.0909423828125}
+      - {data_key: assigned_to, expand: false, id: GIJMQZ, title: Assigned To, width: 108.727294921875}
+      - {data_key: work_to_do, expand: false, id: YMOAEN, title: Work to Do, width: 97.181884765625}
       - {data_key: days_elapsed, id: IDHGAW, title: Elapsed Time Days}
       - {data_key: order_category, id: ZNRMWN, title: Category}
       - {data_key: app_area, id: SAFNDF, title: App Area}
       rows_per_page: 50
       show_page_controls: true
     type: DataGrid
-  - layout_properties: {grid_position: 'RMPGDU,WECSRN'}
-    name: drop_down_5
-    properties: {}
-    type: DropDown
   layout_properties: {slot: default}
   name: content_panel
-  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":5,"JFACPH":5,"ZJGFNI":4,"LSQFJA":5,"KCWEBL":7,"NWHSJZ":4,"UTVRRM":6,"JZPWBP":8,"ZCLCHP":13,"AUSGJQ":4,"PEOKFI":5,"DOKPJE":7,"COUUEL":7,"JVMCHX":5,"IEJDDE":5,"BFHDTG":5,"JXOETT":5,"PFKXGW":6,"FJBRDD":8,"QTJCJH":4,"SDZQGA":5,"IYKIUQ":3}'}
+  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":5,"JFACPH":5,"ZJGFNI":4,"LSQFJA":5,"KCWEBL":7,"NWHSJZ":4,"UTVRRM":6,"JZPWBP":7,"ZCLCHP":11,"AUSGJQ":5,"PEOKFI":5,"DOKPJE":6,"COUUEL":6,"JVMCHX":5,"IEJDDE":6,"BFHDTG":5,"JXOETT":7,"PFKXGW":7,"FJBRDD":8,"QTJCJH":4,"SDZQGA":5,"IYKIUQ":3}'}
   type: ColumnPanel
 - layout_properties: {slot: nav-right}
   name: navbar_links
