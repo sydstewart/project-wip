@@ -111,41 +111,41 @@ class Testquery(TestqueryTemplate):
 
   def link_2_click(self, **event_args):
     """This method is called when the link is clicked"""
-    event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
-    for a,b in self.link_map.items():
-      if b ==event_args['sender']:
-        v=a
-    for l in self.data_row_panel_1.get_components():
-      if event_args['sender'] is not l:
-        l.icon=None
-    self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
-    self.repeating_panel_1.items=self.repeating_panel_1.items
+    # event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
+    # for a,b in self.link_map.items():
+    #   if b ==event_args['sender']:
+    #     v=a
+    # for l in self.data_row_panel_1.get_components():
+    #   if event_args['sender'] is not l:
+    #     l.icon=None
+    # self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
+    # self.repeating_panel_1.items=self.repeating_panel_1.items
     pass
 
   def link_3_click(self, **event_args):
     """This method is called when the link is clicked"""
-    event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
-    for a,b in self.link_map.items():
-      if b ==event_args['sender']:
-        v=a
-    for l in self.data_row_panel_1.get_components():
-      if event_args['sender'] is not l:
-        l.icon=None
-    self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
-    self.repeating_panel_1.items=self.repeating_panel_1.items
+    # event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
+    # for a,b in self.link_map.items():
+    #   if b ==event_args['sender']:
+    #     v=a
+    # for l in self.data_row_panel_1.get_components():
+    #   if event_args['sender'] is not l:
+    #     l.icon=None
+    # self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
+    # self.repeating_panel_1.items=self.repeating_panel_1.items
     pass
 
   def link_4_click(self, **event_args):
     """This method is called when the link is clicked"""
-    event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
-    for a,b in self.link_map.items():
-      if b ==event_args['sender']:
-        v=a
-    for l in self.data_row_panel_1.get_components():
-      if event_args['sender'] is not l:
-        l.icon=None
-    self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
-    self.repeating_panel_1.items=self.repeating_panel_1.items
+    # event_args['sender'].icon='fa:caret-up' if event_args['sender'].icon=='fa:caret-down' else 'fa:caret-down'
+    # for a,b in self.link_map.items():
+    #   if b ==event_args['sender']:
+    #     v=a
+    # for l in self.data_row_panel_1.get_components():
+    #   if event_args['sender'] is not l:
+    #     l.icon=None
+    # self.repeating_panel_1.items = sorted(self.repeating_panel_1.items, key=lambda k: k[v], reverse=event_args['sender'].icon=='fa:caret-up')
+    # self.repeating_panel_1.items=self.repeating_panel_1.items
     pass
 
   def link_6_click(self, **event_args):
@@ -274,6 +274,17 @@ class Testquery(TestqueryTemplate):
     self.link_6.icon=''
     self.link_8.icon = ''
     self.link_9.icon = ''
+    pass
+
+  def link_14_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.text_box_1.text =''
+    self.drop_down_1.selected_value = None
+    self.drop_down_2.selected_value = None
+    self.drop_down_3.selected_value = None
+    self.app_area_drop_down.selected_value = None
+    self.category_drop_down.selected_value = None
+    new_searches(self)
     pass
 
   

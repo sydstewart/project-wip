@@ -44,7 +44,7 @@ components:
     name: drop_down_2
     properties:
       bold: true
-      font_size: 14
+      font_size: 12
       include_placeholder: true
       items: [Customer, 4S, None]
       placeholder: ''
@@ -72,7 +72,7 @@ components:
     name: category_drop_down
     properties:
       bold: true
-      font_size: 14
+      font_size: 12
       include_placeholder: true
       items: [Implementation, Interface(s), Server Mover with Interfaces, Server Mover with NO Interfaces, Configuration/Dev, Merge, Re-installation, Questionnaire(s), Training, Miscellaneous]
     type: DropDown
@@ -85,7 +85,7 @@ components:
     name: app_area_drop_down
     properties:
       bold: true
-      font_size: 14
+      font_size: 12
       include_placeholder: true
       items: [Anticoagulation, Rheumatology, Dermatology, Clinical Haematology, Multiple Sclerosis, Neurology]
     type: DropDown
@@ -98,16 +98,21 @@ components:
     name: text_box_1
     properties: {}
     type: TextBox
+  - event_bindings: {click: link_14_click}
+    layout_properties: {grid_position: 'DEMOLK,RSXPIW'}
+    name: link_14
+    properties: {bold: true, font_size: 12, foreground: '#f70202', text: Clear Searches}
+    type: Link
   - event_bindings: {click: link_13_click}
     layout_properties: {grid_position: 'DEMOLK,WLSZSD'}
     name: link_13
-    properties: {bold: true, text: Clear Sorting}
+    properties: {background: 'theme:Gray 200', bold: true, font_size: 12, foreground: '#f70202', text: Clear Sorting}
     type: Link
   - components:
     - event_bindings: {click: link_11_click}
       layout_properties: {}
       name: link_11
-      properties: {bold: true, icon: '', text: Order No}
+      properties: {background: 'theme:Gray 200', bold: true, icon: '', text: Order No}
       type: Link
     layout_properties: {full_width_row: true, grid_position: 'KZUXCN,UTVRRM'}
     name: data_row_panel_2
@@ -116,7 +121,7 @@ components:
   - event_bindings: {click: link_10_click}
     layout_properties: {grid_position: 'KZUXCN,JZPWBP'}
     name: link_10
-    properties: {bold: true, text: Order Date}
+    properties: {background: 'theme:Gray 200', bold: true, text: Order Date}
     type: Link
   - event_bindings: {click: link_2_click}
     layout_properties: {grid_position: 'KZUXCN,ZCLCHP'}
@@ -136,12 +141,12 @@ components:
   - event_bindings: {click: link_5_click}
     layout_properties: {grid_position: 'KZUXCN,DOKPJE'}
     name: link_5
-    properties: {align: left, bold: true, text: Percent Complete}
+    properties: {align: left, background: 'theme:Gray 200', bold: true, text: Percent Complete}
     type: Link
   - event_bindings: {click: link_6_click}
     layout_properties: {full_width_row: true, grid_position: 'KZUXCN,COUUEL'}
     name: link_6
-    properties: {align: left, bold: true, text: Order Value}
+    properties: {align: left, background: 'theme:Gray 200', bold: true, text: Order Value}
     type: Link
   - layout_properties: {grid_position: 'KZUXCN,BFHDTG'}
     name: link_7
@@ -150,12 +155,12 @@ components:
   - event_bindings: {click: link_8_click}
     layout_properties: {grid_position: 'KZUXCN,JVMCHX'}
     name: link_8
-    properties: {bold: true, text: Work to do}
+    properties: {background: 'theme:Gray 200', bold: true, text: Work to do}
     type: Link
   - event_bindings: {click: link_9_click}
     layout_properties: {grid_position: 'KZUXCN,IEJDDE'}
     name: link_9
-    properties: {bold: true, text: Elapsed Time Days}
+    properties: {background: 'theme:Gray 200', bold: true, text: Elapsed Time Days}
     type: Link
   - layout_properties: {grid_position: 'KZUXCN,JXOETT'}
     name: link_1
@@ -192,7 +197,7 @@ components:
     type: DataGrid
   layout_properties: {slot: default}
   name: content_panel
-  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":5,"JFACPH":5,"ZJGFNI":4,"LSQFJA":5,"KCWEBL":7,"NWHSJZ":4,"UTVRRM":6,"JZPWBP":7,"ZCLCHP":11,"AUSGJQ":4,"PEOKFI":5,"DOKPJE":6,"COUUEL":6,"JVMCHX":5,"IEJDDE":7,"BFHDTG":4,"JXOETT":7,"PFKXGW":8,"FJBRDD":8,"QTJCJH":4,"SDZQGA":5,"IYKIUQ":3}'}
+  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":5,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":6,"NWHSJZ":4,"UTVRRM":6,"JZPWBP":7,"ZCLCHP":11,"AUSGJQ":4,"PEOKFI":5,"DOKPJE":6,"COUUEL":6,"JVMCHX":5,"IEJDDE":7,"BFHDTG":4,"JXOETT":7,"PFKXGW":8,"FJBRDD":9,"QTJCJH":3,"SDZQGA":6,"IYKIUQ":4,"RSXPIW":4,"WLSZSD":4}'}
   type: ColumnPanel
 - layout_properties: {slot: nav-right}
   name: navbar_links
