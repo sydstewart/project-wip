@@ -93,8 +93,8 @@ def daily_by_stats():
   
   for r in dicts:
     # print (row['A'], row['B'], row['C'])
-    app_tables.sales_orders_all.add_row(**{'order_no': r['so_number'],'prefix':r['prefix'], 'so_no':r['so_no'],'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['OrderCategory'],'assigned_to':r['user_name'] , \
-                                           'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
+    app_tables.sales_orders_all.add_row(**{'order_no': r['so_number'],'prefix':r['prefix'], 'so_no':r['so_no'],'project_name':r['project_name'] ,'order_date':r['order_date'], 'order_category':r['order_category'],'assigned_to':r['assigned_to'] , \
+                                           'order_value':r['order_value'], 'percent_complete':r['percent_complete'],'app_area':r['app_area'] , 'stage':r['stage'], 'Appgroup':r['AppGroup'], \
                                            'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note'],'so_number':r['so_number']})
     # dictsout = app_tables.output.search()
     # for r in dicts:

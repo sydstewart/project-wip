@@ -97,7 +97,7 @@ class projects_in_progress_new(projects_in_progress_newTemplate):
     self.check_box_1.checked = False
     self.check_box_5.checked = False
     self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['Work To Do']), reverse=True )
-    self.check_box_1.
+   
     pass
     pass
 
