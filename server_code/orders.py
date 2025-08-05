@@ -18,23 +18,24 @@ def orders(kwargs):
   # q.fetch_only("order_no","project_name","stage"
   
   # convert to datframe to calc new columns
-  X = pd.DataFrame.from_dict(orders)
-  X['work_to_do'] = (X['order_value'] * ((100 - (X['percent_complete']))/100))
-  X['work_to_do_formated']= X['work_to_do'].map("£{:,.0f}".format)
-  X['order_value_formated']= X['order_value'].map("£{:,.0f}".format)
-  
-  today = datetime.today() #.strftime('%Y-%m-%d')
-
-  print('today', today)
-  X['today']= today
-  X['today']= pd.to_datetime(X.today,utc =True)
-  # print(X['today'])
-  X['order_date'] = pd.to_datetime(X.order_date,utc =True)
-  # print('order date',X['order_date'] )
-  X['days_elapsed'] = (X['today'] - X['order_date']).dt.days
-  # print('elapsed',X['days_elapsed']  )
-  
-  orders  = X.to_dict(orient='records')
+  if orders:
+      X = pd.DataFrame.from_dict(orders)
+      X['work_to_do'] = (X['order_value'] * ((100 - (X['percent_complete']))/100))
+      X['work_to_do_formated']= X['work_to_do'].map("£{:,.0f}".format)
+      X['order_value_formated']= X['order_value'].map("£{:,.0f}".format)
+      
+      today = datetime.today() #.strftime('%Y-%m-%d')
+    
+      print('today', today)
+      X['today']= today
+      X['today']= pd.to_datetime(X.today,utc =True)
+      # print(X['today'])
+      X['order_date'] = pd.to_datetime(X.order_date,utc =True)
+      # print('order date',X['order_date'] )
+      X['days_elapsed'] = (X['today'] - X['order_date']).dt.days
+      # print('elapsed',X['days_elapsed']  )
+      
+      orders  = X.to_dict(orient='records')
       
   # print('orders', orders)
   return orders

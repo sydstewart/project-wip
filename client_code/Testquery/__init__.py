@@ -97,6 +97,8 @@ class Testquery(TestqueryTemplate):
       self.link_11.icon=''
       self.link_10.icon=''
       self.link_6.icon=''
+      self.link_8.icon = ''
+      self.link_9.icon = ''
       direction = True
     elif self.link_5.icon =='fa:sort-alpha-desc':
       self.link_5.icon ='fa:sort-alpha-asc'
@@ -152,6 +154,8 @@ class Testquery(TestqueryTemplate):
       self.link_5.icon = ''
       self.link_10.icon = ''
       self.link_11.icon = ''
+      self.link_8.icon = ''
+      self.link_9.icon = ''
       direction = True
       self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_value']), reverse=direction ) 
     elif self.link_6.icon =='fa:sort-alpha-desc':
@@ -173,6 +177,8 @@ class Testquery(TestqueryTemplate):
       self.link_5.icon = ''
       self.link_11.icon = ''
       self.link_6.icon = ''
+      self.link_8.icon = ''
+      self.link_9.icon = ''
       direction = True
       self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_date']), reverse=direction ) 
     elif self.link_10.icon =='fa:sort-alpha-desc':
@@ -192,10 +198,14 @@ class Testquery(TestqueryTemplate):
       self.link_5.icon = ''
       self.link_6.icon = ''
       self.link_10.icon = ''
+      self.link_8.icon = ''
+      self.link_9.icon = ''
       direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_no']), reverse=direction ) 
     elif self.link_11.icon =='fa:sort-alpha-desc':
       self.link_11.icon ='fa:sort-alpha-asc'
       direction = False
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_no']), reverse=direction ) 
     elif self.link_11.icon =='fa:sort-alpha-asc':
       self.link_11.icon ='fa:sort-alpha-desc'
       direction = True
@@ -213,6 +223,57 @@ class Testquery(TestqueryTemplate):
     """This method is called when an item is selected"""
     new_searches(self)
     print('end', datetime.now())
+    pass
+
+  def link_8_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    if self.link_8.icon =='':
+      self.link_8.icon ='fa:sort-alpha-desc'
+      self.link_5.icon = ''
+      self.link_10.icon = ''
+      self.link_11.icon = ''
+      self.link_9.icon = ''
+      direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['work_to_do']), reverse=direction ) 
+    elif self.link_8.icon =='fa:sort-alpha-desc':
+      self.link_8.icon ='fa:sort-alpha-asc'
+      direction = False
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['work_to_do']), reverse=direction ) 
+    elif self.link_8.icon =='fa:sort-alpha-asc':
+      self.link_8.icon ='fa:sort-alpha-desc'
+      direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['work_to_do']), reverse=direction ) 
+
+    pass
+
+  def link_9_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    if self.link_9.icon =='':
+      self.link_9.icon ='fa:sort-alpha-desc'
+      self.link_5.icon = ''
+      self.link_10.icon = ''
+      self.link_11.icon = ''
+      self.link_8.icon = ''
+      direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['days_elapsed']), reverse=direction ) 
+    elif self.link_9.icon =='fa:sort-alpha-desc':
+      self.link_9.icon ='fa:sort-alpha-asc'
+      direction = False
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['days_elapsed']), reverse=direction ) 
+    elif self.link_9.icon =='fa:sort-alpha-asc':
+      self.link_9.icon ='fa:sort-alpha-desc'
+      direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['days_elapsed']), reverse=direction ) 
+    pass
+
+  def link_13_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.link_5.icon =''
+    self.link_11.icon=''
+    self.link_10.icon=''
+    self.link_6.icon=''
+    self.link_8.icon = ''
+    self.link_9.icon = ''
     pass
 
   
