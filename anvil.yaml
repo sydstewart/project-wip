@@ -494,6 +494,12 @@ scheduled_tasks:
     at: {hour: 8, minute: 0}
     every: day
     n: 1
+- job_id: VMNXNGDE
+  task_name: daily_by_stats_trial
+  time_spec:
+    at: {hour: 8, minute: 5}
+    every: day
+    n: 1
 secrets:
   Teamwork Pass:
     type: secret

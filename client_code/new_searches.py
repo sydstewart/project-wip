@@ -51,7 +51,7 @@ def new_searches(self):
       print('kwargs=', kwargs)
      
       orders = anvil.server.call('orders',kwargs)
-      if orders:
+      if len(orders) >= 0:
           self.link_5.icon = ''
           self.link_6.icon = ''  
           self.link_7.icon = ''  
@@ -59,31 +59,50 @@ def new_searches(self):
           self.link_11.icon = ''  
     
           self.repeating_panel_1.items = orders
+      if len(self.repeating_panel_1.items) > 0:  
     
           def format_currency(amount):
             return '£{:,.2f}'.format(amount)
+          self.label_1.foreground ='black'
           self.label_1.text ='No. of projects found = ' + str(len(self.repeating_panel_1.items ))
           order_total = (sum(item['order_value'] 
                         for item in self.repeating_panel_1.items))
           order_total = format_currency(order_total)
+          self.label_8.foreground ='black'
           self.label_8.text = 'Order Total = ' + str(order_total) 
           
           days_elapsed_sum = (sum(item['days_elapsed'] 
                               for item in self.repeating_panel_1.items))
           days_elapsed_average= (round(days_elapsed_sum))/len(self.repeating_panel_1.items)
           days_elapsed_average= str(round(days_elapsed_average)) 
+          self.label_9.foreground ='black'
           self.label_9.text = 'Average days Elapsed= ' + str(days_elapsed_average)
     
           work_to_do_sum = (sum(item['work_to_do'] 
                                 for item in self.repeating_panel_1.items))
           work_to_do_sum= format_currency(work_to_do_sum)
+          self.label_10.foreground ='black'
           self.label_10.text = 'Work To Do Value = ' + str(work_to_do_sum)
         
           percent_complete_sum = (sum(item['percent_complete'] 
                                     for item in self.repeating_panel_1.items))
           percent_complete_average= (round(percent_complete_sum ))/len(self.repeating_panel_1.items)
           percent_complete_average= str(round(percent_complete_average)) 
+          self.label_11.foreground ='black'
           self.label_11.text = 'Average Percent Complete = ' + str(percent_complete_average)
-      else:
 
-          alert("Combination of Search Criteria finds no Projects")
+      else:
+         self.label_1.foreground ='red'
+         self.label_1.text ='No. of projects found = ' + str(len(self.repeating_panel_1.items ))# alert("Combination of Search Criteria finds no Projects")
+         
+         self.label_8.foreground ='red'
+         self.label_8.text = 'Order Total = ' + str(0) 
+        
+         self.label_9.foreground ='red'
+         self.label_9.text = 'Average days Elapsed= ' + str(0)
+         
+         self.label_10.foreground ='red'
+         self.label_10.text = 'Work To Do Value = ' + str(0)
+        
+         self.label_11.foreground ='red'
+         self.label_11.text = 'Average Percent Complete = ' + str(0)

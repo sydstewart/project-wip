@@ -16,9 +16,9 @@ def orders(kwargs):
   else:
     orders = app_tables.sales_orders_all.search(stage = q.not_('Closed'))
   # q.fetch_only("order_no","project_name","stage"
-  
-  # convert to datframe to calc new columns
-  if orders:
+  print('orders', orders)
+  # convert to datframe to calc new columns  if orderss are found
+  if len(orders) > 0:
       X = pd.DataFrame.from_dict(orders)
       X['work_to_do'] = (X['order_value'] * ((100 - (X['percent_complete']))/100))
       X['work_to_do_formated']= X['work_to_do'].map("£{:,.0f}".format)
@@ -37,14 +37,6 @@ def orders(kwargs):
       
       orders  = X.to_dict(orient='records')
       
-  # print('orders', orders)
+  print('orders', orders)
   return orders
-  # if partname:
-  #       orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"), project_name= q.ilike('%' + partname +'%'))
-  # elif partname and stagegroup :
-  #     orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"), q.all_of(stage=q.any_of(*stages), project_name= q.ilike('%' + partname +'%')))
-  # elif stagegroup :
-  #    orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"), stage=q.any_of(*stages))
-  # elif not partname and not stagegroup:
-  #    orders = app_tables.sales_orders_all.search(q.fetch_only("order_no","project_name","stage"))
-  # return orders
+
