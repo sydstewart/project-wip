@@ -9,5 +9,5 @@ import anvil.server
 @anvil.server.callable
 def prepare_stats_launch():
   """Launch a single stats background task."""
-  task = anvil.server.launch_background_task('daily_by_stats')
+  task = anvil.server.launch_background_task('prepare_stats')
   return task  

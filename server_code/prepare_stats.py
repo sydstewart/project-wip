@@ -13,8 +13,8 @@ from datetime import datetime, time , date , timedelta
 @anvil.tables.in_transaction
 def prepare_stats():
       # dicts,dictspip, dictswts, dictsoh, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts, 0, None, None, None, None)
-      app_tables.sales_orders_all.delete_all_rows()
-      dicts = app_tables.stage_summary.search()
+      app_tables.stage_summary.delete_all_rows()
+      dicts = app_tables.sales_orders_all.search()
       X = pd.DataFrame.from_dict(dicts)
       #======================Overall Totals======================================
       total_order_value = X['order_value'].sum()
@@ -28,7 +28,8 @@ def prepare_stats():
       print('Waiting On',X['waiting_on'])
       print("========================================================")
       #=======================Projects on Hold ======================================
-      filtered_df = X[X['Stage Group'] == 'Projects on Hold']
+      stages = ['On Hold']
+      filtered_df = X[X['stage'].isin(stages)]
       sum_of_onhold = filtered_df['order_value'].sum()
       count_of_onhold = filtered_df['order_value'].count()
       on_hold_percentage_complete_on_hold  = filtered_df['percent_complete'].mean()
@@ -43,13 +44,15 @@ def prepare_stats():
       print('on hold Total  Partialy Invoiced', on_hold_total_partially_invoiced )
       print("========================================================")
       #=======================Projects Waiting to Start ======================================
-      filtered_df = X[X['Stage Group'] == 'Project waiting to Start']
+      stages = [ 'Order Approved', 'Order Submitted for Approval','Ordered']
+      filtered_df = X[X['stage'].isin(stages)]
       sum_of_onhold = filtered_df['order_value'].sum()
       print('Total Projects Waiting to Start', sum_of_onhold )
       
       
       print('#========================Projects in Progress======================================')
-      filtered_df = X[X['Stage Group'] == 'Project in Progress']
+      stages = ['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP','Invoiced, still work to be completed']
+      filtered_df = X[X['stage'].isin(stages)]
       sum_of_in_progress = filtered_df['order_value'].sum() 
       count_of_in_progress = filtered_df['order_value'].count() 
       percentage_complete_in_progress  = filtered_df['percent_complete'].mean()
@@ -173,7 +176,9 @@ def prepare_stats():
       print("========================================================")
       
       #=============================Projects Waiting to Start=================================
-      filtered_df = X[X['Stage Group'] == 'Project waiting to Start']
+      
+      stages = [ 'Order Approved', 'Order Submitted for Approval','Ordered']
+      filtered_df = X[X['stage'].isin(stages)]
       sum_of_waiting_to_start = filtered_df['order_value'].sum() 
       count_of_waiting_to_start = filtered_df['order_value'].count() 
       percentage_complete_to_start  = filtered_df['percent_complete'].mean()
