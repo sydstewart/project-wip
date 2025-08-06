@@ -90,6 +90,9 @@ def new_searches(self):
           percent_complete_average= str(round(percent_complete_average)) 
           self.label_11.foreground ='black'
           self.label_11.text = 'Average Percent Complete = ' + str(percent_complete_average)
+         
+          last_date = anvil.server.call('last_import_date')
+          self.label_12.text = 'Date of Last Import from the CRM = ' + str(last_date)
 
       else:
          self.label_1.foreground ='red'

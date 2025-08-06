@@ -20,6 +20,10 @@ components:
     name: label_9
     properties: {bold: true}
     type: Label
+  - layout_properties: {grid_position: 'YYAAON,LLEQXH'}
+    name: label_12
+    properties: {bold: true, font_size: 11}
+    type: Label
   - layout_properties: {full_width_row: true, grid_position: 'DEMOLK,JEWUFC'}
     name: label_3
     properties: {align: center, bold: true, text: Work State}
