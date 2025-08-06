@@ -60,30 +60,54 @@ def prepare_stats():
       work_to_do_in_progress = sum_of_in_progress  - work_completed_in_progress
       in_progress_total_partially_invoiced = filtered_df['partially_invoiced_total'].sum()
       
-      #====wait of Customer 
+      #====wait of Customer in Work in Progress
       filtered_df_wait = filtered_df[filtered_df['waiting_on'] == 'Customer']
-      sum_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].sum()
-      count_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_no'].count()
-      percentage_complete_in_progress_waiting_on_customer   = filtered_df_wait['percent_complete'].mean()
-      work_completed_in_progress_waiting_on_customer = sum_of_waiting_in_progress_waiting_on_customer * (percentage_complete_in_progress_waiting_on_customer/100)
-      work_to_do_in_progress_in_progress_waiting_on_customer = sum_of_waiting_in_progress_waiting_on_customer  - work_completed_in_progress_waiting_on_customer
-      print('Customer Waiting State', filtered_df_wait[['order_no','project_name','stage','order_value', 'percent_complete','waiting_on']])
+      if filtered_df_wait.empty is False:
+          sum_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].sum()
+          count_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_no'].count()
+          percentage_complete_in_progress_waiting_on_customer   = filtered_df_wait['percent_complete'].mean()
+          work_completed_in_progress_waiting_on_customer = sum_of_waiting_in_progress_waiting_on_customer * (percentage_complete_in_progress_waiting_on_customer/100)
+          work_to_do_in_progress_in_progress_waiting_on_customer = sum_of_waiting_in_progress_waiting_on_customer  - work_completed_in_progress_waiting_on_customer
+          print('Customer Waiting State', filtered_df_wait[['order_no','project_name','stage','order_value', 'percent_complete','waiting_on']])
+      else:
+        sum_of_waiting_in_progress_waiting_on_customer = 0
+        count_of_waiting_in_progress_waiting_on_customer = 0
+        percentage_complete_in_progress_waiting_on_customer   = 0
+        work_completed_in_progress_waiting_on_customer = 0
+        work_to_do_in_progress_in_progress_waiting_on_customer = 0
       #======Wait on 4S
       filtered_df_wait_4S = filtered_df[filtered_df['waiting_on'] == '4S']
-      sum_of_waiting_in_progress_waiting_on_4S = filtered_df_wait_4S['order_value'].sum()  
-      count_of_waiting_in_progress_waiting_on_4S = filtered_df_wait_4S['order_no'].count() 
-      percentage_complete_in_progress_waiting_on_4S  = filtered_df_wait_4S['percent_complete'].mean()
-      work_completed_in_progress_waiting_on_4S= sum_of_waiting_in_progress_waiting_on_4S  * (percentage_complete_in_progress_waiting_on_4S/100)
-      work_to_do_in_progress_in_progress_waiting_on_4S = sum_of_waiting_in_progress_waiting_on_4S  - work_completed_in_progress_waiting_on_4S
-      print('4S Waiting State', filtered_df_wait_4S[['order_no','project_name','stage','order_value', 'percent_complete','waiting_on']])
+      if filtered_df_wait_4S.empty is False:
+          sum_of_waiting_in_progress_waiting_on_4S = filtered_df_wait_4S['order_value'].sum()  
+          count_of_waiting_in_progress_waiting_on_4S = filtered_df_wait_4S['order_no'].count() 
+          percentage_complete_in_progress_waiting_on_4S  = filtered_df_wait_4S['percent_complete'].mean()
+          work_completed_in_progress_waiting_on_4S= sum_of_waiting_in_progress_waiting_on_4S  * (percentage_complete_in_progress_waiting_on_4S/100)
+          work_to_do_in_progress_in_progress_waiting_on_4S = sum_of_waiting_in_progress_waiting_on_4S  - work_completed_in_progress_waiting_on_4S
+          print('4S Waiting State', filtered_df_wait_4S[['order_no','project_name','stage','order_value', 'percent_complete','waiting_on']])
+      else:
+        sum_of_waiting_in_progress_waiting_on_4S = 0
+        count_of_waiting_in_progress_waiting_on_4S = 0
+        percentage_complete_in_progress_waiting_on_4S  = 0
+        work_completed_in_progress_waiting_on_4S= 0
+        work_to_do_in_progress_in_progress_waiting_on_4S = 0
+        
       #======Wait on no status
       filtered_df_wait_none = filtered_df[filtered_df['waiting_on'] =='None']
-      sum_of_waiting_in_progress_waiting_no_state = filtered_df_wait_none['order_value'].sum()
-      count_of_waiting_in_progress_waiting_no_state = filtered_df_wait_none['order_no'].count()
-      percentage_complete_in_progress_waiting_no_state  = filtered_df_wait_none['percent_complete'].mean() 
-      work_completed_in_progress_waiting_no_state= sum_of_waiting_in_progress_waiting_no_state  * (percentage_complete_in_progress_waiting_no_state/100)
-      work_to_do_in_progress_in_progress_waiting_no_state = sum_of_waiting_in_progress_waiting_no_state  - work_completed_in_progress_waiting_no_state
-      print('None Waiting State', filtered_df_wait_none[['order_no','project_name','stage','order_value', 'percent_complete','waiting_on']])
+      print('filtered_df_wait_none',filtered_df_wait_none)
+      if filtered_df_wait_none.empty is False:
+          sum_of_waiting_in_progress_waiting_no_state = filtered_df_wait_none['order_value'].sum()
+          count_of_waiting_in_progress_waiting_no_state = filtered_df_wait_none['order_no'].count()
+          percentage_complete_in_progress_waiting_no_state  = filtered_df_wait_none['percent_complete'].mean() 
+          work_completed_in_progress_waiting_no_state= sum_of_waiting_in_progress_waiting_no_state  * (percentage_complete_in_progress_waiting_no_state/100)
+          work_to_do_in_progress_in_progress_waiting_no_state = sum_of_waiting_in_progress_waiting_no_state  - work_completed_in_progress_waiting_no_state
+          print('None Waiting State', filtered_df_wait_none[['order_no','project_name','stage','order_value', 'percent_complete','waiting_on']])
+      else:
+        sum_of_waiting_in_progress_waiting_no_state = 0
+        count_of_waiting_in_progress_waiting_no_state = 0
+        percentage_complete_in_progress_waiting_no_state  = 0
+        work_completed_in_progress_waiting_no_state= 0
+        work_to_do_in_progress_in_progress_waiting_no_state = 0
+       
       
       print('================== Projects in progress Totals===================')
       print( 'Total Projects in Progress', sum_of_in_progress  )
