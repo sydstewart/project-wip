@@ -12,7 +12,7 @@ from ..stage_group_new_chart import stage_group_new_chart
 from ..projects_in_progress_new import projects_in_progress_new
 from ..projects_waiting_to_start_new import projects_waiting_to_start_new
 from ..projects_on_hold_new import projects_on_hold_new
-
+from ..Testquery import Testquery
 # def reset_links():
 #   self.link_7.role = ''
 #   # self.link_1.role = None
@@ -28,7 +28,7 @@ class Form9(Form9Template):
  
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    # self.link_1_click()
+    # self.link_6_click()
     self.add_component(Label(text= '     Project WIP'), slot='title')
     anvil.users.login_with_form()
     loggedin_user = anvil.users.get_user()
@@ -43,9 +43,9 @@ class Form9(Form9Template):
     # Globals.loggedin_user = loggedin_user
     # Globals.organisation = organisation
     if usertype != 'admin': 
-      self.link_8.visible = False
-      self.link_9.visible = False
-      self.link_10.visible = False
+      self.link_11.visible = False
+      self.link_12.visible = False
+      # self.link_10.visible = False
       
     
 
@@ -89,7 +89,7 @@ class Form9(Form9Template):
   def link_6_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
-    self.content_panel.add_component(projects_waiting_to_start_new(), full_width_row=True)
+    self.content_panel.add_component(Testquery(), full_width_row=True)
     pass
 
   def link_7_click(self, **event_args):

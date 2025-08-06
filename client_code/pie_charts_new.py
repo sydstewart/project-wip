@@ -16,7 +16,7 @@ from anvil_extras import navigation
 # Derived from the Anvil Extras Demo published at https://github.com/anvilistas/anvil-extras
 
 
-@navigation.register(name="pie_charts_new", title="Pie Charts")
+# @navigation.register(name="pie_charts_new", title="Pie Charts")
 class pie_charts_new(pie_charts_newTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
