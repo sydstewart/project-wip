@@ -196,7 +196,7 @@ components:
       - {data_key: order_category, id: ZNRMWN, title: Category}
       - {data_key: app_area, id: SAFNDF, title: App Area}
       role: underline
-      rows_per_page: 50
+      rows_per_page: 100
       show_page_controls: true
     type: DataGrid
   layout_properties: {slot: default}

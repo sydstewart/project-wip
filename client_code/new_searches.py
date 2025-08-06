@@ -2,6 +2,7 @@ import anvil.server
 import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
+from datetime import datetime, time , date , timedelta
 
 def new_searches(self):
       # self.drop_down_1.selected_value = 'Work in Progress'
@@ -92,7 +93,8 @@ def new_searches(self):
           self.label_11.text = 'Average Percent Complete = ' + str(percent_complete_average)
          
           last_date = anvil.server.call('last_import_date')
-          self.label_12.text = 'Date of Last Import from the CRM = ' + str(last_date)
+          day_of_week =last_date.strftime("%A")
+          self.label_12.text = 'Date of Last Import from the CRM = ' + str(last_date) + ' ' + str(day_of_week)
 
       else:
          self.label_1.foreground ='red'
@@ -109,3 +111,4 @@ def new_searches(self):
         
          self.label_11.foreground ='red'
          self.label_11.text = 'Average Percent Complete = ' + str(0)
+        
