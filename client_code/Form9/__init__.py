@@ -83,7 +83,7 @@ class Form9(Form9Template):
   def link_5_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
-    self.content_panel.add_component(projects_in_progress_new(), full_width_row=True)
+    self.content_panel.add_component(Testquery(), full_width_row=True)
     pass
 
   def link_6_click(self, **event_args):

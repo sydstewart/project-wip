@@ -13,6 +13,7 @@ class Testquery(TestqueryTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    anvil.users.login_with_form()
     # self.data_row_panel_1.item = {'order_no': 'Order No'}
     # self.link_map = {'order_no':self.link_1,
     #                  'order_date': self.link_2,
@@ -285,6 +286,17 @@ class Testquery(TestqueryTemplate):
     self.app_area_drop_down.selected_value = None
     self.category_drop_down.selected_value = None
     new_searches(self)
+    pass
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.content_panel.clear()
+    # self.column_panel_1.clear()
+
+    anvil.users.logout()
+
+    anvil.users.login_with_form()
+    open_form('Testquery')
     pass
 
   

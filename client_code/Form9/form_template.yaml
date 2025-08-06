@@ -96,7 +96,7 @@ components:
     height: '50'
     horizontal_align: left
     margin: [null, null, null, '0']
-    source: _/theme/4S logo small.png
+    source: ''
   type: Image
 container:
   properties: {html: '@theme:standard-page.html'}
