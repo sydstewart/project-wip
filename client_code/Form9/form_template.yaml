@@ -85,6 +85,11 @@ components:
     name: link_11
     properties: {bold: true, text: Trial}
     type: Link
+  - event_bindings: {click: link_12_click}
+    layout_properties: {grid_position: 'DRMNYZ,AYUXSS'}
+    name: link_12
+    properties: {bold: true, text: Prepare stats}
+    type: Link
   layout_properties: {slot: left-nav}
   name: column_panel_1
   properties: {}
