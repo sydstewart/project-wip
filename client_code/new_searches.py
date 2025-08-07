@@ -91,6 +91,12 @@ def new_searches(self):
           percent_complete_average= str(round(percent_complete_average)) 
           self.label_11.foreground ='black'
           self.label_11.text = 'Average Percent Complete = ' + str(percent_complete_average)
+
+          partially_invoiced_total_sum = (sum(item['partially_invoiced_total'] 
+                                      for item in self.repeating_panel_1.items))
+          partially_invoiced_total_sum= format_currency(partially_invoiced_total_sum)
+          self.label_13.foreground ='black'
+          self.label_13.text = 'Patially Invoiced Sum = ' + str(partially_invoiced_total_sum)
          
           last_date = anvil.server.call('last_import_date')
           day_of_week =last_date.strftime("%A")
