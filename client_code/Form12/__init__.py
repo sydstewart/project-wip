@@ -101,6 +101,7 @@ class Form12(Form12Template):
       self.link_6.icon=''
       self.link_8.icon = ''
       self.link_9.icon = ''
+      self.link_15.icon = ''
       direction = True
     elif self.link_5.icon =='fa:sort-alpha-desc':
       self.link_5.icon ='fa:sort-alpha-asc'
@@ -158,6 +159,7 @@ class Form12(Form12Template):
       self.link_11.icon = ''
       self.link_8.icon = ''
       self.link_9.icon = ''
+      self.link_15.icon = ''
       direction = True
       self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_value']), reverse=direction ) 
     elif self.link_6.icon =='fa:sort-alpha-desc':
@@ -181,6 +183,7 @@ class Form12(Form12Template):
       self.link_6.icon = ''
       self.link_8.icon = ''
       self.link_9.icon = ''
+      self.link_15.icon = ''
       direction = True
       self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_date']), reverse=direction ) 
     elif self.link_10.icon =='fa:sort-alpha-desc':
@@ -202,6 +205,7 @@ class Form12(Form12Template):
       self.link_10.icon = ''
       self.link_8.icon = ''
       self.link_9.icon = ''
+      self.link_15.icon = ''
       direction = True
       self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_no']), reverse=direction ) 
     elif self.link_11.icon =='fa:sort-alpha-desc':
@@ -235,6 +239,7 @@ class Form12(Form12Template):
       self.link_10.icon = ''
       self.link_11.icon = ''
       self.link_9.icon = ''
+      self.link_15.icon = ''
       direction = True
       self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['work_to_do']), reverse=direction ) 
     elif self.link_8.icon =='fa:sort-alpha-desc':
@@ -256,6 +261,7 @@ class Form12(Form12Template):
       self.link_10.icon = ''
       self.link_11.icon = ''
       self.link_8.icon = ''
+      self.link_15.icon = ''
       direction = True
       self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['days_elapsed']), reverse=direction ) 
     elif self.link_9.icon =='fa:sort-alpha-desc':
@@ -276,6 +282,7 @@ class Form12(Form12Template):
     self.link_6.icon=''
     self.link_8.icon = ''
     self.link_9.icon = ''
+    self.link_15.icon = ''
     pass
 
   def link_14_click(self, **event_args):
@@ -299,4 +306,24 @@ class Form12(Form12Template):
     anvil.users.login_with_form()
     open_form('Testquery')
     pass
+
+  def link_15_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    if self.link_15.icon =='':
+      self.link_15.icon ='fa:sort-alpha-desc'
+      self.link_5.icon = ''
+      self.link_10.icon = ''
+      self.link_11.icon = ''
+      self.link_8.icon = ''
+      direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['partially_invoiced_total']), reverse=direction ) 
+    elif self.link_15.icon =='fa:sort-alpha-desc':
+      self.link_15.icon ='fa:sort-alpha-asc'
+      direction = False
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['partially_invoiced_total']), reverse=direction ) 
+    elif self.link_15.icon =='fa:sort-alpha-asc':
+      self.link_15.icon ='fa:sort-alpha-desc'
+      direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['partially_invoiced_total']), reverse=direction ) 
+    passpass
 

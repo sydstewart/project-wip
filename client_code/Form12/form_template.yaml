@@ -8,7 +8,15 @@ components:
     name: label_8
     properties: {align: left, bold: true}
     type: Label
-  - layout_properties: {grid_position: 'YYAAON,IYOSXK'}
+  - layout_properties: {grid_position: 'YYAAON,YAYZQJ'}
+    name: label_13
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {grid_position: 'YYAAON,SXSCRZ FEKZQR,QGKNCW'}
+    name: label_14
+    properties: {background: 'theme:Gray 300', bold: true, foreground: 'theme:Primary 700'}
+    type: Label
+  - layout_properties: {grid_position: 'YYAAON,SXSCRZ FEKZQR,GQWFTP'}
     name: label_10
     properties: {align: left, bold: true}
     type: Label
@@ -20,9 +28,9 @@ components:
     name: label_9
     properties: {bold: true}
     type: Label
-  - layout_properties: {grid_position: 'YYAAON,AMTJQR'}
-    name: label_13
-    properties: {bold: true}
+  - layout_properties: {grid_position: 'YYAAON,DRYCNC'}
+    name: label_15
+    properties: {}
     type: Label
   - layout_properties: {grid_position: 'YYAAON,LLEQXH'}
     name: label_12
@@ -173,7 +181,7 @@ components:
   - event_bindings: {click: link_9_click}
     layout_properties: {grid_position: 'KZUXCN,IEJDDE'}
     name: link_9
-    properties: {background: 'theme:Gray 200', bold: true, text: Elapsed Time Days}
+    properties: {background: 'theme:Gray 200', bold: true, text: Elapsed Days}
     type: Link
   - layout_properties: {grid_position: 'KZUXCN,JXOETT'}
     name: link_1
@@ -183,9 +191,10 @@ components:
     name: link_12
     properties: {bold: true, text: App Area}
     type: Link
-  - layout_properties: {grid_position: 'KZUXCN,POIRSD'}
+  - event_bindings: {click: link_15_click}
+    layout_properties: {grid_position: 'KZUXCN,POIRSD'}
     name: link_15
-    properties: {bold: true, text: Partially Invoiced Total}
+    properties: {background: 'theme:Gray 200', bold: true, text: Partially Invoiced Total}
     type: Link
   - components:
     - name: repeating_panel_1
@@ -196,7 +205,7 @@ components:
     properties:
       auto_header: false
       columns:
-      - {data_key: order_no, expand: false, id: JKSDUP, title: Order No, width: 112.181884765625}
+      - {data_key: order_no, expand: false, id: JKSDUP, title: Order No, width: 116.727294921875}
       - {data_key: order_date, expand: false, id: DVUGBU, title: Order Date, width: 131.27276611328125}
       - {data_key: project_name, expand: false, id: VJQQOR, title: Project, width: 214.90911865234375}
       - {data_key: stage, expand: false, id: OJLQEN, title: Stage, width: 84.81817626953125}
@@ -205,17 +214,17 @@ components:
       - {data_key: order_value_formated, expand: false, id: PGKEKQ, title: Order Value, width: 111.5455322265625}
       - {data_key: assigned_to, expand: false, id: GIJMQZ, title: Assigned To, width: 75.8182373046875}
       - {data_key: work_to_do_formated, expand: false, id: YMOAEN, title: Work to Do, width: 97.181884765625}
-      - {data_key: days_elapsed, id: IDHGAW, title: Elapsed Time Days}
-      - {data_key: order_category, id: ZNRMWN, title: Category}
-      - {data_key: app_area, id: SAFNDF, title: App Area}
-      - {data_key: partially_invoiced_total, id: JTAWEE, title: Partially Invoiced  Total}
+      - {data_key: days_elapsed, expand: false, id: IDHGAW, title: Elapsed Time Days, width: 73.9091796875}
+      - {data_key: order_category, expand: false, id: ZNRMWN, title: Category, width: 128.9091796875}
+      - {data_key: app_area, expand: false, id: SAFNDF, title: App Area, width: 158.5455322265625}
+      - {data_key: partially_invoiced_total_formated, id: JTAWEE, title: Partially Invoiced  Total}
       role: underline
       rows_per_page: 100
       show_page_controls: true
     type: DataGrid
   layout_properties: {full_width_row: true, grid_position: 'DFDAKK,XIDNMY'}
   name: content_panel
-  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":5,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":6,"NWHSJZ":4,"UTVRRM":6,"JZPWBP":7,"ZCLCHP":9,"AUSGJQ":5,"PEOKFI":4,"DOKPJE":6,"COUUEL":5,"JVMCHX":5,"IEJDDE":6,"BFHDTG":5,"JXOETT":7,"PFKXGW":7,"FJBRDD":9,"QTJCJH":3,"SDZQGA":6,"IYKIUQ":4,"RSXPIW":4,"WLSZSD":4,"POIRSD":8}'}
+  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":5,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":6,"NWHSJZ":4,"UTVRRM":6,"JZPWBP":7,"ZCLCHP":13,"AUSGJQ":4,"PEOKFI":5,"DOKPJE":5,"COUUEL":5,"JVMCHX":5,"IEJDDE":5,"BFHDTG":5,"JXOETT":9,"PFKXGW":5,"FJBRDD":9,"QTJCJH":3,"SDZQGA":6,"IYKIUQ":4,"RSXPIW":4,"WLSZSD":4,"POIRSD":6,"NMKHZD":7,"RATVQJ":5,"YAYZQJ":6,"SXSCRZ":14,"ZVNFBQ":6,"SRRHRK":7,"LLEQXH":12,"GQWFTP":25,"DRYCNC":10}'}
   type: ColumnPanel
 container: {type: ColumnPanel}
 is_package: true

@@ -65,25 +65,25 @@ def new_searches(self):
           def format_currency(amount):
             return '£{:,.2f}'.format(amount)
           self.label_1.foreground ='black'
-          self.label_1.text ='No. of projects found = ' + str(len(self.repeating_panel_1.items ))
+          self.label_1.text ='No. of projects found   ' + str(len(self.repeating_panel_1.items ))
           order_total = (sum(item['order_value'] 
                         for item in self.repeating_panel_1.items))
-          order_total = format_currency(order_total)
+          order_total_formated = format_currency(order_total)
           self.label_8.foreground ='black'
-          self.label_8.text = 'Order Total = ' + str(order_total) 
+          self.label_8.text = 'Order Total   ' + str(order_total_formated) 
           
           days_elapsed_sum = (sum(item['days_elapsed'] 
                               for item in self.repeating_panel_1.items))
           days_elapsed_average= (round(days_elapsed_sum))/len(self.repeating_panel_1.items)
           days_elapsed_average= str(round(days_elapsed_average)) 
           self.label_9.foreground ='black'
-          self.label_9.text = 'Average days Elapsed= ' + str(days_elapsed_average)
+          self.label_9.text = 'Average days Elapsed  ' + str(days_elapsed_average)
     
           work_to_do_sum = (sum(item['work_to_do'] 
                                 for item in self.repeating_panel_1.items))
           work_to_do_sum= format_currency(work_to_do_sum)
           self.label_10.foreground ='black'
-          self.label_10.text = 'Work To Do Value = ' + str(work_to_do_sum)
+          self.label_10.text = 'Work To Do Value   ' + str(work_to_do_sum)
         
           percent_complete_sum = (sum(item['percent_complete'] 
                                     for item in self.repeating_panel_1.items))
@@ -94,20 +94,25 @@ def new_searches(self):
 
           partially_invoiced_total_sum = (sum(item['partially_invoiced_total'] 
                                       for item in self.repeating_panel_1.items))
-          partially_invoiced_total_sum= format_currency(partially_invoiced_total_sum)
+          partially_invoiced_total_sum_formated= format_currency(partially_invoiced_total_sum)
           self.label_13.foreground ='black'
-          self.label_13.text = 'Patially Invoiced Sum = ' + str(partially_invoiced_total_sum)
-         
+          self.label_13.text = 'Partially Invoiced   ' + str(partially_invoiced_total_sum_formated)
+        
+          yet_to_be_invoiced = order_total - partially_invoiced_total_sum
+          yet_to_be_invoiced_formated = format_currency(yet_to_be_invoiced)
+          self.label_14.foreground ='black'
+          self.label_14.text =  'Yet to be Invoiced   ' + str(yet_to_be_invoiced_formated)
+        
           last_date = anvil.server.call('last_import_date')
           day_of_week =last_date.strftime("%A")
           self.label_12.text = 'Date of Last Import from the CRM = ' + str(last_date) + ' ' + str(day_of_week)
 
       else:
          self.label_1.foreground ='red'
-         self.label_1.text ='No. of projects found = ' + str(len(self.repeating_panel_1.items ))# alert("Combination of Search Criteria finds no Projects")
+         self.label_1.text ='No. of projects found      = ' + str(len(self.repeating_panel_1.items ))# alert("Combination of Search Criteria finds no Projects")
          
          self.label_8.foreground ='red'
-         self.label_8.text = 'Order Total = ' + str(0) 
+         self.label_8.text = 'Order Total     = ' + str(0) 
         
          self.label_9.foreground ='red'
          self.label_9.text = 'Average days Elapsed= ' + str(0)
@@ -117,4 +122,10 @@ def new_searches(self):
         
          self.label_11.foreground ='red'
          self.label_11.text = 'Average Percent Complete = ' + str(0)
+        
+         self.label_13.foreground ='red'
+         self.label_13.text =  'Partially Invoiced   ' + str(0)
+
+         self.label_14.foreground ='red'
+         self.label_14.text =   'Yet to be Invoiced   ' + str(0)
         
