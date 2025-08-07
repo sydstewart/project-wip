@@ -495,7 +495,7 @@ scheduled_tasks:
     every: day
     n: 1
 - job_id: VMNXNGDE
-  task_name: daily_by_stats_trial
+  task_name: prepare_stats
   time_spec:
     at: {hour: 8, minute: 5}
     every: day

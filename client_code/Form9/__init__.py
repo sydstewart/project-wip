@@ -13,15 +13,23 @@ from ..projects_in_progress_new import projects_in_progress_new
 from ..projects_waiting_to_start_new import projects_waiting_to_start_new
 from ..projects_on_hold_new import projects_on_hold_new
 from ..Testquery import Testquery
-# def reset_links():
-#   self.link_7.role = ''
-#   # self.link_1.role = None
-#   # self.link_2.role = None
-#   # self.link_3.role = None
-#   # self.link_4.role = None
-#   # self.link_5.role = None
-#   # self.link_6.role = None
-#   pass
+from ..Form12 import Form12
+from ..Form14 import Form14
+from ..Form15 import Form15
+
+def reset_links(self):
+ 
+  self.link_1.role = None
+  self.link_2.role = None
+  self.link_3.role = None
+  self.link_4.role = None
+  self.link_5.role = None
+  self.link_6.role = None
+  self.link_7.role = None
+  self.link_11.role = None
+  self.link_12.role = None
+  
+  pass
   
 class Form9(Form9Template):
   def __init__(self, **properties):
@@ -29,7 +37,7 @@ class Form9(Form9Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # self.link_6_click()
-    self.add_component(Label(text= '     Project WIP'), slot='title')
+    # self.add_component(Label(text= '     Project WIP'), slot='title')
     anvil.users.login_with_form()
     loggedin_user = anvil.users.get_user()
     username = loggedin_user['email']
@@ -53,6 +61,8 @@ class Form9(Form9Template):
     """This method is called when the link is clicked"""
     # self.reset_links()
     # self.link_1.role = 'selected'
+    reset_links(self)
+    self.link_1.role = 'selected'
     self.content_panel.clear()
     self.content_panel.add_component(pie_charts_new(), full_width_row=True)
     # self.link_3.role = ''
@@ -61,7 +71,8 @@ class Form9(Form9Template):
 
   def link_2_click(self, **event_args):
     """This method is called when the link is clicked"""
-
+    reset_links(self)
+    self.link_2.role = 'selected'
     self.content_panel.clear()
     self.content_panel.add_component(pivots_new(), full_width_row=True)
     # self.reset_links()
@@ -69,6 +80,8 @@ class Form9(Form9Template):
 
   def link_3_click(self, **event_args):
     """This method is called when the link is clicked"""
+    reset_links(self)
+    self.link_3.role = 'selected'
     self.content_panel.clear()
     self.content_panel.add_component(Run_Chart_New(), full_width_row=True)
     # self.reset_links()
@@ -76,30 +89,38 @@ class Form9(Form9Template):
 
   def link_4_click(self, **event_args):
     """This method is called when the link is clicked"""
+    reset_links(self)
+    self.link_4.role = 'selected'
     self.content_panel.clear()
     self.content_panel.add_component(stage_group_new_chart(), full_width_row=True)
     pass
 
   def link_5_click(self, **event_args):
     """This method is called when the link is clicked"""
+    reset_links(self)
+    self.link_5.role = 'selected'
     self.content_panel.clear()
-    self.content_panel.add_component(Testquery(), full_width_row=True)
+    self.content_panel.add_component(Form14(), full_width_row=True)
     pass
 
   def link_6_click(self, **event_args):
     """This method is called when the link is clicked"""
+    reset_links(self)
+    self.link_6.role = 'selected'
     self.content_panel.clear()
-    self.content_panel.add_component(Testquery(), full_width_row=True)
+    self.content_panel.add_component(Form12(), full_width_row=True)
     pass
 
   def link_7_click(self, **event_args):
     """This method is called when the link is clicked"""
+    reset_links(self)
+    self.link_7.role = 'selected'
     self.content_panel.clear()
-    # self.reset_links()
-    self.link_7.role ='Selected'
+    self.content_panel.add_component(Form15(), full_width_row=True)
+    pass
 
     
-    self.content_panel.add_component(projects_on_hold_new(), full_width_row=True)
+    # self.content_panel.add_component(projects_on_hold_new(), full_width_row=True)
     pass
    
   def link_8_click(self, **event_args):
@@ -129,11 +150,15 @@ class Form9(Form9Template):
 
   def link_11_click(self, **event_args):
     """This method is called when the link is clicked"""
+    reset_links(self)
+    self.link_11.role = 'selected'
     self.task = anvil.server.call('daily_stats_trial')
     pass
 
   def link_12_click(self, **event_args):
     """This method is called when the link is clicked"""
+    reset_links(self)
+    self.link_12.role = 'selected'
     self.task = anvil.server.call('prepare_stats_launch')
     pass
     

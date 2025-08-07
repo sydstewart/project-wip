@@ -13,7 +13,7 @@ from datetime import datetime, time , date , timedelta
 @anvil.tables.in_transaction
 def prepare_stats():
       # dicts,dictspip, dictswts, dictsoh, X_media,  pivotsyd_to_markdown= prepare_pandas(dicts, 0, None, None, None, None)
-      app_tables.stage_summary.delete_all_rows()
+      # app_tables.stage_summary.delete_all_rows()
       dicts = app_tables.sales_orders_all.search()
       X = pd.DataFrame.from_dict(dicts)
       #======================Overall Totals======================================

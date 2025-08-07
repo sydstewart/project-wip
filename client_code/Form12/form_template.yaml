@@ -204,16 +204,9 @@ components:
       rows_per_page: 100
       show_page_controls: true
     type: DataGrid
-  layout_properties: {slot: default}
+  layout_properties: {full_width_row: true, grid_position: 'DFDAKK,XIDNMY'}
   name: content_panel
   properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":5,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":6,"NWHSJZ":4,"UTVRRM":6,"JZPWBP":7,"ZCLCHP":11,"AUSGJQ":4,"PEOKFI":5,"DOKPJE":6,"COUUEL":6,"JVMCHX":5,"IEJDDE":7,"BFHDTG":4,"JXOETT":7,"PFKXGW":8,"FJBRDD":9,"QTJCJH":3,"SDZQGA":6,"IYKIUQ":4,"RSXPIW":4,"WLSZSD":4}'}
   type: ColumnPanel
-- components: []
-  layout_properties: {slot: nav-right}
-  name: navbar_links
-  properties: {}
-  type: FlowPanel
-container:
-  properties: {html: '@theme:standard-page.html'}
-  type: HtmlTemplate
+container: {type: ColumnPanel}
 is_package: true

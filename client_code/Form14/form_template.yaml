@@ -23,23 +23,9 @@ components:
       - {data_key: Stage_Before, expand: false, id: NDUMDE, title: Stage Before, width: 108.4443359375}
       - {data_key: Stage_After, expand: false, id: PRVQWE, title: Stage After, width: 106.9998779296875}
     type: DataGrid
-  layout_properties: {slot: default}
+  layout_properties: {full_width_row: true, grid_position: 'DQOEBC,VQQMQP'}
   name: content_panel
   properties: {}
   type: ColumnPanel
-- components:
-  - name: label_2
-    properties: {align: left, bold: true, font_size: 30, text: '4S Work in Progress Dashboard                                                                                                                     '}
-    type: Label
-  layout_properties: {slot: nav-right}
-  name: navbar_links
-  properties: {}
-  type: FlowPanel
-- layout_properties: {slot: title}
-  name: image_1
-  properties: {height: 51, source: _/theme/4S logo small.png}
-  type: Image
-container:
-  properties: {html: '@theme:standard-page.html'}
-  type: HtmlTemplate
+container: {type: ColumnPanel}
 is_package: true
