@@ -11,10 +11,10 @@ from datetime import datetime, time , date , timedelta
 @anvil.server.callable
 def orders(kwargs):
 
-  if kwargs:
-    orders = app_tables.sales_orders_all.search( **kwargs)
-  else:
-    orders = app_tables.sales_orders_all.search(stage = q.not_('Closed'))
+  # if kwargs:
+  orders = app_tables.sales_orders_all.search( **kwargs)
+  # else:
+  #   orders = app_tables.sales_orders_all.search(stage = q.not_('Closed'))
   # q.fetch_only("order_no","project_name","stage"
   print('orders', orders)
   # convert to datframe to calc new columns  if orderss are found
@@ -22,10 +22,12 @@ def orders(kwargs):
       X = pd.DataFrame.from_dict(orders)
       X['work_to_do'] = (X['order_value'] * ((100 - (X['percent_complete']))/100))
       X['work_to_do_formated']= X['work_to_do'].map("£{:,.0f}".format)
+      X['work_completed'] = (X['order_value'] * (X['percent_complete']/100))
+      X['work_completed_formated']= X['work_completed'].map("£{:,.0f}".format)
       X['order_value_formated']= X['order_value'].map("£{:,.0f}".format)
       X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
       X['partially_invoiced_total_formated']= X['partially_invoiced_total'].map("£{:,.0f}".format)
-      X['Invoiced_but_work_not_done'] = X['partially_invoiced_total'] - X['work_to_do']
+      X['invoiced_but_work_not_done'] = X['partially_invoiced_total'] - X['work_completed']
       today = datetime.today() #.strftime('%Y-%m-%d')
     
       print('today', today)
@@ -39,6 +41,6 @@ def orders(kwargs):
       
       orders  = X.to_dict(orient='records')
       
-  # print('orders', orders)
+  print('orders', orders)
   return orders
 

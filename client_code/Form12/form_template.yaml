@@ -12,31 +12,35 @@ components:
     name: label_13
     properties: {bold: true}
     type: Label
-  - layout_properties: {grid_position: 'YYAAON,SXSCRZ FEKZQR,QGKNCW'}
+  - layout_properties: {grid_position: 'YYAAON,SXSCRZ'}
     name: label_14
     properties: {background: 'theme:Gray 300', bold: true, foreground: 'theme:Primary 700'}
-    type: Label
-  - layout_properties: {grid_position: 'YYAAON,SXSCRZ FEKZQR,GQWFTP'}
-    name: label_10
-    properties: {align: left, bold: true}
     type: Label
   - layout_properties: {grid_position: 'YYAAON,ZVNFBQ'}
     name: label_11
     properties: {align: left, bold: true}
     type: Label
-  - layout_properties: {grid_position: 'YYAAON,SRRHRK'}
-    name: label_9
-    properties: {bold: true}
+  - layout_properties: {grid_position: 'YYAAON,LUPHOM'}
+    name: label_17
+    properties: {bold: true, text: Work_completed}
+    type: Label
+  - layout_properties: {grid_position: 'YYAAON,HFAUBG'}
+    name: label_10
+    properties: {align: left, bold: true, text: work to do}
     type: Label
   - layout_properties: {grid_position: 'YYAAON,SFVODW'}
     name: label_16
-    properties: {bold: true}
+    properties: {bold: true, text: Yet to do}
     type: Label
   - event_bindings: {clicked: radio_button_1_clicked}
     layout_properties: {grid_position: 'YYAAON,NWLHCQ'}
     name: radio_button_1
     properties: {text: List, visible: true}
     type: RadioButton
+  - layout_properties: {grid_position: 'YYAAON,RAUAZY'}
+    name: label_9
+    properties: {bold: true, text: '% Complete'}
+    type: Label
   - layout_properties: {grid_position: 'YYAAON,DRYCNC'}
     name: label_15
     properties: {bold: true}
@@ -185,7 +189,7 @@ components:
   - event_bindings: {click: link_8_click}
     layout_properties: {grid_position: 'KZUXCN,JVMCHX'}
     name: link_8
-    properties: {background: 'theme:Gray 200', bold: true, text: Work to do}
+    properties: {background: 'theme:Gray 200', bold: true, text: Work Completed}
     type: Link
   - event_bindings: {click: link_9_click}
     layout_properties: {grid_position: 'KZUXCN,IEJDDE'}
@@ -212,7 +216,7 @@ components:
     layout_properties: {full_width_row: true, grid_position: 'CHTPJW,LUNNPF'}
     name: data_grid_1
     properties:
-      auto_header: false
+      auto_header: true
       columns:
       - {data_key: order_no, expand: false, id: JKSDUP, title: Order No, width: 116.727294921875}
       - {data_key: order_date, expand: false, id: DVUGBU, title: Order Date, width: 131.27276611328125}
@@ -222,18 +226,19 @@ components:
       - {data_key: percent_complete, expand: false, id: CAGESB, title: Percent Complete, width: 119.0909423828125}
       - {data_key: order_value_formated, expand: false, id: PGKEKQ, title: Order Value, width: 111.5455322265625}
       - {data_key: assigned_to, expand: false, id: GIJMQZ, title: Assigned To, width: 75.8182373046875}
-      - {data_key: work_to_do_formated, expand: false, id: YMOAEN, title: Work to Do, width: 97.181884765625}
+      - {data_key: work_completed_formated, expand: false, id: YMOAEN, title: Work Completed, width: 97.181884765625}
       - {data_key: days_elapsed, expand: false, id: IDHGAW, title: Elapsed Time Days, width: 73.9091796875}
       - {data_key: order_category, expand: false, id: ZNRMWN, title: Category, width: 128.9091796875}
       - {data_key: app_area, expand: false, id: SAFNDF, title: App Area, width: 158.5455322265625}
       - {data_key: partially_invoiced_total_formated, id: JTAWEE, title: Partially Invoiced  Total}
+      - {data_key: column_1, id: ICNVHD, title: Column 1}
       role: underline
       rows_per_page: 100
       show_page_controls: true
     type: DataGrid
   layout_properties: {full_width_row: true, grid_position: 'DFDAKK,XIDNMY'}
   name: content_panel
-  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":5,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":6,"NWHSJZ":4,"UTVRRM":6,"JZPWBP":7,"ZCLCHP":13,"AUSGJQ":4,"PEOKFI":5,"DOKPJE":5,"COUUEL":5,"JVMCHX":5,"IEJDDE":5,"BFHDTG":5,"JXOETT":9,"PFKXGW":5,"FJBRDD":9,"QTJCJH":3,"SDZQGA":6,"IYKIUQ":4,"RSXPIW":4,"WLSZSD":4,"POIRSD":6,"NMKHZD":7,"RATVQJ":5,"YAYZQJ":6,"SXSCRZ":14,"ZVNFBQ":6,"SRRHRK":7,"LLEQXH":12,"GQWFTP":25,"DRYCNC":6,"SFVODW":10}'}
+  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":5,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":6,"NWHSJZ":4,"UTVRRM":6,"JZPWBP":7,"ZCLCHP":13,"AUSGJQ":4,"PEOKFI":5,"DOKPJE":5,"COUUEL":5,"JVMCHX":5,"IEJDDE":5,"BFHDTG":5,"JXOETT":9,"PFKXGW":5,"FJBRDD":9,"QTJCJH":3,"SDZQGA":6,"IYKIUQ":4,"RSXPIW":4,"WLSZSD":4,"POIRSD":6,"NMKHZD":7,"RATVQJ":8,"YAYZQJ":5,"SXSCRZ":10,"ZVNFBQ":8,"LLEQXH":12,"DRYCNC":4,"SFVODW":10,"LUPHOM":6,"NWLHCQ":7,"HFAUBG":5}'}
   type: ColumnPanel
 container: {type: ColumnPanel}
 is_package: true

@@ -12,7 +12,7 @@ def new_searches(self):
       assignedto = self.drop_down_3.selected_value
       apparea = self.app_area_drop_down.selected_value
       category = self.category_drop_down.selected_value
-      invoiced_but_work_not_done = self.radio_button_1.selected
+      invoiced_but_work_not_done_flag = self.radio_button_1.selected
 
       print('syd here')
       
@@ -50,17 +50,18 @@ def new_searches(self):
       if category:
           kwargs['order_category'] = category
 
-      if invoiced_but_work_not_done is True:
+
+      if invoiced_but_work_not_done_flag is True:
 
         print('radio Button True')
-        kwargs['Invoiced_but_work_not_done'] = q.greater_than(0)
+        kwargs['invoiced_but_work_not_done'] = q.greater_than(0)
         self.radio_button_1.selected = False
 
       # #    kwargs['Invoiced_but_work_not_done'] = q.greater_than(0)
      
       print('kwargs=', kwargs)
      
-      orders = anvil.server.call('orders',kwargs)
+      orders =  anvil.server.call('orders',kwargs,)
       if len(orders) >= 0:
           self.link_5.icon = ''
           self.link_6.icon = ''  
@@ -93,6 +94,12 @@ def new_searches(self):
           work_to_do_sum= format_currency(work_to_do_sum)
           self.label_10.foreground ='black'
           self.label_10.text = 'Work To Do Value   ' + str(work_to_do_sum)
+
+          work_completed_sum = (sum(item['work_completed'] 
+                                for item in self.repeating_panel_1.items))
+          work_completed_sum= format_currency(work_completed_sum)
+          self.label_17.foreground ='black'
+          self.label_17.text = 'Work Completed Value   ' + str(work_completed_sum)
         
           percent_complete_sum = (sum(item['percent_complete'] 
                                     for item in self.repeating_panel_1.items))
@@ -108,10 +115,10 @@ def new_searches(self):
           self.label_13.text = 'Partially Invoiced   ' + str(partially_invoiced_total_sum_formated)
 
           
-          filtered_data = [item for item in self.repeating_panel_1.items if item['Invoiced_but_work_not_done'] > 0]
+          filtered_data = [item for item in self.repeating_panel_1.items if item['invoiced_but_work_not_done'] > 0]
           print('filtered data count', len(filtered_data))
           if filtered_data:
-                  Invoiced_but_work_not_done_sum = (sum(item['Invoiced_but_work_not_done'] 
+                  Invoiced_but_work_not_done_sum = (sum(item['invoiced_but_work_not_done'] 
                                                       for item in filtered_data))
                   Invoiced_but_work_not_done_sum_formated= format_currency(Invoiced_but_work_not_done_sum)
                   self.label_16.foreground ='black'
@@ -154,4 +161,7 @@ def new_searches(self):
 
          self.label_16.foreground ='red'
          self.label_16.text =   'Invoiced_but_work_not_done   ' + str(0)
+
+         self.label_17.foreground ='red'
+         self.label_17.text = 'Work Completed Value   ' + str(0)
         

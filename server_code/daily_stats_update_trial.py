@@ -75,9 +75,22 @@ def daily_by_stats_trial():
               'order_value':r['Order_Value'], 'percent_complete':r['workinprogresspercentcomplete_c'],'app_area':r['AppArea'] , 'stage':r['stage'],  \
               'partially_invoiced_total':r['partially_invoiced_total'],'waiting_on':r['waiting_on'],'waiting_note':r['waiting_note'],'so_number':r['so_number']} \
             for r in records]
+    
+  # To calculate new columns and None values to zero
   
+  X = pd.DataFrame(dicts)
+  X['percent_complete'] = X['percent_complete'].fillna(0)
+  X['order_value'] = X['order_value'].fillna(0)
+  X['work_to_do'] = (X['order_value'] * ((100 - (X['percent_complete']))/100))
+  X['work_to_do']= X['work_to_do'].fillna(0)
+  X['work_completed'] =(X['order_value'] * ((X['percent_complete'])/100))
+  X['work_completed']= X['work_completed'].fillna(0)
+  X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
+  X['invoiced_but_work_not_done'] = X['partially_invoiced_total'] - X['work_completed']
+  X['invoiced_but_work_not_done'] = X['invoiced_but_work_not_done'].fillna(0)
   
-  
+  dicts  = X.to_dict(orient='records')
+
   # delete all rows in the order table
   app_tables.sales_orders_all.delete_all_rows()
   # results = app_tables.sales_orders_all.search()
@@ -94,7 +107,9 @@ def daily_by_stats_trial():
                                            'order_value':row['order_value'], 'percent_complete':row['percent_complete'],'app_area':row['app_area'], \
                                            'stage':row['stage'], \
                                            'partially_invoiced_total':row['partially_invoiced_total'],'waiting_on':row['waiting_on'],\
-                                           'waiting_note':row['waiting_note'],'so_number':row['so_number']})
+                                           'waiting_note':row['waiting_note'],'so_number':row['so_number'], 'work_to_do':row['work_to_do'], 'invoiced_but_work_not_done':row['invoiced_but_work_not_done'], \
+                                           'work_completed':row['work_completed'] })
+  
   for row in app_tables.sales_orders_all.search():
         row['updated'] = updated
   print('table loaded')
