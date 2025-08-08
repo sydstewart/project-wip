@@ -12,6 +12,7 @@ def new_searches(self):
       assignedto = self.drop_down_3.selected_value
       apparea = self.app_area_drop_down.selected_value
       category = self.category_drop_down.selected_value
+      invoiced_but_work_not_done = self.radio_button_1.selected
 
       print('syd here')
       
@@ -48,7 +49,10 @@ def new_searches(self):
 
       if category:
           kwargs['order_category'] = category
-        
+
+      if invoiced_but_work_not_done is True:
+         kwargs['order_category'] = category
+     
       print('kwargs=', kwargs)
      
       orders = anvil.server.call('orders',kwargs)
@@ -97,11 +101,25 @@ def new_searches(self):
           partially_invoiced_total_sum_formated= format_currency(partially_invoiced_total_sum)
           self.label_13.foreground ='black'
           self.label_13.text = 'Partially Invoiced   ' + str(partially_invoiced_total_sum_formated)
-        
+
+          
+          filtered_data = [item for item in self.repeating_panel_1.items if item['Invoiced_but_work_not_done'] > 0]
+          print('filtered data count', len(filtered_data))
+          if filtered_data:
+                  Invoiced_but_work_not_done_sum = (sum(item['Invoiced_but_work_not_done'] 
+                                                      for item in filtered_data))
+                  Invoiced_but_work_not_done_sum_formated= format_currency(Invoiced_but_work_not_done_sum)
+                  self.label_16.foreground ='black'
+                  self.label_16.text = 'Invoiced_but_work_not_done   ' + str(Invoiced_but_work_not_done_sum_formated)
+          else:
+                  self.label_16.text = 'Invoiced_but_work_not_done   ' + str(0)
+            
           yet_to_be_invoiced = order_total - partially_invoiced_total_sum
           yet_to_be_invoiced_formated = format_currency(yet_to_be_invoiced)
           self.label_14.foreground ='black'
           self.label_14.text =  'Yet to be Invoiced   ' + str(yet_to_be_invoiced_formated)
+
+         
         
           last_date = anvil.server.call('last_import_date')
           day_of_week =last_date.strftime("%A")
@@ -128,4 +146,7 @@ def new_searches(self):
 
          self.label_14.foreground ='red'
          self.label_14.text =   'Yet to be Invoiced   ' + str(0)
+
+         self.label_16.foreground ='red'
+         self.label_16.text =   'Invoiced_but_work_not_done   ' + str(0)
         

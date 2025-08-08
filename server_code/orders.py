@@ -25,6 +25,7 @@ def orders(kwargs):
       X['order_value_formated']= X['order_value'].map("£{:,.0f}".format)
       X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
       X['partially_invoiced_total_formated']= X['partially_invoiced_total'].map("£{:,.0f}".format)
+      X['Invoiced_but_work_not_done'] = X['partially_invoiced_total'] - X['work_to_do']
       today = datetime.today() #.strftime('%Y-%m-%d')
     
       print('today', today)

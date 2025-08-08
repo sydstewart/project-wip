@@ -28,9 +28,18 @@ components:
     name: label_9
     properties: {bold: true}
     type: Label
+  - layout_properties: {grid_position: 'YYAAON,SFVODW'}
+    name: label_16
+    properties: {bold: true}
+    type: Label
+  - event_bindings: {clicked: radio_button_1_clicked}
+    layout_properties: {grid_position: 'YYAAON,NWLHCQ'}
+    name: radio_button_1
+    properties: {text: List, visible: false}
+    type: RadioButton
   - layout_properties: {grid_position: 'YYAAON,DRYCNC'}
     name: label_15
-    properties: {}
+    properties: {bold: true}
     type: Label
   - layout_properties: {grid_position: 'YYAAON,LLEQXH'}
     name: label_12
@@ -224,7 +233,7 @@ components:
     type: DataGrid
   layout_properties: {full_width_row: true, grid_position: 'DFDAKK,XIDNMY'}
   name: content_panel
-  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":5,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":6,"NWHSJZ":4,"UTVRRM":6,"JZPWBP":7,"ZCLCHP":13,"AUSGJQ":4,"PEOKFI":5,"DOKPJE":5,"COUUEL":5,"JVMCHX":5,"IEJDDE":5,"BFHDTG":5,"JXOETT":9,"PFKXGW":5,"FJBRDD":9,"QTJCJH":3,"SDZQGA":6,"IYKIUQ":4,"RSXPIW":4,"WLSZSD":4,"POIRSD":6,"NMKHZD":7,"RATVQJ":5,"YAYZQJ":6,"SXSCRZ":14,"ZVNFBQ":6,"SRRHRK":7,"LLEQXH":12,"GQWFTP":25,"DRYCNC":10}'}
+  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":5,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":6,"NWHSJZ":4,"UTVRRM":6,"JZPWBP":7,"ZCLCHP":13,"AUSGJQ":4,"PEOKFI":5,"DOKPJE":5,"COUUEL":5,"JVMCHX":5,"IEJDDE":5,"BFHDTG":5,"JXOETT":9,"PFKXGW":5,"FJBRDD":9,"QTJCJH":3,"SDZQGA":6,"IYKIUQ":4,"RSXPIW":4,"WLSZSD":4,"POIRSD":6,"NMKHZD":7,"RATVQJ":5,"YAYZQJ":6,"SXSCRZ":14,"ZVNFBQ":6,"SRRHRK":7,"LLEQXH":12,"GQWFTP":25,"DRYCNC":6,"SFVODW":10}'}
   type: ColumnPanel
 container: {type: ColumnPanel}
 is_package: true

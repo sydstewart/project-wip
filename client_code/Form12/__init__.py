@@ -327,3 +327,11 @@ class Form12(Form12Template):
       self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['partially_invoiced_total']), reverse=direction ) 
     passpass
 
+  def radio_button_1_clicked(self, **event_args):
+    """This method is called when this radio button is selected"""
+    with Notification("Please wait... data loading "):
+      new_searches(self)
+      
+      # orders = anvil.server.call('orders',self.text_box_1.text,self.drop_down_1.selected_value)
+      # self.repeating_panel_1.items = orderspass
+
