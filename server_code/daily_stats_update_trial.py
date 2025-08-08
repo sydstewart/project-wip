@@ -97,5 +97,4 @@ def daily_by_stats_trial():
                                            'waiting_note':row['waiting_note'],'so_number':row['so_number']})
   for row in app_tables.sales_orders_all.search():
         row['updated'] = updated
-
   print('table loaded')

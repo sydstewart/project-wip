@@ -51,7 +51,12 @@ def new_searches(self):
           kwargs['order_category'] = category
 
       if invoiced_but_work_not_done is True:
-         kwargs['order_category'] = category
+
+        print('radio Button True')
+        kwargs['Invoiced_but_work_not_done'] = q.greater_than(0)
+        self.radio_button_1.selected = False
+
+      # #    kwargs['Invoiced_but_work_not_done'] = q.greater_than(0)
      
       print('kwargs=', kwargs)
      

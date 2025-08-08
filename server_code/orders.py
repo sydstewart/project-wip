@@ -39,6 +39,6 @@ def orders(kwargs):
       
       orders  = X.to_dict(orient='records')
       
-  print('orders', orders)
+  # print('orders', orders)
   return orders
 
