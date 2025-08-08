@@ -35,8 +35,9 @@ def new_searches(self):
           stages = [ 'Order Approved', 'Order Submitted for Approval','Ordered']
         elif stagegroup == 'Closed':
           stages = ['Closed']
-          
         kwargs['stage'] =  q.any_of(*stages) 
+      else:
+         kwargs['stage'] =  q.not_('Closed')
     
       if waitingon:
         kwargs['waiting_on'] =  waitingon 
@@ -57,7 +58,7 @@ def new_searches(self):
         kwargs['invoiced_but_work_not_done'] = q.greater_than(0)
         self.radio_button_1.selected = False
 
-      # #    kwargs['Invoiced_but_work_not_done'] = q.greater_than(0)
+     
      
       print('kwargs=', kwargs)
      
@@ -122,9 +123,9 @@ def new_searches(self):
                                                       for item in filtered_data))
                   Invoiced_but_work_not_done_sum_formated= format_currency(Invoiced_but_work_not_done_sum)
                   self.label_16.foreground ='black'
-                  self.label_16.text = 'Invoiced_but_work_not_done   ' + str(Invoiced_but_work_not_done_sum_formated)
+                  self.label_16.text = 'Invoiced but work not done   ' + str(Invoiced_but_work_not_done_sum_formated)
           else:
-                  self.label_16.text = 'Invoiced_but_work_not_done   ' + str(0)
+                  self.label_16.text = 'Invoiced but work not done   ' + str(0)
             
           yet_to_be_invoiced = order_total - partially_invoiced_total_sum
           yet_to_be_invoiced_formated = format_currency(yet_to_be_invoiced)
@@ -160,7 +161,7 @@ def new_searches(self):
          self.label_14.text =   'Yet to be Invoiced   ' + str(0)
 
          self.label_16.foreground ='red'
-         self.label_16.text =   'Invoiced_but_work_not_done   ' + str(0)
+         self.label_16.text =   'Invoiced but work not done  ' + str(0)
 
          self.label_17.foreground ='red'
          self.label_17.text = 'Work Completed Value   ' + str(0)
