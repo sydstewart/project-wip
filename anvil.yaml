@@ -470,9 +470,9 @@ db_schema:
 dependencies:
 - app_id: C6ZZPAPN4YYF5NVJ
   version: {dev: true}
-metadata: {logo_img: 'asset:4S logo small.png', title: Project WIP}
-name: Project WIP
-package_name: Project_WIP
+metadata: {logo_img: 'asset:4S logo small.png', title: 4S Project Portfolio Management}
+name: 4S Project Portfolio Management
+package_name: _4S_Project_Portfolio_Management
 renamed: true
 runtime_options: {client_version: '3', server_persist: true, server_spec: null, server_version: python3-full, version: 2}
 scheduled_tasks:

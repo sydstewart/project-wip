@@ -35,6 +35,8 @@ def new_searches(self):
           stages = [ 'Order Approved', 'Order Submitted for Approval','Ordered']
         elif stagegroup == 'Closed':
           stages = ['Closed']
+        elif stagegroup == 'Cancelled':
+          stages = ['Cancelled']
         kwargs['stage'] =  q.any_of(*stages) 
       else:
          kwargs['stage'] =  q.not_('Closed')

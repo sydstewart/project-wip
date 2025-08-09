@@ -276,25 +276,38 @@ class Form12(Form12Template):
 
   def link_13_click(self, **event_args):
     """This method is called when the link is clicked"""
-    self.link_5.icon =''
-    self.link_11.icon=''
-    self.link_10.icon=''
-    self.link_6.icon=''
-    self.link_8.icon = ''
-    self.link_9.icon = ''
-    self.link_15.icon = ''
+    if self.link_11.icon =='':
+      self.link_11.icon ='fa:sort-alpha-desc'
+      self.link_5.icon = ''
+      self.link_6.icon = ''
+      self.link_10.icon = ''
+      self.link_8.icon = ''
+      self.link_9.icon = ''
+      self.link_15.icon = ''
+      direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_no']), reverse=direction ) 
+    elif self.link_11.icon =='fa:sort-alpha-desc':
+      self.link_11.icon ='fa:sort-alpha-asc'
+      direction = False
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_no']), reverse=direction ) 
+    elif self.link_11.icon =='fa:sort-alpha-asc':
+      self.link_11.icon ='fa:sort-alpha-desc'
+      direction = True
+      self.repeating_panel_1.items = sorted([r for r in self.repeating_panel_1.items], key = lambda x: (x['order_no']), reverse=direction ) 
     pass
+        
+
 
   def link_14_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    self.text_box_1.text =''
-    self.drop_down_1.selected_value = None
-    self.drop_down_2.selected_value = None
-    self.drop_down_3.selected_value = None
-    self.app_area_drop_down.selected_value = None
-    self.category_drop_down.selected_value = None
-    new_searches(self)
-    pass
+      """This method is called when the link is clicked"""
+      self.text_box_1.text =''
+      self.drop_down_1.selected_value = None
+      self.drop_down_2.selected_value = None
+      self.drop_down_3.selected_value = None
+      self.app_area_drop_down.selected_value = None
+      self.category_drop_down.selected_value = None
+      new_searches(self)
+      pass
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
