@@ -500,6 +500,18 @@ scheduled_tasks:
     at: {hour: 8, minute: 5}
     every: day
     n: 1
+- job_id: WWWFPHYW
+  task_name: daily_update_stage_changes
+  time_spec:
+    at: {hour: 8, minute: 20}
+    every: day
+    n: 1
+- job_id: VACDAYKS
+  task_name: prepare_percent_changes
+  time_spec:
+    at: {hour: 8, minute: 25}
+    every: day
+    n: 1
 secrets:
   Teamwork Pass:
     type: secret

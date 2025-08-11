@@ -2,7 +2,15 @@ components:
 - components:
   - layout_properties: {grid_position: 'YSTQMU,NTAAIX'}
     name: label_1
-    properties: {align: center, bold: true, font_size: 16, text: Updates to Projects created after January 1st  2020 (Latest First)}
+    properties: {align: center, bold: true, font_size: 16, text: Updates to Projects created after January 1st  2025 (Latest First)}
+    type: Label
+  - layout_properties: {grid_position: 'YSTQMU,RCVWOI'}
+    name: label_2
+    properties: {bold: true, font_size: 11}
+    type: Label
+  - layout_properties: {grid_position: 'YSTQMU,AZHSIK'}
+    name: label_3
+    properties: {}
     type: Label
   - components:
     - name: repeating_panel_1
@@ -12,20 +20,19 @@ components:
     name: data_grid_1
     properties:
       columns:
+      - {data_key: Update_Date, expand: false, id: RIPNUY, title: Update Date, width: 122.22216796875}
+      - {data_key: Updated_by, expand: false, id: YOOVOM, title: Updated_by, width: 108.333251953125}
       - {data_key: order_no, expand: false, id: SRIVKQ, title: Order No, width: 104.22219848632812}
       - {data_key: order_date, expand: false, id: WWBLLF, title: Order Date, width: 109.39999389648438}
       - {data_key: project_name, expand: false, id: QVOFYV, title: Project Name, width: 222}
       - {data_key: order_category, expand: false, id: MBIDDQ, title: Order Category, width: 127.20001220703125}
-      - {data_key: Assigned_to, expand: false, id: IZESLT, title: Assigned_to, width: 94.20001220703125}
-      - {data_key: order_value, expand: false, id: LFPRNM, title: Order Value GBP Excl. VAT, width: 132.8887939453125}
-      - {data_key: Update_Date, expand: false, id: RIPNUY, title: Update Date, width: 122.22216796875}
-      - {data_key: Updated_by, expand: false, id: YOOVOM, title: Updated_by, width: 108.333251953125}
+      - {data_key: order_value_formated, expand: false, id: LFPRNM, title: Order Value GBP Excl. VAT, width: 132.8887939453125}
       - {data_key: Percent_Completion_Before, expand: false, id: NDUMDE, title: Percent Completion Before, width: 108.4443359375}
       - {data_key: Percent_Completion_After, expand: false, id: PRVQWE, title: Percent Completion After, width: 106.9998779296875}
     type: DataGrid
   layout_properties: {full_width_row: true, grid_position: 'JYEPBS,MAYNCZ'}
   name: content_panel
-  properties: {}
+  properties: {col_widths: '{"NTAAIX":55,"RCVWOI":20,"AZHSIK":5}'}
   type: ColumnPanel
 container: {type: ColumnPanel}
 is_package: true

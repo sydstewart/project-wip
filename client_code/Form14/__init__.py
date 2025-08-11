@@ -5,12 +5,13 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-
+from .. new_searches_stages import new_searches_stages
 
 class Form14(Form14Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    new_searches_stages(self)
     print('I am Form14')
     dicts = anvil.server.call('get_stage_changes')
     print('Number of Record=', len(dicts))

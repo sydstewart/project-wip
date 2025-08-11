@@ -5,14 +5,14 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-
+from ..new_searches_percent import new_searches_percent
 
 class Form15(Form15Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    dicts, XMedia  = anvil.server.call('get_changes')
+    new_searches_percent(self)
+    dicts = anvil.server.call('get_changes')
     print('Number of Record=', len(dicts))
     self.repeating_panel_1.items = dicts
     self.repeating_panel_1.items = sorted(
@@ -20,7 +20,11 @@ class Form15(Form15Template):
       key=lambda row: row["Update_Date"],
       reverse=True,
     )
-  # initializing dictionary
+
+  #   last_date = anvil.server.call('last_import_date')
+  #   day_of_week =last_date.strftime("%A")
+  #   self.label_2.text = 'Date of Last Import from the CRM = ' + str(last_date) + ' ' + str(day_of_week)
+  # # initializing dictionary
 
   # # printing original dictionary
   #     print("The original dictionary : " + str(dicts))

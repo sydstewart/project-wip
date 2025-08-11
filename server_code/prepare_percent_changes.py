@@ -36,8 +36,59 @@ def connect():
 
 @anvil.server.background_task
 @anvil.tables.in_transaction
-def daily_update_stage_changes():
+def prepare_percent_changes():
 
   conn = connect()
 
   with conn.cursor() as curaudit:
+    curaudit.execute(
+      "Select Concat(sales_orders.prefix, sales_orders.so_number) As Order_No, \
+              sales_orders.name, sales_orders_cstm.neworexistingsystem_c, users1.first_name  \
+              As Assigned_to, sales_orders.date_entered as date_entered, sales_orders_audit.date_created As Update_date, users.first_name \
+              As Updated_by, \
+              sales_orders_cstm.OrderCategory as order_category, \
+              sales_orders_audit.field_name, \
+              sales_orders_audit.before_value_string as BeforePercent, sales_orders_audit.after_value_string as AfterPercent, \
+              sales_orders.subtotal_usd As GBP_Excl_Vat, sales_orders.amount_usdollar As \
+              GBP_Incl_VAT \
+            From sales_orders Inner Join \
+              sales_orders_audit On sales_orders.id = sales_orders_audit.parent_id \
+              Inner Join \
+              sales_orders_cstm On sales_orders_cstm.id_c = sales_orders.id Inner Join \
+              users On sales_orders_audit.created_by = users.id Inner Join \
+              users users1 On sales_orders.created_by = users1.id \
+            Where sales_orders_cstm.neworexistingsystem_c In ('New', 'Existing') And \
+              sales_orders_audit.field_name = 'workinprogresspercentcomplete_c' And \
+              sales_orders.date_entered  > '2025-01-01' \
+            Order By  Concat(sales_orders.prefix, sales_orders.so_number) Desc   , sales_orders_audit.date_created Desc "  
+    )
+  records = curaudit.fetchall()
+  number_of_records =len(records)
+  print('No of changes',number_of_records)
+  if number_of_records:
+    dicts = [{'order_no': r['Order_No'], 'project_name':r['name'] ,'order_date':r['date_entered'], 'order_category':r['order_category'],'Assigned_to':r['Assigned_to'] , 'order_value':r['GBP_Excl_Vat'] , 'Update_Date':r['Update_date'], \
+              'Updated_by':r['Updated_by'],'Percent_Completion_Before':r['BeforePercent'],'Percent_Completion_After':r['AfterPercent']} for r in records]
+
+  X = pd.DataFrame(dicts)
+  X['order_value'] = X['order_value'].fillna(0)
+  X['order_value_formated']= X['order_value'].map("£{:,.0f}".format)
+
+  dicts  = X.to_dict(orient='records')
+  print('dicts',dicts)
+  
+  app_tables.sales_orders_percent_changes.delete_all_rows()
+  # results = app_tables.sales_orders_all.search()
+  # for row in results:
+  #   row.delete()
+  print('table deleted')
+
+  for row in dicts:
+
+    updated =  datetime.now()
+    app_tables.sales_orders_percent_changes.add_row(**{'order_no':row['order_no'],'project_name':row['project_name'], 'order_date':row['order_date'],'order_value':row['order_value'],'order_value_formated':row['order_value_formated'], \
+                                                     'Update_Date':row['Update_Date'], 'order_category':row['order_category'], 'Updated_by':row['Updated_by'],'Percent_Completion_Before':row['Percent_Completion_Before'],'Percent_Completion_After':row['Percent_Completion_After']})                                         
+
+    print('row loaded')
+    for row in app_tables.sales_orders_percent_changes.search():
+      row['table_last_updated'] = updated
+    print('table loaded')

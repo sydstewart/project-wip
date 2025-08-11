@@ -67,9 +67,19 @@ def daily_update_stage_changes():
     records = curaudit.fetchall()
     number_of_records =len(records)
   print('No of changes',number_of_records)
+
+
+ 
   if number_of_records:
     dicts = [{'order_no': r['Order_No'], 'project_name':r['name'] ,'order_date':r['date_entered'],  'order_value':r['GBP_Excl_Vat'] , 'Update_Date':r['Update_date'], \
               'order_category':r['order_category'], 'Updated_by':r['Updated_by'], 'Stage_Before':r['stage_before'],'Stage_After':r['stage_after']} for r in records]
+  print('dicts',dicts)
+
+  X = pd.DataFrame(dicts)
+  X['order_value'] = X['order_value'].fillna(0)
+  X['order_value_formated']= X['order_value'].map("£{:,.0f}".format)
+
+  dicts  = X.to_dict(orient='records')
   print('dicts',dicts)
   #delete all rows in the order table
   app_tables.sales_orders_stage_changes.delete_all_rows()
@@ -81,7 +91,7 @@ def daily_update_stage_changes():
   for row in dicts:
   
       updated =  datetime.now()
-      app_tables.sales_orders_stage_changes.add_row(**{'order_no':row['order_no'],'project_name':row['project_name'], 'order_date':row['order_date'],'order_value':row['order_value'], \
+      app_tables.sales_orders_stage_changes.add_row(**{'order_no':row['order_no'],'project_name':row['project_name'], 'order_date':row['order_date'],'order_value':row['order_value'], 'order_value_formated':row['order_value_formated'],\
                                                         'Update_Date':row['Update_Date'], 'order_category':row['order_category'], 'Updated_by':row['Updated_by'],'Stage_Before':row['Stage_Before'],'Stage_After':row['Stage_After']})                                         
                                                       
       print('row loaded')

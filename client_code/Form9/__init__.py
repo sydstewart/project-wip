@@ -53,6 +53,8 @@ class Form9(Form9Template):
     if usertype != 'admin': 
       self.link_11.visible = False
       self.link_12.visible = False
+      self.link_8.visible = False
+      self.link_9.visible = False
       # self.link_10.visible = False
       
     

@@ -7,7 +7,7 @@ import anvil.secrets
 import anvil.server
 
 @anvil.server.callable
-def prepare_stage_changes_launch():
+def prepare_percent_launch():
   """Launch a single stats background task."""
   task = anvil.server.launch_background_task('prepare_percent_changes')
   return task 
