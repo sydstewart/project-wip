@@ -61,6 +61,11 @@ components:
     name: link_8
     properties: {bold: true, text: Prepare_stage_changes}
     type: Link
+  - event_bindings: {click: link_9_click}
+    layout_properties: {grid_position: 'LOCTVF,GCVPTQ'}
+    name: link_9
+    properties: {bold: true, text: Prepare Percent Changes}
+    type: Link
   layout_properties: {slot: left-nav}
   name: column_panel_1
   properties: {}

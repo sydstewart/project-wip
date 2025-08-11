@@ -59,7 +59,7 @@ def daily_update_stage_changes():
                   sales_orders_cstm On sales_orders_cstm.id_c = sales_orders.id Inner Join \
                   users On sales_orders_audit.created_by = users.id Inner Join \
                   users users1 On sales_orders.created_by = users1.id \
-        Where sales_orders_audit.date_created > '2020-01-01' And \
+        Where sales_orders_audit.date_created > '2025-01-01' And \
                   sales_orders_audit.after_value_string In ('Closed', 'On Hold') And \
                   sales_orders_audit.field_name = 'so_stage' "  
     )
@@ -70,6 +70,7 @@ def daily_update_stage_changes():
   if number_of_records:
     dicts = [{'order_no': r['Order_No'], 'project_name':r['name'] ,'order_date':r['date_entered'],  'order_value':r['GBP_Excl_Vat'] , 'Update_Date':r['Update_date'], \
               'order_category':r['order_category'], 'Updated_by':r['Updated_by'], 'Stage_Before':r['stage_before'],'Stage_After':r['stage_after']} for r in records]
+  print('dicts',dicts)
   #delete all rows in the order table
   app_tables.sales_orders_stage_changes.delete_all_rows()
   # results = app_tables.sales_orders_all.search()
@@ -83,7 +84,7 @@ def daily_update_stage_changes():
       app_tables.sales_orders_stage_changes.add_row(**{'order_no':row['order_no'],'project_name':row['project_name'], 'order_date':row['order_date'],'order_value':row['order_value'], \
                                                         'Update_Date':row['Update_Date'], 'order_category':row['order_category'], 'Updated_by':row['Updated_by'],'Stage_Before':row['Stage_Before'],'Stage_After':row['Stage_After']})                                         
                                                       
-  
+      print('row loaded')
       for row in app_tables.sales_orders_stage_changes.search():
         row['table_last_updated'] = updated
       print('table loaded')

@@ -129,7 +129,7 @@ class Form9(Form9Template):
 
   def link_9_click(self, **event_args):
     """This method is called when the link is clicked"""
-    anvil.server.call('test_from_table')
+    anvil.server.call('prepare_percent_launch')
     pass
 
   def link_10_click(self, **event_args):

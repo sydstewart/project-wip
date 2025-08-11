@@ -12,14 +12,13 @@ components:
     name: data_grid_1
     properties:
       columns:
+      - {data_key: Update_Date, expand: false, id: RIPNUY, title: Update Date, width: 122.22216796875}
+      - {data_key: Updated_by, expand: false, id: YOOVOM, title: Updated_by, width: 108.333251953125}
       - {data_key: order_no, expand: false, id: SRIVKQ, title: Order No, width: 104.22219848632812}
       - {data_key: order_date, expand: false, id: WWBLLF, title: Order Date, width: 100}
       - {data_key: project_name, expand: false, id: QVOFYV, title: Project Name, width: 224.39996337890625}
       - {data_key: order_category, expand: false, id: MBIDDQ, title: Order Category, width: 127.20001220703125}
-      - {data_key: Assigned_to, expand: false, id: IZESLT, title: Assigned_to, width: 88.39996337890625}
       - {data_key: order_value, expand: false, id: LFPRNM, title: Order Value GBP Excl. VAT, width: 132.8887939453125}
-      - {data_key: Update_Date, expand: false, id: RIPNUY, title: Update Date, width: 122.22216796875}
-      - {data_key: Updated_by, expand: false, id: YOOVOM, title: Updated_by, width: 108.333251953125}
       - {data_key: Stage_Before, expand: false, id: NDUMDE, title: Stage Before, width: 108.4443359375}
       - {data_key: Stage_After, expand: false, id: PRVQWE, title: Stage After, width: 106.9998779296875}
     type: DataGrid
