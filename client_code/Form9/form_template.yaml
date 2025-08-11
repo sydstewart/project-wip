@@ -56,6 +56,11 @@ components:
     name: link_12
     properties: {bold: true, text: Prepare stats}
     type: Link
+  - event_bindings: {click: link_8_click}
+    layout_properties: {grid_position: 'NINEPD,WRIWJL'}
+    name: link_8
+    properties: {bold: true, text: Prepare_stage_changes}
+    type: Link
   layout_properties: {slot: left-nav}
   name: column_panel_1
   properties: {}
