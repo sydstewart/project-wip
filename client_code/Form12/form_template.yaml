@@ -216,7 +216,7 @@ components:
     layout_properties: {full_width_row: true, grid_position: 'CHTPJW,LUNNPF'}
     name: data_grid_1
     properties:
-      auto_header: true
+      auto_header: false
       columns:
       - {data_key: order_no, expand: false, id: JKSDUP, title: Order No, width: 116.727294921875}
       - {data_key: order_date, expand: false, id: DVUGBU, title: Order Date, width: 131.27276611328125}
@@ -237,7 +237,7 @@ components:
     type: DataGrid
   layout_properties: {full_width_row: true, grid_position: 'DFDAKK,XIDNMY'}
   name: content_panel
-  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":4,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":5,"NWHSJZ":5,"UTVRRM":6,"JZPWBP":7,"ZCLCHP":13,"AUSGJQ":4,"PEOKFI":5,"DOKPJE":5,"COUUEL":5,"JVMCHX":5,"IEJDDE":5,"BFHDTG":5,"JXOETT":9,"PFKXGW":5,"FJBRDD":9,"QTJCJH":3,"SDZQGA":7,"IYKIUQ":4,"POIRSD":6,"NMKHZD":5,"RATVQJ":6,"YAYZQJ":4,"SXSCRZ":7,"ZVNFBQ":5,"LLEQXH":7,"SFVODW":4,"LUPHOM":4,"HFAUBG":4,"RAUAZY":6,"IMPKLS":3,"ZGCDPQ":3,"JUXJPE":4,"IGTCTO":3}'}
+  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":4,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":5,"NWHSJZ":5,"UTVRRM":5,"JZPWBP":6,"ZCLCHP":9,"AUSGJQ":4,"PEOKFI":4,"DOKPJE":5,"COUUEL":5,"JVMCHX":3,"IEJDDE":4,"BFHDTG":3,"JXOETT":6,"PFKXGW":7,"FJBRDD":9,"QTJCJH":3,"SDZQGA":7,"IYKIUQ":4,"POIRSD":19,"NMKHZD":5,"RATVQJ":6,"YAYZQJ":4,"SXSCRZ":7,"ZVNFBQ":5,"LLEQXH":7,"SFVODW":4,"LUPHOM":4,"HFAUBG":4,"RAUAZY":6,"IMPKLS":3,"ZGCDPQ":3,"JUXJPE":4,"IGTCTO":3}'}
   type: ColumnPanel
 container: {type: ColumnPanel}
 is_package: true
