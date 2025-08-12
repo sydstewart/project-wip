@@ -143,73 +143,76 @@ components:
     properties: {visible: true}
     type: TextBox
   - components:
-    - event_bindings: {click: link_11_click}
+    - components:
+      - event_bindings: {click: link_11_click}
+        layout_properties: {column: JKSDUP}
+        name: link_11
+        properties: {background: 'theme:Gray 200', bold: true, icon: '', text: Order No}
+        type: Link
+      - event_bindings: {click: link_10_click}
+        layout_properties: {column: DVUGBU}
+        name: link_10
+        properties: {background: 'theme:Gray 200', bold: true, text: Order Date}
+        type: Link
+      - event_bindings: {click: link_2_click}
+        layout_properties: {column: VJQQOR}
+        name: link_2
+        properties: {bold: true, col_spacing: none, text: Project Name}
+        type: Link
+      - event_bindings: {click: link_3_click}
+        layout_properties: {column: OJLQEN}
+        name: link_3
+        properties: {align: left, bold: true, text: Stage}
+        type: Link
+      - event_bindings: {click: link_4_click}
+        layout_properties: {column: GVGOUJ}
+        name: link_4
+        properties: {align: left, bold: true, text: Waiting On}
+        type: Link
+      - event_bindings: {click: link_5_click}
+        layout_properties: {column: CAGESB}
+        name: link_5
+        properties: {align: left, background: 'theme:Gray 200', bold: true, text: Percent Complete}
+        type: Link
+      - event_bindings: {click: link_6_click}
+        layout_properties: {column: PGKEKQ}
+        name: link_6
+        properties: {align: left, background: 'theme:Gray 200', bold: true, text: Order Value}
+        type: Link
+      - layout_properties: {column: GIJMQZ}
+        name: link_7
+        properties: {bold: true, text: Assigned To}
+        type: Link
+      - event_bindings: {click: link_8_click}
+        layout_properties: {column: YMOAEN}
+        name: link_8
+        properties: {background: 'theme:Gray 200', bold: true, text: Work Completed}
+        type: Link
+      - event_bindings: {click: link_9_click}
+        layout_properties: {column: IDHGAW}
+        name: link_9
+        properties: {background: 'theme:Gray 200', bold: true, text: Elapsed Days}
+        type: Link
+      - layout_properties: {column: ZNRMWN}
+        name: link_1
+        properties: {bold: true, text: Category}
+        type: Link
+      - layout_properties: {column: SAFNDF}
+        name: link_12
+        properties: {bold: true, text: App Area}
+        type: Link
+      - event_bindings: {click: link_15_click}
+        layout_properties: {column: JTAWEE}
+        name: link_15
+        properties: {background: 'theme:Gray 200', bold: true, text: Partially Invoiced Total}
+        type: Link
       layout_properties: {}
-      name: link_11
-      properties: {background: 'theme:Gray 200', bold: true, icon: '', text: Order No}
-      type: Link
-    layout_properties: {full_width_row: true, grid_position: 'KZUXCN,UTVRRM'}
-    name: data_row_panel_2
-    properties: {}
-    type: DataRowPanel
-  - event_bindings: {click: link_10_click}
-    layout_properties: {grid_position: 'KZUXCN,JZPWBP'}
-    name: link_10
-    properties: {background: 'theme:Gray 200', bold: true, text: Order Date}
-    type: Link
-  - event_bindings: {click: link_2_click}
-    layout_properties: {grid_position: 'KZUXCN,ZCLCHP'}
-    name: link_2
-    properties: {bold: true, col_spacing: none, text: Project Name}
-    type: Link
-  - event_bindings: {click: link_3_click}
-    layout_properties: {grid_position: 'KZUXCN,AUSGJQ'}
-    name: link_3
-    properties: {align: left, bold: true, text: Stage}
-    type: Link
-  - event_bindings: {click: link_4_click}
-    layout_properties: {grid_position: 'KZUXCN,PEOKFI'}
-    name: link_4
-    properties: {align: left, bold: true, text: Waiting On}
-    type: Link
-  - event_bindings: {click: link_5_click}
-    layout_properties: {grid_position: 'KZUXCN,DOKPJE'}
-    name: link_5
-    properties: {align: left, background: 'theme:Gray 200', bold: true, text: Percent Complete}
-    type: Link
-  - event_bindings: {click: link_6_click}
-    layout_properties: {full_width_row: true, grid_position: 'KZUXCN,COUUEL'}
-    name: link_6
-    properties: {align: left, background: 'theme:Gray 200', bold: true, text: Order Value}
-    type: Link
-  - layout_properties: {grid_position: 'KZUXCN,BFHDTG'}
-    name: link_7
-    properties: {bold: true, text: Assigned To}
-    type: Link
-  - event_bindings: {click: link_8_click}
-    layout_properties: {grid_position: 'KZUXCN,JVMCHX'}
-    name: link_8
-    properties: {background: 'theme:Gray 200', bold: true, text: Work Completed}
-    type: Link
-  - event_bindings: {click: link_9_click}
-    layout_properties: {grid_position: 'KZUXCN,IEJDDE'}
-    name: link_9
-    properties: {background: 'theme:Gray 200', bold: true, text: Elapsed Days}
-    type: Link
-  - layout_properties: {grid_position: 'KZUXCN,JXOETT'}
-    name: link_1
-    properties: {bold: true, text: Category}
-    type: Link
-  - layout_properties: {grid_position: 'KZUXCN,PFKXGW'}
-    name: link_12
-    properties: {bold: true, text: App Area}
-    type: Link
-  - event_bindings: {click: link_15_click}
-    layout_properties: {grid_position: 'KZUXCN,POIRSD'}
-    name: link_15
-    properties: {background: 'theme:Gray 200', bold: true, text: Partially Invoiced Total}
-    type: Link
-  - components:
+      name: data_row_panel_3
+      properties: {role: underline}
+      type: DataRowPanel
+    - name: data_row_panel_1
+      properties: {}
+      type: DataRowPanel
     - name: repeating_panel_1
       properties: {item_template: Testquery.RowTemplate26}
       type: RepeatingPanel
@@ -237,7 +240,7 @@ components:
     type: DataGrid
   layout_properties: {full_width_row: true, grid_position: 'DFDAKK,XIDNMY'}
   name: content_panel
-  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":4,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":5,"NWHSJZ":5,"UTVRRM":5,"JZPWBP":6,"ZCLCHP":9,"AUSGJQ":4,"PEOKFI":4,"DOKPJE":5,"COUUEL":5,"JVMCHX":3,"IEJDDE":4,"BFHDTG":3,"JXOETT":6,"PFKXGW":7,"FJBRDD":9,"QTJCJH":3,"SDZQGA":7,"IYKIUQ":4,"POIRSD":19,"NMKHZD":5,"RATVQJ":6,"YAYZQJ":4,"SXSCRZ":7,"ZVNFBQ":5,"LLEQXH":7,"SFVODW":4,"LUPHOM":4,"HFAUBG":4,"RAUAZY":6,"IMPKLS":3,"ZGCDPQ":3,"JUXJPE":4,"IGTCTO":3}'}
+  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":4,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":5,"NWHSJZ":5,"UTVRRM":8,"FJBRDD":9,"QTJCJH":3,"SDZQGA":7,"IYKIUQ":4,"NMKHZD":5,"RATVQJ":6,"YAYZQJ":4,"SXSCRZ":7,"ZVNFBQ":5,"LLEQXH":7,"SFVODW":4,"LUPHOM":4,"HFAUBG":4,"RAUAZY":6,"IMPKLS":3,"ZGCDPQ":3,"JUXJPE":4,"IGTCTO":3}'}
   type: ColumnPanel
 container: {type: ColumnPanel}
 is_package: true
