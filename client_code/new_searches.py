@@ -31,7 +31,7 @@ def new_searches(self):
       
       #stage
       if stagegroups:
-         kwargs['Stage Group'] -stagegroups
+         kwargs['Stage Group'] = stagegroups
 
       #   if stagegroup == 'Work in Progress':
       #         stages = ['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP','Invoiced, still work to be completed']
