@@ -88,6 +88,46 @@ def daily_by_stats_trial():
   X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
   X['invoiced_but_work_not_done'] = X['partially_invoiced_total'] - X['work_completed']
   X['invoiced_but_work_not_done'] = X['invoiced_but_work_not_done'].fillna(0)
+  X['work_to_do'] = (X['order_value'] * ((100 - (X['percent_complete']))/100))
+  X['work_to_do_formated']= X['work_to_do'].map("£{:,.0f}".format)
+  X['work_completed'] = (X['order_value'] * (X['percent_complete']/100))
+  X['work_completed_formated']= X['work_completed'].map("£{:,.0f}".format)
+  X['order_value_formated']= X['order_value'].map("£{:,.0f}".format)
+  X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
+  X['partially_invoiced_total_formated']= X['partially_invoiced_total'].map("£{:,.0f}".format)
+  X['invoiced_but_work_not_done'] = X['partially_invoiced_total'] - X['work_completed']
+
+  # # Group the stages into categories
+  conditions =[X['stage'] == 'On Hold',
+
+               X['stage'] == 'Work In Progress - 4S', 
+               X['stage'] == 'Pre-requisites in progress' ,
+               X['stage'] == 'Ready for GoLive', 
+               X['stage'] == 'Ready for UAT',
+               X['stage'] == 'Ready to Start',
+               X['stage'] == 'UAT WIP',
+
+               X['stage'] == 'Order Approved',
+               X['stage'] == 'Order Submitted for Approval',
+               X['stage'] == 'Ordered']
+
+  categories = ['Projects on Hold', \
+              'Project in Progress', 'Project in Progress', 'Project in Progress','Project in Progress', 'Project in Progress','Project in Progress', \
+              'Project waiting to Start', 'Project waiting to Start','Project waiting to Start']
+
+  X['Stage Group'] = np.select(conditions, categories, default='Unknown')
+
+  # calculate elapsed days
+  today = datetime.today() #.strftime('%Y-%m-%d')
+  print('today', today)
+  X['today']= today
+  X['today']= pd.to_datetime(X.today,utc =True)
+  # print(X['today'])
+  X['order_date'] = pd.to_datetime(X.order_date,utc =True)
+  # print('order date',X['order_date'] )
+  X['days_elapsed'] = (X['today'] - X['order_date']).dt.days
+  # print('elapsed',X['days_elapsed']  )
+
   
   dicts  = X.to_dict(orient='records')
 
@@ -108,7 +148,9 @@ def daily_by_stats_trial():
                                            'stage':row['stage'], \
                                            'partially_invoiced_total':row['partially_invoiced_total'],'waiting_on':row['waiting_on'],\
                                            'waiting_note':row['waiting_note'],'so_number':row['so_number'], 'work_to_do':row['work_to_do'], 'invoiced_but_work_not_done':row['invoiced_but_work_not_done'], \
-                                           'work_completed':row['work_completed'] })
+                                           'work_completed':row['work_completed'], 'days_elapsed' :row['days_elapsed'],'Stage Group':row['Stage Group'],'work_completed_formated':row['work_completed_formated'], \
+                                           'work_to_do_formated':row['work_to_do_formated'],'order_value_formated':row['order_value_formated'], \
+                                           'partially_invoiced_total_formated':row['partially_invoiced_total_formated']})  
   
   for row in app_tables.sales_orders_all.search():
         row['updated'] = updated

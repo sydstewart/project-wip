@@ -38,12 +38,12 @@ class Form9(Form9Template):
     self.init_components(**properties)
     self.link_6_click()
     # self.add_component(Label(text= '     Project WIP'), slot='title')
-    anvil.users.login_with_form()
-    loggedin_user = anvil.users.get_user()
-    username = loggedin_user['email']
-    usertype = anvil.server.call('get_user_type',loggedin_user)
-    print(usertype)
-    self.label_1.text = 'User is ' + username + ' ' + usertype
+    # anvil.users.login_with_form()
+    # loggedin_user = anvil.users.get_user()
+    # username = loggedin_user['email']
+    # usertype = anvil.server.call('get_user_type',loggedin_user)
+    # print(usertype)
+    # self.label_1.text = 'User is ' + username + ' ' + usertype
     
     # self.text_box_2.text = loggedin_user['user_type']
     # self.text_box_1.text = username 

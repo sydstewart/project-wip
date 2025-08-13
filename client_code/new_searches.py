@@ -4,6 +4,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from datetime import datetime, time , date , timedelta
 
+
 def new_searches(self):
       # self.drop_down_1.selected_value = 'Work in Progress'
       partname = self.text_box_1.text
@@ -13,33 +14,38 @@ def new_searches(self):
       apparea = self.app_area_drop_down.selected_value
       category = self.category_drop_down.selected_value
       invoiced_but_work_not_done_flag = self.radio_button_1.selected
-
+      stagegroups = self.multi_select_drop_down_1.selected
       print('syd here')
       
       # Setup search dictionary
       kwargs ={}
       
-      
+      # if multiitems:
+      #   kwargs['StageGroup'] = multiitems
+        
+  
+         
       #Project Name
       if partname:
         kwargs['project_name'] =  q.ilike('%' + partname +'%')
       
       #stage
-      if stagegroup:
+      if stagegroups:
+         kwargs['Stage Group'] -stagegroups
 
-        if stagegroup == 'Work in Progress':
-              stages = ['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP','Invoiced, still work to be completed']
-        elif stagegroup == 'On Hold':
-          stages = ['On Hold']
-        elif stagegroup == 'Waiting to Start':
-          stages = [ 'Order Approved', 'Order Submitted for Approval','Ordered']
-        elif stagegroup == 'Closed':
-          stages = ['Closed']
-        elif stagegroup == 'Cancelled':
-          stages = ['Cancelled']
-        kwargs['stage'] =  q.any_of(*stages) 
-      else:
-         kwargs['stage'] =  q.not_('Closed')
+      #   if stagegroup == 'Work in Progress':
+      #         stages = ['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP','Invoiced, still work to be completed']
+      #   elif stagegroup == 'On Hold':
+      #     stages = ['On Hold']
+      #   elif stagegroup == 'Waiting to Start':
+      #     stages = [ 'Order Approved', 'Order Submitted for Approval','Ordered']
+      #   elif stagegroup == 'Closed':
+      #     stages = ['Closed']
+      #   elif stagegroup == 'Cancelled':
+      #     stages = ['Cancelled']
+      #   kwargs['stage'] =  q.any_of(*stages) 
+      # else:
+      #    kwargs['stage'] =  q.not_('Closed')
     
       if waitingon:
         kwargs['waiting_on'] =  waitingon 

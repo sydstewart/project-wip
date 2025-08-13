@@ -29,7 +29,7 @@ class Form12(Form12Template):
 
     print('Start', datetime.now())
 
-
+    
 
     with Notification("Please wait... data loading "):
       new_searches(self)
@@ -347,4 +347,9 @@ class Form12(Form12Template):
       
       # orders = anvil.server.call('orders',self.text_box_1.text,self.drop_down_1.selected_value)
       # self.repeating_panel_1.items = orderspass
+
+  def multi_select_drop_down_1_change(self, **event_args):
+    """This method is called when the selected values change"""
+    new_searches(self)
+    pass
 
