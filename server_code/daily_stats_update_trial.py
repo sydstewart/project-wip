@@ -93,12 +93,17 @@ def daily_by_stats_trial():
   # # Group the stages into categories
   workinprogress_stages =['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP','Invoiced, still work to be completed']
   hold_stages = ['On Hold']
+  waitingtostart_stage =  [ 'Order Approved', 'Order Submitted for Approval','Ordered']
+  closed_stage =['Closed']
+  cancelled_stage = ['Cancelled']
   conditions = [
     X['stage'].isin(workinprogress_stages),
-    X['stage'].isin(hold_stages)
-  ]
+    X['stage'].isin(hold_stages),
+    X['stage'].isin(waitingtostart_stage),
+    X['stage'].isin(closed_stage),
+    X['stage'].isin(cancelled_stage) ]
 
-  categories = ['Work in progress','On Hold']
+  categories = ['Work in Progress','On Hold' ,'Waiting to Start', 'Closed','Cancelled']
 
 # Use np.select() to create the new column
   X['Stage Group'] = np.select(conditions, categories, default='Unknown')
