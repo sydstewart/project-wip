@@ -88,7 +88,35 @@ def daily_by_stats_trial():
   X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
   X['invoiced_but_work_not_done'] = X['partially_invoiced_total'] - X['work_completed']
   X['invoiced_but_work_not_done'] = X['invoiced_but_work_not_done'].fillna(0)
-  
+
+
+  # # Group the stages into categories
+  workinprogress_stages =['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP','Invoiced, still work to be completed']
+  hold_stages = ['On Hold']
+  if X['stage'].isin(workinprogress_stages):
+     X['Stage Group']= 'Work in Progress'
+  if X['stage'].isin(hold_stages):
+     X['Stage Group']= 'On Hold'
+
+ #  conditions =[X['stage'] == 'On Hold',
+
+ #               X['stage'] == 'Work In Progress - 4S', 
+ #               X['stage'] == 'Pre-requisites in progress' ,
+ #               X['stage'] == 'Ready for GoLive', 
+ #               X['stage'] == 'Ready for UAT',
+ #               X['stage'] == 'Ready to Start',
+ #               X['stage'] == 'UAT WIP',
+
+ #               X['stage'] == 'Order Approved',
+ #               X['stage'] == 'Order Submitted for Approval',
+ #               X['stage'] == 'Ordered']
+ # ['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP','Invoiced, still work to be completed']
+ #  categories = ['Projects on Hold', \
+ #                'Project in Progress', 'Project in Progress', 'Project in Progress','Project in Progress', 'Project in Progress','Project in Progress', \
+ #                'Project waiting to Start', 'Project waiting to Start','Project waiting to Start']
+
+ #  X['Stage Group'] = np.select(conditions, categories, default='Unknown')
+
   dicts  = X.to_dict(orient='records')
 
   # delete all rows in the order table
