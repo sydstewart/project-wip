@@ -93,29 +93,18 @@ def daily_by_stats_trial():
   # # Group the stages into categories
   workinprogress_stages =['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP','Invoiced, still work to be completed']
   hold_stages = ['On Hold']
-  if X['stage'].isin(workinprogress_stages):
-     X['Stage Group']= 'Work in Progress'
-  if X['stage'].isin(hold_stages):
-     X['Stage Group']= 'On Hold'
+  conditions = [
+    X['stage'].isin(workinprogress_stages),
+    X['stage'].isin(hold_stages)
+  ]
 
- #  conditions =[X['stage'] == 'On Hold',
+  categories = ['Work in progress','On Hold']
 
- #               X['stage'] == 'Work In Progress - 4S', 
- #               X['stage'] == 'Pre-requisites in progress' ,
- #               X['stage'] == 'Ready for GoLive', 
- #               X['stage'] == 'Ready for UAT',
- #               X['stage'] == 'Ready to Start',
- #               X['stage'] == 'UAT WIP',
+# Use np.select() to create the new column
+  X['Stage Group'] = np.select(conditions, categories, default='Unknown')
 
- #               X['stage'] == 'Order Approved',
- #               X['stage'] == 'Order Submitted for Approval',
- #               X['stage'] == 'Ordered']
- # ['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP','Invoiced, still work to be completed']
- #  categories = ['Projects on Hold', \
- #                'Project in Progress', 'Project in Progress', 'Project in Progress','Project in Progress', 'Project in Progress','Project in Progress', \
- #                'Project waiting to Start', 'Project waiting to Start','Project waiting to Start']
 
- #  X['Stage Group'] = np.select(conditions, categories, default='Unknown')
+ 
 
   dicts  = X.to_dict(orient='records')
 
@@ -136,7 +125,7 @@ def daily_by_stats_trial():
                                            'stage':row['stage'], \
                                            'partially_invoiced_total':row['partially_invoiced_total'],'waiting_on':row['waiting_on'],\
                                            'waiting_note':row['waiting_note'],'so_number':row['so_number'], 'work_to_do':row['work_to_do'], 'invoiced_but_work_not_done':row['invoiced_but_work_not_done'], \
-                                           'work_completed':row['work_completed'] })
+                                           'work_completed':row['work_completed'] ,'stage_group':row['Stage Group']})
   
   for row in app_tables.sales_orders_all.search():
         row['updated'] = updated
