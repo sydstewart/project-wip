@@ -54,6 +54,11 @@ class Form12(Form12Template):
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
     with Notification("Please wait... data loading "):
+      self.multi_select_drop_down_1.visible = False
+      self.label_18.visible = False
+      if self.drop_down_1.selected_value is None:
+          self.multi_select_drop_down_1.visible = True  
+          self.label_18.visible = True
       new_searches(self)
       # orders = anvil.server.call('orders',self.text_box_1.text,self.drop_down_1.selected_value)
       # self.repeating_panel_1.items = orders
@@ -306,6 +311,13 @@ class Form12(Form12Template):
       self.drop_down_3.selected_value = None
       self.app_area_drop_down.selected_value = None
       self.category_drop_down.selected_value = None
+      self.multi_select_drop_down_1.selected = None
+      if not self.multi_select_drop_down_1.selected :
+        self.drop_down_1.visible = True
+        self.label_3.visible = True
+      if self.drop_down_1.selected_value is None:
+          self.multi_select_drop_down_1.visible = True  
+          self.label_18.visible = True
       new_searches(self)
       pass
 
@@ -347,4 +359,14 @@ class Form12(Form12Template):
       
       # orders = anvil.server.call('orders',self.text_box_1.text,self.drop_down_1.selected_value)
       # self.repeating_panel_1.items = orderspass
+
+  def multi_select_drop_down_1_change(self, **event_args):
+    """This method is called when the selected values change"""
+    self.drop_down_1.visible = False
+    self.label_3.visible = False
+    if not self.multi_select_drop_down_1.selected :
+      self.drop_down_1.visible = True
+      self.label_3.visible = True
+    new_searches(self)
+    pass
 
