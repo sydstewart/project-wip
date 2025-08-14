@@ -11,13 +11,13 @@ class Form14(Form14Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    new_searches_stages(self)
+    
     print('I am Form14')
-    # projectlist = anvil.server.call('get_project_names')
-    # self.drop_down_1.items = projectlist
-    # dicts = anvil.server.call('get_stage_changes')
-    # print('Number of Record=', len(dicts))
-    new_searches_stages(self)
+    projectlist = anvil.server.call('get_project_names')
+    self.drop_down_1.items = projectlist
+    dicts = anvil.server.call('get_stage_changes')
+    print('Number of Record=', len(dicts))
+   
     # print('Number of Record=', len(self.repeating_panel_1.items))
     # self.repeating_panel_1.items = dicts
 
@@ -82,4 +82,9 @@ class Form14(Form14Template):
     start = self.level_textbox.text
     print('start=',start)
     dicts , Xmedia = anvil.server.call('get_changes', start)
+
+  def drop_down_1_change(self, **event_args):
+    """This method is called when an item is selected"""
+    new_searches_stages(self)
+    pass
 

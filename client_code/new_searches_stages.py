@@ -14,7 +14,7 @@ def new_searches_stages(self):
   if project:
      kwargs['project_name'] = project
      
-     stages =  anvil.server.call('stages',**kwargs,)
+     stages =  anvil.server.call('stages', kwargs)
      self.repeating_panel_1.items  = stages
      self.repeating_panel_1.items = sorted(
         self.repeating_panel_1.items,
