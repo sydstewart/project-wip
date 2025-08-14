@@ -66,6 +66,11 @@ components:
     name: link_9
     properties: {bold: true, text: Prepare Percent Changes}
     type: Link
+  - event_bindings: {click: link_10_click}
+    layout_properties: {grid_position: 'URNBOU,YEQWIV'}
+    name: link_10
+    properties: {bold: true, text: Prepare Wait Changes}
+    type: Link
   layout_properties: {slot: left-nav}
   name: column_panel_1
   properties: {}

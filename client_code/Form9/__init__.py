@@ -55,6 +55,7 @@ class Form9(Form9Template):
       self.link_12.visible = False
       self.link_8.visible = False
       self.link_9.visible = False
+      self.link_10.visible = False
       # self.link_10.visible = False
       
     
@@ -136,7 +137,7 @@ class Form9(Form9Template):
 
   def link_10_click(self, **event_args):
     """This method is called when the link is clicked"""
-    self.task = anvil.server.call('extract_orders')
+    self.task = anvil.server.call('prepare_wait_changes_launch')
     pass
 
   def button_1_click(self, **event_args):
