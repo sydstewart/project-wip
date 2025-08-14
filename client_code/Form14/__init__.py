@@ -13,12 +13,15 @@ class Form14(Form14Template):
     self.init_components(**properties)
     
     print('I am Form14')
-    projectlist = anvil.server.call('get_project_names')
-    self.drop_down_1.items = projectlist
+    projectnames= list({(r['project_name']) for r in app_tables.sales_orders_stage_changes.search(tables.order_by('project_name'))})
+ 
+    self.drop_down_1.items = projectnames
+ 
     dicts = anvil.server.call('get_stage_changes')
     print('Number of Record=', len(dicts))
    
     # print('Number of Record=', len(self.repeating_panel_1.items))
+    self.label_1.text = 'Number of Records =' + str(len(dicts)) 
     self.repeating_panel_1.items = dicts
 
   # initializing dictionary

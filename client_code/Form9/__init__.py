@@ -36,7 +36,7 @@ class Form9(Form9Template):
  
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.link_6_click()
+    # self.link_6_click()
     # self.add_component(Label(text= '     Project WIP'), slot='title')
     anvil.users.login_with_form()
     loggedin_user = anvil.users.get_user()
