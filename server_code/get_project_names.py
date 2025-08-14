@@ -11,7 +11,7 @@ import anvil.server
 def get_project_names():
 
   projectlist =  [(str(row['project_name']), row) for row in app_tables.sales_orders_stage_changes.search(tables.order_by('project_name'))]
-  
+ 
   # list( set([row['project_name'] for row in app_tables.sales_orders_stage_changes.search(tables.order_by('project_name'))] ))
  
   # [(str(row['application_area']), row) for row in app_tables.application_area.search(tables.order_by('application_area'))]
