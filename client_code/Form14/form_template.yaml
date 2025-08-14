@@ -1,20 +1,32 @@
 components:
 - components:
-  - layout_properties: {grid_position: 'YSTQMU,NTAAIX XPBRFH,WHRFGO'}
+  - layout_properties: {full_width_row: true, grid_position: 'XPBRFH,WHRFGO'}
     name: label_1
     properties: {align: center, bold: true, font_size: 16, text: Updates to Projects Stages after January 1st  2025 (Latest First)}
     type: Label
-  - event_bindings: {change: drop_down_1_change}
-    layout_properties: {grid_position: 'YSTQMU,NTAAIX ULFOVV,WHTPNM'}
-    name: drop_down_1
-    properties: {include_placeholder: true}
-    type: DropDown
-  - layout_properties: {grid_position: 'YSTQMU,WWFREO'}
+  - layout_properties: {grid_position: 'XPBRFH,MGGLUX'}
     name: label_2
     properties: {bold: true, font_size: 11}
     type: Label
-  - layout_properties: {grid_position: 'YSTQMU,BJGTZZ'}
+  - layout_properties: {full_width_row: true, grid_position: 'XPBRFH,GXRTKE'}
     name: label_3
+    properties: {}
+    type: Label
+  - layout_properties: {full_width_row: true, grid_position: 'ULFOVV,GNXNQC'}
+    name: label_4
+    properties: {bold: true}
+    type: Label
+  - layout_properties: {full_width_row: true, grid_position: 'ULFOVV,XCUACU'}
+    name: label_5
+    properties: {align: right, bold: true, text: Select Project}
+    type: Label
+  - event_bindings: {change: drop_down_1_change}
+    layout_properties: {grid_position: 'ULFOVV,WHTPNM'}
+    name: drop_down_1
+    properties: {include_placeholder: true}
+    type: DropDown
+  - layout_properties: {full_width_row: true, grid_position: 'ULFOVV,JHIRKW'}
+    name: label_6
     properties: {}
     type: Label
   - components:
@@ -37,7 +49,7 @@ components:
     type: DataGrid
   layout_properties: {full_width_row: true, grid_position: 'DQOEBC,VQQMQP'}
   name: content_panel
-  properties: {col_widths: '{"NTAAIX":55,"WWFREO":23,"BJGTZZ":2}'}
+  properties: {col_widths: '{"WHRFGO":75,"GNXNQC":15,"XCUACU":5,"WHTPNM":20,"JHIRKW":20,"GXRTKE":10,"MGGLUX":15}'}
   type: ColumnPanel
 container: {type: ColumnPanel}
 is_package: true

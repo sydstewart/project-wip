@@ -11,7 +11,7 @@ class Form14(Form14Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    
+    new_searches_stages(self)
     print('I am Form14')
     projectnames= list({(r['project_name']) for r in app_tables.sales_orders_stage_changes.search(tables.order_by('project_name'))})
  
@@ -21,7 +21,7 @@ class Form14(Form14Template):
     print('Number of Record=', len(dicts))
    
     # print('Number of Record=', len(self.repeating_panel_1.items))
-    self.label_1.text = 'Number of Records =' + str(len(dicts)) 
+    
     self.repeating_panel_1.items = dicts
 
   # initializing dictionary
