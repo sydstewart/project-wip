@@ -10,4 +10,5 @@ import anvil.server
 def stages(kwargs):
 
   if kwargs:
-    orders = app_tables.sales_orders_stage_changes.search( **kwargs)
+    stages= app_tables.sales_orders_stage_changes.search( **kwargs)
+    return stages

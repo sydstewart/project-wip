@@ -12,8 +12,9 @@ def new_searches_stages(self):
   project= self.drop_down_1.selected_value
   kwargs ={}
   if project:
-     kwargs['project_name'] = project
-     
+      selectedproject = ('%' + project['project_name'] + '%')
+      kwargs['project_name'] = q.like(selectedproject) 
+  if kwargs:   
      stages =  anvil.server.call('stages', kwargs)
      self.repeating_panel_1.items  = stages
      self.repeating_panel_1.items = sorted(
@@ -21,3 +22,4 @@ def new_searches_stages(self):
         key=lambda row: row["Update_Date"],
         reverse=True,
       )
+   

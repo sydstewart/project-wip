@@ -19,7 +19,7 @@ class Form14(Form14Template):
     print('Number of Record=', len(dicts))
    
     # print('Number of Record=', len(self.repeating_panel_1.items))
-    # self.repeating_panel_1.items = dicts
+    self.repeating_panel_1.items = dicts
 
   # initializing dictionary
 

@@ -59,9 +59,12 @@ def daily_update_stage_changes():
                   sales_orders_cstm On sales_orders_cstm.id_c = sales_orders.id Inner Join \
                   users On sales_orders_audit.created_by = users.id Inner Join \
                   users users1 On sales_orders.created_by = users1.id \
-        Where sales_orders_audit.date_created > '2025-01-01' And \
+        Where sales_orders_audit.date_created > '2024-07-01' And \
                   sales_orders_audit.after_value_string In ('Closed', 'On Hold') And \
-                  sales_orders_audit.field_name = 'so_stage' "  
+                  sales_orders_audit.field_name = 'so_stage' AND \
+                  sales_orders_cstm.OrderCategory NOT IN ('Maintenance') "
+                    
+      
     )
   
     records = curaudit.fetchall()
