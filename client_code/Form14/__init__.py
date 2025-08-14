@@ -13,14 +13,14 @@ class Form14(Form14Template):
     self.init_components(**properties)
     new_searches_stages(self)
     print('I am Form14')
-    dicts = anvil.server.call('get_stage_changes')
-    print('Number of Record=', len(dicts))
-    self.repeating_panel_1.items = dicts
-    self.repeating_panel_1.items = sorted(
-      self.repeating_panel_1.items,
-      key=lambda row: row["Update_Date"],
-      reverse=True,
-    )
+    # projectlist = anvil.server.call('get_project_names')
+    # self.drop_down_1.items = projectlist
+    # dicts = anvil.server.call('get_stage_changes')
+    # print('Number of Record=', len(dicts))
+    new_searches_stages(self)
+    # print('Number of Record=', len(self.repeating_panel_1.items))
+    # self.repeating_panel_1.items = dicts
+
   # initializing dictionary
 
   # # printing original dictionary

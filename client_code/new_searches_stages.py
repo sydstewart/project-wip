@@ -8,3 +8,16 @@ def new_searches_stages(self):
   last_date = anvil.server.call('last_import_date_stages')
   day_of_week =last_date.strftime("%A")
   self.label_2.text = 'Date of Last Import from the CRM = ' + str(last_date) + ' ' + str(day_of_week)
+
+  project= self.drop_down_1.selected_value
+  kwargs ={}
+  if project:
+     kwargs['project_name'] = project
+     
+     stages =  anvil.server.call('stages',**kwargs,)
+     self.repeating_panel_1.items  = stages
+     self.repeating_panel_1.items = sorted(
+        self.repeating_panel_1.items,
+        key=lambda row: row["Update_Date"],
+        reverse=True,
+      )
