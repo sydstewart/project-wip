@@ -321,16 +321,18 @@ class Form12(Form12Template):
       new_searches(self)
       pass
 
-  def button_1_click(self, **event_args):
+  def export_csv_click(self, **event_args):
     """This method is called when the button is clicked"""
-    self.content_panel.clear()
-    # self.column_panel_1.clear()
+    csv_file = self.repeating_panel_1.items.to_csv()
+    anvil.media.download(csv_file)
+    # self.content_panel.clear()
+    # # self.column_panel_1.clear()
 
-    anvil.users.logout()
+    # anvil.users.logout()
 
-    anvil.users.login_with_form()
-    open_form('Testquery')
-    pass
+    # anvil.users.login_with_form()
+    # open_form('Testquery')
+    # pass
 
   def link_15_click(self, **event_args):
     """This method is called when the link is clicked"""

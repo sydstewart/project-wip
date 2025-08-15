@@ -65,8 +65,8 @@ def new_searches(self):
           self.link_11.icon = ''  
     
           self.repeating_panel_1.items = orders
-      if len(self.repeating_panel_1.items) > 0:  
-    
+      if len(self.repeating_panel_1.items) > 0: 
+ 
           def format_currency(amount):
             return '£{:,.2f}'.format(amount)
           self.label_1.foreground ='black'
@@ -99,7 +99,10 @@ def new_searches(self):
           percent_complete_sum = (sum(item['percent_complete'] 
                                     for item in self.repeating_panel_1.items))
           percent_complete_average= (round(percent_complete_sum ))/len(self.repeating_panel_1.items)
-          percent_complete_average= str(round(percent_complete_average)) 
+          # percent_complete_average= str(round(percent_complete_average,1)) 
+          def format_percent(amount):
+            return '{:,.1f}%'.format(amount)
+          percent_complete_average = format_percent(percent_complete_average)
           self.label_11.foreground ='black'
           self.label_11.text = 'Average Percent Complete = ' + str(percent_complete_average)
 
