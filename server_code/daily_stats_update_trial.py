@@ -88,7 +88,8 @@ def daily_by_stats_trial():
   X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
   X['invoiced_but_work_not_done'] = X['partially_invoiced_total'] - X['work_completed']
   X['invoiced_but_work_not_done'] = X['invoiced_but_work_not_done'].fillna(0)
-  
+  X['invoiced_but_work_not_done']= X['invoiced_but_work_not_done'].map("£{:,.0f}".format)
+
   X['work_to_do_formated']= X['work_to_do'].map("£{:,.0f}".format)
   X['work_completed_formated']= X['work_completed'].map("£{:,.0f}".format)
   X['order_value_formated']= X['order_value'].map("£{:,.0f}".format)
@@ -149,7 +150,8 @@ def daily_by_stats_trial():
                                            'waiting_note':row['waiting_note'],'so_number':row['so_number'], 'work_to_do':row['work_to_do'], 'invoiced_but_work_not_done':row['invoiced_but_work_not_done'], \
                                            'work_completed':row['work_completed'] ,'stage_group':row['Stage Group'], 'days_elapsed':row['days_elapsed'], \
                                             'work_to_do_formated': row['work_to_do_formated'],'work_completed_formated': row['work_completed_formated'], \
-                                            'order_value_formated':row['order_value_formated'], 'partially_invoiced_total_formated':row['partially_invoiced_total_formated']})
+                                            'order_value_formated':row['order_value_formated'], 'partially_invoiced_total_formated':row['partially_invoiced_total_formated'], \
+                                            'invoiced_but_work_not_done_formated':row['invoiced_but_work_not_done_formated'], })
   
   for row in app_tables.sales_orders_all.search():
         row['updated'] = updated
