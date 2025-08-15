@@ -17,25 +17,27 @@ def prepare_stats():
       dicts = app_tables.sales_orders_all.search()
       X = pd.DataFrame.from_dict(dicts)
       #======================Overall Totals======================================
-      total_order_value = X['order_value'].sum()
+      wiplist = ['Work in Progress', 'On Hold','Waiting to Start']
+      filtered_df = X[X['stage_group'].isin(wiplist )  ]
+      total_order_value = filtered_df['order_value'].sum()
       # print( 'Total value Order', total_order_value )
-      overall_percentage_completion =  X['percent_complete'].mean()
+      overall_percentage_completion =  filtered_df['percent_complete'].mean()
       print( 'Overall Percent Complete', overall_percentage_completion )
-      total_partially_invoiced = X['partially_invoiced_total'].sum()
+      total_partially_invoiced = filtered_df['partially_invoiced_total'].sum()
       print( 'Total Partially Invoiced', total_partially_invoiced )
-      total_project_count = X['order_value'].count()
+      total_project_count = filtered_df['order_value'].count()
       print( 'Total Project_Count', total_project_count )
       print('Waiting On',X['waiting_on'])
       print("========================================================")
       #=======================Projects on Hold ======================================
-      stages = ['On Hold']
-      filtered_df = X[X['stage'].isin(stages)]
-      sum_of_onhold = filtered_df['order_value'].sum()
-      count_of_onhold = filtered_df['order_value'].count()
-      on_hold_percentage_complete_on_hold  = filtered_df['percent_complete'].mean()
+      
+      filtered_df_on_hold = X[X['stage_group'] == 'On Hold'] 
+      sum_of_onhold = filtered_df_on_hold['order_value'].sum()
+      count_of_onhold = filtered_df_on_hold['order_value'].count()
+      on_hold_percentage_complete_on_hold  = filtered_df_on_hold['percent_complete'].mean()
       work_completed_on_hold = sum_of_onhold * on_hold_percentage_complete_on_hold/100
       work_to_do_on_hold = sum_of_onhold - work_completed_on_hold 
-      on_hold_total_partially_invoiced = filtered_df['partially_invoiced_total'].sum()
+      on_hold_total_partially_invoiced = filtered_df_on_hold['partially_invoiced_total'].sum()
       
       
       print('Total Projects on Hold', sum_of_onhold )
@@ -44,24 +46,23 @@ def prepare_stats():
       print('on hold Total  Partialy Invoiced', on_hold_total_partially_invoiced )
       print("========================================================")
       #=======================Projects Waiting to Start ======================================
-      stages = [ 'Order Approved', 'Order Submitted for Approval','Ordered']
-      filtered_df = X[X['stage'].isin(stages)]
-      sum_of_onhold = filtered_df['order_value'].sum()
+      filtered_df_wait_to_start = X[X['stage_group'] == 'Waiting to Start'] 
+      sum_of_onhold = filtered_df_wait_to_start ['order_value'].sum()
       print('Total Projects Waiting to Start', sum_of_onhold )
       
       
       print('#========================Projects in Progress======================================')
-      stages = ['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP','Invoiced, still work to be completed']
-      filtered_df = X[X['stage'].isin(stages)]
-      sum_of_in_progress = filtered_df['order_value'].sum() 
-      count_of_in_progress = filtered_df['order_value'].count() 
-      percentage_complete_in_progress  = filtered_df['percent_complete'].mean()
+      
+      filtered_df_wip = X[X['stage_group'] == 'Work in Progress'] 
+      sum_of_in_progress = filtered_df_wip['order_value'].sum() 
+      count_of_in_progress = filtered_df_wip['order_value'].count() 
+      percentage_complete_in_progress  = filtered_df_wip['percent_complete'].mean()
       work_completed_in_progress= sum_of_in_progress * (percentage_complete_in_progress/100)
       work_to_do_in_progress = sum_of_in_progress  - work_completed_in_progress
-      in_progress_total_partially_invoiced = filtered_df['partially_invoiced_total'].sum()
+      in_progress_total_partially_invoiced = filtered_df_wip['partially_invoiced_total'].sum()
       
       #====wait of Customer in Work in Progress
-      filtered_df_wait = filtered_df[filtered_df['waiting_on'] == 'Customer']
+      filtered_df_wait = filtered_df_wip[filtered_df_wip['waiting_on'] == 'Customer']
       if filtered_df_wait.empty is False:
           sum_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].sum()
           count_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_no'].count()
@@ -76,7 +77,7 @@ def prepare_stats():
         work_completed_in_progress_waiting_on_customer = 0
         work_to_do_in_progress_in_progress_waiting_on_customer = 0
       #======Wait on 4S
-      filtered_df_wait_4S = filtered_df[filtered_df['waiting_on'] == '4S']
+      filtered_df_wait_4S = filtered_df_wip[filtered_df['waiting_on'] == '4S']
       if filtered_df_wait_4S.empty is False:
           sum_of_waiting_in_progress_waiting_on_4S = filtered_df_wait_4S['order_value'].sum()  
           count_of_waiting_in_progress_waiting_on_4S = filtered_df_wait_4S['order_no'].count() 
@@ -92,7 +93,7 @@ def prepare_stats():
         work_to_do_in_progress_in_progress_waiting_on_4S = 0
         
       #======Wait on no status
-      filtered_df_wait_none = filtered_df[filtered_df['waiting_on'] =='None']
+      filtered_df_wait_none = filtered_df_wip[filtered_df['waiting_on'] =='None']
       print('filtered_df_wait_none',filtered_df_wait_none)
       if filtered_df_wait_none.empty is False:
           sum_of_waiting_in_progress_waiting_no_state = filtered_df_wait_none['order_value'].sum()
@@ -157,7 +158,7 @@ def prepare_stats():
       print("========================================================")
       
       #=======================In Progress Waiting On Customer ================================
-      filtered_df_wait = filtered_df[filtered_df['waiting_on'] == 'Customer']
+      filtered_df_wait = filtered_df_wip[filtered_df['waiting_on'] == 'Customer']
       sum_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].sum() 
       count_of_waiting_in_progress_waiting_on_customer = filtered_df_wait['order_value'].count() 
       percentage_complete_in_progress_waiting_on_customer   = filtered_df_wait['percent_complete'].mean()
@@ -175,7 +176,7 @@ def prepare_stats():
       print('Count of Projects In Progress waiting on customer', count_of_waiting_in_progress_waiting_on_customer)
       print("======================================")
       #=======================In Progress Waiting None ================================
-      filtered_df_wait = filtered_df[filtered_df['waiting_on'].isnull()]
+      filtered_df_wait = filtered_df_wip[filtered_df['waiting_on'].isnull()]
       print('Waiting Status',filtered_df_wait['waiting_on'])  
       # count_of_waiting_in_progress_waiting_no_state = filtered_df_wait['order_no'].count()
       # sum_of_waiting_in_progress_waiting_no_state = filtered_df_wait['order_value'].sum()
@@ -184,7 +185,7 @@ def prepare_stats():
       print("======================================")
       #============================In Progress Waiting on 4S =====================================
       
-      filtered_df_wait = filtered_df[filtered_df['waiting_on'].str.contains("4S")]
+      filtered_df_wait = filtered_df_wip[filtered_df['waiting_on'].str.contains("4S")]
       sum_of_waiting_in_progress_waiting_on_4S = filtered_df_wait['order_value'].sum() 
       count_of_waiting_in_progress_waiting_on_4S = filtered_df_wait['order_no'].count() 
       percentage_complete_in_progress_waiting_on_4S  = filtered_df_wait['percent_complete'].mean()
@@ -201,8 +202,7 @@ def prepare_stats():
       
       #=============================Projects Waiting to Start=================================
       
-      stages = [ 'Order Approved', 'Order Submitted for Approval','Ordered']
-      filtered_df = X[X['stage'].isin(stages)]
+      filtered_df = X[X['stage_group'] == 'Waiting to Start'] 
       sum_of_waiting_to_start = filtered_df['order_value'].sum() 
       count_of_waiting_to_start = filtered_df['order_value'].count() 
       percentage_complete_to_start  = filtered_df['percent_complete'].mean()
