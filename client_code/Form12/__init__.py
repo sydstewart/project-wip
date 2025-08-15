@@ -7,7 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime, time , date , timedelta
 from .. new_searches import new_searches
-
+from anvil_extras import popover
 
 class Form12(Form12Template):
  
@@ -29,7 +29,17 @@ class Form12(Form12Template):
 
     print('Start', datetime.now())
 
-
+    popover.dismiss_on_outside_click(True)
+    info = "\nA = Order Value\n\
+    B = Value of % work done based on the % Completion \n\
+    C = Value of work still to do (A-B)" \
+    # D =  Value of work Invoiced to Date  \
+    # E = Invoiced value for work not yet complete  E = D - B  \
+    # F = the amount Invoiced but the value of the work done is less than what was already invoiced)"
+    self.info_button.popover(info, 
+                          title = 'Calcu;ation Logic', 
+                          placement = 'below',
+                          trigger = 'click hover')
 
     with Notification("Please wait... data loading "):
       new_searches(self)
@@ -370,5 +380,16 @@ class Form12(Form12Template):
       self.drop_down_1.visible = True
       self.label_3.visible = True
     new_searches(self)
+    pass
+
+  def info_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    info = "\nA = Order Value\n\
+    B = Value of % work done based on the % Completion \n\
+    C = Value of work still to do (A-B)" \
+    # D =  Value of work Invoiced to Date  \
+    # E = Invoiced value for work not yet complete  E = D - B  \
+    # F = the amount Invoiced but the value of the work done is less than what was already invoiced)"
+    alert(info, large=True)
     pass
 

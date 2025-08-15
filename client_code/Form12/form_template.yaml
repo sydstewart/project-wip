@@ -6,7 +6,7 @@ components:
     type: Label
   - layout_properties: {grid_position: 'YYAAON,RATVQJ'}
     name: label_8
-    properties: {align: left, bold: true}
+    properties: {align: left, bold: true, tooltip: 'A =  Order Value  B = Value of % work done based on the % Completion  as above  C = Value of work still to be completed (A -B) - does the column title ''Amount still to invoice correct''?  A = B + C  D =  Value of work Invoiced to Date  E = Invoiced value for work not yet complete.  E = D - B  (the amount Invoiced but the value of the work done is less than what was already invoiced)'}
     type: Label
   - layout_properties: {grid_position: 'YYAAON,PVLDIV'}
     name: label_11
@@ -38,7 +38,7 @@ components:
     type: Label
   - layout_properties: {grid_position: 'YYAAON,IGTCTO'}
     name: label_15
-    properties: {bold: true}
+    properties: {bold: true, text: '', tooltip: 'A =  Order Value  ''<br>'' B = Value of % work done based on the % Completion  as above  C = Value of work still to be completed (A -B) - does the column title ''Amount still to invoice correct''?  A = B + C  D =  Value of work Invoiced to Date  E = Invoiced value for work not yet complete.  E = D - B  (the amount Invoiced but the value of the work done is less than what was already invoiced)'}
     type: Label
   - event_bindings: {click: link_14_click}
     layout_properties: {grid_position: 'YYAAON,IMPKLS'}
@@ -159,6 +159,11 @@ components:
       placeholder: ''
       width: '500'
     type: form:C6ZZPAPN4YYF5NVJ:MultiSelectDropDown
+  - event_bindings: {click: info_button_click}
+    layout_properties: {grid_position: 'EVWOIU,VWTUGE'}
+    name: info_button
+    properties: {bold: true, font_size: 10, text: Calc Info}
+    type: Button
   - layout_properties: {grid_position: 'EVWOIU,LGWVFD'}
     name: label_19
     properties: {}
@@ -263,7 +268,7 @@ components:
     type: DataGrid
   layout_properties: {full_width_row: true, grid_position: 'DFDAKK,XIDNMY'}
   name: content_panel
-  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":4,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":5,"NWHSJZ":5,"FJBRDD":9,"QTJCJH":3,"SDZQGA":7,"IYKIUQ":4,"NMKHZD":7,"RATVQJ":5,"YAYZQJ":4,"SXSCRZ":7,"LLEQXH":3,"SFVODW":4,"IMPKLS":3,"ZGCDPQ":3,"JUXJPE":4,"IGTCTO":3,"QZMDLS":9,"UTDDWX":24,"LGWVFD":47,"PITOTQ":4,"PVLDIV":5,"QXQUSK":4,"SZZLNX":4,"YOQASJ":4}'}
+  properties: {col_widths: '{"JEWUFC":5,"UDPOYE":6,"UCBMLV":4,"JFACPH":5,"ZJGFNI":4,"LSQFJA":4,"KCWEBL":5,"NWHSJZ":5,"FJBRDD":9,"QTJCJH":3,"SDZQGA":7,"IYKIUQ":4,"NMKHZD":7,"RATVQJ":5,"YAYZQJ":4,"SXSCRZ":7,"LLEQXH":3,"SFVODW":4,"IMPKLS":3,"ZGCDPQ":3,"JUXJPE":4,"IGTCTO":4,"QZMDLS":9,"UTDDWX":24,"LGWVFD":47,"PITOTQ":4,"PVLDIV":5,"QXQUSK":4,"SZZLNX":4,"YOQASJ":4}'}
   type: ColumnPanel
 container: {type: ColumnPanel}
 is_package: true

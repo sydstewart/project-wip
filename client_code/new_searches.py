@@ -75,7 +75,7 @@ def new_searches(self):
                         for item in self.repeating_panel_1.items))
           order_total_formated = format_currency(order_total)
           self.label_8.foreground ='black'
-          self.label_8.text = 'Order Total   ' + str(order_total_formated) 
+          self.label_8.text = 'Order Total (A)  ' + str(order_total_formated) 
           
           days_elapsed_sum = (sum(item['days_elapsed'] 
                               for item in self.repeating_panel_1.items))
@@ -88,13 +88,13 @@ def new_searches(self):
                                 for item in self.repeating_panel_1.items))
           work_to_do_sum= format_currency(work_to_do_sum)
           self.label_10.foreground ='black'
-          self.label_10.text = 'Work To Do Value   ' + str(work_to_do_sum)
+          self.label_10.text = 'Work To Do Value (A - B)  ' + str(work_to_do_sum)
 
           work_completed_sum = (sum(item['work_completed'] 
                                 for item in self.repeating_panel_1.items))
           work_completed_sum= format_currency(work_completed_sum)
           self.label_17.foreground ='black'
-          self.label_17.text = 'Work Completed Value   ' + str(work_completed_sum)
+          self.label_17.text = 'Work Completed Value (B) ' + str(work_completed_sum)
         
           percent_complete_sum = (sum(item['percent_complete'] 
                                     for item in self.repeating_panel_1.items))
@@ -110,7 +110,7 @@ def new_searches(self):
                                       for item in self.repeating_panel_1.items))
           partially_invoiced_total_sum_formated= format_currency(partially_invoiced_total_sum)
           self.label_13.foreground ='black'
-          self.label_13.text = 'Partially Invoiced   ' + str(partially_invoiced_total_sum_formated)
+          self.label_13.text = 'Partially Invoiced  (C) ' + str(partially_invoiced_total_sum_formated)
 
           
           filtered_data = [item for item in self.repeating_panel_1.items if item['invoiced_but_work_not_done'] > 0]
@@ -127,7 +127,7 @@ def new_searches(self):
           yet_to_be_invoiced = order_total - partially_invoiced_total_sum
           yet_to_be_invoiced_formated = format_currency(yet_to_be_invoiced)
           self.label_14.foreground ='black'
-          self.label_14.text =  'Yet to be Invoiced   ' + str(yet_to_be_invoiced_formated)
+          self.label_14.text =  'Yet to be Invoiced C = (A -C)  ' + str(yet_to_be_invoiced_formated)
 
          
         
