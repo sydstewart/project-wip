@@ -13,9 +13,15 @@ class Form14(Form14Template):
     self.init_components(**properties)
     new_searches_stages(self)
     print('I am Form14')
-    projectnames= list({(r['project_name']) for r in app_tables.sales_orders_stage_changes.search(tables.order_by('project_name'))})
+    
+    projectnames = anvil.server.call('get_project_names')
+
+    projectnames.sort() # reorders the list
+
+    self.drop_down_1.items =projectnames
+   
  
-    self.drop_down_1.items = projectnames
+   
  
     dicts = anvil.server.call('get_stage_changes')
     print('Number of Record=', len(dicts))
