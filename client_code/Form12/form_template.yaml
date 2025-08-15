@@ -162,7 +162,7 @@ components:
   - event_bindings: {click: info_button_click}
     layout_properties: {grid_position: 'EVWOIU,VWTUGE'}
     name: info_button
-    properties: {bold: true, font_size: 10, text: Calc Info}
+    properties: {bold: true, font_size: 10, text: Calc Info, tooltip: 'A =  Order Value  B = Value of % work done based on the % Completion  as above  C = Value of work still to be completed (A -B) - does the column title ''Amount still to invoice correct''?  A = B + C  D =  Value of work Invoiced to Date  E = Invoiced value for work not yet complete.  E = D - B  (the amount Invoiced but the value of the work done is less than what was already invoiced)'}
     type: Button
   - layout_properties: {grid_position: 'EVWOIU,LGWVFD'}
     name: label_19
@@ -230,15 +230,19 @@ components:
       - event_bindings: {click: link_15_click}
         layout_properties: {column: JTAWEE}
         name: link_15
-        properties: {background: 'theme:Gray 200', bold: true, text: Partially Invoiced Total}
+        properties: {background: 'theme:Gray 200', bold: true, text: Partially Invoiced Total, tooltip: If an order in this column is negative it means we have issued a partial invoice but have done more than that amount of work completed}
         type: Link
       - layout_properties: {column: DTVOLR}
         name: link_16
         properties: {bold: true, text: Work To Do}
         type: Link
+      - layout_properties: {column: CMJIHM}
+        name: link_17
+        properties: {bold: true, text: Invoiced but work not done, tooltip: 'If an order in column E is negative it means we have issued a partial invoice but have done more than that amount of work,'}
+        type: Link
       layout_properties: {}
       name: data_row_panel_1
-      properties: {role: underline}
+      properties: {auto_display_data: false, role: underline}
       type: DataRowPanel
     - name: repeating_panel_1
       properties: {item_template: Testquery.RowTemplate26}
@@ -246,22 +250,23 @@ components:
     layout_properties: {full_width_row: true, grid_position: 'CHTPJW,LUNNPF'}
     name: data_grid_1
     properties:
-      auto_header: false
+      auto_header: true
       columns:
       - {data_key: order_no, expand: false, id: JKSDUP, title: Order No, width: 116.727294921875}
       - {data_key: order_date, expand: false, id: DVUGBU, title: Order Date, width: 131.27276611328125}
-      - {data_key: project_name, expand: false, id: VJQQOR, title: Project, width: 193.18182373046875}
-      - {data_key: stage, expand: false, id: OJLQEN, title: Stage, width: 84.81817626953125}
-      - {data_key: waiting_on, expand: false, id: GVGOUJ, title: Waiting On, width: 94.27276611328125}
-      - {data_key: order_value_formated, expand: false, id: PGKEKQ, title: Order Value, width: 111.5455322265625}
+      - {data_key: project_name, expand: false, id: VJQQOR, title: Project, width: 185}
+      - {data_key: stage, expand: false, id: OJLQEN, title: Stage, width: 74.81817626953125}
+      - {data_key: waiting_on, expand: false, id: GVGOUJ, title: Waiting On, width: 80.90911865234375}
+      - {data_key: order_value_formated, expand: false, id: PGKEKQ, title: Order Value, width: 88.90911865234375}
       - {data_key: percent_complete, expand: false, id: CAGESB, title: Percent Complete, width: 90.45458984375}
       - {data_key: work_completed_formated, expand: false, id: YMOAEN, title: Work Completed, width: 97.181884765625}
-      - {data_key: work_to_do_formated, expand: false, id: DTVOLR, title: Work To Do, width: 93.3636474609375}
+      - {data_key: work_to_do_formated, expand: false, id: DTVOLR, title: Work To Do, width: 77.272705078125}
       - {data_key: assigned_to, expand: false, id: GIJMQZ, title: Assigned To, width: 75.8182373046875}
       - {data_key: days_elapsed, expand: false, id: IDHGAW, title: Elapsed Time Days, width: 73.9091796875}
-      - {data_key: order_category, expand: false, id: ZNRMWN, title: Category, width: 128.9091796875}
-      - {data_key: app_area, expand: false, id: SAFNDF, title: App Area, width: 143.3636474609375}
-      - {data_key: partially_invoiced_total_formated, id: JTAWEE, title: Partially Invoiced  Total}
+      - {data_key: order_category, expand: false, id: ZNRMWN, title: Category, width: 188}
+      - {data_key: app_area, expand: false, id: SAFNDF, title: App Area, width: 196}
+      - {data_key: partially_invoiced_total_formated, expand: false, id: JTAWEE, title: Partially Invoiced  Total, width: 88.8182373046875}
+      - {data_key: invoiced_but_work_not_done_formated, expand: true, id: CMJIHM, title: Invoiced but work not done}
       role: null
       rows_per_page: 100
       show_page_controls: true
