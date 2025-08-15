@@ -14,7 +14,7 @@ def orders(kwargs):
   if kwargs:
     orders = app_tables.sales_orders_all.search( **kwargs)
   else:
-    orders = app_tables.sales_orders_all.search(stage = q.not_('Closed'))
+    orders = app_tables.sales_orders_all.search(stage = q.not_('Closed', 'Cancelled','Complete'))
   # q.fetch_only("order_no","project_name","stage"
   # print('orders', orders)
   # convert to datframe to calc new columns  if orderss are found

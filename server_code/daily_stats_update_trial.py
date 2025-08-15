@@ -109,7 +109,7 @@ def daily_by_stats_trial():
   workinprogress_stages =['Awaiting Sign-Off','Work In Progress - 4S', 'Pre-requisites in progress' ,'Ready for GoLive', 'Ready for UAT','Ready to Start','UAT WIP','Invoiced, still work to be completed']
   hold_stages = ['On Hold']
   waitingtostart_stage =  [ 'Order Approved', 'Order Submitted for Approval','Ordered']
-  closed_stage =['Closed']
+  closed_stage =['Closed','Complete']
   cancelled_stage = ['Cancelled']
   conditions = [
     X['stage'].isin(workinprogress_stages),
