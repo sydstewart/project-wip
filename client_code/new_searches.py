@@ -55,7 +55,7 @@ def new_searches(self):
      
      
       print('kwargs=', kwargs)
-     
+      
       orders =  anvil.server.call('orders',kwargs,)
       if len(orders) >= 0:
           self.link_5.icon = ''
