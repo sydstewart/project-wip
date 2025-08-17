@@ -8,9 +8,9 @@ import anvil.server
 import pandas as pd
 from datetime import datetime, time , date , timedelta
 
-@anvil.server.callable(require_user=True)
+@anvil.server.callable(require_user= True)
 def orders(kwargs):
-
+   
   if kwargs:
     orders = app_tables.sales_orders_all.search( **kwargs)
   else:
