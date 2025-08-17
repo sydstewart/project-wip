@@ -4,6 +4,7 @@ import anvil.server
 import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
+import anvil.http
 from anvil.tables import app_tables
 from ..pie_charts_new import pie_charts_new
 from ..pivots_new import pivots_new
@@ -42,7 +43,15 @@ class Form9(Form9Template):
     loggedin_user = anvil.users.get_user()
     username = loggedin_user['email']
     usertype = anvil.server.call('get_user_type',loggedin_user)
-    print(usertype)
+    print('User -',username)
+    print('User -',usertype)
+   
+    # myip=anvil.http.request("https://6JUQ62P5MFEPKLVW.anvilapp.net/_/api/tools/myip")
+     
+    # print(myip)
+     
+ 
+
     self.label_1.text = 'User is ' + username + ' ' + usertype
     
     # self.text_box_2.text = loggedin_user['user_type']
@@ -51,13 +60,13 @@ class Form9(Form9Template):
     # Globals.loggedin_user = loggedin_user
     # Globals.organisation = organisation
     if usertype != 'admin': 
-      self.link_11.visible = False
-      self.link_12.visible = False
-      self.link_8.visible = False
-      self.link_9.visible = False
-      self.link_10.visible = False
-      # self.link_10.visible = False
-      
+        self.link_11.visible = False
+        self.link_12.visible = False
+        self.link_8.visible = False
+        self.link_9.visible = False
+        self.link_10.visible = False
+        # self.link_10.visible = False
+        
     
 
   def link_1_click(self, **event_args):
