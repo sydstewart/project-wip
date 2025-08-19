@@ -88,7 +88,7 @@ def daily_by_stats_trial():
   X['partially_invoiced_total'] = X['partially_invoiced_total'].fillna(0)
   X['invoiced_but_work_not_done'] = X['partially_invoiced_total'] - X['work_completed']
   X['invoiced_but_work_not_done'] = X['invoiced_but_work_not_done'].fillna(0)
-  X['invoiced_but_work_not_done']= X['invoiced_but_work_not_done'].map("£{:,.0f}".format)
+  X['invoiced_but_work_not_done_formated']= X['invoiced_but_work_not_done'].map("£{:,.0f}".format)
 
   X['work_to_do_formated']= X['work_to_do'].map("£{:,.0f}".format)
   X['work_completed_formated']= X['work_completed'].map("£{:,.0f}".format)
@@ -121,7 +121,7 @@ def daily_by_stats_trial():
     X['stage'].isin(closed_stage),
     X['stage'].isin(cancelled_stage) ]
 
-  categories = ['Work in Progress','On Hold' ,'Waiting to Start', 'Closed','Cancelled']
+  categories = ['Work in Progress','On Hold' ,'Waiting to Start','Complete', 'Closed','Cancelled']
 
 # Use np.select() to create the new column
   X['Stage Group'] = np.select(conditions, categories, default='Unknown')

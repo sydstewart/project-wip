@@ -250,7 +250,7 @@ components:
     layout_properties: {full_width_row: true, grid_position: 'CHTPJW,LUNNPF'}
     name: data_grid_1
     properties:
-      auto_header: true
+      auto_header: false
       columns:
       - {data_key: order_no, expand: false, id: JKSDUP, title: Order No, width: 116.727294921875}
       - {data_key: order_date, expand: false, id: DVUGBU, title: Order Date, width: 131.27276611328125}
